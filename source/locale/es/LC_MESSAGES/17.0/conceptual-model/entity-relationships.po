@@ -1,0 +1,138 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Guraify
+# This file is distributed under the same license as the TMS GURAIFY
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: TMS GURAIFY \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-26 12:02+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: es\n"
+"Language-Team: es <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:2
+msgid "2.2 Entity Relationships"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:5
+msgid "2.2.1 Logical Structural Flow"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:7
+msgid ""
+"Customer requests service ↓ Order is created ↓ Legs are generated ↓ Order"
+" validation ↓ System generates Stops ↓ Stops grouped into Trips ↓ Trip "
+"assigned to resource ↓ Execution ↓ Settlement and Invoicing"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:26
+msgid "2.2.2 Conceptual Separation"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:29
+msgid "Entity"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:29
+msgid "Represents"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:29
+msgid "Operational Impact"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:29
+msgid "Economic Impact"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:31
+msgid "Order"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:31
+msgid "Revenue"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:31
+msgid "Billing logic"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:31
+msgid "Invoicing"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:33
+msgid "Leg"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:33
+msgid "Logistics operation"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:33
+msgid "Traceability"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:33
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:35
+msgid "—"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:35
+msgid "Stop"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:35
+msgid "Physical event"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:35
+msgid "Planning"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:37
+msgid "Trip"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:37
+msgid "Executable route"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:37
+msgid "Execution"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:37
+msgid "Cost"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:40
+msgid "This separation enables:"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:42
+msgid "Scalability"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:43
+msgid "Operational flexibility"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:44
+msgid "Advanced optimization"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/entity-relationships.rst:45
+msgid "Real financial control"
+msgstr ""
+

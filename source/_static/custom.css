@@ -1,0 +1,626 @@
+/* ==========================================================================
+   Guraify Docs — Brand-aligned styles (PyData Sphinx Theme)
+   Palette + typography based on Guraify visual identity guidelines:
+   - Primary: #7F3C8A, Secondary: #7ABBC1, Accent: #DD9541
+   - Neutral: #F4F3F2, Text: #211B27
+   - Headings: Mulish, Body: Open Sans
+   ========================================================================== */
+
+/* Load brand fonts (Google Fonts) */
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;700;800;900&family=Open+Sans:wght@300;400;600;700&display=swap");
+
+/* Brand tokens */
+:root {
+  /* Core brand palette */
+  --guraify-primary: #7f3c8a;
+  --guraify-secondary: #7abbc1;
+  --guraify-accent: #dd9541;
+  --guraify-bg: #f4f3f2;
+  --guraify-text: #211b27;
+
+  /* PyData theme tokens */
+  --pst-color-primary: var(--guraify-primary);
+  --pst-color-secondary: var(--guraify-secondary);
+
+  /* Right TOC (On this page) highlight overrides */
+  --pst-color-toc-link: var(--guraify-text);
+  --pst-color-toc-link-hover: var(--guraify-primary);
+  --pst-color-toc-link-active: var(--guraify-primary);
+  --pst-color-toc-border: var(--guraify-primary);
+
+  /* Links */
+  --pst-color-link: var(--guraify-secondary);
+  --pst-color-link-hover: #5faab1;
+
+  /* Text + surfaces */
+  --pst-color-text-base: var(--guraify-text);
+  --pst-color-text-muted: rgba(33, 27, 39, 0.70);
+  --pst-color-background: #ffffff;
+  --pst-color-on-background: var(--guraify-text);
+
+  /* Borders */
+  --guraify-border: rgba(33, 27, 39, 0.10);
+
+  /* Code blocks */
+  --pst-color-inline-code: var(--guraify-primary);
+}
+
+/* Global typography */
+html, body {
+  font-family: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--guraify-text);
+  letter-spacing: -0.003em; /* slightly tighter tracking */
+}
+
+/* Headings typography */
+h1, h2, h3, h4, h5, h6,
+.bd-article h1, .bd-article h2, .bd-article h3, .bd-article h4, .bd-article h5, .bd-article h6 {
+  font-family: "Mulish", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  letter-spacing: -0.008em; /* tighter headings tracking */
+  color: var(--guraify-text);
+}
+
+/* Heading scale (docs-friendly, closer to Odoo docs) */
+/* Control line length (improves readability, closer to Odoo docs) */
+.bd-main .bd-content .bd-article {
+  max-width: 980px;
+}
+.bd-article h1, h1 { font-size: 2rem; line-height: 1.15; font-weight: 800; }
+.bd-article h2, h2 { font-size: 1.5rem; line-height: 1.2; font-weight: 700; }
+.bd-article h3, h3 { font-size: 1.2rem; line-height: 1.25; font-weight: 650; }
+.bd-article h4, h4 { font-size: 1.rem; line-height: 1.3; font-weight: 600; }
+.bd-article h5, h5 { font-size: .095rem; line-height: 1.35; }
+.bd-article h6, h6 { font-size: 0.90rem; line-height: 1.35; }
+.bd-article p,  p  { font-size: 1rem; line-height: 1.65; }
+
+/* Subtle brand coloring for hierarchy (optional but consistent) */
+.bd-article h1, h1 { color: var(--guraify-primary); }
+.bd-article h2, h2 { color: var(--guraify-accent); }
+.bd-article h3, h3 { color: rgba(33, 27, 39, 0.92); }
+
+/* Reduce extra-large headings on small screens */
+@media (max-width: 992px) {
+  .bd-article h1, h1 { font-size: 1.85rem; }
+  .bd-article h2, h2 { font-size: 1.45rem; }
+  .bd-article h3, h3 { font-size: 1.2rem; }
+}
+
+/* Layout surfaces: subtle brand background */
+.bd-container,
+.bd-main {
+  background: #ffffff;
+}
+
+/* Navbar: cleaner + brand border */
+.bd-header {
+  border-bottom: 1px solid var(--guraify-border);
+}
+
+.bd-header__inner .bd-page-width {
+  margin-bottom: 10px;
+}
+
+/* Search: pill look */
+.bd-search .form-control {
+  border-radius: 999px;
+  padding-left: 2.5rem;
+  border-color: var(--guraify-border);
+}
+.bd-search .form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(127, 60, 138, 0.18);
+  border-color: rgba(127, 60, 138, 0.45);
+}
+.bd-search{
+  border: 0px;
+}
+
+/* ==========================================================
+   Header search layout: keep only one search (center)
+   and make it larger + centered
+   ========================================================== */
+
+/* Hide duplicate search in navbar end area */
+.bd-header .navbar-header-items__end .bd-search,
+.bd-header .navbar-header-items__end .search-button__wrapper {
+  display: none !important;
+}
+
+/* Center the middle header area */
+.bd-header .navbar-header-items__center {
+  flex: 1 1 auto;
+  justify-content: center;
+}
+
+/* Enlarge central search */
+.bd-header .navbar-header-items__center .bd-search {
+  width: min(760px, 75vw);
+  max-width: 760px;
+}
+
+/* Increase input height slightly */
+.bd-header .navbar-header-items__center .bd-search .form-control {
+  height: 46px;
+  font-size: 1rem;
+}
+
+/* Hide the Ctrl + K shortcut hint inside header search */
+.bd-header .search-button__kbd-shortcut,
+.bd-header .search-button__kbd-shortcut__key,
+.bd-header .bd-search kbd {
+  display: none !important;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons (theme uses .btn for many controls) */
+.btn-primary,
+.bd-header .btn-primary {
+  background-color: var(--guraify-primary);
+  border-color: var(--guraify-primary);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #6f3379;
+  border-color: #6f3379;
+}
+.btn-secondary {
+  background-color: var(--guraify-secondary);
+  border-color: var(--guraify-secondary);
+  color: var(--guraify-text);
+}
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: #5faab1;
+  border-color: #5faab1;
+}
+
+/* Callouts / admonitions: give them a brand accent bar */
+.admonition {
+  border-left: 4px solid var(--guraify-primary);
+}
+.admonition.note { border-left-color: var(--guraify-secondary); }
+.admonition.warning { border-left-color: var(--guraify-accent); }
+
+/* Code blocks */
+code, tt {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+code.literal {
+  color: var(--guraify-primary);
+  background: rgba(127, 60, 138, 0.08);
+  border-radius: 4px;
+  padding: 0.08em 0.25em;
+}
+
+/* Right TOC title: like "ON THIS PAGE" */
+.toc-title {
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  font-weight: 800;
+  color: rgba(33, 27, 39, 0.75);
+}
+
+/* Tables: subtle borders */
+.table, table.docutils {
+  border-color: var(--guraify-border);
+}
+table.docutils th {
+  background: rgba(244, 243, 242, 0.8);
+}
+
+/* Footer (if visible) */
+.bd-footer {
+  border-top: 1px solid var(--guraify-border);
+}
+
+.guraify-subheader {
+  background: #F2F2F2;
+  min-height: 36px;
+  padding: 0 3rem;
+    display: flex;
+  align-items: center;
+
+  /* Make it sticky below the main navbar */
+  position: sticky;
+  top: 64px; /* height of main navbar (adjust if needed) */
+  z-index: 1020;
+}
+
+/* --- Guraify CTA button (override theme default primary color) --- */
+a.sd-btn.guraify-cta {
+  background-color: #7F3C8A; /* Guraify primary (purple) */
+  border-color: #7F3C8A;
+  color: #fff !important;
+  font-weight: 600;
+}
+
+a.sd-btn.guraify-cta:hover,
+a.sd-btn.guraify-cta:focus {
+  background-color: #6B3274; /* darker purple for hover */
+  border-color: #6B3274;
+  color: #fff !important;
+  text-decoration: none;
+}
+
+a.sd-btn.guraify-cta:active {
+  background-color: #5E2C67;
+  border-color: #5E2C67;
+}
+
+/*************************************
+ * Sidebar (left nav) - Odoo-like UX
+ *************************************/
+
+/* 1) Sidebar scroll */
+.bd-sidebar {
+  max-height: calc(100vh - var(--pst-header-height, 64px));
+  overflow-y: auto;
+}
+
+/* Scrollbar (Chromium/Safari) */
+.bd-sidebar::-webkit-scrollbar {
+  width: 10px;
+}
+.bd-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.bd-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(33, 27, 39, 0.25); /* #211B27 with opacity */
+  border-radius: 10px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+.bd-sidebar:hover::-webkit-scrollbar-thumb {
+  background: rgba(33, 27, 39, 0.40);
+  background-clip: content-box;
+}
+
+/* Scrollbar (Firefox) */
+.bd-sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(33, 27, 39, 0.35) transparent;
+}
+
+
+/* 2) Full-width active item background (ONLY level 2+ items)
+   - We want the big purple pill only for nested pages (toctree-l2, l3, ...)
+   - The level-1 section (toctree-l1) stays as a normal link (no filled background)
+*/
+
+/* Reset any accidental filled background on level-1 current items */
+.bd-sidebar .bd-sidenav li.toctree-l1.current > a,
+.bd-sidebar .bd-sidenav li.toctree-l1 > a[aria-current="page"],
+.bd-sidebar .bd-sidenav li.toctree-l1 > a.active {
+  background: transparent !important;
+  color: var(--guraify-primary) !important;
+  font-weight: 700;
+  border-radius: 0;
+  box-shadow: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Apply the full-width purple row ONLY to level 2+ */
+.bd-sidebar .bd-sidenav li.toctree-l2.current > a,
+.bd-sidebar .bd-sidenav li.toctree-l3.current > a,
+.bd-sidebar .bd-sidenav li.toctree-l4.current > a,
+.bd-sidebar .bd-sidenav li.toctree-l5.current > a,
+.bd-sidebar .bd-sidenav li.toctree-l6.current > a,
+.bd-sidebar .bd-sidenav li.toctree-l2 > a[aria-current="page"],
+.bd-sidebar .bd-sidenav li.toctree-l3 > a[aria-current="page"],
+.bd-sidebar .bd-sidenav li.toctree-l4 > a[aria-current="page"],
+.bd-sidebar .bd-sidenav li.toctree-l5 > a[aria-current="page"],
+.bd-sidebar .bd-sidenav li.toctree-l6 > a[aria-current="page"],
+.bd-sidebar .bd-sidenav li.toctree-l2 > a.active,
+.bd-sidebar .bd-sidenav li.toctree-l3 > a.active,
+.bd-sidebar .bd-sidenav li.toctree-l4 > a.active,
+.bd-sidebar .bd-sidenav li.toctree-l5 > a.active,
+.bd-sidebar .bd-sidenav li.toctree-l6 > a.active {
+  display: block;                 /* ensures background spans full row */
+  width: 100%;
+  background: #7F3C8A;            /* Guraify primary */
+  color: #fff !important;
+  font-weight: 700;
+  text-decoration: none !important;
+  border-radius: 10px;            /* a bit more “pill-like” */
+  padding-top: .45rem;
+  padding-bottom: .45rem;
+}
+
+/* Make the “row” truly full width even if the nav has inner padding (ONLY for level 2+) */
+.bd-sidebar .bd-sidenav li.toctree-l2.current > a,
+.bd-sidebar .bd-sidenav li.toctree-l3.current > a,
+.bd-sidebar .bd-sidenav li.toctree-l4.current > a,
+.bd-sidebar .bd-sidenav li.toctree-l5.current > a,
+.bd-sidebar .bd-sidenav li.toctree-l6.current > a,
+.bd-sidebar .bd-sidenav li.toctree-l2 > a[aria-current="page"],
+.bd-sidebar .bd-sidenav li.toctree-l3 > a[aria-current="page"],
+.bd-sidebar .bd-sidenav li.toctree-l4 > a[aria-current="page"],
+.bd-sidebar .bd-sidenav li.toctree-l5 > a[aria-current="page"],
+.bd-sidebar .bd-sidenav li.toctree-l6 > a[aria-current="page"],
+.bd-sidebar .bd-sidenav li.toctree-l2 > a.active,
+.bd-sidebar .bd-sidenav li.toctree-l3 > a.active,
+.bd-sidebar .bd-sidenav li.toctree-l4 > a.active,
+.bd-sidebar .bd-sidenav li.toctree-l5 > a.active,
+.bd-sidebar .bd-sidenav li.toctree-l6 > a.active {
+  margin-left: -1rem;
+  margin-right: -1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Optional: hover behavior consistent with selected */
+.bd-sidebar .bd-sidenav a:hover {
+  text-decoration: none;
+}
+
+.bd-sidebar .bd-sidenav li.toctree-l2.current > a:hover,
+.bd-sidebar .bd-sidenav li.toctree-l3.current > a:hover,
+.bd-sidebar .bd-sidenav li.toctree-l4.current > a:hover,
+.bd-sidebar .bd-sidenav li.toctree-l5.current > a:hover,
+.bd-sidebar .bd-sidenav li.toctree-l6.current > a:hover,
+.bd-sidebar .bd-sidenav li.toctree-l2 > a[aria-current="page"]:hover,
+.bd-sidebar .bd-sidenav li.toctree-l3 > a[aria-current="page"]:hover,
+.bd-sidebar .bd-sidenav li.toctree-l4 > a[aria-current="page"]:hover,
+.bd-sidebar .bd-sidenav li.toctree-l5 > a[aria-current="page"]:hover,
+.bd-sidebar .bd-sidenav li.toctree-l6 > a[aria-current="page"]:hover,
+.bd-sidebar .bd-sidenav li.toctree-l2 > a.active:hover,
+.bd-sidebar .bd-sidenav li.toctree-l3 > a.active:hover,
+.bd-sidebar .bd-sidenav li.toctree-l4 > a.active:hover,
+.bd-sidebar .bd-sidenav li.toctree-l5 > a.active:hover,
+.bd-sidebar .bd-sidenav li.toctree-l6 > a.active:hover {
+  background: #6B3274; /* darker hover */
+}
+
+/* Ensure child text/icons also turn white (ONLY for level 2+) */
+.bd-sidebar .bd-sidenav li.toctree-l2.current > a *,
+.bd-sidebar .bd-sidenav li.toctree-l3.current > a *,
+.bd-sidebar .bd-sidenav li.toctree-l4.current > a *,
+.bd-sidebar .bd-sidenav li.toctree-l5.current > a *,
+.bd-sidebar .bd-sidenav li.toctree-l6.current > a *,
+.bd-sidebar .bd-sidenav li.toctree-l2 > a[aria-current="page"] *,
+.bd-sidebar .bd-sidenav li.toctree-l3 > a[aria-current="page"] *,
+.bd-sidebar .bd-sidenav li.toctree-l4 > a[aria-current="page"] *,
+.bd-sidebar .bd-sidenav li.toctree-l5 > a[aria-current="page"] *,
+.bd-sidebar .bd-sidenav li.toctree-l6 > a[aria-current="page"] *,
+.bd-sidebar .bd-sidenav li.toctree-l2 > a.active *,
+.bd-sidebar .bd-sidenav li.toctree-l3 > a.active *,
+.bd-sidebar .bd-sidenav li.toctree-l4 > a.active *,
+.bd-sidebar .bd-sidenav li.toctree-l5 > a.active *,
+.bd-sidebar .bd-sidenav li.toctree-l6 > a.active * {
+  color: #fff !important;
+}
+
+
+/*************************************
+ * Right sidebar (On this page / TOC)
+ *************************************/
+
+/* Active TOC link color */
+.bd-toc .nav-link.active,
+.bd-toc .active > .nav-link,
+.bd-toc .toc-entry a.current,
+.bd-toc .toc-entry a[aria-current="true"],
+.bd-toc .toc-entry a[aria-current="location"] {
+  color: var(--guraify-primary) !important;
+  font-weight: 700;
+}
+
+/* Vertical active marker (override theme green) */
+.bd-toc .nav-link,
+.bd-toc .toc-entry a {
+  border-left: 3px solid transparent;
+  padding-left: .75rem;
+}
+
+.bd-toc .nav-link.active,
+.bd-toc .active > .nav-link,
+.bd-toc .toc-entry a.current,
+.bd-toc .toc-entry a[aria-current="true"],
+.bd-toc .toc-entry a[aria-current="location"] {
+  border-left-color: var(--guraify-primary) !important;
+}
+
+/* Some PST versions apply the border to li elements */
+.bd-toc .nav-item.active,
+.bd-toc .nav-item.current,
+.bd-toc .toc-entry.current {
+  border-left-color: var(--guraify-primary) !important;
+}
+
+/* Hover (keep consistent) */
+.bd-toc .nav-link:hover,
+.bd-toc .toc-entry a:hover {
+  color: var(--guraify-primary) !important;
+  text-decoration: none;
+}
+.toc-entry a.nav-link.active {
+    background-color: transparent;
+    box-shadow: inset max(3px, .1875rem, .12em) 0 0 var(--guraify-primary);
+    color: var(--guraify-primary);
+    font-weight: 600;
+}
+nav.bd-links .current>a {
+    background-color: transparent;
+    box-shadow: inset max(3px, .1875rem, .12em) 0 0 var(--guraify-primary);
+    color: var(--guraify-primary);
+    font-weight: 600;
+}
+
+#pst-back-to-top {
+    background-color: var(--guraify-secondary);
+}
+
+#pst-back-to-top:hover {
+    background-color: var(--guraify-primary);
+}
+
+/*************************************
+ * Sidebar titles customization
+ *************************************/
+
+/* LEFT SIDEBAR TITLE (replace text + add icon) */
+.bd-sidebar .sidebar-heading,
+.bd-sidebar .bd-links .caption-text {
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Hide original text */
+.bd-sidebar .sidebar-heading span,
+.bd-sidebar .bd-links .caption-text {
+  visibility: hidden;
+  position: relative;
+}
+
+/* Inject custom title + icon LEFT SIDEBAR */
+.bd-sidebar .sidebar-heading span::before,
+.bd-sidebar .bd-links .caption-text::before {
+  content: "📦 TMS User Docs";
+  visibility: visible;
+  position: absolute;
+  left: 0;
+  color: var(--guraify-primary);
+}
+.bd-links__title{
+  display: none;
+}
+
+/* RIGHT SIDEBAR (On this page) — force an Odoo-like title using the actual heading element */
+#pst-page-navigation-heading-2.page-toc.tocsection.onthispage {
+  /* style the existing heading */
+  color: var(--guraify-primary) !important;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 1.1rem;
+  position: relative;
+}
+
+.section-nav{
+  padding-left: 30px !important;
+}
+.current .nav .bd-sidenav{
+  padding-left: 30px !important;
+}
+
+/* ============================
+   Language switcher (align with PyData version switcher look)
+   NOTE: we do NOT reuse version-switcher classes to avoid JS hooks.
+   ============================ */
+
+/* Wrapper should behave like the version switcher dropdown */
+.guraify-lang-dropdown {
+  position: relative;
+  z-index: 1055; /* same stacking context as version switcher */
+}
+
+/* Button: mimic `button.btn.version-switcher__button` */
+button.btn.btn-sm.guraify-lang-button {
+  /* layout */
+  min-height: 24px;
+  min-width: 24px;
+  margin-bottom: unset;
+
+  /* typography */
+  font-size: 1.1em; /* matches `.version-switcher__menu, button.version-switcher__button` */
+  line-height: 1.2;
+
+  /* colors/borders (match version switcher) */
+  border-color: var(--pst-color-border);
+  color: var(--pst-color-text-base);
+
+  /* IMPORTANT: match version switcher collapsed look (no white fill) */
+  background-color: transparent;
+
+  /* subtle theme-like outline/shadow */
+  box-shadow: rgba(122, 187, 193, 0.157) 0px 0px 0px 0.474435px;
+
+  /* transitions like `.btn` */
+  transition: color .15s ease-in-out,
+              background-color .15s ease-in-out,
+              border-color .15s ease-in-out,
+              box-shadow .15s ease-in-out;
+}
+
+button.btn.btn-sm.guraify-lang-button:hover {
+  border-color: rgba(209, 213, 218, 0.843);
+  background-color: transparent;
+}
+
+button.btn.btn-sm.guraify-lang-button:focus,
+button.btn.btn-sm.guraify-lang-button:focus-visible {
+  /* `.btn { --bs-btn-focus-box-shadow: 0 0 0 0.1875rem var(--pst-color-accent); }` */
+  box-shadow: rgba(122, 187, 193, 0.157) 0px 0px 0px 0.474435px,
+              0 0 0 0.1875rem var(--pst-color-accent);
+  border-color: rgba(209, 213, 218, 0.843);
+  outline: 0;
+}
+
+/* Menu: mimic `.version-switcher__menu` */
+.guraify-lang-menu.dropdown-menu {
+  font-size: 1.1em;
+  min-height: 24px;
+  min-width: 24px;
+  z-index: 1055;
+
+  border: 1px solid var(--pst-color-border);
+  border-radius: var(--bs-border-radius, .375rem);
+  padding: .25rem; /* closer to PST list-group compact */
+}
+
+/* Items: closer to PST list-group items */
+.guraify-lang-menu .dropdown-item {
+  border-radius: var(--bs-border-radius-sm, .25rem);
+  padding: .35rem .6rem;
+  color: var(--pst-color-text-base);
+}
+
+.guraify-lang-menu .dropdown-item:hover,
+.guraify-lang-menu .dropdown-item:focus {
+  background: rgba(127, 60, 138, 0.10);
+  color: var(--guraify-primary);
+}
+
+/* Active item: replicate PyData "active inset bar" behavior */
+.guraify-lang-menu .dropdown-item.active,
+.guraify-lang-menu .dropdown-item[aria-current="true"],
+.guraify-lang-menu .dropdown-item[aria-current="page"] {
+  background-color: transparent !important;
+  box-shadow: inset max(3px, .1875rem, .12em) 0 0 var(--pst-color-primary);
+  color: var(--pst-color-primary) !important;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover on active keeps the inset bar (like version switcher) */
+.guraify-lang-menu .dropdown-item.active:hover,
+.guraify-lang-menu .dropdown-item[aria-current="true"]:hover,
+.guraify-lang-menu .dropdown-item[aria-current="page"]:hover {
+  background-color: transparent !important;
+  box-shadow: inset max(3px, .1875rem, .12em) 0 0 rgba(127, 60, 138, 0.35);
+}
+
+html[data-theme="light"],
+html[data-theme="dark"] {
+  --pst-color-primary: var(--guraify-primary);
+  --pst-color-secondary: var(--guraify-secondary);
+}
+button.btn.version-switcher__button {
+    margin-bottom: 0em;
+}

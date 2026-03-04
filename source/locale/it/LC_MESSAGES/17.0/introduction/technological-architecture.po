@@ -1,0 +1,144 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Guraify
+# This file is distributed under the same license as the TMS GURAIFY
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: TMS GURAIFY \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-26 12:02+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../source/17.0/introduction/technological-architecture.rst:2
+msgid "1.4 Technological Architecture"
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:4
+msgid ""
+"This section describes the base platform and the primary integration "
+"layers used by Guraify TMS."
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:7
+msgid "1.4.1 Base Platform: Odoo"
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:9
+msgid ""
+"Guraify TMS is implemented as a suite of custom modules on top of **Odoo "
+"Enterprise 17.0**."
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:11
+msgid "Key principles:"
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:13
+msgid ""
+"Use Odoo as the system of record for operational, commercial, and "
+"financial data."
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:14
+msgid ""
+"Extend standard apps (Sales, Purchase, Inventory, Accounting) where "
+"required."
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:15
+msgid ""
+"Keep custom logic isolated in modules following the ``tms*`` naming "
+"convention."
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:18
+msgid "1.4.2 Integration with PTV OptiFlow"
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:20
+msgid ""
+"PTV OptiFlow is used for route optimization and planning scenarios where "
+"sequencing and constraints must be computed externally."
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:23
+msgid "Typical pattern:"
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:25
+msgid ""
+"Export planning dataset from Odoo (stops, constraints, vehicles, time "
+"windows)."
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:26
+msgid "Send optimization request to PTV."
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:27
+msgid "Import optimized plan (sequence, ETAs, assignments) into Odoo."
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:28
+msgid "Persist results into TMS operational entities (Trips / Stops)."
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:31
+msgid "1.4.3 External Integrations (API / EDI)"
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:33
+msgid ""
+"The TMS supports external integrations for ingestion, updates, and "
+"traceability."
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:35
+msgid "Supported patterns:"
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:37
+msgid "File imports (Excel/CSV)"
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:38
+msgid "API endpoints (JSON)"
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:39
+msgid "Webhooks (inbound event notifications)"
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:41
+msgid "Design principles:"
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:43
+msgid "Payload validation and mapping into internal models"
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:44
+msgid "Idempotency to avoid duplicates where applicable"
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:45
+msgid "Traceability event creation for relevant state transitions"
+msgstr ""
+
+#: ../../source/17.0/introduction/technological-architecture.rst:46
+msgid ""
+"Configuration-driven endpoints (auth, headers, mapping, response "
+"processing)"
+msgstr ""
+

@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Guraify
+# This file is distributed under the same license as the TMS GURAIFY
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: TMS GURAIFY \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-26 12:02+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../source/17.0/conceptual-model/traceability-model.rst:2
+msgid "2.3 Traceability Model"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/traceability-model.rst:4
+msgid "Traceability in Guraify TMS is structured across three layers:"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/traceability-model.rst:6
+msgid "Goods traceability (packages)"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/traceability-model.rst:7
+msgid "Event traceability (stops)"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/traceability-model.rst:8
+msgid "Document traceability (POD, incidents)"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/traceability-model.rst:10
+msgid "Each entity maintains its full historical record."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/traceability-model.rst:12
+msgid "The system allows real-time visibility of:"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/traceability-model.rst:14
+msgid "Where the goods are"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/traceability-model.rst:15
+msgid "Their operational state"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/traceability-model.rst:16
+msgid "Which resource transports them"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/traceability-model.rst:17
+msgid "Any incidents occurred"
+msgstr ""
+

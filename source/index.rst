@@ -1,10 +1,8 @@
-TMS Documentation
-=================
+Guraify TMS Documentation
+==========================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Guía
+   :maxdepth: 1
+   :caption: Versions
 
-   essentials/stages
-   essentials/trips
-   essentials/legs
+   17.0/index

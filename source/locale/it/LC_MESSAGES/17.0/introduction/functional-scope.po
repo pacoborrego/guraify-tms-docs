@@ -1,0 +1,72 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Guraify
+# This file is distributed under the same license as the TMS GURAIFY
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: TMS GURAIFY \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-26 12:02+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../source/17.0/introduction/functional-scope.rst:2
+msgid "1.2 System Functional Scope"
+msgstr ""
+
+#: ../../source/17.0/introduction/functional-scope.rst:5
+msgid "In Scope"
+msgstr ""
+
+#: ../../source/17.0/introduction/functional-scope.rst:7
+msgid "Shipment ingestion (manual / file import / API-EDI)"
+msgstr ""
+
+#: ../../source/17.0/introduction/functional-scope.rst:8
+msgid "Data model transformation into execution units (legs, stops, trips)"
+msgstr ""
+
+#: ../../source/17.0/introduction/functional-scope.rst:9
+msgid "Planning and assignment workflows"
+msgstr ""
+
+#: ../../source/17.0/introduction/functional-scope.rst:10
+msgid "Mobile execution (POD, incidents, scanning)"
+msgstr ""
+
+#: ../../source/17.0/introduction/functional-scope.rst:11
+msgid "Traceability events and operational state transitions"
+msgstr ""
+
+#: ../../source/17.0/introduction/functional-scope.rst:12
+msgid "Carrier settlement and invoicing support"
+msgstr ""
+
+#: ../../source/17.0/introduction/functional-scope.rst:15
+msgid "Out of Scope"
+msgstr ""
+
+#: ../../source/17.0/introduction/functional-scope.rst:17
+msgid ""
+"Third-party systems internal behavior (only the interface contract is "
+"documented)"
+msgstr ""
+
+#: ../../source/17.0/introduction/functional-scope.rst:18
+msgid "Customer-specific developments not part of the baseline product"
+msgstr ""
+
+#: ../../source/17.0/introduction/functional-scope.rst:19
+msgid "Generic Odoo accounting beyond what is required by TMS processes"
+msgstr ""
+

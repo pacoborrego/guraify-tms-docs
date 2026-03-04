@@ -1,0 +1,64 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Guraify
+# This file is distributed under the same license as the TMS GURAIFY
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: TMS GURAIFY \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-26 12:02+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: es\n"
+"Language-Team: es <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../source/17.0/introduction/document-purpose.rst:2
+msgid "1.1 Document Purpose"
+msgstr ""
+
+#: ../../source/17.0/introduction/document-purpose.rst:5
+msgid "Overview"
+msgstr ""
+
+#: ../../source/17.0/introduction/document-purpose.rst:7
+msgid ""
+"This document is the technical and functional reference for **Guraify "
+"TMS** (Odoo 17.0)."
+msgstr ""
+
+#: ../../source/17.0/introduction/document-purpose.rst:10
+msgid "Objectives"
+msgstr ""
+
+#: ../../source/17.0/introduction/document-purpose.rst:12
+msgid ""
+"Provide a shared understanding of the TMS conceptual model and "
+"operational workflow."
+msgstr ""
+
+#: ../../source/17.0/introduction/document-purpose.rst:13
+msgid ""
+"Describe end-to-end processes (planning → execution → closing → "
+"settlement)."
+msgstr ""
+
+#: ../../source/17.0/introduction/document-purpose.rst:14
+msgid "Define configuration guidelines for consistent deployments."
+msgstr ""
+
+#: ../../source/17.0/introduction/document-purpose.rst:15
+msgid "Document integration strategy (EDI/API/Webhooks) and extension points."
+msgstr ""
+
+#: ../../source/17.0/introduction/document-purpose.rst:16
+msgid "Serve as a baseline for onboarding, support, and future upgrades."
+msgstr ""
+

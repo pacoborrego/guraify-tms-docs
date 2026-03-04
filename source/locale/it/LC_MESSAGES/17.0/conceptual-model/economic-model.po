@@ -1,0 +1,327 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Guraify
+# This file is distributed under the same license as the TMS GURAIFY
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: TMS GURAIFY \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-26 12:02+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:2
+msgid "2.4 Integrated Economic Model"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:4
+msgid ""
+"One of the defining characteristics of Guraify TMS is the native "
+"structural integration between operational execution and financial "
+"impact."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:7
+msgid ""
+"Unlike traditional TMS architectures where logistics and accounting are "
+"loosely connected through reconciliation processes, Guraify TMS embeds "
+"financial logic directly into the operational model."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:11
+msgid ""
+"This integration is not an afterthought — it is a foundational design "
+"principle."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:14
+msgid "2.4.1 Revenue Generation (Asset)"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:16
+msgid "Revenue originates at the **Order** level."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:18
+msgid ""
+"The Order represents the commercial commitment with the customer, and "
+"therefore constitutes the revenue-generating entity."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:21
+msgid "Revenue characteristics:"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:23
+msgid "Generated automatically through Pricing Rules or predefined tariffs."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:24
+msgid "May apply flat pricing or calculated pricing logic."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:25
+msgid "Can be segmented per Leg if operational structure requires it."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:26
+msgid "Fully linked to the operational context that generated it."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:28
+msgid ""
+"Revenue is not an aggregated external figure. It is a structural "
+"consequence of the logistics model."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:31
+msgid "Each revenue line is traceable to:"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:33
+#: ../../source/17.0/conceptual-model/economic-model.rst:108
+msgid "Customer"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:34
+#: ../../source/17.0/conceptual-model/economic-model.rst:107
+msgid "Project"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:35
+#: ../../source/17.0/conceptual-model/economic-model.rst:111
+msgid "Service type"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:36
+msgid "Operational unit (Order / Leg)"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:39
+msgid "2.4.2 Cost Generation (Liability)"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:41
+msgid "Cost originates at the **Trip** level."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:43
+msgid ""
+"The Trip represents the real execution assigned to a carrier or resource,"
+" and therefore constitutes the cost-generating entity."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:46
+msgid "Cost characteristics:"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:48
+msgid "Generated through carrier settlement logic."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:49
+msgid "May be fixed, variable, distance-based, or hybrid."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:50
+msgid "Can be divided across Stops depending on configured allocation model."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:52
+msgid ""
+"The Trip acts as the cost container because it represents a real-world "
+"route executed by a physical resource."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:56
+msgid "2.4.3 Multidimensional Prorated Allocation"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:58
+msgid "This is one of the system’s strongest differentiators."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:60
+msgid "Guraify TMS does not restrict financial analysis to Order or Trip level."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:62
+msgid "Both revenue and cost can be prorated across all structural dimensions:"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:64
+#: ../../source/17.0/conceptual-model/economic-model.rst:103
+msgid "Order"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:65
+#: ../../source/17.0/conceptual-model/economic-model.rst:104
+msgid "Leg"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:66
+#: ../../source/17.0/conceptual-model/economic-model.rst:105
+msgid "Stop"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:67
+#: ../../source/17.0/conceptual-model/economic-model.rst:106
+msgid "Trip"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:69
+msgid "This enables:"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:71
+msgid ""
+"Revenue generated at Order level to be proportionally distributed to its "
+"Legs."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:72
+msgid "Cost generated at Trip level to be proportionally allocated to its Stops."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:73
+msgid "Margin calculation at micro-operational granularity."
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:76
+msgid "Allocation Criteria"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:78
+msgid "Proration can be configured using one or multiple measurable variables:"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:80
+msgid "Weight"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:81
+msgid "Volume"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:82
+msgid "Package count"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:83
+msgid "Pallets"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:84
+msgid "Linear meters"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:85
+msgid "Distance (Km)"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:86
+msgid "Composite formulas (e.g., Km + Weight)"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:87
+msgid "Equal distribution"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:89
+msgid "This flexibility allows the economic model to adapt to:"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:91
+msgid "Full truckload operations"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:92
+msgid "Groupage"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:93
+msgid "Last-mile"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:94
+msgid "Multihub scenarios"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:95
+msgid "Mixed transport structures"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:98
+msgid "2.4.4 Margin Analysis Across Dimensions"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:100
+msgid ""
+"Thanks to structural decoupling and multidimensional allocation, margin "
+"can be computed across multiple axes:"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:109
+msgid "Planning route"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:110
+msgid "Geographic zone"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:112
+msgid "Any configured analytic dimension"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:114
+msgid "This enables advanced strategic analysis, such as:"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:116
+msgid "Which geographic zones are truly profitable?"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:117
+msgid "Which service types generate sustainable margins?"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:118
+msgid "Which customers generate volume but low profitability?"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:119
+msgid "Which Stops degrade route efficiency?"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:120
+msgid "Which carriers optimize cost per kilometer or per package?"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:123
+msgid "Strategic Outcome"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:125
+msgid "The combination of:"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:127
+msgid "Structured Operations + Automated Pricing + Prorated Allocation"
+msgstr ""
+
+#: ../../source/17.0/conceptual-model/economic-model.rst:129
+msgid ""
+"Transforms the system from a traditional TMS into an advanced operational"
+" profitability intelligence platform."
+msgstr ""
+

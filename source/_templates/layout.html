@@ -1,0 +1,19 @@
+{% extends "!layout.html" %}
+
+{# Add a second bar right below the main navbar #}
+{% block docs_navbar %}
+{{ super() }}
+
+<div class="guraify-subheader border-bottom">
+    <div class="bd-page-width d-flex align-items-center justify-content-end gap-3">
+        {# Language (custom template) #}
+        {% include "language-switcher.html" ignore missing %}
+
+        {# Version switcher (PyData theme component) #}
+        {% include "components/version-switcher.html" ignore missing %}
+
+        {# GitHub / icon links (PyData theme component) #}
+        {% include "components/navbar-icon-links.html" ignore missing %}
+    </div>
+</div>
+{% endblock %}
