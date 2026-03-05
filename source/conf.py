@@ -20,7 +20,7 @@ extensions = [
 templates_path = ['_templates']
 exclude_patterns = []
 
-language = 'en'
+language = 'es'
 locale_dirs = ["locale"]
 gettext_compact = False
 autosectionlabel_prefix_document = True
@@ -49,7 +49,7 @@ html_theme_options = {
     "navigation_depth": 2,
     "collapse_navigation": True,
     "header_links_before_dropdown": 6,
-    "search_bar_text": "Search the docs…",
+    "search_bar_text": "Busca en docs...",
     "article_header_start": [],
     "show_prev_next": False,
     "icon_links": [

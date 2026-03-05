@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TMS GURAIFY \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-26 12:02+0100\n"
+"POT-Creation-Date: 2026-03-05 16:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: it\n"
@@ -27,13 +27,4 @@ msgstr ""
 #: ../../source/index.rst:2
 msgid "Guraify TMS Documentation"
 msgstr ""
-
-#~ msgid "Essentials"
-#~ msgstr ""
-
-#~ msgid "Operations"
-#~ msgstr ""
-
-#~ msgid "User Docs"
-#~ msgstr ""
 

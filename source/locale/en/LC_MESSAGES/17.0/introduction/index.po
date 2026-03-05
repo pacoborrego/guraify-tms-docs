@@ -12,22 +12,15 @@ msgstr ""
 "POT-Creation-Date: 2026-03-05 16:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: it\n"
-"Language-Team: it <LL@li.org>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: ../../source/17.0/conceptual-model/index.rst:2
-msgid "2. Conceptual Model"
-msgstr ""
-
-#: ../../source/17.0/conceptual-model/index.rst:4
-msgid ""
-"This chapter describes the structural foundations of Guraify TMS, "
-"defining how commercial intent is transformed into executable logistics "
-"operations."
+#: ../../source/17.0/introduction/index.rst:2
+msgid "1. Introduction"
 msgstr ""
 
