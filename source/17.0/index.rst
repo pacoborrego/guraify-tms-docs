@@ -5,5 +5,5 @@ Guraify TMS — Version 17.0
    :maxdepth: 2
    :caption: Core Documentation
 
-   introduction/index
-   conceptual-model/index
+   1_introduction/index
+   2_conceptual-model/index
