@@ -7,3 +7,4 @@ Guraify TMS — Version 17.0
 
    1_introduction/index
    2_conceptual-model/index
+   3_functional-architecture/index
