@@ -1,172 +1,84 @@
-2.6 Conceptual Relational Model
-===============================
+2.6 Modelo Relacional Conceptual Simplificado
+-------------------------------------------------
 
-The Conceptual Relational Model defines how the core entities of Guraify TMS
-are structurally linked.
+El Modelo Relacional Conceptual formaliza las relaciones estructurales entre las entidades principales del sistema: Orden, Tramo, Parada y Viaje. Si en los apartados anteriores se ha explicado su función operativa y económica, aquí se define cómo se vinculan entre sí desde el punto de vista lógico y de cardinalidad.
 
-Its objective is to formalize cardinalities and dependencies between:
+Este modelo constituye la base sobre la que se construye la arquitectura técnica del sistema. No es una representación teórica, sino la traducción estructural del comportamiento real del TMS.
 
-- Order
-- Leg
-- Stop
-- Trip
+2.6.1 Entidades principales
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This model represents the logical foundation upon which the technical
-architecture of the system is built.
+La Orden representa el encargo comercial del cliente. Es la entidad contractual, genera el ingreso y puede contener múltiples tramos.
 
-2.6.1 Core Entities
--------------------
+El Tramo es la unidad operativa dependiente de una Orden. Define un origen y un destino concretos y es el elemento que da lugar a la generación de paradas.
 
-ORDER
-^^^^^
+La Parada es el evento físico asociado a un tramo. Puede corresponder a una carga, descarga, entrada en hub u otro evento intermedio. Es la unidad mínima de planificación.
 
-Represents the commercial service commitment.
+El Viaje es la unidad de ejecución operativa. Agrupa múltiples paradas en una ruta ejecutable y genera el coste asociado a dicha ejecución.
 
-- Generates revenue
-- May contain multiple Legs
-- Linked to Customer and Project
-- Defines pricing logic
+[IMAGE]
 
-LEG
-^^^
+|image2|
 
-Operational unit belonging to an Order.
+2.6.2 Cardinalidades estructurales
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- Defines origin and destination
-- Generates Stops
-- Carries goods and time constraints
+Desde el punto de vista relacional, el modelo puede representarse de forma simplificada mediante las siguientes cardinalidades:
 
-STOP
-^^^^
+ORDEN (1) ──────── (N) TRAMO
 
-Physical operational event derived from a Leg.
+TRAMO (1) ──────── (N) PARADA
 
-- Pickup / Delivery / Hub / Technical event
-- Minimum planning unit
-- Assigned to a Trip
+PARADA (N) ──────── (1) VIAJE
 
-TRIP
-^^^^
+La relación entre Orden y Tramo es de uno a muchos. Una Orden puede contener múltiples Tramos, pero cada Tramo pertenece exclusivamente a una única Orden. Se trata de una dependencia estructural fuerte: sin Orden, el Tramo carece de sentido lógico.
 
-Operational execution unit.
+La relación entre Tramo y Parada también es de uno a muchos. Un Tramo genera al menos dos Paradas —carga y descarga— aunque en escenarios complejos puede generar más. De nuevo, es una dependencia fuerte: la Parada no puede existir sin un Tramo que la origine.
 
-- Groups multiple Stops
-- Assigned to carrier/resource
-- Generates cost
+La relación entre Parada y Viaje es distinta. Una Parada pertenece a un único Viaje operativo en un momento dado, pero un Viaje puede agrupar múltiples Paradas. Aquí no hablamos de dependencia estructural, sino de asignación operativa.
 
-2.6.2 Structural Cardinalities
-------------------------------
+.. note::
 
-The conceptual relational structure can be represented as:
+   Las relaciones Orden→Tramo y Tramo→Parada son dependencias estructurales fuertes.
 
-ORDER (1) ──────── (N) LEG  
-LEG (1) ──────── (N) STOP  
-STOP (N) ──────── (1) TRIP
+   La relación Parada→Viaje es una asignación operativa.
 
 
-ORDER → LEG (1:N)
-^^^^^^^^^^^^^^^^^
+2.6.3 Relación indirecta Orden ↔ Viaje
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- One Order may contain multiple Legs.
-- Each Leg belongs exclusively to one Order.
+No existe una relación estructural directa entre Orden y Viaje. La conexión se produce de forma indirecta a través de las Paradas.
 
-This is a strong structural dependency.
-If the Order is removed, its Legs lose logical meaning.
+Esto implica que un Viaje puede contener Paradas procedentes de múltiples Órdenes, y que una Orden puede distribuir sus Paradas en distintos Viajes. Conceptualmente, esto genera una relación N:M indirecta entre Orden y Viaje.
 
-LEG → STOP (1:N)
-^^^^^^^^^^^^^^^^
+Este comportamiento es especialmente relevante en operativas de grupaje, última milla, entornos multicliente o estructuras multihub, donde la ejecución real no coincide necesariamente con la unidad contractual.
 
-- A Leg generates at least two Stops (load and unload).
-- Additional Stops may exist in complex logistics scenarios.
+Esta ausencia de dependencia directa es lo que permite reorganizar la ejecución sin alterar el compromiso comercial.
 
-This is a strong structural dependency.
-Stops cannot exist without their parent Leg.
+.. _section-24:
 
-STOP → TRIP (N:1)
-^^^^^^^^^^^^^^^^^^
+2.6.4 Dependencias funcionales
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- A Stop belongs to exactly one Trip during operational execution.
-- A Trip groups multiple Stops.
+El modelo distingue claramente entre dependencias estructurales y dependencias operativas.
 
-This represents an operational assignment dependency,
-not a hierarchical construction dependency.
+Las dependencias estructurales son fuertes: el Tramo depende de la Orden y la Parada depende del Tramo. Si se elimina la entidad padre, las hijas pierden sentido lógico dentro del modelo.
 
+Las dependencias operativas son débiles: la Parada se asigna a un Viaje, pero el Viaje no depende estructuralmente de una Orden concreta. Esto permite replanificar, reasignar viajes, optimizar dinámicamente y mantener separadas las dimensiones de ingreso y coste.
 
-2.6.3 Indirect ORDER ↔ TRIP Relationship
------------------------------------------
+Esta diferenciación es esencial para la escalabilidad del sistema.
 
-There is no direct structural relation between Order and Trip.
+2.6.5 Impacto en la arquitectura del sistema
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-However, an indirect relationship exists through Stops:
+La arquitectura relacional descrita no solo define relaciones técnicas; habilita comportamientos funcionales avanzados. Gracias a este modelo es posible agrupar múltiples órdenes en un mismo viaje, redistribuir paradas entre recursos, realizar imputación económica multidimensional y mantener independencia entre facturación y ejecución.
 
-- A Trip may contain Stops originating from multiple Orders.
-- An Order may be distributed across multiple Trips.
+La separación estructural entre encargo comercial (Orden) y ejecución operativa (Viaje) solo es posible porque el modelo relacional evita una dependencia directa entre ambas entidades.
 
-Conceptually, this results in an indirect N:M relationship
-between Order and Trip.
+.. note::
 
-This behavior is especially relevant in:
+   La independencia entre ingreso y ejecución no es una decisión funcional aislada.
 
-- Groupage operations
-- Last-mile scenarios
-- Multi-client planning
-- Multi-hub operations
+   Es una consecuencia directa del modelo relacional.
 
-This structural decoupling is intentional and enables
-operational flexibility and economic independence.
-
-
-2.6.4 Structural vs Operational Dependencies
---------------------------------------------
-
-The model defines two types of dependencies:
-
-Strong Structural Dependencies
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-- Leg depends on Order.
-- Stop depends on Leg.
-
-If the parent entity is deleted, child entities lose logical validity.
-
-These relationships represent hierarchical construction
-of the logistics structure.
-
-Weak Operational Dependencies
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-- Stop is assigned to Trip.
-- Trip does not structurally depend on a specific Order.
-
-This allows:
-
-- Replanning
-- Trip reassignment
-- Dynamic optimization
-- Separation between revenue and cost
-
-
-2.6.5 Architectural Impact
---------------------------
-
-This relational architecture enables:
-
-1. Operational scalability
-2. Event-based advanced planning
-3. Grouping of multiple Orders into a single Trip
-4. Multidimensional economic allocation
-5. Independence between invoicing and execution
-
-The structural separation between:
-
-Commercial Commitment (Order)
-
-and
-
-Operational Execution (Trip)
-
-is only possible due to this relational architecture.
-
-This decoupled model allows Guraify TMS
-to scale from simple direct-load operations
-to complex multi-hub and large-scale last-mile scenarios.
+En definitiva, el Modelo Relacional Conceptual es el fundamento lógico que permite que Guraify TMS sea escalable, flexible y económicamente analizable en múltiples dimensiones. Sobre esta base se construye la arquitectura técnica y funcional descrita en los capítulos siguientes.

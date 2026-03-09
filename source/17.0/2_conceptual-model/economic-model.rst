@@ -1,131 +1,73 @@
-2.4 Integrated Economic Model
-=============================
+2.4 Modelo Económico Vinculado
+----------------------------------
 
-One of the defining characteristics of Guraify TMS is the native structural integration
-between operational execution and financial impact.
+Uno de los elementos diferenciales de Guraify TMS es que la dimensión económica no se gestiona como una capa externa al TMS, sino como una consecuencia directa de la estructura operativa. El sistema no obliga a reconciliar después lo que se ejecuta con lo que se factura; ambas dimensiones están integradas desde el diseño conceptual.
 
-Unlike traditional TMS architectures where logistics and accounting are loosely connected
-through reconciliation processes, Guraify TMS embeds financial logic directly into
-the operational model.
+La arquitectura separa claramente ingreso y coste, pero los mantiene vinculados estructuralmente a las entidades que los generan. Esto elimina duplicidades, reduce conciliaciones manuales y permite que el análisis económico se construya sobre datos operativos reales.
 
-This integration is not an afterthought — it is a foundational design principle.
+.. note::
 
-2.4.1 Revenue Generation (Asset)
---------------------------------
+   En Guraify TMS la economía no es un proceso posterior.
 
-Revenue originates at the **Order** level.
+   Es una propiedad estructural del modelo operativo.
 
-The Order represents the commercial commitment with the customer,
-and therefore constitutes the revenue-generating entity.
+2.4.1 Ingreso (Activo)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Revenue characteristics:
+El ingreso nace en la Orden, ya que es la entidad que representa el compromiso contractual con el cliente. El cálculo puede realizarse automáticamente mediante reglas de tarifa configuradas en el sistema o aplicando condiciones económicas pactadas previamente. En ambos casos, el importe no es un valor aislado, sino el resultado de la estructura logística definida.
 
-- Generated automatically through Pricing Rules or predefined tariffs.
-- May apply flat pricing or calculated pricing logic.
-- Can be segmented per Leg if operational structure requires it.
-- Fully linked to the operational context that generated it.
+Cuando la operativa lo requiere, el ingreso puede segmentarse por Tramo, permitiendo que distintas fases del servicio tengan impacto económico diferenciado. Cada línea económica generada queda vinculada al contexto operativo que la origina —orden, tramo, servicio, producto— lo que garantiza trazabilidad financiera completa.
 
-Revenue is not an aggregated external figure.
-It is a structural consequence of the logistics model.
+De esta forma, el ingreso no es un dato agregado al final del proceso, sino una consecuencia directa de la configuración operativa.
 
-Each revenue line is traceable to:
+2.4.2 Coste (Pasivo)
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-- Customer
-- Project
-- Service type
-- Operational unit (Order / Leg)
+El coste, por su parte, se genera en el Viaje, ya que este representa la ejecución real asignada a un recurso. El Viaje actúa como unidad de coste porque es la entidad que materializa la prestación efectiva del servicio, ya sea mediante flota propia o transportistas externos.
 
-2.4.2 Cost Generation (Liability)
----------------------------------
+En caso de colaboradores externos, el Viaje genera automáticamente la orden de compra correspondiente y activa el proceso de liquidación. Cuando el modelo operativo lo requiere, el coste puede dividirse entre las distintas paradas que componen el viaje, según el criterio de reparto configurado.
 
-Cost originates at the **Trip** level.
+Esta separación estructural permite analizar de forma clara qué se factura al cliente y qué se paga por ejecutar el servicio, sin mezclar ambas dimensiones.
 
-The Trip represents the real execution assigned to a carrier or resource,
-and therefore constitutes the cost-generating entity.
+.. _section-15:
 
-Cost characteristics:
+2.4.3 Imputación prorrateada multidimensional
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- Generated through carrier settlement logic.
-- May be fixed, variable, distance-based, or hybrid.
-- Can be divided across Stops depending on configured allocation model.
+Aquí reside uno de los mayores diferenciales del sistema. Guraify TMS no limita el análisis económico al nivel agregado de Orden o Viaje, sino que permite imputar tanto el ingreso como el coste en cualquier nivel estructural del modelo: Orden, Tramo, Parada o Viaje.
 
-The Trip acts as the cost container because it represents
-a real-world route executed by a physical resource.
+Esto significa que el ingreso generado por una Orden puede distribuirse proporcionalmente entre sus tramos, y que el coste generado por un Viaje puede dividirse entre sus paradas. Como resultado, el margen puede calcularse no solo a nivel global, sino en micro-unidades operativas.
 
-2.4.3 Multidimensional Prorated Allocation
-------------------------------------------
+La imputación puede realizarse según criterios configurables adaptados a la realidad del negocio: peso, volumen, número de bultos, pallets, metros lineales, kilómetros recorridos o combinaciones de estas variables. También es posible aplicar una distribución lineal cuando la operativa lo requiera.
 
-This is one of the system’s strongest differentiators.
+.. important::
 
-Guraify TMS does not restrict financial analysis to Order or Trip level.
+   El margen no se calcula únicamente por cliente o por viaje.
 
-Both revenue and cost can be prorated across all structural dimensions:
+   Puede analizarse en cualquier dimensión estructural del sistema.
 
-- Order
-- Leg
-- Stop
-- Trip
+2.4.4 Resultado: análisis avanzado de margen
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This enables:
+Gracias a esta arquitectura económica desacoplada y prorrateada, el sistema permite calcular margen no solo por Orden o por Viaje, sino también por Tramo, Parada, Proyecto, Cliente, Planning, Zona geográfica, Tipo de servicio o cualquier dimensión analítica configurada.
 
-- Revenue generated at Order level to be proportionally distributed to its Legs.
-- Cost generated at Trip level to be proportionally allocated to its Stops.
-- Margin calculation at micro-operational granularity.
+Esto abre un campo de análisis estratégico que va más allá de la simple facturación. Permite identificar qué zonas son realmente rentables, qué servicios generan mayor margen real, qué clientes aportan volumen pero reducen rentabilidad, qué paradas penalizan la operación o qué transportistas optimizan mejor el coste por kilómetro o por unidad transportada.
 
-Allocation Criteria
-^^^^^^^^^^^^^^^^^^^
+La combinación de operativa estructurada, tarificación automática e imputación prorrateada convierte al sistema no solo en un TMS de ejecución, sino en una herramienta avanzada de análisis de rentabilidad operativa basada en datos reales y coherentes con la ejecución física del transporte.
 
-Proration can be configured using one or multiple measurable variables:
+Sobre esta base económica se apoyan posteriormente los mecanismos de control analítico, reporting y toma de decisiones estratégicas del sistema.
 
-- Weight
-- Volume
-- Package count
-- Pallets
-- Linear meters
-- Distance (Km)
-- Composite formulas (e.g., Km + Weight)
-- Equal distribution
+.. _section-16:
 
-This flexibility allows the economic model to adapt to:
+.. _section-17:
 
-- Full truckload operations
-- Groupage
-- Last-mile
-- Multihub scenarios
-- Mixed transport structures
+.. _section-18:
 
-2.4.4 Margin Analysis Across Dimensions
----------------------------------------
+.. _section-19:
 
-Thanks to structural decoupling and multidimensional allocation,
-margin can be computed across multiple axes:
+.. _section-20:
 
-- Order
-- Leg
-- Stop
-- Trip
-- Project
-- Customer
-- Planning route
-- Geographic zone
-- Service type
-- Any configured analytic dimension
+.. _section-21:
 
-This enables advanced strategic analysis, such as:
-
-- Which geographic zones are truly profitable?
-- Which service types generate sustainable margins?
-- Which customers generate volume but low profitability?
-- Which Stops degrade route efficiency?
-- Which carriers optimize cost per kilometer or per package?
-
-Strategic Outcome
-^^^^^^^^^^^^^^^^^
-
-The combination of:
-
-Structured Operations + Automated Pricing + Prorated Allocation
-
-Transforms the system from a traditional TMS into
-an advanced operational profitability intelligence platform.
+.. _section-22:
 

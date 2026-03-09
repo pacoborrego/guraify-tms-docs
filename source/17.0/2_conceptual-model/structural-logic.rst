@@ -1,158 +1,114 @@
-2.1 Structural Logic of the System
-==================================
+2.1 Lógica estructural del sistema
+--------------------------------------
 
-Guraify TMS is designed around a fundamental principle:
+La lógica estructural de Guraify TMS se fundamenta en una decisión arquitectónica deliberada: separar de forma explícita el encargo comercial del cliente de su ejecución operativa y de su impacto económico. Esta separación no es únicamente conceptual, sino que determina la estructura del modelo de datos, la organización funcional del sistema y la propia metodología de implantación.
 
-**Structurally separate the commercial service request from its real logistics execution.**
+Desde el punto de vista del negocio, todo comienza con la necesidad de representar digitalmente un servicio solicitado por un cliente. Esa representación es la Orden. La Orden formaliza el compromiso contractual: define qué servicio debe prestarse y bajo qué condiciones se facturará. En ella nace el ingreso y desde ella se articula el resto de la estructura operativa.
 
-The entire transport operation is structured around four primary entities:
+Sin embargo, una Orden no describe la ejecución física del transporte. Para ello se introduce el Tramo, que permite descomponer el compromiso comercial en movimientos logísticos concretos entre un origen y un destino. Esta descomposición es lo que permite modelar tanto un servicio simple puerta a puerta como operativas complejas con múltiples fases, arrastres entre hubs o escenarios de reagenda, sin romper la coherencia administrativa.
 
-ORDER → LEG → STOP → TRIP
+Cuando una Orden se valida, el sistema traduce su estructura lógica en eventos físicos reales mediante la generación automática de Paradas. La Parada representa el punto operativo trazable: recogida, entrega, entrada en hub o cualquier evento intermedio necesario. Desde el punto de vista de planificación, la Parada es la unidad mínima operativa, ya que es sobre ella donde trabajan los algoritmos de optimización y las herramientas de planificación.
 
-Each entity fulfills a specific and differentiated role within the operational and financial workflow.
+Finalmente, las Paradas se agrupan en Viajes, que representan la ejecución real asignada a un recurso. El Viaje consolida paradas en una ruta ejecutable, genera la orden de compra correspondiente al transportista y materializa el coste de la operación.
 
-2.1.1 The Order
----------------
+.. important::
 
-Order Definition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   La Orden representa el ingreso.
 
-The Order represents the digital version of the customer’s commercial request.
-Conceptually, it answers the question:
+   El Viaje representa el coste.
 
-"What service must be provided and later invoiced?"
+Esta separación estructural es el principio clave que permite analizar la rentabilidad en múltiples dimensiones sin mezclar ejecución y facturación.
 
-Order Main Function
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Gracias a este diseño, una misma Orden puede ejecutarse en varios Viajes y un mismo Viaje puede contener paradas procedentes de distintas Órdenes. Este desacoplamiento es el que permite soportar operativas de grupaje, distribución multicliente y modelos de última milla sin alterar la lógica base del sistema.
 
-- Represents the operational contract with the customer
-- Contains administrative and commercial information
-- Determines invoicing logic
-- Links project, pricing model, and tariff rules
+El flujo estructural puede entenderse como una progresión lógica: se crea la Orden, se descompone en Tramos, se generan Paradas al validar y posteriormente estas se agrupan en Viajes. No obstante, lo verdaderamente relevante no es la secuencia, sino la independencia entre las capas comercial, operativa y económica, que permite reorganizar la ejecución sin modificar el compromiso contractual original.
 
-Key Characteristics
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Esta lógica conceptual no es abstracta ni teórica. Se refleja directamente en la estructura funcional del sistema, organizada en los bloques de Operaciones, Administración, Maestros y Configuración , donde cada sección materializa una dimensión distinta del modelo. Del mismo modo, el propio programa de implantación parte de la comprensión de esta estructura base —Orden, Tramo, Parada y Viaje— como primer paso antes de entrar en parametrización avanzada , lo que confirma que el modelo conceptual es la base real sobre la que se construye cualquier proyecto.
 
-- May contain one or multiple legs
-- Linked to a customer and project
-- Generates sales lines
-- Activates pricing rules
-- Inherits configuration from the project
+En consecuencia, la lógica estructural de Guraify TMS no consiste únicamente en definir entidades relacionadas, sino en establecer una arquitectura desacoplada que permita escalabilidad, optimización avanzada, integración masiva y análisis económico granular. Sobre este principio se construye toda la arquitectura funcional y técnica del sistema.
 
-Order Structural Principle
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _section-12:
 
-An Order is not a route.  
-It is a service commitment.
+2.1.1 La Orden
+------------------
 
-2.1.2 The Leg
--------------
+La Orden es la entidad que representa digitalmente el encargo del cliente dentro de Guraify TMS. Constituye el punto de partida estructural del sistema y el eje sobre el que se articula toda la operativa posterior. Desde una perspectiva conceptual, la Orden responde a una pregunta sencilla pero fundamental: qué servicio debemos ejecutar y posteriormente facturar.
 
-Leg Definition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+En términos funcionales, la Orden formaliza el compromiso contractual con el cliente. Contiene la información administrativa y comercial necesaria para definir el servicio, determina la lógica de facturación y establece el marco económico bajo el cual se desarrollará la operación. No describe la ejecución física del transporte, sino el acuerdo que da origen a dicha ejecución.
 
-The Leg is the operational unit within an Order.
+Cada Orden está obligatoriamente vinculada a un cliente y a un proyecto. El proyecto actúa como contenedor de configuración y permite que la Orden herede automáticamente parámetros críticos como la tarifa aplicable, el modo de división de ventas, el planning asociado, los tipos de servicio permitidos y otras restricciones operativas. Esta herencia garantiza coherencia entre configuración estratégica y ejecución diaria, evitando configuraciones manuales repetitivas y reduciendo riesgos de error.
 
-If the Order answers "what", the Leg answers:
+Desde el punto de vista del modelo de datos, la Orden puede contener uno o varios Tramos. Esta capacidad de descomposición permite representar desde un servicio simple de origen a destino hasta estructuras más complejas en las que una misma relación contractual se materializa en múltiples fases logísticas. A pesar de esta posible complejidad operativa, la Orden mantiene siempre su unidad económica y administrativa.
 
-"From where to where is the service performed?"
+La Orden es también el origen del ingreso. En ella se generan las líneas de venta y se activan las reglas de tasación configuradas en el sistema. El cálculo económico no se realiza de forma externa ni posterior, sino que forma parte del propio diseño estructural del modelo.
 
-Each Leg contains:
+.. important::
 
-- Load location
-- Unload location
-- Goods information
-- Applicable pricing rules
-- Time constraints
+   Una Orden no es una ruta ni una planificación física.
 
-Leg Main Function
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   Es un compromiso de servicio con impacto económico.
 
-Decomposes complex Orders into independent logistics operations.
+Esta diferenciación es clave para entender la arquitectura completa del sistema. Gracias a ella, la ejecución puede reorganizarse —mediante distintos Viajes o recursos— sin alterar la naturaleza contractual del servicio ni su lógica de facturación.
 
-Conceptual Examples
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+En definitiva, la Orden debe entenderse como la unidad contractual y económica del TMS. Es el objeto que conecta cliente, proyecto, tarificación y estructura operativa, y sobre ella se construye todo el desarrollo logístico posterior.
 
-- Door-to-door service → 1 Order / 1 Leg
-- Hub transfer → 1 Order / 2 Legs
-- Mass last-mile → 1 Order / multiple Legs
-- Rescheduling → additional Leg added
-- Inter-hub transfers → additional Leg
+2.1.2 El Tramo
+------------------
 
-Leg Structural Principle
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+El Tramo es la unidad operativa contenida dentro de una Orden. Si la Orden define el compromiso comercial —qué servicio se debe prestar—, el Tramo concreta cómo se materializa ese compromiso desde el punto de vista logístico. En términos simples, el Tramo responde a la pregunta: desde dónde hasta dónde se presta el servicio.
 
-The Leg is the unit that generates Stops.
+Cada tramo define un movimiento específico entre un punto de carga y un punto de descarga. En él se registran los datos esenciales que permiten ejecutar y valorar ese desplazamiento: localizaciones, información de mercancía, parámetros temporales y las reglas de tasación que puedan aplicarse a esa fase concreta del servicio. Esto significa que la dimensión económica no se calcula únicamente a nivel global de la Orden, sino que puede vincularse a cada tramo cuando la operativa lo requiere.
 
-2.1.3 The Stop
---------------
+La función principal del Tramo es permitir la descomposición controlada de una Orden en operaciones logísticas independientes sin perder la unidad contractual. Gracias a esta estructura, el sistema puede modelar con coherencia escenarios muy distintos: un servicio puerta a puerta se representará mediante un único tramo, mientras que un arrastre entre hubs podrá estructurarse en dos o más tramos dentro de la misma Orden. Del mismo modo, en operativas de última milla masiva o en casos de reagenda, basta con añadir tramos adicionales sin necesidad de crear nuevas órdenes ni alterar la lógica administrativa original.
 
-Stop Definition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Esta capacidad de segmentación aporta flexibilidad sin introducir fragmentación económica. La Orden sigue siendo el marco contractual, pero el Tramo permite adaptar la ejecución a la realidad operativa.
 
-A Stop represents a physical event in real operations.
+.. important::
 
-It may be:
+   El Tramo es la entidad que da origen a las Paradas.
 
-- Pickup
-- Delivery
-- Hub entry
-- Hub exit
-- Technical stop
-- Route change
+   Sin tramo no existe evento físico planificable.
 
-Automatic Generation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Desde el punto de vista estructural, el Tramo actúa como puente entre la dimensión comercial (Orden) y la dimensión física (Paradas). Es la pieza que traduce el compromiso contractual en movimientos logísticos concretos sobre los que posteriormente se construirá la planificación y la ejecución real.
 
-When an Order is validated:
+2.1.3 La Parada
+-------------------
 
-- The system analyzes the Legs
-- Automatically generates required Stops
-- Links them to their respective Leg
+La Parada representa el evento físico real dentro de la operativa del transporte. Si el Tramo define un movimiento lógico entre un origen y un destino, la Parada es el punto concreto donde ocurre una acción trazable: una recogida, una entrega, una entrada o salida de hub, una parada técnica o cualquier otro evento que deba registrarse en el flujo operativo.
 
-In bulk imports, the system groups Legs automatically when:
+Desde el punto de vista del sistema, la Parada no se introduce manualmente en condiciones normales. Su generación forma parte del comportamiento estructural del modelo. Cuando una Orden se valida, el sistema analiza los tramos que la componen y genera automáticamente todas las paradas necesarias, vinculándolas al tramo correspondiente y conservando la coherencia jerárquica entre entidades. Este mecanismo garantiza que la representación física de la operación sea siempre consistente con la estructura contractual definida previamente.
 
-- Same customer
-- Same location
-- Compatible time window
+En escenarios de importación masiva, el comportamiento es aún más sofisticado. El sistema es capaz de consolidar en una única parada aquellos tramos que comparten cliente, localización y una ventana horaria compatible. Esta lógica reduce la fragmentación innecesaria y prepara la información de forma óptima para la fase de planificación, especialmente en operativas de alta densidad como la última milla o el grupaje urbano.
 
-Stop Main Function
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+La relevancia de la Parada no es únicamente operativa, sino también estratégica dentro del modelo de planificación.
 
-The Stop is the minimum planning unit.
+.. important::
 
-Route optimizers do not operate on Orders — they operate on Stops.
+   La Parada es la unidad mínima de planificación.
 
-2.1.4 The Trip
---------------
+   El optimizador no trabaja sobre Órdenes ni sobre Tramos, sino sobre Paradas.
 
-Trip Definition
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Esta decisión arquitectónica permite que la planificación sea completamente flexible. Las órdenes pueden reorganizarse, agruparse o dividirse sin alterar su dimensión contractual, porque la lógica de optimización se basa exclusivamente en eventos físicos con coordenadas, ventanas horarias y tiempos de servicio asociados.
 
-The Trip represents the digital assignment of work to a carrier.
+En consecuencia, la Parada actúa como el punto de convergencia entre estructura lógica y ejecución real. Es donde la operación deja de ser un compromiso abstracto y se convierte en un evento planificable, trazable y medible dentro del sistema.
 
-It answers:
+2.1.4 El Viaje
+------------------
 
-"What set of stops will a resource execute on a real route?"
+El Viaje es la entidad que representa la ejecución real del transporte. Si la Orden formaliza el compromiso con el cliente y el Tramo estructura el movimiento logístico, el Viaje responde a una pregunta operativa concreta: qué conjunto de paradas ejecuta un recurso en una ruta real.
 
-Trip Main Function
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Desde el punto de vista funcional, el Viaje agrupa paradas para construir una ruta ejecutable. En él se asigna el recurso —propio o externo— que realizará el servicio, se consolidan los tiempos y distancias previstos y se genera la correspondiente orden de compra cuando interviene un transportista colaborador. Por tanto, el Viaje no es solo una estructura de planificación, sino también la unidad que activa la liquidación económica del servicio hacia el proveedor.
 
-- Groups Stops
-- Represents an executable route
-- Generates purchase order to carrier
-- Triggers economic settlement
+Su creación puede realizarse de forma manual, utilizando herramientas de filtrado y agrupación que permiten seleccionar paradas según múltiples criterios operativos, o de forma automática mediante el optimizador integrado con PTV, que construye rutas considerando restricciones horarias, tiempos de servicio, capacidades del vehículo, normativas de conducción y otros parámetros configurados en el sistema. En ambos casos, el resultado es una estructura coherente que traduce eventos físicos individuales en una secuencia operativa ejecutable.
 
-Trip Creation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Desde el punto de vista arquitectónico, el Viaje introduce la dimensión del coste dentro del modelo. Mientras que la Orden mantiene la unidad contractual y el ingreso asociado al cliente, el Viaje materializa el gasto derivado de la ejecución.
 
-Trips can be created:
+.. important::
 
-- Manually (filtering and grouping stops)
-- Automatically via route optimization (PTV)
+   La Orden representa el ingreso.
+   El Viaje representa el coste.
 
-Trip Structural Principle
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Esta separación estructural permite que una misma Orden pueda ejecutarse en varios Viajes distintos o que un Viaje agrupe paradas procedentes de múltiples Órdenes, algo habitual en operativas de grupaje y distribución multicliente. Gracias a este desacoplamiento, el sistema puede reorganizar la ejecución sin alterar la lógica comercial, manteniendo trazabilidad completa y control económico en todas las dimensiones.
 
-The Order represents revenue.  
-The Trip represents cost.
+El Viaje, por tanto, es la unidad de ejecución y coste del sistema, y cierra el ciclo iniciado por la Orden dentro del modelo estructural del TMS.
+
