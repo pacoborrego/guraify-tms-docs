@@ -1,8 +1,7 @@
 2. Conceptual Model
 ===================
 
-This chapter describes the structural foundations of Guraify TMS,
-defining how commercial intent is transformed into executable logistics operations.
+Una vez definidas las entidades principales —Orden, Tramo, Parada y Viaje—, es necesario entender cómo se relacionan entre sí dentro del flujo estructural del sistema. La potencia del modelo no reside únicamente en cada entidad por separado, sino en la forma en que se encadenan y, al mismo tiempo, permanecen desacopladas.
 
 .. toctree::
    :maxdepth: 1

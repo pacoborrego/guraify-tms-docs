@@ -1,5 +1,5 @@
-1.1 Objetivo del documento
-------------------------------
+Organización funcional del sistema
+----------------------------------
 
 El presente documento tiene como finalidad describir la arquitectura funcional y técnica de Guraify TMS, módulo desarrollado sobre la plataforma Odoo ERP para la gestión integral de operaciones de transporte.
 

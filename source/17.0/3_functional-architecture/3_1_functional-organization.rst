@@ -1,5 +1,5 @@
-3.1 Organización funcional del sistema
-------------------------------------------
+Organización funcional del sistema
+----------------------------------
 
 Guraify TMS organiza sus funcionalidades en varios bloques que reflejan la lógica operativa de una empresa de transporte. Esta organización permite separar claramente las actividades de ejecución diaria, planificación, gestión económica y configuración estructural del sistema.
 
@@ -15,15 +15,14 @@ La estructura principal del sistema se divide en cuatro áreas funcionales:
 
 Cada una de estas áreas agrupa distintos menús y herramientas que permiten gestionar los diferentes aspectos de la operativa del transporte.
 
-3.1.1 Operaciones
-~~~~~~~~~~~~~~~~~~~~~
+Operaciones
+~~~~~~~~~~~~
 
 El bloque de Operaciones constituye el núcleo operativo del sistema. En esta sección se gestionan las entidades vivas del modelo conceptual y se ejecuta la operativa diaria del departamento de tráfico.
 
 Este bloque se organiza en tres subconjuntos funcionales:
 
-Tráfico
-^^^^^^^^^^^
+**Tráfico**
 
 Contiene las herramientas utilizadas para gestionar la demanda de transporte y la ejecución de los servicios, incluye los siguientes menús principales:
 
@@ -37,8 +36,7 @@ Contiene las herramientas utilizadas para gestionar la demanda de transporte y l
 
 Estas herramientas permiten registrar los encargos de los clientes, estructurar las expediciones, organizar los servicios y controlar su ejecución.
 
-Planificación
-^^^^^^^^^^^^^^^^^
+**Planificación**
 
 La sección de planificación agrupa las herramientas destinadas a organizar los recursos y optimizar la ejecución de los servicios.
 
@@ -50,8 +48,7 @@ Incluye:
 
 Estas herramientas permiten gestionar la disponibilidad de recursos humanos y ejecutar procesos de optimización de rutas mediante el motor de planificación integrado.
 
-Maestros operativos
-^^^^^^^^^^^^^^^^^^^^^^^
+**Maestros operativos**
 
 Esta sección agrupa entidades operativas que forman parte del modelo logístico y que son utilizadas por los distintos procesos del sistema.
 
@@ -67,8 +64,8 @@ Incluye:
 
 Aunque estas entidades se generan habitualmente de forma automática durante el flujo operativo, el sistema permite consultarlas y gestionarlas directamente desde estos menús para tareas de control, auditoría o gestión de incidencias.
 
-3.1.2 Administración
-~~~~~~~~~~~~~~~~~~~~~~~~
+Administración
+~~~~~~~~~~~~~~
 
 El bloque de Administración agrupa los procesos relacionados con la gestión económica del transporte.
 
@@ -84,8 +81,8 @@ En esta sección se gestionan los procesos administrativos derivados de la opera
 
 La estrecha vinculación entre operativa y economía permite que los eventos logísticos generen automáticamente información económica coherente dentro del ERP.
 
-3.1.3 Maestros
-~~~~~~~~~~~~~~~~~~
+Maestros
+~~~~~~~~
 
 La sección de Maestros contiene las entidades estructurales que configuran el comportamiento del sistema.
 
@@ -105,8 +102,8 @@ Incluye información relativamente estable que se utiliza como base para los pro
 
 Estos datos constituyen la base de configuración sobre la que operan los diferentes módulos del TMS.
 
-3.1.4 Configuración
-~~~~~~~~~~~~~~~~~~~~~~~
+Configuración
+~~~~~~~~~~~~~~
 
 La sección de Configuración permite definir los parámetros estructurales del sistema y adaptar su comportamiento a las necesidades específicas de cada implantación.
 
