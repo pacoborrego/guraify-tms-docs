@@ -1,4 +1,4 @@
-**1.5 Filosofía operativa del sistema**
+1.5 Filosofía operativa del sistemas
 ---------------------------------------
 
 La filosofía operativa de Guraify TMS no parte de la herramienta, sino del modelo. El sistema está diseñado sobre una premisa clara: el transporte debe representarse de forma estructural, desacoplada y trazable en todas sus dimensiones.
