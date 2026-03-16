@@ -1,5 +1,5 @@
-2.3 Modelo de Trazabilidad
-------------------------------
+Modelo de Trazabilidad
+----------------------
 
 La trazabilidad en Guraify TMS es una consecuencia directa de su arquitectura desacoplada. Al estructurar el sistema en Orden, Tramo, Parada y Viaje, cada transición operativa queda registrada como parte natural del modelo, permitiendo reconstruir el recorrido completo de un servicio sin depender de procesos externos.
 

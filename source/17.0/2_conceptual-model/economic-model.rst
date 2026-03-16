@@ -1,6 +1,5 @@
-2.4 Modelo Económico Vinculado
-----------------------------------
-
+Modelo Económico Vinculado
+--------------------------
 Uno de los elementos diferenciales de Guraify TMS es que la dimensión económica no se gestiona como una capa externa al TMS, sino como una consecuencia directa de la estructura operativa. El sistema no obliga a reconciliar después lo que se ejecuta con lo que se factura; ambas dimensiones están integradas desde el diseño conceptual.
 
 La arquitectura separa claramente ingreso y coste, pero los mantiene vinculados estructuralmente a las entidades que los generan. Esto elimina duplicidades, reduce conciliaciones manuales y permite que el análisis económico se construya sobre datos operativos reales.
@@ -11,7 +10,7 @@ La arquitectura separa claramente ingreso y coste, pero los mantiene vinculados 
 
    Es una propiedad estructural del modelo operativo.
 
-2.4.1 Ingreso (Activo)
+Ingreso 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 El ingreso nace en la Orden, ya que es la entidad que representa el compromiso contractual con el cliente. El cálculo puede realizarse automáticamente mediante reglas de tarifa configuradas en el sistema o aplicando condiciones económicas pactadas previamente. En ambos casos, el importe no es un valor aislado, sino el resultado de la estructura logística definida.
@@ -20,8 +19,8 @@ Cuando la operativa lo requiere, el ingreso puede segmentarse por Tramo, permiti
 
 De esta forma, el ingreso no es un dato agregado al final del proceso, sino una consecuencia directa de la configuración operativa.
 
-2.4.2 Coste (Pasivo)
-~~~~~~~~~~~~~~~~~~~~~~~~
+Coste 
+~~~~~
 
 El coste, por su parte, se genera en el Viaje, ya que este representa la ejecución real asignada a un recurso. El Viaje actúa como unidad de coste porque es la entidad que materializa la prestación efectiva del servicio, ya sea mediante flota propia o transportistas externos.
 
@@ -29,10 +28,8 @@ En caso de colaboradores externos, el Viaje genera automáticamente la orden de 
 
 Esta separación estructural permite analizar de forma clara qué se factura al cliente y qué se paga por ejecutar el servicio, sin mezclar ambas dimensiones.
 
-.. _section-15:
-
-2.4.3 Imputación prorrateada multidimensional
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Imputación prorrateada multidimensional
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Aquí reside uno de los mayores diferenciales del sistema. Guraify TMS no limita el análisis económico al nivel agregado de Orden o Viaje, sino que permite imputar tanto el ingreso como el coste en cualquier nivel estructural del modelo: Orden, Tramo, Parada o Viaje.
 
@@ -46,8 +43,8 @@ La imputación puede realizarse según criterios configurables adaptados a la re
 
    Puede analizarse en cualquier dimensión estructural del sistema.
 
-2.4.4 Resultado: análisis avanzado de margen
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Resultado
+~~~~~~~~~
 
 Gracias a esta arquitectura económica desacoplada y prorrateada, el sistema permite calcular margen no solo por Orden o por Viaje, sino también por Tramo, Parada, Proyecto, Cliente, Planning, Zona geográfica, Tipo de servicio o cualquier dimensión analítica configurada.
 

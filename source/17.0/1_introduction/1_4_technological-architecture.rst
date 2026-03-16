@@ -1,4 +1,4 @@
-1.4 Arquitectura tecnológica
+Arquitectura tecnológica
 --------------------------------
 
 Guraify TMS está construido sobre una arquitectura modular y desacoplada que separa claramente la capa de datos, la lógica de negocio y la capa de presentación, siguiendo las buenas prácticas del framework Odoo y principios de diseño orientados a escalabilidad.
@@ -7,7 +7,7 @@ El sistema no es una aplicación monolítica, sino un ecosistema compuesto por v
 
 Esta arquitectura permite evolucionar cada componente sin comprometer la estabilidad del núcleo funcional.
 
-1.4.1 Plataforma base Odoo
+Plataforma base Odoo
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 El núcleo del sistema es Odoo, que proporciona la infraestructura ORM, el modelo de seguridad por roles, la capa de vistas, el motor de automatizaciones y la integración nativa con módulos financieros y analíticos.
@@ -30,18 +30,17 @@ El módulo Guraify TMS se implementa como extensión sobre esta base, reutilizan
 
 Esta decisión permite que el TMS no sea un sistema aislado, sino una especialización logística dentro de un ERP horizontal.
 
-1.4.2 Integración con PTV (detalle técnico)
+Integración con PTV 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 La integración con PTV en Guraify TMS se articula en tres niveles de uso progresivos: Routing, Secuenciación y Optimización completa con OptiFlow. Todos ellos se apoyan en la misma base: la entidad planificable sigue siendo la Parada y la unidad de ejecución el Viaje; PTV aporta la inteligencia matemática sobre esta estructura, no la sustituye.
 
-Nivel 1 – Routing: enriquecimiento de Viaje y cálculo de ETA
+Routing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 En el nivel de Routing, el Viaje ya existe en el TMS (paradas asignadas y recurso definido) y lo que se hace es enriquecerlo con la red viaria profesional de PTV, utilizando la Routing API. Esta API trabaja con waypoints (los puntos del viaje), parámetros de vehículo y contexto temporal para calcular distancias, tiempos, ETAs, peajes, costes y emisiones.
 
-Parámetros que se toman de los maestros del TMS
-'''''''''''''''''''''''''''''''''''''''''''''''''''
+**Parámetros que se toman de los maestros del TMS**
 
 Desde Guraify se construye la petición a PTV a partir de:
 
@@ -51,8 +50,7 @@ Desde Guraify se construye la petición a PTV a partir de:
 
 - Maestro de calendarios y planificación: fecha y hora de salida previstas del viaje, zona horaria y, opcionalmente, reglas de horas de conducción y descanso del conductor, que se trasladan a PTV a través de los parámetros de *date and time* y *drivers’ working hours*.
 
-Resultados que vuelven y se exponen en el TMS
-'''''''''''''''''''''''''''''''''''''''''''''''''
+**Resultados que vuelven y se exponen en el TMS**
 
 La respuesta de Routing se vuelca de nuevo en el Viaje y en sus Paradas:
 
@@ -66,7 +64,7 @@ La respuesta de Routing se vuelca de nuevo en el Viaje y en sus Paradas:
 
 En operativa, esto permite recalcular la ETA durante la ejecución, combinando la ruta planificada de PTV con la posición real del conductor obtenida desde la app móvil, de modo que el Viaje en Guraify se convierte en un objeto dinámico que refleja la situación real y no solo el plan teórico.
 
-Nivel 2 – Secuenciación: ordenar paradas dentro de un Viaje
+Secuenciación
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 En el nivel de Secuenciación, las paradas ya están asignadas a un Viaje, pero su orden no es óptimo. Aquí se usa la Sequence Optimization API, que trabaja con el concepto de *locations, transports and stops*, vehículo y conductor, tiempos de servicio, ventanas horarias y prioridades de transporte para devolver el mejor orden posible de ejecución.
@@ -101,7 +99,7 @@ La secuenciación devuelve:
 
 En Guraify, esto se traduce en una reordenación de las Paradas del Viaje, con actualización de ETAs y KPIs de ruta (km, duración, nivel de servicio), manteniendo la vinculación de cada parada con su Tramo y su Orden para no romper el modelo estructural.
 
-**Nivel 3 – Optimización completa: asignación y secuenciación con OptiFlow**
+Optimización completa
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 El nivel más avanzado utiliza Route Optimization OptiFlow API. Aquí ya no hablamos solo de ordenar paradas dentro de un viaje existente, sino de dejar que PTV proponga el plan completo de asignación y secuenciación de las paradas a viajes, en base a órdenes, vehículos, depósitos y un conjunto rico de reglas y restricciones.
@@ -111,7 +109,7 @@ OptiFlow trabaja con el concepto de Orders, que en su terminología representan 
 .. _parámetros-que-se-toman-de-los-maestros-del-tms-2:
 
 **Parámetros que se toman de los maestros del TMS**
-'''''''''''''''''''''''''''''''''''''''''''''''''''
+
 
 En este caso, el mapeo desde Guraify hacia OptiFlow es más rico:
 
@@ -130,7 +128,7 @@ En este caso, el mapeo desde Guraify hacia OptiFlow es más rico:
 .. _resultados-que-vuelven-y-se-exponen-en-el-tms-2:
 
 **Resultados que vuelven y se exponen en el TMS**
-'''''''''''''''''''''''''''''''''''''''''''''''''
+
 
 OptiFlow devuelve un plan de rutas completo: listado de rutas con sus vehículos asignados, secuencias de órdenes/paradas, horarios, ocupación de capacidades y métricas globales de coste y rendimiento.
 
@@ -146,17 +144,17 @@ En Guraify, ese plan se traduce en:
 
 El usuario del TMS no ve el detalle técnico de la API, sino una propuesta de planificación coherente con el modelo Orden–Tramo–Parada–Viaje. Puede aceptarla tal cual, ajustarla manualmente o combinarla con reglas de negocio propias de la compañía.
 
-[TIP]
+.. tip::
 
-Routing enriquece Viajes existentes,
+   Routing enriquece Viajes existentes.
 
-Secuenciación optimiza el orden de Paradas,
+   Secuenciación optimiza el orden de Paradas.
 
-OptiFlow propone directamente qué Viajes crear y cómo llenarlos.
+   OptiFlow propone directamente qué Viajes crear y cómo llenarlos.
 
-Toda la parametrización nace de los maestros del TMS.
+   Toda la parametrización nace de los maestros del TMS.
 
-1.4.3 Capa de integración (API / EDI)
+Capa de integración 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 El sistema incorpora una capa de integración que permite intercambiar información estructurada con sistemas externos mediante:
@@ -173,7 +171,7 @@ Las integraciones no crean estructuras paralelas, sino que alimentan directament
 
 .. _section-1:
 
-1.4.4 Arquitectura móvil y tecnologías embarcadas
+Arquitectura móvil y tecnologías embarcadas
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 La aplicación móvil de Guraify TMS es una extensión operativa del backend. No es únicamente una interfaz de confirmación de entregas, sino un punto activo de generación de datos estructurales que alimentan la trazabilidad en tiempo real,
@@ -191,7 +189,7 @@ Cada escaneo actualiza automáticamente la trazabilidad y puede activar eventos 
 Tipologías de escaneo
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Escaneo simple (unitario)
+Escaneo simple 
 ''''''''''''''''''''''''''''''''
 
 Es el modo clásico de lectura individual. El usuario enfoca un único código y el sistema lo identifica inmediatamente.
@@ -208,7 +206,7 @@ Este tipo de escaneo se caracteriza por:
 
 Es el modo más controlado y se utiliza cuando se requiere precisión individual en la validación de mercancía.
 
-2. Escaneo masivo
+Escaneo masivo
 '''''''''''''''''''''
 
 El escaneo masivo permite capturar múltiples códigos de forma consecutiva en una misma sesión, validándolos contra el conjunto esperado de bultos asociados a un Viaje o Parada.
@@ -227,7 +225,7 @@ El sistema:
 
 Este modo actúa como mecanismo de control y verificación global antes de cerrar una fase operativa.
 
-3. Escaneo en vídeo (modo continuo con validación visual)
+Escaneo en vídeo 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 Es el modo más avanzado y diferencial. Utiliza la cámara en modo continuo para detectar múltiples códigos simultáneamente en tiempo real.
@@ -309,7 +307,7 @@ En todos los casos, el escaneo no es una acción aislada. Cada lectura genera:
 
 La tecnología de Scandit actúa como acelerador operativo, pero el resultado siempre es estructural: el modelo de datos se actualiza en tiempo real y mantiene coherencia entre ejecución física y representación digital.
 
-1.4.5 Modelo de geolocalización y normalización de coordenadas
+Modelo de geolocalización y normalización de coordenadas
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Guraify TMS se basa en la geolocalización como fundamento estructural para múltiples procesos: asignación automática a áreas operativas, cálculo de rutas, segmentación tarifaria y planificación por zonas.

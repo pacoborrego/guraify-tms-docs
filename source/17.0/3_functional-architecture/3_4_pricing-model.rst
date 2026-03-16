@@ -1,5 +1,5 @@
-3.4 Modelo de tarificación
-------------------------------
+Modelo de tarificación
+----------------------
 
 El modelo de tarificación define las reglas mediante las cuales el sistema calcula automáticamente el precio de los servicios de transporte.
 

@@ -1,4 +1,4 @@
-2.1 Lógica estructural del sistema
+Lógica estructural del sistema
 --------------------------------------
 
 La lógica estructural de Guraify TMS se fundamenta en una decisión arquitectónica deliberada: separar de forma explícita el encargo comercial del cliente de su ejecución operativa y de su impacto económico. Esta separación no es únicamente conceptual, sino que determina la estructura del modelo de datos, la organización funcional del sistema y la propia metodología de implantación.
@@ -29,8 +29,8 @@ En consecuencia, la lógica estructural de Guraify TMS no consiste únicamente e
 
 .. _section-12:
 
-2.1.1 La Orden
-------------------
+La Orden
+~~~~~~~~
 
 La Orden es la entidad que representa digitalmente el encargo del cliente dentro de Guraify TMS. Constituye el punto de partida estructural del sistema y el eje sobre el que se articula toda la operativa posterior. Desde una perspectiva conceptual, la Orden responde a una pregunta sencilla pero fundamental: qué servicio debemos ejecutar y posteriormente facturar.
 
@@ -52,8 +52,8 @@ Esta diferenciación es clave para entender la arquitectura completa del sistema
 
 En definitiva, la Orden debe entenderse como la unidad contractual y económica del TMS. Es el objeto que conecta cliente, proyecto, tarificación y estructura operativa, y sobre ella se construye todo el desarrollo logístico posterior.
 
-2.1.2 El Tramo
-------------------
+El Tramo
+~~~~~~~~
 
 El Tramo es la unidad operativa contenida dentro de una Orden. Si la Orden define el compromiso comercial —qué servicio se debe prestar—, el Tramo concreta cómo se materializa ese compromiso desde el punto de vista logístico. En términos simples, el Tramo responde a la pregunta: desde dónde hasta dónde se presta el servicio.
 
@@ -71,8 +71,8 @@ Esta capacidad de segmentación aporta flexibilidad sin introducir fragmentació
 
 Desde el punto de vista estructural, el Tramo actúa como puente entre la dimensión comercial (Orden) y la dimensión física (Paradas). Es la pieza que traduce el compromiso contractual en movimientos logísticos concretos sobre los que posteriormente se construirá la planificación y la ejecución real.
 
-2.1.3 La Parada
--------------------
+La Parada
+~~~~~~~~~
 
 La Parada representa el evento físico real dentro de la operativa del transporte. Si el Tramo define un movimiento lógico entre un origen y un destino, la Parada es el punto concreto donde ocurre una acción trazable: una recogida, una entrega, una entrada o salida de hub, una parada técnica o cualquier otro evento que deba registrarse en el flujo operativo.
 
@@ -92,8 +92,8 @@ Esta decisión arquitectónica permite que la planificación sea completamente f
 
 En consecuencia, la Parada actúa como el punto de convergencia entre estructura lógica y ejecución real. Es donde la operación deja de ser un compromiso abstracto y se convierte en un evento planificable, trazable y medible dentro del sistema.
 
-2.1.4 El Viaje
-------------------
+El Viaje
+~~~~~~~~
 
 El Viaje es la entidad que representa la ejecución real del transporte. Si la Orden formaliza el compromiso con el cliente y el Tramo estructura el movimiento logístico, el Viaje responde a una pregunta operativa concreta: qué conjunto de paradas ejecuta un recurso en una ruta real.
 

@@ -1,4 +1,4 @@
-1.3 Público objetivo
+Público objetivo
 ------------------------
 
 Este documento está dirigido a:

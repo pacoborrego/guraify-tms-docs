@@ -1,5 +1,5 @@
-3.5 Modelo de integración
------------------------------
+Modelo de integración
+---------------------
 
 El modelo de integración define los mecanismos mediante los cuales el TMS puede intercambiar información con sistemas externos.
 

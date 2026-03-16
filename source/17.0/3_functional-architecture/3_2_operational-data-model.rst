@@ -1,5 +1,5 @@
-3.2 Modelo de datos operativo
----------------------------------
+Modelo de datos operativo
+-------------------------
 
 Una vez descrita la organización funcional del sistema, el siguiente paso consiste en analizar las principales entidades de datos que soportan la operativa del transporte dentro de la aplicación.
 
