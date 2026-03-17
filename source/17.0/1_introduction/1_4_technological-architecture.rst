@@ -498,7 +498,8 @@ Podemos visualizarlo conceptualmente así:
    | (lat, lon)                |
    | Punto Localización        |
    +---------------------------+
-
+   
+   
 Si el punto se encuentra dentro de los límites del polígono, la localización queda automáticamente asociada a esa área. Si no pertenece a ningún polígono definido, el sistema puede:
 
 - Dejarla sin asignación.

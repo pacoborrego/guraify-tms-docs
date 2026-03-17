@@ -54,7 +54,7 @@ El modelo de tipos de servicio incluye los siguientes campos funcionales.
 
 +-----------------------+------------------------------------------------------------------------------------------------------------------+
 | **Campo**             | **Descripción**                                                                                                  |
-+-----------------------+------------------------------------------------------------------------------------------------------------------+
++=======================+==================================================================================================================+
 | Nombre                | Identificador del tipo de servicio dentro del sistema. Permite reconocer la naturaleza operativa del transporte. |
 +-----------------------+------------------------------------------------------------------------------------------------------------------+
 | Secuencia             | Orden de visualización utilizado para organizar los servicios en las interfaces del sistema.                     |
@@ -78,7 +78,7 @@ El modelo de tipos de servicio incluye los siguientes campos funcionales.
 | Compañía              | Permite definir configuraciones específicas en entornos multiempresa.                                            |
 +-----------------------+------------------------------------------------------------------------------------------------------------------+
 | Color                 | Identificador visual utilizado en algunas interfaces de planificación.                                           |
-+=======================+==================================================================================================================+
++-----------------------+------------------------------------------------------------------------------------------------------------------+
 
 .. _section-25:
 
@@ -134,7 +134,7 @@ El modelo de tipos de orden incluye los siguientes campos funcionales.
 
 +-------------+------------------------------------------------------------------------------------------------------------------------+
 | **Campo**   | **Descripción**                                                                                                        |
-+-------------+------------------------------------------------------------------------------------------------------------------------+
++=============+========================================================================================================================+
 | Nombre      | Identificador del tipo de orden dentro del sistema. Permite reconocer el tipo de operación logística que representa.   |
 +-------------+------------------------------------------------------------------------------------------------------------------------+
 | Secuencia   | Orden de visualización utilizado para organizar los tipos de orden dentro de las interfaces del sistema.               |
@@ -144,7 +144,7 @@ El modelo de tipos de orden incluye los siguientes campos funcionales.
 | Compañía    | Permite definir configuraciones específicas en entornos multiempresa.                                                  |
 +-------------+------------------------------------------------------------------------------------------------------------------------+
 | Color       | Identificador visual utilizado en algunas interfaces para facilitar la identificación de los distintos tipos de orden. |
-+=============+========================================================================================================================+
++-------------+------------------------------------------------------------------------------------------------------------------------+
 
 **Papel dentro del modelo operativo**
 
@@ -195,14 +195,4 @@ De esta forma, los tipos de orden permiten adaptar el comportamiento del sistema
 .. note::
 
    En el modelo conceptual del sistema, el tipo de orden actúa como uno de los elementos que determinan cómo se estructura una expedición en términos de tramos y paradas. Su correcta configuración resulta esencial para que el sistema represente fielmente la operativa logística de la empresa.
-Si quieres, en el siguiente paso podemos hacer 4.1.3 Tipos de Parada.
 
-Ese apartado es todavía más interesante a nivel de arquitectura, porque conecta directamente con:
-
-• la trazabilidad
-
-• la ejecución del viaje
-
-• la app del conductor
-
-• los eventos logísticos.

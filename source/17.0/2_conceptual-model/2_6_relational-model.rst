@@ -16,9 +16,8 @@ La Parada es el evento físico asociado a un tramo. Puede corresponder a una car
 
 El Viaje es la unidad de ejecución operativa. Agrupa múltiples paradas en una ruta ejecutable y genera el coste asociado a dicha ejecución.
 
-[IMAGE]
-
-|image2|
+.. image:: /_static/images/modelo_relacional.png
+   :align: center
 
 Cardinalidades estructurales
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
