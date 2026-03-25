@@ -6,10 +6,10 @@ Una vez definidas las entidades principales —Orden, Tramo, Parada y Viaje—, 
 .. toctree::
    :maxdepth: 1
 
-   structural-logic
-   entity-relationships
-   traceability-model
-   economic-model
-   official-model-diagram
-   relational-model
+   2_1_structural-logic
+   2_2_entity-relationships
+   2_3_traceability-model
+   2_4_economic-model
+   2_5_official-model-diagram
+   2_6_relational-model
    conceptual-model-conclusion

@@ -1,8 +1,7 @@
 Guraify TMS Documentation
-==========================
+=========================
 
 .. toctree::
-   :maxdepth: 1
-   :caption: Versions
+   :maxdepth: 2
 
    17.0/index

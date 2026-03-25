@@ -1,11 +1,12 @@
-Guraify TMS — Version 17.0
-===========================
+Guraify TMS 17.0
+================
 
 .. toctree::
    :maxdepth: 2
-   :caption: Core Documentation
+   :caption: Manual Técnico
 
    1_introduction/index
    2_conceptual-model/index
    3_functional-architecture/index
    4_parametrization/index
+   10_manual_app/index
