@@ -22,7 +22,7 @@ Cada bloque agrupa registros maestros que definen reglas estructurales del siste
 Es importante entender que estas configuraciones no actúan de forma aislada. La mayoría de ellas se vinculan posteriormente dentro del Proyecto, que actúa como contenedor de configuración para cada operativa o cliente.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    4_1_operational-configuration
    4_2_logistic-configuration
