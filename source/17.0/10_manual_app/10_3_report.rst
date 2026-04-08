@@ -440,3 +440,336 @@ Una vez completada la firma:
 
    Este es el flujo estándar de trabajo.  
    En los siguientes apartados se describen los casos especiales (reserva, incidencias, etc.).
+
+
+Reportar un reembolso
+~~~~~~~~~~~~~~~~~~~~~~
+
+En determinadas paradas, antes de finalizar la entrega, es necesario gestionar un reembolso. Esto implica que el conductor debe cobrar un importe al destinatario como parte del proceso operativo.
+
+**Cómo identificar un reembolso**
+
+Si una parada tiene reembolso, el sistema mostrará una indicación visual dentro de la orden.
+
+.. image:: /_static/images/Reembolso_Step_1.png
+   :width: 300px
+   :align: center
+
+
+Ejemplo:
+
+“Reembolso - CONTADO - 100 €”
+
+Esto indica que el conductor debe cobrar dicho importe antes de completar la entrega.
+
+
+.. important::
+
+   No completes la entrega sin haber realizado previamente el cobro.
+
+
+**Cuándo se gestiona el reembolso**
+
+El reembolso se gestiona automáticamente durante el flujo de reporte de la parada.
+
+Al pulsar el botón OK para confirmar la entrega, y antes de acceder a la captura del POD, la aplicación mostrará la pantalla específica de gestión de reembolso.
+
+.. image:: /_static/images/Reembolso_Step_2.png
+   :width: 300px
+   :align: center
+
+
+**Qué debes hacer**
+
+Si el cobro se realiza correctamente, el conductor debe seleccionar la opción correspondiente:
+
+- Cobrado
+
+Existen otras opciones como:
+
+- Cobrado en parte  
+- No cobrado  
+
+Estas opciones están destinadas a la gestión de incidencias y se detallarán en secciones posteriores.
+
+
+**Continuación del proceso**
+
+Una vez confirmado el reembolso:
+
+- El flujo operativo continúa con normalidad  
+- Se accede al proceso de captura del POD  
+
+Dependiendo del caso, el POD podrá ser:
+
+- Firma digital en el dispositivo  
+- Escaneo de albarán físico  
+
+
+.. tip::
+
+   Realiza siempre el cobro antes de confirmar la acción en la aplicación.
+
+
+
+Reportar incidencias
+~~~~~~~~~~~~~~~~~~~~
+
+**Reportar incidencias durante la carga**
+
+Durante el proceso de carga, el conductor debe verificar el estado físico de los bultos antes de incorporarlos al vehículo.
+
+En caso de detectar cualquier anomalía, el sistema permite registrar una incidencia en ese mismo momento, garantizando la trazabilidad desde origen.
+
+
+**Tipos de incidencia en carga**
+
+Existen dos situaciones principales:
+
+- El bulto se puede entregar
+- El bulto no se puede entregar 
+
+Para registrar estas incidencia nos iremos encima del bulto en la aplicacion 
+
+.. image:: /_static/images/Reporte_carga_1.png
+   :width: 300px
+   :align: center
+
+
+
+Y clicaremos en el boton que nos aparece abajo que dice : **Reportar Problema**
+
+.. image:: /_static/images/Reporte_carga_2.png
+   :width: 300px
+   :align: center
+
+
+
+Al clicar , observaremos que nos aparecen dos opcciones dependiendo de en que estado se encuentre el bulto reportaremos si se entrega o si no se entrega
+
+.. image:: /_static/images/Reporte_carga_3.png
+   :width: 300px
+   :align: center
+
+
+**Bulto transportable con incidencia (Reserva)**
+
+Se utiliza cuando el bulto puede continuar en el proceso, pero presenta algún tipo de anomalía.
+
+Ejemplos habituales:
+
+- Embalaje dañado  
+- Golpes visibles  
+- Deterioro externo  
+
+En estos casos, el conductor debe:
+
+- Reportar la incidencia durante la carga  
+- Seleccionar el bulto afectado  
+- Registrar la incidencia  
+- Adjuntar una imagen como evidencia  
+
+
+
+
+
+.. important::
+
+   Es obligatorio adjuntar una imagen cuando el bulto presenta daños visibles.  
+   Esto permite evitar incidencias y reclamaciones posteriores.
+
+
+**Bulto no transportable (KO)**
+
+Se utiliza cuando el bulto no puede ser cargado y no debe continuar en el transporte.
+
+Ejemplos habituales:
+
+- Daño grave  
+- Producto incorrecto  
+- Problemas que impiden su manipulación  
+
+En estos casos, el conductor debe:
+
+- Reportar la incidencia durante la carga  
+- Seleccionar el bulto afectado  
+- Indicar el motivo  
+- Confirmar que el bulto no se carga  
+
+
+
+
+.. warning::
+
+   Un bulto marcado como KO no debe cargarse en el vehículo bajo ningún concepto.
+
+
+**Importante**
+
+El registro de incidencias en carga permite:
+
+- Mantener la trazabilidad del bulto  
+- Evitar errores en la entrega  
+- Garantizar una correcta gestión posterior  
+
+
+.. note::
+
+   Las incidencias deben registrarse en el momento en que se detectan.
+
+
+**Reportar incidencias durante la entrega**
+
+Durante el proceso de entrega, pueden producirse situaciones en las que la operación no se realiza en condiciones estándar. En estos casos, el sistema permite registrar incidencias directamente desde la pantalla de validación de bultos.
+
+Al escanear un bulto, la aplicación mostrará las opciones de reporte disponibles:
+
+- Entrega OK (sin incidencias)  
+- Entrega con incidencia (Reserva)  
+- No entregado (KO)  
+
+
+**Entrega con incidencia (Reserva)**
+
+Se utiliza cuando el bulto ha sido entregado, pero no en las condiciones inicialmente previstas.
+
+Ejemplos habituales:
+
+- Entrega a un vecino  
+- Entrega en portería o recepción  
+- Mercancía dejada en la puerta  
+- Entrega en un punto distinto al destinatario original  
+
+En estos casos, el conductor debe:
+
+- Seleccionar el bulto escaneado  
+- Elegir la opción de entrega con incidencia (Reserva)  
+- Seleccionar el tipo de incidencia dentro de la app  
+- Adjuntar una imagen como evidencia (portería, ubicación, número de puerta, etc.)  
+
+
+.. image:: /_static/images/reporte_entrega.png
+   :width: 300px
+   :align: center
+
+
+.. important::
+
+   Es obligatorio adjuntar una imagen que evidencie el lugar de entrega.  
+   Esto garantiza la trazabilidad y evita reclamaciones posteriores.
+
+
+**Entrega no realizada (KO)**
+
+Se utiliza cuando la entrega no ha podido completarse.
+
+Opciones habituales disponibles en la app:
+
+- Destinatario ausente  
+- Entrega cancelada  
+- Mercancía no localizada en el vehículo  
+- Otros motivos operativos  
+
+En estos casos, el conductor debe:
+
+- Seleccionar el bulto correspondiente  
+- Elegir la opción KO  
+- Indicar el motivo de la incidencia  
+- Confirmar el reporte  
+
+
+.. image:: /_static/images/reporte_entrega_4.png
+   :width: 300px
+   :align: center
+
+
+.. warning::
+
+   Un bulto reportado como KO implica que la entrega no se ha realizado y deberá gestionarse posteriormente.
+
+
+**Importante**
+
+El correcto registro de incidencias en entrega permite:
+
+- Mantener la trazabilidad completa de la operación  
+- Informar en tiempo real al sistema  
+- Evitar errores en la gestión posterior  
+
+
+.. note::
+
+   Selecciona siempre el tipo de incidencia que mejor represente la situación real de la entrega.
+
+   **Reportar incidencias de reembolso**
+
+Durante el proceso de entrega, puede ocurrir que el reembolso no se complete correctamente. En estos casos, el sistema permite registrar una incidencia asociada al cobro.
+
+Cuando se accede a la pantalla de reembolso, la aplicación mostrará dos opciones principales:
+
+- No pagado  
+- Pagado a medias  
+
+
+**Reembolso no pagado (KO)**
+
+Se utiliza cuando el destinatario no realiza ningún pago.
+
+En este caso, el conductor debe:
+
+- Seleccionar la opción **No pagado**  
+- Indicar el motivo correspondiente  
+
+Ejemplos habituales:
+
+- El cliente rechaza el pago  
+- El cliente no dispone de dinero  
+- El cliente no acepta el importe  
+
+
+.. warning::
+
+   Un reembolso marcado como no pagado implica que la entrega no ha sido cobrada y deberá gestionarse posteriormente.
+
+
+**Reembolso pagado parcialmente (Reserva)**
+
+Se utiliza cuando el destinatario realiza un pago parcial del importe.
+
+En este caso, el conductor debe:
+
+- Seleccionar la opción **Pagado a medias**  
+- Indicar la cantidad abonada  
+- Especificar el motivo por el cual no se ha realizado el pago completo  
+
+.. list-table::
+
+   * - .. image:: /_static/images/IMG_1021.png
+         :width: 200px
+
+     - →
+
+     - .. image:: /_static/images/IMG_1020.png
+         :width: 200px
+
+
+Esto permite al sistema reflejar la situación real del cobro y facilitar su gestión posterior.
+
+
+.. important::
+
+   Es fundamental registrar correctamente el importe recibido para evitar descuadres en la liquidación.
+
+
+**Importante**
+
+El registro correcto de incidencias de reembolso permite:
+
+- Mantener la trazabilidad económica de la operación  
+- Evitar errores en la facturación  
+- Facilitar la gestión administrativa posterior  
+
+
+.. note::
+
+   Selecciona siempre la opción que refleje con mayor precisión la situación real del cobro.
