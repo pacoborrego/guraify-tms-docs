@@ -22,67 +22,72 @@ Dentro de este bloque se configuran los siguientes elementos.
 Tipos de Servicio
 ~~~~~~~~~~~~~~~~~
 
-Los Tipos de Servicio constituyen uno de los primeros elementos de configuración operativa del sistema. Su objetivo es clasificar la naturaleza de los servicios de transporte gestionados dentro del TMS y establecer la relación entre la operativa logística y los conceptos económicos que se utilizarán posteriormente en la facturación.
+Los Tipos de Servicio constituyen uno de los primeros elementos de configuración operativa del sistema.
 
-En la práctica, el tipo de servicio permite identificar el modelo de transporte que se está aplicando a una expedición. Esta clasificación facilita la gestión de diferentes operativas dentro de una misma organización, como por ejemplo:
+Su objetivo es clasificar la naturaleza de los servicios de transporte gestionados dentro del TMS y establecer la relación entre la operativa logística y los conceptos económicos que se utilizarán posteriormente en la facturación.
 
-- carga completa
+En la práctica, el tipo de servicio permite identificar el modelo de transporte aplicado a una expedición.
 
-- grupaje
+Esta clasificación facilita la gestión de diferentes operativas dentro de una misma organización, como por ejemplo:
 
-- distribución urbana
+- Carga completa
+- Grupaje
+- Distribución urbana
+- Same day
+- Entregas con compromiso horario
 
-- same da
+La selección del tipo de servicio durante la creación de una orden no solo cumple una función descriptiva.
 
-- entregas con compromiso horario
-
-La selección del tipo de servicio durante la creación de una orden no solo cumple una función descriptiva. También determina qué productos del catálogo de Odoo se utilizarán posteriormente para registrar los ingresos asociados a la operación.
+También determina qué productos del catálogo de Odoo se utilizarán posteriormente para registrar los ingresos asociados a la operación.
 
 De este modo, el tipo de servicio actúa como un elemento de conexión entre:
 
-- la estructura operativa de la orden
-
-- las variables logísticas que intervienen en el transporte
-
-- la generación automática de conceptos económicos
+- La estructura operativa de la orden
+- Las variables logísticas que intervienen en el transporte
+- La generación automática de conceptos económicos
 
 Gracias a esta relación, el sistema puede traducir la información operativa del transporte en registros económicos sin necesidad de introducir datos adicionales durante el proceso de facturación.
 
-**Campos principales**
+Campos principales
+^^^^^^^^^^^^^^^^^^
 
-El modelo de tipos de servicio incluye los siguientes campos funcionales.
+El modelo de Tipos de Servicio incluye los siguientes campos funcionales.
 
-+-----------------------+------------------------------------------------------------------------------------------------------------------+
-| **Campo**             | **Descripción**                                                                                                  |
-+=======================+==================================================================================================================+
-| Nombre                | Identificador del tipo de servicio dentro del sistema. Permite reconocer la naturaleza operativa del transporte. |
-+-----------------------+------------------------------------------------------------------------------------------------------------------+
-| Secuencia             | Orden de visualización utilizado para organizar los servicios en las interfaces del sistema.                     |
-+-----------------------+------------------------------------------------------------------------------------------------------------------+
-| Descripción económica | Texto utilizado como concepto económico cuando el servicio genera líneas de facturación.                         |
-+-----------------------+------------------------------------------------------------------------------------------------------------------+
-| Productos asociados   | Productos del catálogo de Odoo que se utilizarán para registrar los ingresos generados por el servicio.          |
-+-----------------------+------------------------------------------------------------------------------------------------------------------+
-| Tipos de expedición   | Define qué tipos de expedición pueden utilizar este servicio.                                                    |
-+-----------------------+------------------------------------------------------------------------------------------------------------------+
-| Bultos                | Indica si el número de bultos puede intervenir en el cálculo económico del servicio.                             |
-+-----------------------+------------------------------------------------------------------------------------------------------------------+
-| Cantidad              | Permite utilizar la cantidad de unidades como variable logística relevante.                                      |
-+-----------------------+------------------------------------------------------------------------------------------------------------------+
-| Metros                | Indica si los metros lineales deben considerarse en la valoración del servicio.                                  |
-+-----------------------+------------------------------------------------------------------------------------------------------------------+
-| Pallets               | Permite utilizar el número de pallets como dimensión logística.                                                  |
-+-----------------------+------------------------------------------------------------------------------------------------------------------+
-| Información adicional | Campo descriptivo utilizado para documentar características del servicio.                                        |
-+-----------------------+------------------------------------------------------------------------------------------------------------------+
-| Compañía              | Permite definir configuraciones específicas en entornos multiempresa.                                            |
-+-----------------------+------------------------------------------------------------------------------------------------------------------+
-| Color                 | Identificador visual utilizado en algunas interfaces de planificación.                                           |
-+-----------------------+------------------------------------------------------------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Campo
+     - Descripción
+   * - Nombre
+     - Identificador del tipo de servicio dentro del sistema. Permite reconocer la naturaleza operativa del transporte.
+   * - Secuencia
+     - Orden de visualización utilizado para organizar los servicios en las interfaces del sistema.
+   * - Descripción económica
+     - Texto utilizado como concepto económico cuando el servicio genera líneas de facturación.
+   * - Productos asociados
+     - Productos del catálogo de Odoo que se utilizarán para registrar los ingresos generados por el servicio.
+   * - Tipos de expedición
+     - Define qué tipos de expedición pueden utilizar este servicio.
+   * - Bultos
+     - Indica si el número de bultos puede intervenir en el cálculo económico del servicio.
+   * - Cantidad
+     - Permite utilizar la cantidad de unidades como variable logística relevante.
+   * - Metros
+     - Indica si los metros lineales deben considerarse en la valoración del servicio.
+   * - Pallets
+     - Permite utilizar el número de pallets como dimensión logística.
+   * - Información adicional
+     - Campo descriptivo utilizado para documentar características del servicio.
+   * - Compañía
+     - Permite definir configuraciones específicas en entornos multiempresa.
+   * - Color
+     - Identificador visual utilizado en algunas interfaces de planificación.
 
 .. _section-25:
 
-**Uso dentro del sistema**
+Contexto operativo del servicio
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Los tipos de servicio intervienen en diferentes procesos del TMS.
 
@@ -106,93 +111,337 @@ Este diseño permite mantener alineadas las tres dimensiones principales del sis
 
 
 Tipos de Orden
-~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
 
-Los Tipos de Orden definen la naturaleza operativa de una expedición dentro del sistema. Mientras que los tipos de servicio clasifican la dimensión comercial del transporte, los tipos de orden describen el comportamiento logístico que tendrá la orden dentro del flujo operativo del TMS.
+Los Tipos de Orden definen la naturaleza operativa de una expedición dentro del sistema.
+
+Mientras que los Tipos de Servicio clasifican la dimensión comercial del transporte, los Tipos de Orden describen el comportamiento logístico que tendrá la orden dentro del flujo operativo del TMS.
 
 En otras palabras, el tipo de orden determina cómo se comporta una expedición dentro de la red logística.
 
 Esta clasificación permite diferenciar distintos escenarios operativos, como por ejemplo:
 
-• recogidas en origen
-
-• entregas a destinatario
-
-• operaciones entre hubs
-
-• servicios directos
-
-• movimientos internos dentro de la red
+- Recogidas en origen
+- Entregas a destinatario
+- Operaciones entre hubs
+- Servicios directos
+- Movimientos internos dentro de la red
 
 La definición del tipo de orden influye directamente en la forma en que el sistema genera la estructura logística de la expedición, especialmente en lo relativo a la creación de tramos y paradas.
 
-Por este motivo, los tipos de orden forman parte de los elementos estructurales del modelo operativo del TMS.
+Por este motivo, los Tipos de Orden forman parte de los elementos estructurales del modelo operativo del TMS.
 
-**Campos principales**
+Campos principales
+^^^^^^^^^^^^^^^^^^
 
-El modelo de tipos de orden incluye los siguientes campos funcionales.
+El modelo de Tipos de Orden incluye los siguientes campos funcionales.
 
-+-------------+------------------------------------------------------------------------------------------------------------------------+
-| **Campo**   | **Descripción**                                                                                                        |
-+=============+========================================================================================================================+
-| Nombre      | Identificador del tipo de orden dentro del sistema. Permite reconocer el tipo de operación logística que representa.   |
-+-------------+------------------------------------------------------------------------------------------------------------------------+
-| Secuencia   | Orden de visualización utilizado para organizar los tipos de orden dentro de las interfaces del sistema.               |
-+-------------+------------------------------------------------------------------------------------------------------------------------+
-| Descripción | Texto descriptivo utilizado para documentar el comportamiento del tipo de orden.                                       |
-+-------------+------------------------------------------------------------------------------------------------------------------------+
-| Compañía    | Permite definir configuraciones específicas en entornos multiempresa.                                                  |
-+-------------+------------------------------------------------------------------------------------------------------------------------+
-| Color       | Identificador visual utilizado en algunas interfaces para facilitar la identificación de los distintos tipos de orden. |
-+-------------+------------------------------------------------------------------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-**Papel dentro del modelo operativo**
+   * - Campo
+     - Descripción
+   * - Nombre
+     - Identificador del tipo de orden dentro del sistema.
+   * - Secuencia
+     - Orden de visualización utilizado para organizar los tipos de orden.
+   * - Descripción
+     - Texto descriptivo del comportamiento funcional.
+   * - Compañía
+     - Configuración específica en entornos multiempresa.
+   * - Color
+     - Identificador visual para facilitar su reconocimiento.
 
-Los tipos de orden intervienen principalmente durante el proceso de creación y estructuración de una orden de transporte.
+Papel dentro del modelo operativo
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Cuando se registra una nueva expedición en el sistema, el tipo de orden seleccionado indica al sistema qué lógica operativa debe aplicarse para generar la estructura logística de la operación.
+Los Tipos de Orden intervienen principalmente durante el proceso de creación y estructuración de una orden de transporte.
 
-Esta lógica puede afectar, entre otros aspectos, a:
+Cuando se registra una nueva expedición, el tipo de orden seleccionado indica al sistema qué lógica operativa debe aplicarse para generar la estructura logística correspondiente.
 
-• la creación automática de tramos
+Esta lógica puede afectar a:
 
-• la generación de paradas de recogida y entrega
+- La creación automática de tramos
+- La generación de paradas de recogida y entrega
+- La clasificación de la operación dentro de la red logística
 
-• la clasificación de la operación dentro de la red logística
-
-Gracias a esta configuración, el sistema puede adaptar su comportamiento a distintos modelos operativos sin necesidad de modificar la lógica interna del módulo.
+Gracias a esta configuración, el sistema puede adaptar su comportamiento a distintos modelos operativos sin modificar la lógica interna del módulo.
 
 Por ejemplo, una empresa puede gestionar simultáneamente:
 
-• servicios directos entre origen y destino
+- Servicios directos entre origen y destino
+- Operativas hub-and-spoke
+- Redes de distribución urbana
 
-• operativas hub-and-spoke
+Relación con otros elementos del sistema
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-• redes de distribución urbana
+Los Tipos de Orden interactúan con varios componentes clave del modelo operativo del TMS.
 
-Cada uno de estos modelos puede utilizar tipos de orden distintos que permitan al sistema interpretar correctamente el flujo logístico de la expedición.
+Se utilizan durante la creación de órdenes de transporte, donde determinan el comportamiento logístico de la expedición.
 
-⸻
+Posteriormente, esta información se utiliza durante la generación de tramos y paradas, que constituyen la estructura operativa utilizada por planificación.
 
-**Relación con otros elementos del sistema**
+Además, el tipo de orden puede utilizarse como criterio en:
 
-Los tipos de orden interactúan con varios componentes clave del modelo operativo del TMS.
-
-En primer lugar, se utilizan durante la creación de órdenes de transporte, donde determinan el comportamiento logístico de la expedición.
-
-Posteriormente, esta información se utiliza durante la generación de tramos y paradas, que constituyen la estructura operativa que será utilizada por el proceso de planificación.
-
-Además, el tipo de orden puede utilizarse como criterio en distintos procesos de configuración, como por ejemplo:
-
-• reglas de planificación
-
-• reglas de tarifa
-
-• validaciones operativas
-
-De esta forma, los tipos de orden permiten adaptar el comportamiento del sistema a distintos modelos logísticos sin alterar la arquitectura general del TMS.
+- Reglas de planificación
+- Reglas de tarifa
+- Validaciones operativas
 
 .. note::
 
-   En el modelo conceptual del sistema, el tipo de orden actúa como uno de los elementos que determinan cómo se estructura una expedición en términos de tramos y paradas. Su correcta configuración resulta esencial para que el sistema represente fielmente la operativa logística de la empresa.
+   El tipo de orden determina cómo se estructura una expedición
+   en términos de tramos y paradas.
+   Una configuración incorrecta impactará directamente
+   en la representación logística del flujo operativo.
 
+
+
+Tipos de Parada
+~~~~~~~~~~~~~~~
+
+Contexto funcional
+^^^^^^^^^^^^^^^^^^
+
+Los Tipos de Parada constituyen uno de los pilares de la modelización operativa dentro de Guraify TMS.
+
+Mientras que el tipo de orden define la naturaleza del encargo, el tipo de parada determina cómo se materializa dicho encargo en el plano físico y planificable.
+
+En el modelo del sistema, la parada es la unidad mínima sobre la que operan planificación, ejecución y trazabilidad.
+
+Una parada puede representar:
+
+- Una recogida
+- Una entrega
+- Una operación de hub
+- Una parada de ruta
+- Una recogida directa
+- Una entrega directa
+- Un evento generado por el optimizador
+
+Esta clasificación condiciona:
+
+- La generación automática de paradas
+- La planificación de rutas
+- Las validaciones operativas
+- El comportamiento de la app del conductor
+- La trazabilidad del servicio
+
+Campos principales
+^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :header-rows: 1
+   :widths: 35 65
+
+   * - Campo
+     - Descripción
+   * - Nombre
+     - Identificador funcional del tipo de parada.
+   * - Secuencia
+     - Orden de visualización.
+   * - Descripción
+     - Definición funcional.
+   * - Compañía
+     - Configuración multiempresa.
+   * - Color
+     - Identificador visual.
+   * - Imagen
+     - Icono asociado.
+   * - Es operación de hub
+     - Marca operaciones de centro logístico.
+   * - Es recogida a domicilio
+     - Define home collection.
+   * - Es parada de ruta
+     - Marca paradas planificables.
+   * - Es recogida directa
+     - Flujo directo de recogida.
+   * - Es entrega directa
+     - Flujo directo de entrega.
+   * - Es parada de optimizador
+     - Eventos generados automáticamente.
+
+Comportamiento operativo de Tipos de Parada
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Los tipos de parada intervienen directamente en la construcción de la estructura operativa de una orden.
+
+El sistema decide:
+
+- Qué paradas son planificables
+- Qué pertenecen a operaciones de hub
+- Qué movimientos deben tratarse como directos
+
+También se utilizan en:
+
+- Acciones masivas
+- Filtros de planificación
+- Validaciones previas
+- Comunicación con la app
+
+.. note::
+
+   La marca "Es parada de ruta" es crítica.
+   Una clasificación incorrecta puede dejar una parada
+   fuera de planificación, secuenciación u optimización.
+
+
+
+Tipos de Destinatario
+~~~~~~~~~~~~~~~~~~~~~
+
+Contexto funcional
+^^^^^^^^^^^^^^^^^^
+
+Los Tipos de Destinatario permiten segmentar el perfil del receptor final de la mercancía.
+
+Ejemplos habituales:
+
+- B2B
+- B2C
+- Retail
+- Horeca
+- Gran superficie
+- Punto de conveniencia
+
+Campos principales
+^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Campo
+     - Descripción
+   * - Nombre
+     - Código identificador.
+   * - Secuencia
+     - Orden de visualización.
+   * - Descripción
+     - Definición funcional.
+   * - Compañía
+     - Configuración multiempresa.
+   * - Valor por defecto
+     - Clasificación estándar.
+   * - Información adicional
+     - Notas internas.
+
+Aplicación operativa de Tipos de Destinatario
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Se vinculan con:
+
+- Proyectos
+- Órdenes
+- Reglas tarifarias
+- Filtros de planificación
+
+Permiten:
+
+- Limitar destinatarios válidos
+- Aplicar reglas específicas
+- Diferenciar operativas de última milla
+
+
+
+Tipos de Transportista
+~~~~~~~~~~~~~~~~~~~~~~
+
+Contexto funcional
+^^^^^^^^^^^^^^^^^^
+
+Los Tipos de Transportista permiten clasificar los recursos que ejecutan el transporte.
+
+Campos principales
+^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Campo
+     - Descripción
+   * - Nombre
+     - Identificador funcional.
+   * - Secuencia
+     - Orden de visualización.
+   * - Descripción
+     - Definición funcional.
+   * - Compañía
+     - Configuración multiempresa.
+   * - Valor por defecto
+     - Clasificación estándar.
+   * - Información adicional
+     - Notas internas.
+   * - Color
+     - Identificador visual.
+
+Aplicación operativa de Tipos de Transportista
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Se utilizan en:
+
+- Configuración de proyectos
+- Asignación de viajes
+- Reglas económicas
+
+Permiten:
+
+- Definir transportistas admisibles
+- Condicionar tarifas de compra
+- Analizar rentabilidad por proveedor
+
+
+
+Tipos de Reembolso
+~~~~~~~~~~~~~~~~~~
+
+Contexto funcional
+^^^^^^^^^^^^^^^^^^
+
+Los Tipos de Reembolso definen modalidades de cobro o devolución asociadas a una expedición.
+
+Ejemplos:
+
+- Contra reembolso
+- Cobro en entrega
+- Gestión de efectivo
+
+Campos principales
+^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Campo
+     - Descripción
+   * - Nombre
+     - Identificador funcional.
+   * - Secuencia
+     - Orden de visualización.
+   * - Descripción
+     - Definición funcional.
+   * - Compañía
+     - Configuración multiempresa.
+   * - Valor por defecto
+     - Clasificación estándar.
+   * - Información adicional
+     - Notas internas.
+   * - Color
+     - Identificador visual.
+
+Aplicación operativa de Tipos de Reembolso
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Permiten:
+
+- Clasificar importes asociados
+- Relacionar cobros con trazabilidad
+- Integrar información con liquidación económica
+
+Especialmente relevantes cuando:
+
+- El conductor reporta importes desde la app
+- Se requiere control financiero detallado

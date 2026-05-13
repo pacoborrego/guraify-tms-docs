@@ -40,7 +40,8 @@ Routing
 
 En el nivel de Routing, el Viaje ya existe en el TMS (paradas asignadas y recurso definido) y lo que se hace es enriquecerlo con la red viaria profesional de PTV, utilizando la Routing API. Esta API trabaja con waypoints (los puntos del viaje), parámetros de vehículo y contexto temporal para calcular distancias, tiempos, ETAs, peajes, costes y emisiones.
 
-**Parámetros que se toman de los maestros del TMS**
+Parámetros que se toman de los maestros del TMS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Desde Guraify se construye la petición a PTV a partir de:
 
@@ -50,7 +51,8 @@ Desde Guraify se construye la petición a PTV a partir de:
 
 - Maestro de calendarios y planificación: fecha y hora de salida previstas del viaje, zona horaria y, opcionalmente, reglas de horas de conducción y descanso del conductor, que se trasladan a PTV a través de los parámetros de *date and time* y *drivers’ working hours*.
 
-**Resultados que vuelven y se exponen en el TMS**
+Resultados que vuelven y se exponen en el TMS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 La respuesta de Routing se vuelca de nuevo en el Viaje y en sus Paradas:
 
@@ -189,8 +191,8 @@ Cada escaneo actualiza automáticamente la trazabilidad y puede activar eventos 
 Tipologías de escaneo
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Escaneo simple 
-''''''''''''''''''''''''''''''''
+**Escaneo simple**
+
 
 Es el modo clásico de lectura individual. El usuario enfoca un único código y el sistema lo identifica inmediatamente.
 
@@ -206,8 +208,8 @@ Este tipo de escaneo se caracteriza por:
 
 Es el modo más controlado y se utiliza cuando se requiere precisión individual en la validación de mercancía.
 
-Escaneo masivo
-'''''''''''''''''''''
+**Escaneo masivo**
+
 
 El escaneo masivo permite capturar múltiples códigos de forma consecutiva en una misma sesión, validándolos contra el conjunto esperado de bultos asociados a un Viaje o Parada.
 
@@ -225,8 +227,7 @@ El sistema:
 
 Este modo actúa como mecanismo de control y verificación global antes de cerrar una fase operativa.
 
-Escaneo en vídeo 
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+**Escaneo en vídeo**
 
 Es el modo más avanzado y diferencial. Utiliza la cámara en modo continuo para detectar múltiples códigos simultáneamente en tiempo real.
 
@@ -251,18 +252,18 @@ Uso dentro del flujo operativo
 
 Una vez definidos los modos de escaneo, su aplicación dentro del flujo logístico es la siguiente:
 
-Entrada de mercancía en almacén
-'''''''''''''''''''''''''''''''''''
+**Entrada de mercancía en almacén**
+
 
 Se utiliza el escaneo simple. Cada bulto que entra en el sistema —ya sea por primera vez o en procesos de devolución— se identifica individualmente, activando su trazabilidad. Aquí prima la precisión individual.
 
-Proceso de removido en hub
-''''''''''''''''''''''''''''''
+**Proceso de removido en hub**
+
 
 Se utiliza el escaneo en vídeo. El conductor o el operario enfoca las etiquetas y el sistema indica visualmente si cada bulto pertenece o no a su ruta. Esto permite separar rápidamente mercancía correcta de mercancía incorrecta sin validaciones manuales adicionales. Aquí prima la velocidad con validación contextual.
 
-Verificación completa antes de carga
-''''''''''''''''''''''''''''''''''''''''
+**Verificación completa antes de carga**
+
 
 Se utiliza el escaneo masivo. Una vez que el conductor considera que tiene toda la mercancía preparada, el sistema verifica que el conjunto de bultos escaneados coincide exactamente con los asignados al Viaje. Si falta alguno, no se permite validar la salida. Aquí prima el control de coherencia total.
 
@@ -270,8 +271,10 @@ Se utiliza el escaneo masivo. Una vez que el conductor considera que tiene toda 
 
    El escaneo masivo es un punto de control previo a la ejecución del Viaje.
 
-Localización de bultos durante el reparto
-'''''''''''''''''''''''''''''''''''''''''''''
+
+
+**Localización de bultos durante el reparto**
+
 
 Durante la ejecución, el conductor puede utilizar el escaneo en vídeo para localizar mercancía dentro del vehículo.
 
@@ -279,8 +282,8 @@ Simplemente enfocando las etiquetas, el sistema le indica si ese bulto correspon
 
 .. _section-4:
 
-Confirmación en entrega o recogida
-''''''''''''''''''''''''''''''''''''''
+**Confirmación en entrega o recogida**
+
 
 Se utiliza principalmente el escaneo masivo, asegurando que:
 
@@ -490,26 +493,31 @@ Podemos visualizarlo conceptualmente así:
 
 .. note::
 
-   +---------------------------+
-   | Área Operativa            |
-   | (Polígono GeoJSON)        |
-   |                           |
-   | •                         |
-   | (lat, lon)                |
-   | Punto Localización        |
-   +---------------------------+
-   
-   
-Si el punto se encuentra dentro de los límites del polígono, la localización queda automáticamente asociada a esa área. Si no pertenece a ningún polígono definido, el sistema puede:
+   ::
 
-- Dejarla sin asignación.
-- Asociarla al área más cercana.
-- Requerir intervención manual según configuración.
+      +---------------------------+
+      | Área Operativa            |
+      | (Polígono GeoJSON)        |
+      |                           |
+      | •                         |
+      | (lat, lon)                |
+      | Punto Localización        |
+      +---------------------------+
+
+   Si el punto se encuentra dentro de los límites del polígono, la localización queda automáticamente asociada a esa área. 
+   Si no pertenece a ningún polígono definido, el sistema puede:
+
+   - Dejarla sin asignación.
+   - Asociarla al área más cercana.
+   - Requerir intervención manual según configuración.
+
 
 .. important::
 
-   La asignación a áreas no se basa en texto ni en códigos postales.
+   La asignación a áreas no se basa en texto ni en códigos postales.  
    Se basa en geometría real sobre coordenadas verificadas.
+
+
 
 Implicaciones prácticas
 ^^^^^^^^^^^^^^^^^^^^^^^
