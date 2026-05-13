@@ -14,8 +14,8 @@ En esta pantalla encontrarás toda la información necesaria para trabajar la pa
 
 
 
-**Estructura de la pantalla**
-
+Estructura de la pantalla
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 La pantalla está organizada en dos niveles:
 
@@ -26,7 +26,8 @@ La pantalla está organizada en dos niveles:
 - Pie con los botones de acción.
 
 
-**Información general de la parada**
+Información general de la parada
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Es exactamente lo mismo que las tarjetas de parada en la vista Viaje.
@@ -36,8 +37,8 @@ Es exactamente lo mismo que las tarjetas de parada en la vista Viaje.
    Ver sección: :ref:`section-paradas-info`
 
 
-**Lista de Órdenes**
-
+Lista de Órdenes
+^^^^^^^^^^^^^^^^^
 
 A continuación de la información de la parada, verás una lista de las órdenes vinculadas a la parada. Cada tarjeta que ves en la pantalla representa a una orden.
 
@@ -56,8 +57,8 @@ Una misma parada puede tener:
    :align: center
 
 
-**Información de cada orden**
-
+Información de cada orden
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 En cada tarjeta podrás ver:
 
@@ -108,7 +109,8 @@ Aquí se muestran:
 
 
 
-**Pie de acciones**
+Pie de acciones
+^^^^^^^^^^^^^^^
 
 En la parte inferior de la pantalla encontrarás el panel de acciones.
 
@@ -128,7 +130,8 @@ El footer está compuesto por tres elementos:
 - Menú de acciones (derecha)
 
 
-**Menú de acciones**
+Menú de acciones
+^^^^^^^^^^^^^^^^
 
 En la parte derecha encontrarás un icono de tres puntos.
 
@@ -146,7 +149,8 @@ Opciones disponibles:
 
 ----
 
-**Acción: Reiniciar**
+Acción: Reiniciar
+^^^^^^^^^^^^^^^^^
 
 .. image:: /_static/images/parada_accion.png
    :width: 300px
@@ -158,7 +162,8 @@ Opciones disponibles:
    Utiliza esta opción solo si necesitas repetir el proceso de la parada.
 
 
-**Flujo operativo de una parada**
+Flujo operativo de una parada
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Inicio → El conductor inicia el desplazamiento
 
@@ -173,7 +178,8 @@ Opciones disponibles:
 Reportar una parada
 ~~~~~~~~~~~~~~~~~~~~
 
-**Flujo estándar (sin incidencias)**
+Flujo estándar (sin incidencias)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A continuación se describe el flujo habitual cuando una parada se realiza correctamente, sin incidencias.
 

@@ -1,14 +1,10 @@
 Acceso a la aplicación
 ----------------------
 
-Inicio de sesión 
-~~~~~~~~~~~~~~~~~
-
 Antes de poder usar la app, debes tener tu usuario activo. Recibirás un correo electrónico con la invitación al sistema, debes seguir los siguientes pasos:
 
-**Activar tu cuenta**
-
-
+Activar tu cuenta
+^^^^^^^^^^^^^^^^^
 Cuando te den de alta, recibirás un correo electrónico.
 
 .. image:: /_static/images/Activar_Cuenta_Step_1.png
@@ -18,8 +14,8 @@ Cuando te den de alta, recibirás un correo electrónico.
 
 Pulsa en el botón “Activar cuenta”.
 
-**Crear contraseña**
-
+Crear contraseña
+^^^^^^^^^^^^^^^^
 
 Se abrirá una pantalla donde debes crear tu contraseña.
 
@@ -36,8 +32,8 @@ Escribe la contraseña dos veces y pulsa Registrarse.
 
    La necesitarás para entrar en la app.
 
-**Instalar la app**
-
+Instalar la app
+^^^^^^^^^^^^^^^
 
 Descarga la aplicación Guraify TMS App en tu móvil.
 
@@ -49,8 +45,8 @@ Comprueba que el desarrollador es:
 
 E-PARTNER GLOBAL COMMERCE, SL
 
-**Abrir la app**
-
+Abrir la app
+^^^^^^^^^^^^
 
 Cuando abras la app por primera vez, acepta los permisos:
 
@@ -66,8 +62,8 @@ Cuando abras la app por primera vez, acepta los permisos:
 
 
 
-**Iniciar sesión**
-
+Iniciar sesión
+^^^^^^^^^^^^^^
 
 Introduce tus datos en la pantalla de login.
 

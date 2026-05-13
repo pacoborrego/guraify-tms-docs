@@ -22,7 +22,8 @@ El bloque de Operaciones constituye el núcleo operativo del sistema. En esta se
 
 Este bloque se organiza en tres subconjuntos funcionales:
 
-**Tráfico**
+Tráfico
+^^^^^^^
 
 Contiene las herramientas utilizadas para gestionar la demanda de transporte y la ejecución de los servicios, incluye los siguientes menús principales:
 
@@ -36,7 +37,8 @@ Contiene las herramientas utilizadas para gestionar la demanda de transporte y l
 
 Estas herramientas permiten registrar los encargos de los clientes, estructurar las expediciones, organizar los servicios y controlar su ejecución.
 
-**Planificación**
+Planificación
+^^^^^^^^^^^^^
 
 La sección de planificación agrupa las herramientas destinadas a organizar los recursos y optimizar la ejecución de los servicios.
 
@@ -48,7 +50,7 @@ Incluye:
 
 Estas herramientas permiten gestionar la disponibilidad de recursos humanos y ejecutar procesos de optimización de rutas mediante el motor de planificación integrado.
 
-**Maestros operativos**
+Maestros operativos
 
 Esta sección agrupa entidades operativas que forman parte del modelo logístico y que son utilizadas por los distintos procesos del sistema.
 
