@@ -657,3 +657,14 @@ body.guraify-driver-manual .guraify-driver-nav li.active > a {
 body.guraify-driver-manual .bd-container {
     margin-top: 0;
 }
+
+/* --- PORTADA DE VERSION --- */
+
+body.guraify-version-landing .bd-sidebar-primary,
+body.guraify-version-landing .primary-toggle {
+    display: none;
+}
+
+body.guraify-version-landing .bd-main {
+    max-width: 100%;
+}

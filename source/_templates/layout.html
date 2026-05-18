@@ -2,7 +2,7 @@
 
 {% block body_tag %}
   {# Mark driver-manual pages so layout/CSS can isolate them from the technical docs. #}
-  <body class="{% if pagename.startswith('17.0/10_manual_app') %}guraify-driver-manual{% else %}guraify-technical-docs{% endif %}" data-doc-section="{% if pagename.startswith('17.0/10_manual_app') %}driver-manual{% else %}technical-docs{% endif %}" data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="{{ default_mode }}">
+  <body class="{% if pagename.startswith('17.0/10_manual_app') %}guraify-driver-manual{% else %}guraify-technical-docs{% endif %}{% if pagename == '17.0/index' %} guraify-version-landing{% endif %}" data-doc-section="{% if pagename.startswith('17.0/10_manual_app') %}driver-manual{% else %}technical-docs{% endif %}" data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="{{ default_mode }}">
 
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">{{ _("Skip to main content") }}</a></div>
 {%- endblock %}
