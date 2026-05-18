@@ -1,0 +1,93 @@
+{%- set versions = guraify_versions | default([]) -%}
+{%- set active_version = namespace(name="Choose version", version="") -%}
+{%- for version in versions -%}
+  {%- if version.version == theme_switcher.version_match -%}
+    {%- set active_version.name = version.name | default(version.version) -%}
+    {%- set active_version.version = version.version -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<div class="dropdown guraify-version-switcher">
+  <button
+    class="btn btn-sm dropdown-toggle guraify-version-button"
+    id="guraifyVersionDropdown"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+    data-active-version="{{ active_version.version }}"
+  >
+    {{ active_version.name }}
+  </button>
+
+  <ul class="dropdown-menu dropdown-menu-end guraify-version-menu" aria-labelledby="guraifyVersionDropdown">
+    {%- for version in versions %}
+    {%- set version_name = version.name | default(version.version) %}
+    {%- set version_url = version.url | default("#") %}
+    {%- if version_url.startswith('/docs/') %}
+      {%- set version_doc = version_url[6:] | trim('/') %}
+      {%- set version_href = pathto((version_doc ~ '/index') if version_doc else 'index') %}
+      {%- if version_href == '#' %}
+        {%- set version_href = 'index.html' %}
+      {%- endif %}
+    {%- else %}
+      {%- set version_href = version_url %}
+    {%- endif %}
+    <li>
+      <a
+        class="dropdown-item {% if version.version == active_version.version %}active{% endif %}"
+        href="{{ version_href }}"
+        data-version="{{ version.version }}"
+        data-version-url="{{ version_url }}"
+      >{{ version_name }}</a>
+    </li>
+    {%- endfor %}
+  </ul>
+</div>
+
+<script>
+(function () {
+  const button = document.querySelector(".guraify-version-button");
+  const menu = document.querySelector(".guraify-version-menu");
+  if (!button || !menu || !window.DOCUMENTATION_OPTIONS) return;
+
+  const activeVersion = DOCUMENTATION_OPTIONS.theme_switcher_version_match || button.dataset.activeVersion;
+  const versionsUrl = DOCUMENTATION_OPTIONS.theme_switcher_json_url;
+
+  function renderVersions(versions) {
+    if (!Array.isArray(versions) || versions.length === 0) return;
+
+    menu.innerHTML = "";
+    let activeName = button.textContent.trim();
+
+    versions.forEach((version) => {
+      if (!version || !version.version || !version.url) return;
+
+      const name = version.name || version.version;
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+
+      a.className = "dropdown-item";
+      a.href = version.url;
+      a.dataset.version = version.version;
+      a.dataset.versionUrl = version.url;
+      a.textContent = name;
+
+      if (version.version === activeVersion) {
+        a.classList.add("active");
+        activeName = name;
+      }
+
+      li.appendChild(a);
+      menu.appendChild(li);
+    });
+
+    button.firstChild.nodeValue = activeName;
+  }
+
+  if (!versionsUrl || window.location.protocol === "file:") return;
+
+  fetch(versionsUrl, { cache: "no-store" })
+    .then((response) => response.ok ? response.json() : null)
+    .then((versions) => versions && renderVersions(versions))
+    .catch(() => {});
+})();
+</script>
