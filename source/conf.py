@@ -3,6 +3,9 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import json
+from pathlib import Path
+
 # -- Project information -----------------------------------------------------
 
 project = 'TMS GURAIFY'
@@ -60,9 +63,15 @@ html_theme_options = {
         }
     ],
     "switcher": {
-        "json_url": "versions.json",
+        "json_url": "/docs/versions.json",
         "version_match": "17.0",
     },
+    "check_switcher": False,
+}
+
+versions_path = Path(__file__).resolve().parent.parent / "versions.json"
+html_context = {
+    "guraify_versions": json.loads(versions_path.read_text(encoding="utf-8")),
 }
 
 # Static files

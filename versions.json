@@ -1,7 +1,5 @@
 [
-  {
-    "name": "17.0",
-    "version": "17.0",
-    "url": "/docs/17.0/"
-  }
+  { "name": "17.0", "version": "17.0", "url": "/docs/17.0/" },
+  { "name": "18.0", "version": "18.0", "url": "/docs/17.0/" },
+  { "name": "19.0", "version": "19.0", "url": "/docs/17.0/" }
 ]
