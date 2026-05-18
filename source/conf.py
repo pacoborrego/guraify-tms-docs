@@ -45,9 +45,9 @@ html_theme_options = {
     "secondary_sidebar_items": ["page-toc"],
 
     # Navigation
-    "show_nav_level": 2,
+    "show_nav_level": 1,
     "navigation_depth": 2,
-    "collapse_navigation": True,
+    "collapse_navigation": False,
     "header_links_before_dropdown": 6,
     "search_bar_text": "Busca en docs...",
     "article_header_start": [],

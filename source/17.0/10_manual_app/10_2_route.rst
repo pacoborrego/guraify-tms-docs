@@ -98,6 +98,8 @@ El color del círculo que envuelve el número de parada, indica si vas en hora o
 
 
 
+.. _section-paradas-info:
+
 Información de cada parada
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -154,4 +156,3 @@ A medida que vas trabajando, las paradas realizadas desaparecen de la pantalla. 
 
 
 .. _section-1:
-

@@ -624,3 +624,36 @@ html[data-theme="dark"] {
 button.btn.version-switcher__button {
     margin-bottom: 0em;
 }
+
+/* --- AISLAMIENTO MANUAL APP --- */
+
+body.guraify-driver-manual .sidebar-header-items,
+body.guraify-driver-manual .bd-breadcrumbs,
+body.guraify-driver-manual .bd-header-article {
+    display: none;
+}
+
+body.guraify-driver-manual .guraify-driver-header {
+    border-bottom: 1px solid var(--pst-color-border);
+}
+
+body.guraify-driver-manual .guraify-driver-brand {
+    color: var(--pst-color-text-base);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+body.guraify-driver-manual .guraify-driver-nav .bd-links__title {
+    color: var(--pst-color-text-base);
+}
+
+body.guraify-driver-manual .guraify-driver-nav a.current,
+body.guraify-driver-manual .guraify-driver-nav li.current > a,
+body.guraify-driver-manual .guraify-driver-nav li.active > a {
+    color: var(--pst-color-primary);
+    font-weight: 700;
+}
+
+body.guraify-driver-manual .bd-container {
+    margin-top: 0;
+}
