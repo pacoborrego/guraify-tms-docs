@@ -178,15 +178,17 @@ Flujo operativo de una parada
 Reportar una parada
 ~~~~~~~~~~~~~~~~~~~~
 
-Flujo estándar (sin incidencias)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Flujo estándar (sin incidencias)**
+
 
 A continuación se describe el flujo habitual cuando una parada se realiza correctamente, sin incidencias.
 
 .. _section-2:
 
 
-**1. Inicio del desplazamiento**
+Inicio del desplazamiento
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Una vez seleccionada la parada, el conductor debe pulsar el botón Inicio.
@@ -201,7 +203,9 @@ Esta acción indica al sistema que el conductor está en camino hacia el destino
    :align: center
 
 
-**2. Llegada a la parada**
+
+Llegada a la parada
+^^^^^^^^^^^^^^^^^^^^^
 
 
 Al llegar al destino, el conductor debe pulsar el botón He llegado.
@@ -216,7 +220,9 @@ Esto registra la llegada a la ubicación y permite continuar con el proceso de l
 
 
 
-**3. Revisión de la parada**
+
+Revisión de la parada
+^^^^^^^^^^^^^^^^^^^^^
 
 
 Antes de iniciar la operación, el conductor debe revisar la información disponible:
@@ -239,13 +245,17 @@ Antes de iniciar la operación, el conductor debe revisar la información dispon
 
 .. _section-3:
 
-**4. Documentación**
+Documentación
+^^^^^^^^^^^^^^
+
 
 Si la parada requiere POD físico, preparar albarán.
 
 - El conductor debe preparar el albarán correspondiente antes de realizar la entrega
 
-**5. Localización de los bultos**
+
+Localización de los bultos
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 El conductor debe localizar los bultos dentro del vehículo.
@@ -277,7 +287,10 @@ Esto permite asegurar que se entregan únicamente los bultos correctos.
      - .. image:: /_static/images/ScanMatrix_Step_3.png
          :width: 200px
 
-**6. Confirmación de bultos**
+
+
+Confirmación de bultos
+^^^^^^^^^^^^^^^^^^^^^^
 
 
 Una vez localizados los bultos:
@@ -290,14 +303,17 @@ En ese momento, debe pulsar el botón OK (color verde).
 
 Al pulsar OK, la aplicación cambia automáticamente a la pantalla de verificación de bultos.
 
-.. image:: /_static/images/Bultos_Lista_Scan_Off.png
+.. image:: /_static/images/Bultos_Lista_Scan_Off.PNG
    :width: 300px
    :align: center
 
 
 
 
-**Información de cada bulto**
+
+
+Información de cada bulto
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Cada tarjeta contiene la siguiente información:
 
@@ -338,7 +354,9 @@ Cada tarjeta contiene la siguiente información:
    
 
 
-**Validación de los bultos**
+Validación de los bultos
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 El objetivo de esta pantalla es confirmar que todos los bultos han sido correctamente entregados.
 
@@ -362,12 +380,14 @@ Existen dos formas de validación:
 
       i. El sistema marcará automáticamente el bulto correspondiente
 
-.. image:: /_static/images/Bultos_Lista_Scan_On.png
+.. image:: /_static/images/Bultos_Lista_Scan_On.PNG
    :width: 300px
    :align: center
 
 
-**Indicador de progreso**
+Indicador de progreso
+^^^^^^^^^^^^^^^^^^^^^^
+
 
 En la parte inferior de la pantalla se muestra un contador:
 	•	Número de bultos confirmados
@@ -395,7 +415,10 @@ Este botón permite continuar con el proceso de confirmación de la parada.
    Debes confirmar todos los bultos antes de continuar.
 
 
-**7. Confirmación de la entrega (POD)**
+
+
+Confirmación de la entrega (POD)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 El método de confirmación depende del tipo de POD:
@@ -432,7 +455,11 @@ El método de confirmación depende del tipo de POD:
          :width: 300px
 
 
-**8. Finalización**
+
+
+Finalización
+^^^^^^^^^^^^^^
+
 
 Una vez completada la firma:
 
@@ -453,7 +480,11 @@ Reportar un reembolso
 
 En determinadas paradas, antes de finalizar la entrega, es necesario gestionar un reembolso. Esto implica que el conductor debe cobrar un importe al destinatario como parte del proceso operativo.
 
-**Cómo identificar un reembolso**
+
+
+Cómo identificar un reembolso
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 Si una parada tiene reembolso, el sistema mostrará una indicación visual dentro de la orden.
 
@@ -474,7 +505,11 @@ Esto indica que el conductor debe cobrar dicho importe antes de completar la ent
    No completes la entrega sin haber realizado previamente el cobro.
 
 
-**Cuándo se gestiona el reembolso**
+
+
+Cuándo se gestiona el reembolso
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 El reembolso se gestiona automáticamente durante el flujo de reporte de la parada.
 
@@ -485,7 +520,13 @@ Al pulsar el botón OK para confirmar la entrega, y antes de acceder a la captur
    :align: center
 
 
-**Qué debes hacer**
+
+
+
+Qué debes hacer
+^^^^^^^^^^^^^^^
+
+
 
 Si el cobro se realiza correctamente, el conductor debe seleccionar la opción correspondiente:
 
@@ -499,7 +540,9 @@ Existen otras opciones como:
 Estas opciones están destinadas a la gestión de incidencias y se detallarán en secciones posteriores.
 
 
-**Continuación del proceso**
+Continuación del proceso
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 Una vez confirmado el reembolso:
 
@@ -521,14 +564,18 @@ Dependiendo del caso, el POD podrá ser:
 Reportar incidencias
 ~~~~~~~~~~~~~~~~~~~~
 
-**Reportar incidencias durante la carga**
+Reportar incidencias durante la carga
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 Durante el proceso de carga, el conductor debe verificar el estado físico de los bultos antes de incorporarlos al vehículo.
 
 En caso de detectar cualquier anomalía, el sistema permite registrar una incidencia en ese mismo momento, garantizando la trazabilidad desde origen.
 
 
-**Tipos de incidencia en carga**
+Tipos de incidencia en carga
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 Existen dos situaciones principales:
 
@@ -558,7 +605,10 @@ Al clicar , observaremos que nos aparecen dos opcciones dependiendo de en que es
    :align: center
 
 
-**Bulto transportable con incidencia (Reserva)**
+
+
+Bulto transportable con incidencia (Reserva)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Se utiliza cuando el bulto puede continuar en el proceso, pero presenta algún tipo de anomalía.
 
@@ -585,7 +635,11 @@ En estos casos, el conductor debe:
    Esto permite evitar incidencias y reclamaciones posteriores.
 
 
-**Bulto no transportable (KO)**
+
+
+Bulto no transportable (KO)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 Se utiliza cuando el bulto no puede ser cargado y no debe continuar en el transporte.
 
@@ -624,7 +678,12 @@ El registro de incidencias en carga permite:
    Las incidencias deben registrarse en el momento en que se detectan.
 
 
-**Reportar incidencias durante la entrega**
+
+
+Reportar incidencias durante la entrega
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
 
 Durante el proceso de entrega, pueden producirse situaciones en las que la operación no se realiza en condiciones estándar. En estos casos, el sistema permite registrar incidencias directamente desde la pantalla de validación de bultos.
 
@@ -635,7 +694,9 @@ Al escanear un bulto, la aplicación mostrará las opciones de reporte disponibl
 - No entregado (KO)  
 
 
-**Entrega con incidencia (Reserva)**
+Entrega con incidencia (Reserva)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 Se utiliza cuando el bulto ha sido entregado, pero no en las condiciones inicialmente previstas.
 
@@ -665,7 +726,11 @@ En estos casos, el conductor debe:
    Esto garantiza la trazabilidad y evita reclamaciones posteriores.
 
 
-**Entrega no realizada (KO)**
+
+
+Entrega no realizada (KO)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 Se utiliza cuando la entrega no ha podido completarse.
 
@@ -707,7 +772,12 @@ El correcto registro de incidencias en entrega permite:
 
    Selecciona siempre el tipo de incidencia que mejor represente la situación real de la entrega.
 
-   **Reportar incidencias de reembolso**
+
+
+
+Reportar incidencias de reembolso
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 Durante el proceso de entrega, puede ocurrir que el reembolso no se complete correctamente. En estos casos, el sistema permite registrar una incidencia asociada al cobro.
 
@@ -717,7 +787,9 @@ Cuando se accede a la pantalla de reembolso, la aplicación mostrará dos opcion
 - Pagado a medias  
 
 
-**Reembolso no pagado (KO)**
+Reembolso no pagado (KO)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 Se utiliza cuando el destinatario no realiza ningún pago.
 
@@ -738,7 +810,9 @@ Ejemplos habituales:
    Un reembolso marcado como no pagado implica que la entrega no ha sido cobrada y deberá gestionarse posteriormente.
 
 
-**Reembolso pagado parcialmente (Reserva)**
+Reembolso pagado parcialmente (Reserva)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 Se utiliza cuando el destinatario realiza un pago parcial del importe.
 
