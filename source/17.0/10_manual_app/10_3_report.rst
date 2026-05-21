@@ -184,7 +184,7 @@ Reportar una parada
 
 A continuación se describe el flujo habitual cuando una parada se realiza correctamente, sin incidencias.
 
-.. _section-2:
+.. _section-app-report-inicio:
 
 
 Inicio del desplazamiento
@@ -243,7 +243,7 @@ Antes de iniciar la operación, el conductor debe revisar la información dispon
 
 
 
-.. _section-3:
+.. _section-app-report-documentacion:
 
 Documentación
 ^^^^^^^^^^^^^^

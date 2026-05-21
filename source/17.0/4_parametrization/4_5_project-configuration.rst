@@ -504,3 +504,225 @@ Esto permite:
 
    Los permisos y límites actúan como mecanismo de gobierno
    de integración y deben configurarse con criterio.
+
+
+
+Vista Kanban de Proyectos
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+La vista Kanban del menú ``TMS → Configuración → Proyectos`` ofrece una lectura
+operativa de cada proyecto en una sola tarjeta.
+
+Está pensada para tener visibilidad rápida del estado del contrato sin abrir
+el formulario completo: identidad, volumen, dinero del periodo y banderas de
+configuración.
+
+Las tarjetas se agrupan por defecto en dos columnas según ``Aplicar en``:
+
+- **Orders**: proyectos orientados a clientes.
+- **Trips**: proyectos orientados a transportistas o agencias.
+
+El color de la tarjeta respeta el color del proyecto.
+
+
+Estructura de la tarjeta
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Cada tarjeta se divide en cuatro zonas leídas de arriba a abajo.
+
+**1. Cabecera**
+
++-----------------------------------+-------------------------------------------------------------+
+| Elemento                          | Significado                                                 |
++===================================+=============================================================+
+| Título                            | Nombre del proyecto.                                        |
++-----------------------------------+-------------------------------------------------------------+
+| Badge de tipo                     | "Orders" (azul) o "Trips" (naranja) según Aplicar en.       |
++-----------------------------------+-------------------------------------------------------------+
+
+**2. Identidad del contrato**
+
++-----------------------------------+-------------------------------------------------------------+
+| Elemento                          | Significado                                                 |
++===================================+=============================================================+
+| Cliente                           | Solo en proyectos Orders. Cliente del contrato.             |
++-----------------------------------+-------------------------------------------------------------+
+| Transportista                     | Solo en proyectos Trips. Carrier del contrato.              |
++-----------------------------------+-------------------------------------------------------------+
+| Agencia                           | Visible si está informada en cualquier tipo de proyecto.    |
++-----------------------------------+-------------------------------------------------------------+
+| Tarifa y Planning                 | Línea pequeña en gris con los dos valores configurados.     |
++-----------------------------------+-------------------------------------------------------------+
+
+**3. KPIs operativos**
+
+Aparecen siempre que el proyecto tenga datos. Detalle en la sección
+siguiente.
+
+**4. Indicadores de configuración y actividad**
+
+Badges en la esquina inferior derecha que reflejan automatismos activos en
+el proyecto, y una línea inferior con la fecha de última actividad.
+
+
+KPIs operativos por tipo
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Los KPIs son distintos según el tipo de proyecto y se calculan al vuelo
+sobre los datos vivos de la base.
+
+**Proyectos Orders**
+
++------------------------------+--------------------------------------------------------------+
+| KPI                          | Significado                                                  |
++==============================+==============================================================+
+| Conteo de órdenes            | "Abiertas / Total". Abiertas = órdenes cuyo estado no es     |
+|                              | ``done`` ni ``cancel``. Total incluye todo el histórico del  |
+|                              | proyecto.                                                    |
++------------------------------+--------------------------------------------------------------+
+| Revenue 30 días (verde)      | Suma de ``amount_untaxed`` de las órdenes creadas en los     |
+|                              | últimos 30 días para este proyecto. Solo aparece si el       |
+|                              | valor es mayor que cero.                                     |
++------------------------------+--------------------------------------------------------------+
+
+**Proyectos Trips**
+
++------------------------------+--------------------------------------------------------------+
+| KPI                          | Significado                                                  |
++==============================+==============================================================+
+| Conteo de viajes             | "Abiertos / Total". Abiertos = viajes cuyo estado no es      |
+|                              | ``completed`` ni ``failed``.                                 |
++------------------------------+--------------------------------------------------------------+
+| Revenue 30 días (rosa)       | Suma de ``amount_untaxed`` de las órdenes de compra          |
+|                              | vinculadas a viajes del proyecto creados en los últimos      |
+|                              | 30 días. Refleja la facturación esperada al carrier.         |
++------------------------------+--------------------------------------------------------------+
+| Cost 30 días (rojo)          | Suma de ``trip_pasive`` de viajes creados en los últimos     |
+|                              | 30 días. Refleja el coste pasivo calculado por TMS antes     |
+|                              | de cerrar PO. Puede diferir de Revenue si la PO aún no       |
+|                              | está finalizada.                                             |
++------------------------------+--------------------------------------------------------------+
+
+.. note::
+
+   Los KPIs son no almacenados: se recalculan cada vez que se abre la
+   kanban. Para minimizar coste se hacen mediante consultas agregadas en
+   base de datos (``read_group``), por lo que escalan bien aunque haya
+   cientos de proyectos y miles de órdenes o viajes.
+
+
+Indicadores de configuración
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Las banderas aparecen en la esquina inferior derecha como pequeños badges.
+
+Solo se muestran cuando el toggle correspondiente está activado en el
+proyecto, así un proyecto sin banderas indica configuración mínima.
+
++------------------------------+--------------------------------------------------------------+
+| Bandera                      | Significado                                                  |
++==============================+==============================================================+
+| HUB                          | ``Crear transferencia a hub`` activo. Al asignar paradas a   |
+|                              | la agencia desde este proyecto, el sistema divide los        |
+|                              | tramos y crea automáticamente paradas intermedias en el hub. |
++------------------------------+--------------------------------------------------------------+
+| AUTO                         | ``Auto-process Agency Trip`` activo. Los viajes nacidos al   |
+|                              | asignar a agencia se crean directamente en estado            |
+|                              | ``processed`` en lugar de ``draft``.                         |
++------------------------------+--------------------------------------------------------------+
+| API                          | ``Send by API on Assign`` activo. Al completar el flujo de   |
+|                              | Asignar se ejecutan los dispatch endpoints configurados en   |
+|                              | el proyecto para notificar a sistemas externos.              |
++------------------------------+--------------------------------------------------------------+
+
+
+Última actividad
+^^^^^^^^^^^^^^^^
+
+La línea inferior muestra la fecha más reciente entre los ``create_date``
+de las órdenes (en proyectos Orders) o de los viajes (en proyectos Trips)
+asociados al proyecto.
+
+Si el proyecto nunca ha tenido actividad la línea no se muestra.
+
+Sirve para identificar de un vistazo contratos dormidos o estacionales.
+
+
+Búsqueda y filtros
+^^^^^^^^^^^^^^^^^^
+
+La vista de búsqueda incorpora filtros rápidos pensados para la operación
+del día a día.
+
+**Filtros disponibles**
+
++------------------------------------+---------------------------------------------------------+
+| Filtro                             | Descripción                                             |
++====================================+=========================================================+
+| Orders projects / Trips projects   | Filtran por ``Aplicar en``.                             |
++------------------------------------+---------------------------------------------------------+
+| Send by API                        | Proyectos con el toggle ``send_by_api`` activo.         |
++------------------------------------+---------------------------------------------------------+
+| Auto Hub Transfer                  | Proyectos con ``create_hub_transfer`` activo.           |
++------------------------------------+---------------------------------------------------------+
+| Auto-process Agency                | Proyectos con ``auto_process_agency_trip`` activo.      |
++------------------------------------+---------------------------------------------------------+
+| Archived                           | Muestra proyectos archivados.                           |
++------------------------------------+---------------------------------------------------------+
+
+**Agrupaciones**
+
+- Type (Aplicar en)
+- Customer
+- Carrier
+- Pricelist
+- Planning
+
+
+Panel lateral
+^^^^^^^^^^^^^
+
+A la izquierda de la vista se muestra un ``searchpanel`` con tres niveles
+de filtrado simultáneo:
+
+- **Type**: selección única. Permite ver solo Orders o solo Trips.
+- **Pricelist**: selección múltiple con contadores. Útil para revisar
+  todos los proyectos que comparten una tarifa concreta.
+- **Planning**: selección múltiple con contadores. Útil para revisar
+  todos los proyectos que comparten una segmentación operativa.
+
+Los contadores actualizan automáticamente al combinar filtros.
+
+
+Smart buttons en el formulario
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Al abrir un proyecto desde la kanban se muestra en la cabecera del
+formulario un botón inteligente que navega al detalle:
+
+- En proyectos Orders: botón **Orders** con icono de carrito, que abre
+  la lista de ``sale.order`` filtradas por el proyecto. Muestra "abiertas
+  / total" en el botón.
+
+- En proyectos Trips: botón **Trips** con icono de camión, que abre la
+  lista de ``tms.trip`` filtradas por el proyecto. Muestra "abiertos
+  / total".
+
+
+Botón Help
+^^^^^^^^^^
+
+La cabecera del kanban incluye un botón **Help** con icono de interrogación.
+
+Al pulsarlo se abre en una pestaña nueva la URL definida en el parámetro
+del sistema ``tms.docs.url_projects_kanban``.
+
+Por defecto apunta a la página oficial de la documentación, pero puede
+sobreescribirse en ``Ajustes → Técnico → Parámetros → Parámetros del
+sistema`` para apuntar a documentación interna o a otra versión.
+
+.. note::
+
+   Cada KPI y bandera incluye un tooltip nativo al pasar el ratón con
+   una descripción breve de lo que representa. La documentación de esta
+   página es el detalle ampliado de esos tooltips.

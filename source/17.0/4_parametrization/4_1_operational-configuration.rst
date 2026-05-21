@@ -19,6 +19,15 @@ Las tipologías definidas en esta sección se utilizan posteriormente en:
 
 Dentro de este bloque se configuran los siguientes elementos.
 
+Todos estos catálogos son accesibles desde el panel **Configuración → Ajustes**, sección "Datos auxiliares", que actúa como punto de entrada único a las tablas de configuración operativa.
+
+.. image:: /_static/images/Config_Datos_Auxiliares_Index.png
+   :align: center
+
+.. note::
+
+   Cada enlace de la sección "Datos auxiliares" abre la lista del catálogo correspondiente. Desde la lista pueden crearse, modificarse y eliminarse registros, así como inspeccionar el detalle de cada tipo.
+
 Tipos de Servicio
 ~~~~~~~~~~~~~~~~~
 
@@ -36,6 +45,11 @@ Esta clasificación facilita la gestión de diferentes operativas dentro de una 
 - Same day
 - Entregas con compromiso horario
 
+La vista de lista permite revisar de un vistazo todos los tipos de servicio configurados, junto con los productos asociados, los tipos de expedición compatibles y las variables logísticas activas para cada uno.
+
+.. image:: /_static/images/Config_Tipo_Servicio_Lista.png
+   :align: center
+
 La selección del tipo de servicio durante la creación de una orden no solo cumple una función descriptiva.
 
 También determina qué productos del catálogo de Odoo se utilizarán posteriormente para registrar los ingresos asociados a la operación.
@@ -48,8 +62,13 @@ De este modo, el tipo de servicio actúa como un elemento de conexión entre:
 
 Gracias a esta relación, el sistema puede traducir la información operativa del transporte en registros económicos sin necesidad de introducir datos adicionales durante el proceso de facturación.
 
-Campos principales
-^^^^^^^^^^^^^^^^^^
+Campos principales de Tipos de Servicio
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+La vista de formulario de un Tipo de Servicio agrupa todos sus campos en una única pantalla, incluyendo los switches que controlan qué variables logísticas (bultos, cantidad, metros, pallets) intervienen en el cálculo económico.
+
+.. image:: /_static/images/Config_Tipo_Servicio_Form.png
+   :align: center
 
 El modelo de Tipos de Servicio incluye los siguientes campos funcionales.
 
@@ -127,12 +146,17 @@ Esta clasificación permite diferenciar distintos escenarios operativos, como po
 - Servicios directos
 - Movimientos internos dentro de la red
 
+La vista de lista resume el conjunto de tipos disponibles. Las columnas booleanas (Entrega, Recogida, Directo, Hub, Punto de Recogida Habitual) y los porcentajes de carga/descarga muestran de forma compacta el comportamiento logístico de cada tipo.
+
+.. image:: /_static/images/Config_Tipo_Orden_Lista.png
+   :align: center
+
 La definición del tipo de orden influye directamente en la forma en que el sistema genera la estructura logística de la expedición, especialmente en lo relativo a la creación de tramos y paradas.
 
 Por este motivo, los Tipos de Orden forman parte de los elementos estructurales del modelo operativo del TMS.
 
-Campos principales
-^^^^^^^^^^^^^^^^^^
+Campos principales de Tipos de Orden
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 El modelo de Tipos de Orden incluye los siguientes campos funcionales.
 
@@ -201,8 +225,8 @@ Además, el tipo de orden puede utilizarse como criterio en:
 Tipos de Parada
 ~~~~~~~~~~~~~~~
 
-Contexto funcional
-^^^^^^^^^^^^^^^^^^
+Contexto funcional de Tipos de Parada
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Los Tipos de Parada constituyen uno de los pilares de la modelización operativa dentro de Guraify TMS.
 
@@ -220,6 +244,11 @@ Una parada puede representar:
 - Una entrega directa
 - Un evento generado por el optimizador
 
+La configuración estándar del sistema incluye seis tipos de parada, cada uno con una única marca booleana activa que define su papel dentro del flujo operativo.
+
+.. image:: /_static/images/Config_Tipo_Parada_Lista.png
+   :align: center
+
 Esta clasificación condiciona:
 
 - La generación automática de paradas
@@ -228,8 +257,8 @@ Esta clasificación condiciona:
 - El comportamiento de la app del conductor
 - La trazabilidad del servicio
 
-Campos principales
-^^^^^^^^^^^^^^^^^^
+Campos principales de Tipos de Parada
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -291,8 +320,8 @@ También se utilizan en:
 Tipos de Destinatario
 ~~~~~~~~~~~~~~~~~~~~~
 
-Contexto funcional
-^^^^^^^^^^^^^^^^^^
+Contexto funcional de Tipos de Destinatario
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Los Tipos de Destinatario permiten segmentar el perfil del receptor final de la mercancía.
 
@@ -305,8 +334,13 @@ Ejemplos habituales:
 - Gran superficie
 - Punto de conveniencia
 
-Campos principales
-^^^^^^^^^^^^^^^^^^
+La lista de tipos configurados muestra los segmentos disponibles en el sistema, junto con la marca de valor por defecto y el color asociado a cada uno.
+
+.. image:: /_static/images/Config_Tipo_Destinatario_Lista.png
+   :align: center
+
+Campos principales de Tipos de Destinatario
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -348,13 +382,18 @@ Permiten:
 Tipos de Transportista
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Contexto funcional
-^^^^^^^^^^^^^^^^^^
+Contexto funcional de Tipos de Transportista
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Los Tipos de Transportista permiten clasificar los recursos que ejecutan el transporte.
 
-Campos principales
-^^^^^^^^^^^^^^^^^^
+Esta clasificación permite distinguir, por ejemplo, entre transporte con medios propios, colaboradores regulares con contrato estable o proveedores puntuales para picos de demanda.
+
+.. image:: /_static/images/Config_Tipo_Transportista_Lista.png
+   :align: center
+
+Campos principales de Tipos de Transportista
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -397,8 +436,8 @@ Permiten:
 Tipos de Reembolso
 ~~~~~~~~~~~~~~~~~~
 
-Contexto funcional
-^^^^^^^^^^^^^^^^^^
+Contexto funcional de Tipos de Reembolso
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Los Tipos de Reembolso definen modalidades de cobro o devolución asociadas a una expedición.
 
@@ -408,8 +447,13 @@ Ejemplos:
 - Cobro en entrega
 - Gestión de efectivo
 
-Campos principales
-^^^^^^^^^^^^^^^^^^
+La configuración del sistema contempla las modalidades habituales: cobro en metálico, mediante TPV propio o del cliente, y cheque bancario.
+
+.. image:: /_static/images/Config_Tipo_Reembolso_Lista.png
+   :align: center
+
+Campos principales de Tipos de Reembolso
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
