@@ -1,5 +1,5 @@
-3. Arquitectura funcional del sistema 
-=====================================
+3 Arquitectura Funcional del Sistema
+====================================
 
 Este capítulo describe cómo el modelo conceptual presentado en el capítulo anterior se materializa dentro de la aplicación. Mientras que el capítulo 2 definía las entidades fundamentales del sistema (Orden, Tramo, Parada y Viaje) desde un punto de vista conceptual, el presente capítulo explica cómo dichas entidades se organizan dentro de la estructura funcional del TMS y cómo interactúan con los diferentes componentes del sistema.
 

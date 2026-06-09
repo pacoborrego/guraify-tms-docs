@@ -1,5 +1,6 @@
-Modelo Económico Vinculado
---------------------------
+2.4 Modelo Económico Vinculado
+------------------------------
+
 Uno de los elementos diferenciales de Guraify TMS es que la dimensión económica no se gestiona como una capa externa al TMS, sino como una consecuencia directa de la estructura operativa. El sistema no obliga a reconciliar después lo que se ejecuta con lo que se factura; ambas dimensiones están integradas desde el diseño conceptual.
 
 La arquitectura separa claramente ingreso y coste, pero los mantiene vinculados estructuralmente a las entidades que los generan. Esto elimina duplicidades, reduce conciliaciones manuales y permite que el análisis económico se construya sobre datos operativos reales.
@@ -54,17 +55,10 @@ La combinación de operativa estructurada, tarificación automática e imputaci�
 
 Sobre esta base económica se apoyan posteriormente los mecanismos de control analítico, reporting y toma de decisiones estratégicas del sistema.
 
-.. _section-16:
 
-.. _section-17:
 
-.. _section-18:
 
-.. _section-19:
 
-.. _section-20:
 
-.. _section-21:
 
-.. _section-22:
 

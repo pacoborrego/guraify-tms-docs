@@ -26,3 +26,4 @@ Guraify TMS - Documentación 17.0
    3_functional-architecture/index
    4_parametrization/index
    5_operational-flows/index
+   7_edi-integrations/index

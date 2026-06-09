@@ -1,5 +1,5 @@
-Modelo Relacional Conceptual Simplificado
--------------------------------------------------
+2.6 Modelo Relacional Conceptual Simplificado
+---------------------------------------------
 
 El Modelo Relacional Conceptual formaliza las relaciones estructurales entre las entidades principales del sistema: Orden, Tramo, Parada y Viaje. Si en los apartados anteriores se ha explicado su función operativa y económica, aquí se define cómo se vinculan entre sí desde el punto de vista lógico y de cardinalidad.
 
@@ -16,8 +16,13 @@ La Parada es el evento físico asociado a un tramo. Puede corresponder a una car
 
 El Viaje es la unidad de ejecución operativa. Agrupa múltiples paradas en una ruta ejecutable y genera el coste asociado a dicha ejecución.
 
-.. image:: /_static/images/modelo_relacional.png
-   :align: center
+.. mermaid::
+
+   flowchart LR
+       O["Orden<br/>(sale.order)"] -->|1 : N| T["Tramo<br/>(tms.shipment.leg)"]
+       T -->|1 : N| P["Parada<br/>(tms.stop)"]
+       P -->|N : 1| V["Viaje<br/>(tms.trip)"]
+       O -.->|"N : M (indirecta vía Paradas)"| V
 
 Cardinalidades estructurales
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -54,7 +59,6 @@ Este comportamiento es especialmente relevante en operativas de grupaje, última
 
 Esta ausencia de dependencia directa es lo que permite reorganizar la ejecución sin alterar el compromiso comercial.
 
-.. _section-24:
 
 Dependencias funcionales
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -61,6 +61,13 @@ Por ejemplo:
 | Estado operativo             | Situación logística actual del tramo.                        |
 +------------------------------+--------------------------------------------------------------+
 
+.. versionchanged:: 260603_V05
+   Al seleccionar un contacto de carga o descarga sin coordenadas, el tramo
+   ya **no** lanza la geolocalización (petición HTTP a PTV/Google/OSM) de forma
+   bloqueante. Muestra un aviso no bloqueante ("Coordenadas pendientes"); la
+   geolocalización se resuelve al guardar el contacto o mediante su acción de
+   ubicación. Así se evita el bloqueo de la interfaz al elegir el contacto.
+
 El estado operativo se calcula a partir de la trazabilidad del flujo y permite identificar situaciones como:
 
 - pendiente

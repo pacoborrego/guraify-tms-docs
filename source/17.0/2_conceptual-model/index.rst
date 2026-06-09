@@ -1,4 +1,4 @@
-2. Conceptual Model
+2 Modelo Conceptual
 ===================
 
 Una vez definidas las entidades principales —Orden, Tramo, Parada y Viaje—, es necesario entender cómo se relacionan entre sí dentro del flujo estructural del sistema. La potencia del modelo no reside únicamente en cada entidad por separado, sino en la forma en que se encadenan y, al mismo tiempo, permanecen desacopladas.
@@ -12,4 +12,4 @@ Una vez definidas las entidades principales —Orden, Tramo, Parada y Viaje—, 
    2_4_economic-model
    2_5_official-model-diagram
    2_6_relational-model
-   conceptual-model-conclusion
+   2_7_conclusion

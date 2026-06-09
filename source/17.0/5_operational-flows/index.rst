@@ -48,3 +48,4 @@ Esto garantiza que:
    5_8_tarification-and-purchase
    5_9_billing-and-closing
    5_10_exceptions-and-incidents
+   5_11_kpi-indicators
