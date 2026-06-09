@@ -1,7 +1,13 @@
-cat > .gitignore <<'EOF'
+# Salida de Sphinx
 build/
+
+# Entornos virtuales
 .venv/
+venv/
+
+# Python
 __pycache__/
 *.pyc
+
+# Sistema
 .DS_Store
-EOFvenv/
