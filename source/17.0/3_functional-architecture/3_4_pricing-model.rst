@@ -1,22 +1,55 @@
-Modelo de tarificación
-----------------------
+3.4 Modelo de tarificación
+--------------------------
 
-El modelo de tarificación define las reglas mediante las cuales el sistema calcula automáticamente el precio de los servicios de transporte.
+.. admonition:: Ruta en Odoo
+   :class: tip
 
-La arquitectura tarifaria del sistema permite representar distintos modelos comerciales y aplicar reglas complejas de cálculo basadas en múltiples variables logísticas.
+   TMS › Configuración (Tarifas, Reglas, Productos)
 
-Los elementos principales de este modelo son:
+El modelo de tarificación define las reglas mediante las cuales el sistema calcula
+automáticamente el precio de los servicios de transporte. Su arquitectura permite
+representar distintos modelos comerciales y aplicar reglas de cálculo basadas en
+múltiples variables logísticas (peso, volumen, bultos, kilómetros, zonas, etc.). Lo
+esencial es que el precio **nace de la estructura operativa**: no es un cálculo externo,
+sino una consecuencia de la Orden y sus Tramos.
 
-- Productos
+3.4.1 Componentes
+~~~~~~~~~~~~~~~~~~
 
-- Reglas de tasación
+El cálculo se apoya en un conjunto de entidades de configuración:
 
-- Zonas tarifarias
+.. list-table::
+   :header-rows: 1
+   :widths: 38 62
 
-- Tarifas base
+   * - Elemento
+     - Papel
+   * - Productos (``product.product``)
+     - Conceptos facturables que se asocian a las líneas económicas.
+   * - Reglas de tasación (``tms.pricelist.rule``)
+     - Condiciones que determinan qué tarifa y qué cálculo se aplican a cada operación.
+   * - Reglas de negocio (``tms.rule`` / ``tms.rule.model``)
+     - Lógica configurable que adapta el comportamiento del sistema sin tocar el código.
+   * - Zonas tarifarias (``tms.pricelist.zone``)
+     - Agrupaciones geográficas sobre las que se definen precios diferenciados.
+   * - Tarifas base (``tms.pricelist.base``)
+     - Estructura de precios de referencia, con rangos (``tms.pricelist.base.range``).
+   * - Tarifas (``tms.pricelist``)
+     - Tarifa aplicable, versionable (``tms.pricelist.version``), que combina los
+       elementos anteriores.
 
-- Tarifas
+3.4.2 Cálculo del ingreso
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- División de costes
+Cuando se valida o tarifica una Orden (``sale.order``), el sistema aplica las reglas de
+tasación configuradas y genera las líneas de venta correspondientes. El importe puede
+segmentarse por Tramo (``tms.shipment.leg``) cuando la operativa lo requiere, de modo que
+distintas fases del servicio tengan impacto económico diferenciado. El detalle de la
+división de ventas y de costes, así como la liquidación, se desarrolla en el capítulo 8
+(Administración y Control Económico).
 
-Gracias a esta estructura, el sistema puede calcular automáticamente el ingreso asociado a cada operación a partir de su estructura logística.
+.. CAPTURA: 3_4_01 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/3_functional-architecture/3_4_pricing-model_01_tarifa.png
+      :alt: Configuración de una Tarifa en Odoo
+
+      Configuración de una Tarifa (``tms.pricelist``) en Odoo.

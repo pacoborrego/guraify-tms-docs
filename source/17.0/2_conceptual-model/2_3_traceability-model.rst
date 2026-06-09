@@ -1,5 +1,16 @@
-Modelo de Trazabilidad
-----------------------
+2.3 Modelo de Trazabilidad
+--------------------------
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   TMS › Operaciones › Tráfico › Trazabilidad
+
+.. CAPTURA: 2_3_01 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/2_conceptual-model/2_3_traceability-model_01_trazabilidad.png
+      :alt: Vista de Trazabilidad en Odoo
+
+      Vista de Trazabilidad (``tms.traceability``) en Odoo.
 
 La trazabilidad en Guraify TMS es una consecuencia directa de su arquitectura desacoplada. Al estructurar el sistema en Orden, Tramo, Parada y Viaje, cada transición operativa queda registrada como parte natural del modelo, permitiendo reconstruir el recorrido completo de un servicio sin depender de procesos externos.
 

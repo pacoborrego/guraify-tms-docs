@@ -66,9 +66,18 @@ La política de fecha administrativa determina qué versión tarifaria debe util
 Puede basarse en:
 
 - Fecha de creación
-- Fecha de carga
-- Fecha de descarga
-- Fecha de cierre operativo
+- Fecha de carga (carga más temprana de los tramos)
+- Fecha de descarga (descarga más tardía de los tramos)
+- Fecha de cierre operativo (fecha de la parada activa)
+
+.. versionchanged:: 260603_V05
+   La fecha administrativa se expone en un campo propio y estable de la Orden
+   (``order_date`` en ``sale.order``), calculado según esta política
+   (``tms_admin_date_policy`` del proyecto). Ya **no** copia ``date_order``,
+   que Odoo puede modificar al confirmar la venta. Si la política seleccionada
+   aún no tiene fecha disponible, el sistema recurre a ``date_order`` y, en
+   último término, a la fecha de creación. El valor por defecto de la política
+   es *cierre operativo*.
 
 El modo de división condiciona cómo se reparten importes o magnitudes cuando la operación se distribuye entre tramos o viajes.
 

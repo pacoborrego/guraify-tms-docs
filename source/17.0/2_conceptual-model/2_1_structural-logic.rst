@@ -1,15 +1,21 @@
-Lógica estructural del sistema
---------------------------------------
+2.1 Lógica estructural del sistema
+----------------------------------
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   Las cuatro entidades del modelo se consultan en TMS › Operaciones › Tráfico:
+   **Órdenes** (la Orden), **Viajes** (el Viaje), **Manifiestos** y **Trazabilidad**.
 
 La lógica estructural de Guraify TMS se fundamenta en una decisión arquitectónica deliberada: separar de forma explícita el encargo comercial del cliente de su ejecución operativa y de su impacto económico. Esta separación no es únicamente conceptual, sino que determina la estructura del modelo de datos, la organización funcional del sistema y la propia metodología de implantación.
 
-Desde el punto de vista del negocio, todo comienza con la necesidad de representar digitalmente un servicio solicitado por un cliente. Esa representación es la Orden. La Orden formaliza el compromiso contractual: define qué servicio debe prestarse y bajo qué condiciones se facturará. En ella nace el ingreso y desde ella se articula el resto de la estructura operativa.
+Desde el punto de vista del negocio, todo comienza con la necesidad de representar digitalmente un servicio solicitado por un cliente. Esa representación es la Orden (``sale.order``). La Orden formaliza el compromiso contractual: define qué servicio debe prestarse y bajo qué condiciones se facturará. En ella nace el ingreso y desde ella se articula el resto de la estructura operativa.
 
-Sin embargo, una Orden no describe la ejecución física del transporte. Para ello se introduce el Tramo, que permite descomponer el compromiso comercial en movimientos logísticos concretos entre un origen y un destino. Esta descomposición es lo que permite modelar tanto un servicio simple puerta a puerta como operativas complejas con múltiples fases, arrastres entre hubs o escenarios de reagenda, sin romper la coherencia administrativa.
+Sin embargo, una Orden no describe la ejecución física del transporte. Para ello se introduce el Tramo (``tms.shipment.leg``), que permite descomponer el compromiso comercial en movimientos logísticos concretos entre un origen y un destino. Esta descomposición es lo que permite modelar tanto un servicio simple puerta a puerta como operativas complejas con múltiples fases, arrastres entre hubs o escenarios de reagenda, sin romper la coherencia administrativa.
 
-Cuando una Orden se valida, el sistema traduce su estructura lógica en eventos físicos reales mediante la generación automática de Paradas. La Parada representa el punto operativo trazable: recogida, entrega, entrada en hub o cualquier evento intermedio necesario. Desde el punto de vista de planificación, la Parada es la unidad mínima operativa, ya que es sobre ella donde trabajan los algoritmos de optimización y las herramientas de planificación.
+Cuando una Orden se valida, el sistema traduce su estructura lógica en eventos físicos reales mediante la generación automática de Paradas. La Parada (``tms.stop``) representa el punto operativo trazable: recogida, entrega, entrada en hub o cualquier evento intermedio necesario. Desde el punto de vista de planificación, la Parada es la unidad mínima operativa, ya que es sobre ella donde trabajan los algoritmos de optimización y las herramientas de planificación.
 
-Finalmente, las Paradas se agrupan en Viajes, que representan la ejecución real asignada a un recurso. El Viaje consolida paradas en una ruta ejecutable, genera la orden de compra correspondiente al transportista y materializa el coste de la operación.
+Finalmente, las Paradas se agrupan en Viajes (``tms.trip``), que representan la ejecución real asignada a un recurso. El Viaje consolida paradas en una ruta ejecutable, genera la orden de compra correspondiente al transportista y materializa el coste de la operación.
 
 .. important::
 
@@ -27,10 +33,15 @@ Esta lógica conceptual no es abstracta ni teórica. Se refleja directamente en 
 
 En consecuencia, la lógica estructural de Guraify TMS no consiste únicamente en definir entidades relacionadas, sino en establecer una arquitectura desacoplada que permita escalabilidad, optimización avanzada, integración masiva y análisis económico granular. Sobre este principio se construye toda la arquitectura funcional y técnica del sistema.
 
-.. _section-12:
 
 La Orden
 ~~~~~~~~
+
+.. CAPTURA: 2_1_01 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/2_conceptual-model/2_1_structural-logic_01_orden.png
+      :alt: Formulario de una Orden en Odoo
+
+      Formulario de una Orden (``sale.order``) en Odoo.
 
 La Orden es la entidad que representa digitalmente el encargo del cliente dentro de Guraify TMS. Constituye el punto de partida estructural del sistema y el eje sobre el que se articula toda la operativa posterior. Desde una perspectiva conceptual, la Orden responde a una pregunta sencilla pero fundamental: qué servicio debemos ejecutar y posteriormente facturar.
 
@@ -94,6 +105,12 @@ En consecuencia, la Parada actúa como el punto de convergencia entre estructura
 
 El Viaje
 ~~~~~~~~
+
+.. CAPTURA: 2_1_02 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/2_conceptual-model/2_1_structural-logic_02_viaje.png
+      :alt: Formulario de un Viaje en Odoo
+
+      Formulario de un Viaje (``tms.trip``) en Odoo.
 
 El Viaje es la entidad que representa la ejecución real del transporte. Si la Orden formaliza el compromiso con el cliente y el Tramo estructura el movimiento logístico, el Viaje responde a una pregunta operativa concreta: qué conjunto de paradas ejecuta un recurso en una ruta real.
 

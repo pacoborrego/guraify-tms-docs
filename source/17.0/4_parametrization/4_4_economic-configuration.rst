@@ -313,6 +313,13 @@ Dependiendo del flujo, puede utilizar:
 - Fecha administrativa
 - Fecha del viaje
 
+.. note::
+   La **fecha administrativa** (``order_date`` en ``sale.order``) es un campo
+   calculado y estable, independiente de la fecha de orden de Odoo
+   (``date_order``). Determina la versión tarifaria aplicable según la política
+   de fecha administrativa configurada en el proyecto (ver
+   :doc:`4_5_project-configuration`).
+
 Las versiones validan una línea temporal coherente:
 
 - Una única versión activa

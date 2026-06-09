@@ -1,13 +1,13 @@
-Alcance funcional del sistema
--------------------------------------
+1.2 Alcance funcional del sistema
+---------------------------------
 
 Guraify TMS cubre de forma nativa el ciclo completo de gestión del transporte, desde la recepción del encargo del cliente hasta la liquidación económica y el análisis de rentabilidad.
 
 El sistema permite:
 
-- Representar digitalmente órdenes de transporte.
+- Representar digitalmente órdenes de transporte (``sale.order``).
 
-- Descomponerlas en estructuras operativas (tramos y paradas).
+- Descomponerlas en estructuras operativas: tramos (``tms.shipment.leg``) y paradas (``tms.stop``).
 
 - Planificar y optimizar rutas mediante motor avanzado.
 

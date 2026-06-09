@@ -1,11 +1,11 @@
-Filosofía operativa del sistemas
----------------------------------------
+1.5 Filosofía operativa del sistema
+-----------------------------------
 
 La filosofía operativa de Guraify TMS no parte de la herramienta, sino del modelo. El sistema está diseñado sobre una premisa clara: el transporte debe representarse de forma estructural, desacoplada y trazable en todas sus dimensiones.
 
 Tres principios articulan esta filosofía.
 
-El primero es la separación estructural entre ingreso y coste. La Orden representa el compromiso comercial y genera el ingreso; el Viaje representa la ejecución real y genera el coste. Esta separación no es únicamente contable, sino arquitectónica. Permite reorganizar la ejecución sin alterar el contrato, agrupar múltiples órdenes en un mismo viaje, dividir una orden en varios recursos y analizar márgenes en cualquier dimensión sin reconciliaciones manuales posteriores.
+El primero es la separación estructural entre ingreso y coste. La Orden (``sale.order``) representa el compromiso comercial y genera el ingreso; el Viaje (``tms.trip``) representa la ejecución real y genera el coste. Esta separación no es únicamente contable, sino arquitectónica. Permite reorganizar la ejecución sin alterar el contrato, agrupar múltiples órdenes en un mismo viaje, dividir una orden en varios recursos y analizar márgenes en cualquier dimensión sin reconciliaciones manuales posteriores.
 
 El segundo principio es la planificación basada en eventos físicos. El sistema no planifica órdenes abstractas, sino Paradas geolocalizadas. Cada parada es un evento real con coordenada, ventana horaria y tiempo de servicio. Esta decisión permite que la optimización (Routing, Secuenciación u OptiFlow) trabaje sobre entidades físicas concretas y que la ejecución, a través de la aplicación móvil, actualice el modelo en tiempo real con base en hechos y no en estimaciones teóricas.
 

@@ -1,9 +1,8 @@
-Relación entre entidades
---------------------------------
+2.2 Relación entre entidades
+----------------------------
 
 Una vez definidas las entidades principales —Orden, Tramo, Parada y Viaje—, es necesario entender cómo se relacionan entre sí dentro del flujo estructural del sistema. La potencia del modelo no reside únicamente en cada entidad por separado, sino en la forma en que se encadenan y, al mismo tiempo, permanecen desacopladas.
 
-.. _section-13:
 
 Flujo lógico estructural
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -14,7 +13,6 @@ Cuando la Orden se valida, el sistema transforma la estructura lógica en evento
 
 Este flujo no debe entenderse únicamente como una secuencia técnica, sino como una transición progresiva desde la dimensión comercial hasta la dimensión operativa y económica de la ejecución real.
 
-.. _section-14:
 
 
 Separación conceptual clave
