@@ -1,5 +1,14 @@
-Configuración logística
------------------------
+4.2 Configuración logística
+---------------------------
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   TMS › Configuración › Ajustes (bloque *Datos auxiliares*): Equipamientos
+   (``tms.equipment``), Categorías de Carga (``tms.load.category``), Reglas de Tarifa
+   (``tms.pricelist.rule``) y Tipos de Bulto. Los Modelos y Categorías de Vehículo se
+   gestionan en TMS › Maestros › Vehículos (``fleet.vehicle.model`` /
+   ``fleet.vehicle.model.category``).
 
 La configuración logística describe los recursos físicos y las restricciones materiales que condicionan la ejecución del transporte.
 
@@ -11,8 +20,14 @@ También alimentan procesos de optimización, cálculo de capacidad, validacione
 
 
 
-Equipamientos
-~~~~~~~~~~~~~
+4.2.1 Equipamientos
+~~~~~~~~~~~~~~~~~~~
+
+.. CAPTURA: 4_2_01 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_2_logistic-configuration_01_equipamientos.png
+      :alt: Configuración de Equipamientos
+
+      Configuración de Equipamientos (``tms.equipment``).
 
 Los Equipamientos representan capacidades, accesorios o requisitos técnicos necesarios para ejecutar determinados servicios de transporte.
 
@@ -26,8 +41,8 @@ Pueden describir elementos como:
 - Doble tripulación
 - Otros requisitos operativos específicos
 
-Campos principales
-^^^^^^^^^^^^^^^^^^
+4.2.1.1 Campos principales
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -50,8 +65,8 @@ Campos principales
    * - Color
      - Identificador visual utilizado en interfaces.
 
-Aplicación operativa de Equipamientos
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.2.1.2 Aplicación operativa de Equipamientos
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Los equipamientos se relacionan con:
 
@@ -71,8 +86,8 @@ Cuando una operación exige determinados equipamientos, estos actúan como crite
 
 
 
-Categorías de Carga
-~~~~~~~~~~~~~~~~~~~
+4.2.2 Categorías de Carga
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Las Categorías de Carga permiten clasificar la naturaleza logística de la mercancía transportada.
 
@@ -87,8 +102,8 @@ Ejemplos habituales:
 - ADR
 - Voluminosa
 
-Campos principales
-^^^^^^^^^^^^^^^^^^
+4.2.2.1 Campos principales
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -111,8 +126,8 @@ Campos principales
    * - Color
      - Identificador visual.
 
-Aplicación operativa de Categorías de Carga
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.2.2.2 Aplicación operativa de Categorías de Carga
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Las categorías de carga intervienen en:
 
@@ -132,8 +147,8 @@ También pueden intervenir en reglas tarifarias cuando la naturaleza de la merca
 
 
 
-Reglas de Tarifa
-~~~~~~~~~~~~~~~~
+4.2.3 Reglas de Tarifa
+~~~~~~~~~~~~~~~~~~~~~~
 
 Las Reglas de Tarifa definen cómo se mide operativamente la mercancía dentro de una expedición.
 
@@ -148,8 +163,8 @@ Ejemplos:
 - Cantidad
 - Metros lineales
 
-Campos principales
-^^^^^^^^^^^^^^^^^^
+4.2.3.1 Campos principales
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -170,8 +185,8 @@ Campos principales
    * - Magnitudes disponibles
      - Bultos, cantidad, metros o pallets.
 
-Comportamiento operativo de Reglas de Tarifa
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.2.3.2 Comportamiento operativo de Reglas de Tarifa
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Bultos**
 
@@ -215,8 +230,8 @@ Representa metros lineales de ocupación de carga.
 
 
 
-Tipos de Bulto
-~~~~~~~~~~~~~~
+4.2.4 Tipos de Bulto
+~~~~~~~~~~~~~~~~~~~~
 
 El Tipo de Bulto representa la clasificación logística de la mercancía transportada.
 
@@ -233,8 +248,8 @@ Ejemplos:
 - Textil
 - Alimentación
 
-Campos principales
-^^^^^^^^^^^^^^^^^^
+4.2.4.1 Campos principales
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -261,8 +276,8 @@ Campos principales
    * - Compañía
      - Empresa propietaria.
 
-Aplicación operativa de Tipos de Bulto
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.2.4.2 Aplicación operativa de Tipos de Bulto
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 El Tipo de Bulto se utiliza principalmente en líneas de expedición.
 
@@ -292,8 +307,14 @@ También interviene en:
 
 
 
-Modelos y Categorías de Vehículo
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.2.5 Modelos y Categorías de Vehículo
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. CAPTURA: 4_2_02 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_2_logistic-configuration_02_vehiculos.png
+      :alt: Modelos y Categorías de Vehículo
+
+      Modelos y Categorías de Vehículo (``fleet.vehicle.model`` / ``fleet.vehicle.model.category``).
 
 Los Modelos y Categorías de Vehículo amplían la gestión estándar de flota de Odoo con información logística específica de transporte.
 
@@ -305,8 +326,8 @@ Esta parametrización es utilizada por:
 - Tarificación
 - Validaciones operativas
 
-Campos principales de Categoría
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.2.5.1 Campos principales de Categoría
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -329,8 +350,8 @@ Campos principales de Categoría
    * - Zona tarifaria y valor por defecto
      - Datos de cálculo y asignación.
 
-Campos principales de Modelo
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.2.5.2 Campos principales de Modelo
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -349,8 +370,8 @@ Campos principales de Modelo
    * - Emisiones
      - CO2, Euro class y restricciones ambientales.
 
-Aplicación operativa de Categorías de Vehículo
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.2.5.3 Aplicación operativa de Categorías de Vehículo
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 La categoría de vehículo es uno de los principales criterios de asignación operativa.
 

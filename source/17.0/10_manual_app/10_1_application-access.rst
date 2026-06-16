@@ -7,8 +7,9 @@ Activar tu cuenta
 ^^^^^^^^^^^^^^^^^
 Cuando te den de alta, recibirás un correo electrónico.
 
-.. image:: /_static/images/Activar_Cuenta_Step_1.png
+.. figure:: /_static/img/10_manual_app/10_1_application-access_01_activar-cuenta-step-1.png
    :align: center
+   :alt: Activar Cuenta Step 1
 
 
 
@@ -19,8 +20,9 @@ Crear contraseña
 
 Se abrirá una pantalla donde debes crear tu contraseña.
 
-.. image:: /_static/images/Activar_Cuenta_Step_2.png
+.. figure:: /_static/img/10_manual_app/10_1_application-access_02_activar-cuenta-step-2.png
    :align: center
+   :alt: Activar Cuenta Step 2
 
 
 
@@ -67,8 +69,9 @@ Iniciar sesión
 
 Introduce tus datos en la pantalla de login.
 
-.. image:: /_static/images/Login.png
+.. figure:: /_static/img/10_manual_app/10_1_application-access_03_login.png
    :align: center
+   :alt: Login
 
 Rellena los campos:
 

@@ -8,9 +8,10 @@ Cuando pulses sobre una parada, accederás a la pantalla de detalle.
 
 En esta pantalla encontrarás toda la información necesaria para trabajar la parada, tanto si es una carga como una entrega.
 
-.. image:: /_static/images/Parada_Report_Inicio.PNG
+.. figure:: /_static/img/10_manual_app/10_3_report_01_parada-report-inicio.png
    :width: 300px
    :align: center
+   :alt: Parada Report Inicio
 
 
 
@@ -52,9 +53,10 @@ Una misma parada puede tener:
 
 - Varias órdenes agrupadas de diferentes destinatarios
 
-.. image:: /_static/images/Parada_Report_Botones_Exito.PNG
+.. figure:: /_static/img/10_manual_app/10_3_report_02_parada-report-botones-exito.png
    :width: 300px
    :align: center
+   :alt: Parada Report Botones Exito
 
 
 Información de cada orden
@@ -62,9 +64,10 @@ Información de cada orden
 
 En cada tarjeta podrás ver:
 
-.. image:: /_static/images/Orden_Card.png
+.. figure:: /_static/img/10_manual_app/10_3_report_03_orden-card.png
    :width: 300px
    :align: center
+   :alt: Orden Card
 
 
 
@@ -114,9 +117,10 @@ Pie de acciones
 
 En la parte inferior de la pantalla encontrarás el panel de acciones.
 
-.. image:: /_static/images/Parada_Footer.png
+.. figure:: /_static/img/10_manual_app/10_3_report_04_parada-footer.png
    :width: 300px
    :align: center
+   :alt: Parada Footer
 
 
 Estructura del footer
@@ -137,9 +141,10 @@ En la parte derecha encontrarás un icono de tres puntos.
 
 Al pulsarlo se abrirá un menú con acciones disponibles.
 
-.. image:: /_static/images/Parada_Acciones.png
+.. figure:: /_static/img/10_manual_app/10_3_report_05_parada-acciones.png
    :width: 300px
    :align: center
+   :alt: Parada Acciones
 
 
 Opciones disponibles:
@@ -152,9 +157,10 @@ Opciones disponibles:
 Acción: Reiniciar
 ^^^^^^^^^^^^^^^^^
 
-.. image:: /_static/images/parada_accion.png
+.. figure:: /_static/img/10_manual_app/10_3_report_06_parada-accion.png
    :width: 300px
    :align: center
+   :alt: parada accion
 
 
 .. warning::
@@ -198,9 +204,10 @@ Esta acción indica al sistema que el conductor está en camino hacia el destino
 · Notificación al destinatario (preaviso de entrega)
 · Actualización del estado en tiempo real
 
-.. image:: /_static/images/Parada_Report_Inicio.PNG
+.. figure:: /_static/img/10_manual_app/10_3_report_01_parada-report-inicio.png
    :width: 300px
    :align: center
+   :alt: Parada Report Inicio
 
 
 
@@ -214,9 +221,10 @@ Esto registra la llegada a la ubicación y permite continuar con el proceso de l
 
 
 
-.. image:: /_static/images/Parada_Report_He_Llegado.PNG
+.. figure:: /_static/img/10_manual_app/10_3_report_07_parada-report-he-llegado.png
    :width: 300px
    :align: center
+   :alt: Parada Report He Llegado
 
 
 
@@ -278,13 +286,13 @@ Esto permite asegurar que se entregan únicamente los bultos correctos.
 
 .. list-table::
 
-   * - .. image:: /_static/images/ScanMatrix_Step_1.png
+   * - .. image:: /_static/img/10_manual_app/10_3_report_19_scanmatrix-step-1.png
          :width: 200px
      - →
-     - .. image:: /_static/images/ScanMatrix_Step_2.png
+     - .. image:: /_static/img/10_manual_app/10_3_report_20_scanmatrix-step-2.png
          :width: 200px
      - →
-     - .. image:: /_static/images/ScanMatrix_Step_3.png
+     - .. image:: /_static/img/10_manual_app/10_3_report_21_scanmatrix-step-3.png
          :width: 200px
 
 
@@ -303,9 +311,10 @@ En ese momento, debe pulsar el botón OK (color verde).
 
 Al pulsar OK, la aplicación cambia automáticamente a la pantalla de verificación de bultos.
 
-.. image:: /_static/images/Bultos_Lista_Scan_Off.PNG
+.. figure:: /_static/img/10_manual_app/10_3_report_08_bultos-lista-scan-off.png
    :width: 300px
    :align: center
+   :alt: Bultos Lista Scan Off
 
 
 
@@ -317,9 +326,10 @@ Información de cada bulto
 
 Cada tarjeta contiene la siguiente información:
 
-.. image:: /_static/images/Bulto_Card.png
+.. figure:: /_static/img/10_manual_app/10_3_report_09_bulto-card.png
    :width: 300px
    :align: center
+   :alt: Bulto Card
 
 
 
@@ -380,9 +390,10 @@ Existen dos formas de validación:
 
       i. El sistema marcará automáticamente el bulto correspondiente
 
-.. image:: /_static/images/Bultos_Lista_Scan_On.PNG
+.. figure:: /_static/img/10_manual_app/10_3_report_10_bultos-lista-scan-on.png
    :width: 300px
    :align: center
+   :alt: Bultos Lista Scan On
 
 
 Indicador de progreso
@@ -393,9 +404,10 @@ En la parte inferior de la pantalla se muestra un contador:
 	•	Número de bultos confirmados
 	•	Número total de bultos de la parada
 
-.. image:: /_static/images/Bultos_Lista_Footer.png
+.. figure:: /_static/img/10_manual_app/10_3_report_11_bultos-lista-footer.png
    :width: 300px
    :align: center
+   :alt: Bultos Lista Footer
 
 
 
@@ -428,10 +440,10 @@ El método de confirmación depende del tipo de POD:
 .. list-table::
    :align: center
 
-   * - .. image:: /_static/images/Parada_Report_POD_Phisical_Pre_Scan.PNG
+   * - .. image:: /_static/img/10_manual_app/10_3_report_22_parada-report-pod-phisical-pre-scan.png
          :width: 300px
      - →
-     - .. image:: /_static/images/Parada_Report_POD_Phisical_Post_Scan.PNG
+     - .. image:: /_static/img/10_manual_app/10_3_report_23_parada-report-pod-phisical-post-scan.png
          :width: 300px
 
 
@@ -446,12 +458,12 @@ El método de confirmación depende del tipo de POD:
 
 .. list-table::
 
-   * - .. image:: /_static/images/parada_report_pre_sign_digital.png
+   * - .. image:: /_static/img/10_manual_app/10_3_report_24_parada-report-pre-sign-digital.png
          :width: 300px
 
      - →
 
-     - .. image:: /_static/images/Parada_Report_POD_Digital_Post_Sign.PNG
+     - .. image:: /_static/img/10_manual_app/10_3_report_25_parada-report-pod-digital-post-sign.png
          :width: 300px
 
 
@@ -488,9 +500,10 @@ Cómo identificar un reembolso
 
 Si una parada tiene reembolso, el sistema mostrará una indicación visual dentro de la orden.
 
-.. image:: /_static/images/Reembolso_Step_1.png
+.. figure:: /_static/img/10_manual_app/10_3_report_12_reembolso-step-1.png
    :width: 300px
    :align: center
+   :alt: Reembolso Step 1
 
 
 Ejemplo:
@@ -515,9 +528,10 @@ El reembolso se gestiona automáticamente durante el flujo de reporte de la para
 
 Al pulsar el botón OK para confirmar la entrega, y antes de acceder a la captura del POD, la aplicación mostrará la pantalla específica de gestión de reembolso.
 
-.. image:: /_static/images/Reembolso_Step_2.png
+.. figure:: /_static/img/10_manual_app/10_3_report_13_reembolso-step-2.png
    :width: 300px
    :align: center
+   :alt: Reembolso Step 2
 
 
 
@@ -584,25 +598,28 @@ Existen dos situaciones principales:
 
 Para registrar estas incidencia nos iremos encima del bulto en la aplicacion 
 
-.. image:: /_static/images/Reporte_carga_1.png
+.. figure:: /_static/img/10_manual_app/10_3_report_14_reporte-carga-1.png
    :width: 300px
    :align: center
+   :alt: Reporte carga 1
 
 
 
 Y clicaremos en el boton que nos aparece abajo que dice : **Reportar Problema**
 
-.. image:: /_static/images/Reporte_carga_2.png
+.. figure:: /_static/img/10_manual_app/10_3_report_15_reporte-carga-2.png
    :width: 300px
    :align: center
+   :alt: Reporte carga 2
 
 
 
 Al clicar , observaremos que nos aparecen dos opcciones dependiendo de en que estado se encuentre el bulto reportaremos si se entrega o si no se entrega
 
-.. image:: /_static/images/Reporte_carga_3.png
+.. figure:: /_static/img/10_manual_app/10_3_report_16_reporte-carga-3.png
    :width: 300px
    :align: center
+   :alt: Reporte carga 3
 
 
 
@@ -715,9 +732,10 @@ En estos casos, el conductor debe:
 - Adjuntar una imagen como evidencia (portería, ubicación, número de puerta, etc.)  
 
 
-.. image:: /_static/images/reporte_entrega.png
+.. figure:: /_static/img/10_manual_app/10_3_report_17_reporte-entrega.png
    :width: 300px
    :align: center
+   :alt: reporte entrega
 
 
 .. important::
@@ -749,9 +767,10 @@ En estos casos, el conductor debe:
 - Confirmar el reporte  
 
 
-.. image:: /_static/images/reporte_entrega_4.png
+.. figure:: /_static/img/10_manual_app/10_3_report_18_reporte-entrega-4.png
    :width: 300px
    :align: center
+   :alt: reporte entrega 4
 
 
 .. warning::
@@ -824,12 +843,12 @@ En este caso, el conductor debe:
 
 .. list-table::
 
-   * - .. image:: /_static/images/IMG_1021.png
+   * - .. image:: /_static/img/10_manual_app/10_3_report_26_img-1021.png
          :width: 200px
 
      - →
 
-     - .. image:: /_static/images/IMG_1020.png
+     - .. image:: /_static/img/10_manual_app/10_3_report_27_img-1020.png
          :width: 200px
 
 

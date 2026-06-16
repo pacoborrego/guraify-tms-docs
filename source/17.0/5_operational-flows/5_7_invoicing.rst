@@ -1,5 +1,16 @@
-Facturación
----------------
+5.7 Facturación
+----------------
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   TMS › Administración (facturación de cliente y de proveedor).
+
+.. CAPTURA: 5_10_01 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/5_operational-flows/5_7_invoicing_01_factura.png
+      :alt: Facturación
+
+      Generación de la factura de cliente / proveedor (``account.move``).
 
 La facturación del TMS se divide en dos flujos diferenciados:
 
@@ -10,8 +21,8 @@ Ambos se apoyan en los mecanismos estándar de Odoo, reutilizando la capa financ
 
 
 
-Facturación de cliente
-~~~~~~~~~~~~~~~~~~~~~~~
+5.7.1 Facturación de cliente
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 La facturación al cliente se apoya en las órdenes de venta TMS.
 
@@ -40,8 +51,8 @@ Durante la creación de facturas, el sistema controla:
 
 
 
-Facturación de proveedor
-~~~~~~~~~~~~~~~~~~~~~~~~~
+5.7.2 Facturación de proveedor
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 La facturación al transportista se apoya en la orden de compra vinculada al viaje.
 
@@ -57,20 +68,23 @@ Esto garantiza que la liquidación del transportista se apoye en información ce
 
 
 
-Controles relevantes
-~~~~~~~~~~~~~~~~~~~~
+5.7.3 Controles relevantes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-+------------------------------------------+--------------------------------------------------------------+
-| Control                                  | Descripción                                                  |
-+==========================================+==============================================================+
-| Líneas cliente ya facturadas             | No deben volver a facturarse.                                |
-+------------------------------------------+--------------------------------------------------------------+
-| Viaje sin orden de compra                | No puede generar factura proveedor.                          |
-+------------------------------------------+--------------------------------------------------------------+
-| Orden compra sin líneas pendientes       | No procede facturación.                                      |
-+------------------------------------------+--------------------------------------------------------------+
-| Operación ya facturada                   | Limita modificaciones posteriores.                           |
-+------------------------------------------+--------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Control
+     - Descripción
+   * - Líneas cliente ya facturadas
+     - No deben volver a facturarse.
+   * - Viaje sin orden de compra
+     - No puede generar factura proveedor.
+   * - Orden compra sin líneas pendientes
+     - No procede facturación.
+   * - Operación ya facturada
+     - Limita modificaciones posteriores.
 
 Una vez emitida la factura, determinados cambios operativos o económicos quedan restringidos para preservar consistencia documental.
 

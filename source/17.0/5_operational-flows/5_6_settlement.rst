@@ -1,5 +1,16 @@
-Liquidación Económica
-----------------------
+5.6 Liquidación Económica
+-------------------------
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   TMS › Administración (liquidación de venta y de compra).
+
+.. CAPTURA: 5_9_01 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/5_operational-flows/5_6_settlement_01_liquidacion.png
+      :alt: Liquidación económica
+
+      Liquidación económica de venta (cliente) y de compra (transportista).
 
 La liquidación económica del TMS se divide en dos dimensiones diferenciadas:
 
@@ -20,8 +31,8 @@ También permite diferenciar claramente:
 
 
 
-Liquidación de venta
-~~~~~~~~~~~~~~~~~~~~~~~~~
+5.6.1 Liquidación de venta
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 En el lado de venta, la orden TMS calcula líneas económicas a partir de:
 
@@ -42,8 +53,8 @@ Según la parametrización económica, la tarifa puede aplicarse sobre:
 
 
 
-Liquidación de compra
-~~~~~~~~~~~~~~~~~~~~~~~~~
+5.6.2 Liquidación de compra
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 En el lado de compra, el viaje genera o actualiza una orden de compra vinculada al transportista.
 
@@ -66,24 +77,27 @@ La orden de compra queda enlazada directamente con el viaje y recoge informació
 
 
 
-Elementos que intervienen en la liquidación
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+5.6.3 Elementos que intervienen en la liquidación
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-+--------------------------------------+--------------------------------------------------------------+
-| Elemento                             | Descripción                                                  |
-+======================================+==============================================================+
-| Tarifa cliente                       | Precio comercial aplicado al cliente.                        |
-+--------------------------------------+--------------------------------------------------------------+
-| Tarifa transportista                 | Coste económico aplicado al proveedor.                       |
-+--------------------------------------+--------------------------------------------------------------+
-| Magnitudes logísticas                | Peso, volumen, bultos, pallets, metros, cantidad, tiempo.   |
-+--------------------------------------+--------------------------------------------------------------+
-| Zonas tarifarias                     | Territorios económicos origen/destino.                       |
-+--------------------------------------+--------------------------------------------------------------+
-| Reembolsos                           | Importes adicionales asociados a la operación.               |
-+--------------------------------------+--------------------------------------------------------------+
-| Diagnóstico de tarifa                | Registro de incidencias de cálculo económico.                |
-+--------------------------------------+--------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Elemento
+     - Descripción
+   * - Tarifa cliente
+     - Precio comercial aplicado al cliente.
+   * - Tarifa transportista
+     - Coste económico aplicado al proveedor.
+   * - Magnitudes logísticas
+     - Peso, volumen, bultos, pallets, metros, cantidad, tiempo.
+   * - Zonas tarifarias
+     - Territorios económicos origen/destino.
+   * - Reembolsos
+     - Importes adicionales asociados a la operación.
+   * - Diagnóstico de tarifa
+     - Registro de incidencias de cálculo económico.
 
 Las magnitudes utilizadas en liquidación pueden incluir:
 
