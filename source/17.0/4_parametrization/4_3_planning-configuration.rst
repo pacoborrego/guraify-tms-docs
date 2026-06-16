@@ -1,5 +1,13 @@
-Configuración de planificación
-------------------------------
+4.3 Configuración de planificación
+----------------------------------
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas
+   (``tms.area``), Tiempos de Servicio (``tms.service.time``) y Franjas Horarias
+   (``tms.time.zone``). El Planning (``tms.planning``) se gestiona desde
+   TMS › Operaciones › Planificación.
 
 La configuración de planificación define cómo se agrupan, ordenan y ejecutan las operaciones.
 
@@ -7,8 +15,8 @@ Incluye los maestros que permiten transformar órdenes y paradas en viajes plani
 
 
 
-Planning
-~~~~~~~~
+4.3.1 Planning
+~~~~~~~~~~~~~~
 
 Planning es una de las entidades maestras más importantes del sistema, porque actúa como eje de segmentación operativa entre la expedición, las paradas, los viajes, la planificación de recursos, la optimización y la tarificación.
 
@@ -20,24 +28,27 @@ Esta clasificación se hereda normalmente desde el proyecto y se propaga a exped
 
 **Campos principales**
 
-+---------------------------------------------+--------------------------------------------------------------------------------+
-| Campo                                       | Descripción                                                                    |
-+=============================================+================================================================================+
-| Nombre y Descripción                        | Identifican la planificación.                                                  |
-+---------------------------------------------+--------------------------------------------------------------------------------+
-| Plan de transporte                          | Red geográfica asociada al Planning.                                           |
-+---------------------------------------------+--------------------------------------------------------------------------------+
-| Tiempos de servicio de recogida y entrega   | Tiempos operativos aplicables a recogidas y entregas.                          |
-+---------------------------------------------+--------------------------------------------------------------------------------+
-| Modo de división de viaje                   | Criterio usado para repartir carga o importes.                                 |
-+---------------------------------------------+--------------------------------------------------------------------------------+
-| Shipper                                     | Cargador o entidad operativa asociada.                                         |
-+---------------------------------------------+--------------------------------------------------------------------------------+
-| Valor por defecto, compañía y color         | Campos estándar de clasificación, compañía y visualización.                    |
-+---------------------------------------------+--------------------------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Planning
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Nombre y Descripción
+     - Identifican la planificación.
+   * - Plan de transporte
+     - Red geográfica asociada al Planning.
+   * - Tiempos de servicio de recogida y entrega
+     - Tiempos operativos aplicables a recogidas y entregas.
+   * - Modo de división de viaje
+     - Criterio usado para repartir carga o importes.
+   * - Shipper
+     - Cargador o entidad operativa asociada.
+   * - Valor por defecto, compañía y color
+     - Campos estándar de clasificación, compañía y visualización.
+
+4.3.1.1 Uso dentro del sistema en Planning
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 El Planning está vinculado a un Plan de Transporte. Esta relación es relevante porque el Plan de Transporte define el marco territorial sobre el que se opera: zonas, áreas de transporte y agencia asociada.
 
@@ -89,8 +100,14 @@ Si el Planning no existe, algunos flujos de importación pueden crearlo automát
 
 
 
-Planes de Transporte
-~~~~~~~~~~~~~~~~~~~~~
+4.3.2 Planes de Transporte
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. CAPTURA: 4_3_01 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_01_planes-transporte.png
+      :alt: Configuración de un Plan de Transporte
+
+      Configuración de un Plan de Transporte (``tms.transport.plan``).
 
 Los Planes de Transporte definen la red geográfica operativa sobre la que trabaja un Planning.
 
@@ -100,24 +117,27 @@ No son una ruta ni una tarifa. Su función es delimitar qué polígonos pertenec
 
 **Campos principales**
 
-+----------------------+--------------------------------------------------------------------------------+
-| Campo                | Descripción                                                                    |
-+======================+================================================================================+
-| Nombre               | Identificador funcional del plan de transporte.                                |
-+----------------------+--------------------------------------------------------------------------------+
-| Agencia              | Partner marcado como agencia responsable del plan.                             |
-+----------------------+--------------------------------------------------------------------------------+
-| Áreas                | Conjunto de Áreas Geográficas que componen la red operativa.                   |
-+----------------------+--------------------------------------------------------------------------------+
-| Por defecto          | Marca el plan principal de la compañía.                                        |
-+----------------------+--------------------------------------------------------------------------------+
-| Compañía             | Empresa propietaria del plan.                                                  |
-+----------------------+--------------------------------------------------------------------------------+
-| Vista de mapa        | Previsualización embebida de agencia y polígonos asociados.                    |
-+----------------------+--------------------------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Planes de Transporte
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Nombre
+     - Identificador funcional del plan de transporte.
+   * - Agencia
+     - Partner marcado como agencia responsable del plan.
+   * - Áreas
+     - Conjunto de Áreas Geográficas que componen la red operativa.
+   * - Por defecto
+     - Marca el plan principal de la compañía.
+   * - Compañía
+     - Empresa propietaria del plan.
+   * - Vista de mapa
+     - Previsualización embebida de agencia y polígonos asociados.
+
+4.3.2.1 Uso dentro del sistema en Planes de Transporte
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 El Plan de Transporte se vincula al Planning. Esta relación permite que una planificación tenga un ámbito territorial concreto y que, al resolver una dirección, el sistema busque únicamente dentro de las áreas de esa red.
 
@@ -132,8 +152,14 @@ También se utiliza en planificación de recursos: al cambiar el Planning de un 
 La vista de mapa y los endpoints internos devuelven nombre, coordenadas de agencia y geometría de las áreas, lo que facilita revisar visualmente si una red está correctamente parametrizada antes de usarla en operación.
 
 
-Áreas Geográficas
-~~~~~~~~~~~~~~~~~~
+4.3.3 Áreas Geográficas
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. CAPTURA: 4_3_02 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_02_areas-geograficas.png
+      :alt: Configuración de un Área Geográfica
+
+      Configuración de un Área Geográfica (``tms.area``).
 
 Las Áreas Geográficas son polígonos o multipolígonos GeoJSON que representan territorios del sistema.
 
@@ -149,32 +175,35 @@ Su importancia es doble: permiten ubicar direcciones dentro de una red operativa
 
 **Campos principales**
 
-+-----------------------------+--------------------------------------------------------------------------------+
-| Campo                       | Descripción                                                                    |
-+=============================+================================================================================+
-| Nombre y descripción        | Identifican el área en listas, reglas y resultados geográficos.                |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Tipo                        | Clasifica el uso del área.                                                     |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Polígono GeoJSON            | Geometría almacenada en el campo de polígono.                                  |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Centro latitud/longitud     | Centro calculado a partir de la geometría.                                     |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Agencia y hub               | Valores operativos que pueden propagarse a tramos o paradas.                   |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Planes de Transporte        | Relación con los planes donde actúa como territorio operativo.                 |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Zonas Tarifarias            | Relación con zonas donde actúa como territorio económico.                      |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Días disponibles            | Calendario semanal admitido para áreas de transporte.                          |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Franjas horarias            | Ventanas asociadas al área como referencia de disponibilidad territorial.       |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Filtros include/exclude     | Dominios previstos para reglas avanzadas de inclusión o exclusión.             |
-+-----------------------------+--------------------------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Áreas Geográficas
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Nombre y descripción
+     - Identifican el área en listas, reglas y resultados geográficos.
+   * - Tipo
+     - Clasifica el uso del área.
+   * - Polígono GeoJSON
+     - Geometría almacenada en el campo de polígono.
+   * - Centro latitud/longitud
+     - Centro calculado a partir de la geometría.
+   * - Agencia y hub
+     - Valores operativos que pueden propagarse a tramos o paradas.
+   * - Planes de Transporte
+     - Relación con los planes donde actúa como territorio operativo.
+   * - Zonas Tarifarias
+     - Relación con zonas donde actúa como territorio económico.
+   * - Días disponibles
+     - Calendario semanal admitido para áreas de transporte.
+   * - Franjas horarias
+     - Ventanas asociadas al área como referencia de disponibilidad territorial.
+   * - Filtros include/exclude
+     - Dominios previstos para reglas avanzadas de inclusión o exclusión.
+
+4.3.3.1 Uso dentro del sistema en Áreas Geográficas
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 En el flujo operativo, las áreas de tipo Plan de Transporte se usan para resolver zonas operativas de carga, descarga o parada.
 
@@ -190,8 +219,8 @@ Los días disponibles del área se usan como control operativo. Si una carga o d
 
 
 
-Franjas Horarias
-~~~~~~~~~~~~~~~~~
+4.3.4 Franjas Horarias
+~~~~~~~~~~~~~~~~~~~~~~
 
 Las Franjas Horarias normalizan ventanas de servicio reutilizables.
 
@@ -201,22 +230,25 @@ Se utilizan para informar ventanas de carga y descarga sin introducir manualment
 
 **Campos principales**
 
-+----------------------+--------------------------------------------------------------------------------+
-| Campo                | Descripción                                                                    |
-+======================+================================================================================+
-| Nombre               | Campo calculado con formato ``HH:MM - HH:MM``.                                 |
-+----------------------+--------------------------------------------------------------------------------+
-| Inicio               | Hora inicial de la ventana.                                                    |
-+----------------------+--------------------------------------------------------------------------------+
-| Fin                  | Hora final de la ventana.                                                      |
-+----------------------+--------------------------------------------------------------------------------+
-| Tipos de servicio    | Servicios a los que puede asociarse la franja.                                 |
-+----------------------+--------------------------------------------------------------------------------+
-| Compañía             | Empresa propietaria de la franja.                                              |
-+----------------------+--------------------------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema
-^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Nombre
+     - Campo calculado con formato ``HH:MM - HH:MM``.
+   * - Inicio
+     - Hora inicial de la ventana.
+   * - Fin
+     - Hora final de la ventana.
+   * - Tipos de servicio
+     - Servicios a los que puede asociarse la franja.
+   * - Compañía
+     - Empresa propietaria de la franja.
+
+4.3.4.1 Uso dentro del sistema
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 En tramos y asistentes de creación, las franjas pueden asignarse a la carga o descarga.
 
@@ -232,8 +264,14 @@ La relación con áreas permite documentar qué ventanas son válidas para una z
 
 
 
-Tiempos de Servicio
-~~~~~~~~~~~~~~~~~~~
+4.3.5 Tiempos de Servicio
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. CAPTURA: 4_3_03 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_03_tiempos-servicio.png
+      :alt: Configuración de Tiempos de Servicio
+
+      Configuración de Tiempos de Servicio (``tms.service.time``).
 
 Los Tiempos de Servicio calculan la duración operativa que una parada requiere, más allá del tiempo de conducción.
 
@@ -243,32 +281,35 @@ Esta configuración es crítica para que las rutas optimizadas tengan una duraci
 
 **Campos principales**
 
-+-----------------------------+--------------------------------------------------------------------------------+
-| Campo                       | Descripción                                                                    |
-+=============================+================================================================================+
-| Nombre                      | Identificador del esquema de tiempos de servicio.                              |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Kg nivel 0                  | Valor por defecto utilizado para detalles de nivel cero.                       |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Kg nivel superior           | Valor por defecto utilizado para niveles superiores.                           |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Por defecto                 | Esquema usado como fallback.                                                   |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Líneas                      | Conjunto de operaciones que forman el cálculo del tiempo.                      |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Operación                   | Plantilla que determina tipo de cálculo, aplicación y factor.                  |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Tipo de operación           | Dificultad, niveles o fijo.                                                     |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Aplicar en                  | Indica si la operación pertenece al tramo o a la parada.                       |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Tipo de factor              | Define si el tiempo se calcula por operación o por kilos.                      |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Detalles                    | Matriz de dificultad, niveles, factor y segundos.                              |
-+-----------------------------+--------------------------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Tiempos de Servicio
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Nombre
+     - Identificador del esquema de tiempos de servicio.
+   * - Kg nivel 0
+     - Valor por defecto utilizado para detalles de nivel cero.
+   * - Kg nivel superior
+     - Valor por defecto utilizado para niveles superiores.
+   * - Por defecto
+     - Esquema usado como fallback.
+   * - Líneas
+     - Conjunto de operaciones que forman el cálculo del tiempo.
+   * - Operación
+     - Plantilla que determina tipo de cálculo, aplicación y factor.
+   * - Tipo de operación
+     - Dificultad, niveles o fijo.
+   * - Aplicar en
+     - Indica si la operación pertenece al tramo o a la parada.
+   * - Tipo de factor
+     - Define si el tiempo se calcula por operación o por kilos.
+   * - Detalles
+     - Matriz de dificultad, niveles, factor y segundos.
+
+4.3.5.1 Uso dentro del sistema en Tiempos de Servicio
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 El proyecto referencia un Tiempo de Servicio. Al calcular una parada, el sistema toma ese esquema y evalúa las líneas contra las características de la ubicación: dificultad de aparcamiento, existencia de ascensor, pisos y peso de la parada.
 
@@ -280,8 +321,8 @@ El onchange de operación reconstruye los detalles con comandos One2many en memo
 
 
 
-Horas de Conducción
-~~~~~~~~~~~~~~~~~~~~
+4.3.6 Horas de Conducción
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Horas de Conducción almacena los presets de jornada y regulación que se envían a los motores PTV.
 
@@ -291,24 +332,27 @@ El dato puede venir de la categoría de vehículo o de la plantilla del slot de 
 
 **Campos principales**
 
-+-----------------------------+--------------------------------------------------------------------------------+
-| Campo                       | Descripción                                                                    |
-+=============================+================================================================================+
-| Nombre y descripción        | Identifican el preset de horas de conducción.                                  |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Preset de secuenciación     | Valor enviado a PTV en procesos de secuenciación.                              |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Preset de optimización      | Valor enviado a PTV Route Optimization.                                        |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Por defecto                 | Marca de referencia funcional.                                                 |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Información                 | Texto descriptivo para explicar cuándo debe utilizarse.                        |
-+-----------------------------+--------------------------------------------------------------------------------+
-| Secuencia, compañía y color | Campos de ordenación, multi-compañía y clasificación visual.                   |
-+-----------------------------+--------------------------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Horas de Conducción
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Nombre y descripción
+     - Identifican el preset de horas de conducción.
+   * - Preset de secuenciación
+     - Valor enviado a PTV en procesos de secuenciación.
+   * - Preset de optimización
+     - Valor enviado a PTV Route Optimization.
+   * - Por defecto
+     - Marca de referencia funcional.
+   * - Información
+     - Texto descriptivo para explicar cuándo debe utilizarse.
+   * - Secuencia, compañía y color
+     - Campos de ordenación, multi-compañía y clasificación visual.
+
+4.3.6.1 Uso dentro del sistema en Horas de Conducción
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 La categoría de vehículo puede tener asignado un preset de Horas de Conducción. Cuando se optimiza una ruta sin slot concreto, el sistema puede tomar el preset desde el vehículo o su categoría.
 

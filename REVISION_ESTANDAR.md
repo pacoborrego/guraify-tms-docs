@@ -28,8 +28,8 @@ Para cada capítulo/subsección se comprueba que cumple los puntos del estándar
 | 1 Introducción | ✅ | n/a | ✅ | n/a | n/a | ✅ | ✅ | **Revisado 2026-06-04.** Títulos ES numerados, fix 1.1/1.5, modelos citados, mermaid de arquitectura en 1.4, anclas pandoc limpiadas y subsecciones PTV restauradas. Capturas: la app (Scandit) se documenta en caps. 6/10, no aquí. |
 | 2 Modelo Conceptual | ✅ | n/a | ✅ | ✅ | ✅ | ✅ | ✅ | **Revisado 2026-06-04.** Títulos ES numerados 2.1–2.7, modelos citados, anclas pandoc limpiadas, diagramas 2.5 y 2.6 a mermaid, conclusión 2.7 redactada. Rutas en Odoo (2.1, 2.3) y 3 marcadores de captura (Orden, Viaje, Trazabilidad) en `CAPTURAS_PENDIENTES.md`. |
 | 3 Arquitectura Funcional | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | **Revisado 2026-06-04.** Títulos ES numerados, fix "Maestros operativos", modelos citados, rutas UI + capturas, mermaid del árbol funcional. **3.2 ampliado** creado (3.2.1–3.2.4 desde código). 3.3/3.4/3.5 ampliados. |
-| 4 Parametrización | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⚠️ | **Warnings históricos**: tablas mal formadas (4_3) y etiqueta duplicada (4_2). Candidato a rutas UI por ser muy de configuración. |
-| 5 Flujo Operativo | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⚠️ | **Warnings históricos**: tablas mal formadas (5_2, 5_5, 5_6, 5_9) y títulos cortos (5_5). |
+| 4 Parametrización | ✅ | ✅ | n/a | ✅ | ✅ | ✅ | ✅ | **Revisado 2026-06-09.** Títulos ES numerados (jerárquico completo), rutas UI + 11 capturas, tablas grid→list-table, modelos citados. Warnings históricos del cap. 4 resueltos (build verde). |
+| 5 Flujos Operativos | ✅ | ✅ | n/a | ✅ | ✅ | ✅ | ✅ | **Revisado 2026-06-09.** Ficheros renombrados a slugs de flujo, títulos ES numerados (5.1–5.11), tablas grid→list-table, estructura de 5_5 corregida, rutas UI + 10 capturas. Warnings históricos resueltos (build global 0 warnings). |
 | 10 Manual App Conductor | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ✅ | Es guía de usuario final: aquí sí caben capturas de la app y un tono más cercano. |
 
 Leyenda: ⬜ pendiente de revisar · ✅ conforme · ⚠️ requiere arreglo.

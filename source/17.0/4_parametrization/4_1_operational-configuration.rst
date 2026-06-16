@@ -1,5 +1,14 @@
-Configuración Operativa Inicial
--------------------------------
+4.1 Configuración Operativa Inicial
+-----------------------------------
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los
+   Tipos de Servicio (``tms.service.type``), Tipos de Orden (``tms.shipment.type``),
+   Tipos de Parada (``tms.stop.type``), Tipos de Destinatario (``tms.receiper.type``),
+   Tipos de Transportista (``tms.carrier.type``) y Tipos de Reembolso
+   (``tms.cashvalue.type``).
 
 La configuración operativa inicial define las tipologías básicas que estructuran la actividad del sistema. Estas tipologías permiten clasificar los distintos tipos de servicios, órdenes, paradas y participantes que intervienen en la operativa logística.
 
@@ -21,15 +30,18 @@ Dentro de este bloque se configuran los siguientes elementos.
 
 Todos estos catálogos son accesibles desde el panel **Configuración → Ajustes**, sección "Datos auxiliares", que actúa como punto de entrada único a las tablas de configuración operativa.
 
-.. image:: /_static/images/Config_Datos_Auxiliares_Index.png
+.. figure:: /_static/img/4_parametrization/4_1_operational-configuration_01_datos-auxiliares.png
    :align: center
+   :alt: Panel de Datos auxiliares en Ajustes
+
+   Panel "Datos auxiliares" en TMS › Configuración › Ajustes.
 
 .. note::
 
    Cada enlace de la sección "Datos auxiliares" abre la lista del catálogo correspondiente. Desde la lista pueden crearse, modificarse y eliminarse registros, así como inspeccionar el detalle de cada tipo.
 
-Tipos de Servicio
-~~~~~~~~~~~~~~~~~
+4.1.1 Tipos de Servicio
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Los Tipos de Servicio constituyen uno de los primeros elementos de configuración operativa del sistema.
 
@@ -47,8 +59,11 @@ Esta clasificación facilita la gestión de diferentes operativas dentro de una 
 
 La vista de lista permite revisar de un vistazo todos los tipos de servicio configurados, junto con los productos asociados, los tipos de expedición compatibles y las variables logísticas activas para cada uno.
 
-.. image:: /_static/images/Config_Tipo_Servicio_Lista.png
+.. figure:: /_static/img/4_parametrization/4_1_operational-configuration_02_tipos-servicio-lista.png
    :align: center
+   :alt: Lista de Tipos de Servicio
+
+   Lista de Tipos de Servicio (``tms.service.type``).
 
 La selección del tipo de servicio durante la creación de una orden no solo cumple una función descriptiva.
 
@@ -62,13 +77,16 @@ De este modo, el tipo de servicio actúa como un elemento de conexión entre:
 
 Gracias a esta relación, el sistema puede traducir la información operativa del transporte en registros económicos sin necesidad de introducir datos adicionales durante el proceso de facturación.
 
-Campos principales de Tipos de Servicio
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.1.1.1 Campos principales de Tipos de Servicio
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 La vista de formulario de un Tipo de Servicio agrupa todos sus campos en una única pantalla, incluyendo los switches que controlan qué variables logísticas (bultos, cantidad, metros, pallets) intervienen en el cálculo económico.
 
-.. image:: /_static/images/Config_Tipo_Servicio_Form.png
+.. figure:: /_static/img/4_parametrization/4_1_operational-configuration_03_tipos-servicio-form.png
    :align: center
+   :alt: Formulario de un Tipo de Servicio
+
+   Formulario de un Tipo de Servicio con sus variables logísticas.
 
 El modelo de Tipos de Servicio incluye los siguientes campos funcionales.
 
@@ -103,10 +121,9 @@ El modelo de Tipos de Servicio incluye los siguientes campos funcionales.
    * - Color
      - Identificador visual utilizado en algunas interfaces de planificación.
 
-.. _section-25:
 
-Contexto operativo del servicio
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.1.1.2 Contexto operativo del servicio
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Los tipos de servicio intervienen en diferentes procesos del TMS.
 
@@ -129,8 +146,8 @@ Este diseño permite mantener alineadas las tres dimensiones principales del sis
    La correcta definición de los tipos de servicio es fundamental para garantizar que el cálculo de tarifas y la generación de ingresos reflejen correctamente la operativa real del transporte.
 
 
-Tipos de Orden
-~~~~~~~~~~~~~~
+4.1.2 Tipos de Orden
+~~~~~~~~~~~~~~~~~~~~
 
 Los Tipos de Orden definen la naturaleza operativa de una expedición dentro del sistema.
 
@@ -148,15 +165,18 @@ Esta clasificación permite diferenciar distintos escenarios operativos, como po
 
 La vista de lista resume el conjunto de tipos disponibles. Las columnas booleanas (Entrega, Recogida, Directo, Hub, Punto de Recogida Habitual) y los porcentajes de carga/descarga muestran de forma compacta el comportamiento logístico de cada tipo.
 
-.. image:: /_static/images/Config_Tipo_Orden_Lista.png
+.. figure:: /_static/img/4_parametrization/4_1_operational-configuration_04_tipos-orden.png
    :align: center
+   :alt: Lista de Tipos de Orden
+
+   Lista de Tipos de Orden (``tms.shipment.type``).
 
 La definición del tipo de orden influye directamente en la forma en que el sistema genera la estructura logística de la expedición, especialmente en lo relativo a la creación de tramos y paradas.
 
 Por este motivo, los Tipos de Orden forman parte de los elementos estructurales del modelo operativo del TMS.
 
-Campos principales de Tipos de Orden
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.1.2.1 Campos principales de Tipos de Orden
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 El modelo de Tipos de Orden incluye los siguientes campos funcionales.
 
@@ -177,8 +197,8 @@ El modelo de Tipos de Orden incluye los siguientes campos funcionales.
    * - Color
      - Identificador visual para facilitar su reconocimiento.
 
-Papel dentro del modelo operativo
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.1.2.2 Papel dentro del modelo operativo
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Los Tipos de Orden intervienen principalmente durante el proceso de creación y estructuración de una orden de transporte.
 
@@ -198,8 +218,8 @@ Por ejemplo, una empresa puede gestionar simultáneamente:
 - Operativas hub-and-spoke
 - Redes de distribución urbana
 
-Relación con otros elementos del sistema
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.1.2.3 Relación con otros elementos del sistema
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Los Tipos de Orden interactúan con varios componentes clave del modelo operativo del TMS.
 
@@ -222,11 +242,11 @@ Además, el tipo de orden puede utilizarse como criterio en:
 
 
 
-Tipos de Parada
-~~~~~~~~~~~~~~~
+4.1.3 Tipos de Parada
+~~~~~~~~~~~~~~~~~~~~~
 
-Contexto funcional de Tipos de Parada
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.1.3.1 Contexto funcional de Tipos de Parada
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Los Tipos de Parada constituyen uno de los pilares de la modelización operativa dentro de Guraify TMS.
 
@@ -246,8 +266,11 @@ Una parada puede representar:
 
 La configuración estándar del sistema incluye seis tipos de parada, cada uno con una única marca booleana activa que define su papel dentro del flujo operativo.
 
-.. image:: /_static/images/Config_Tipo_Parada_Lista.png
+.. figure:: /_static/img/4_parametrization/4_1_operational-configuration_05_tipos-parada.png
    :align: center
+   :alt: Lista de Tipos de Parada
+
+   Lista de Tipos de Parada (``tms.stop.type``).
 
 Esta clasificación condiciona:
 
@@ -257,8 +280,8 @@ Esta clasificación condiciona:
 - El comportamiento de la app del conductor
 - La trazabilidad del servicio
 
-Campos principales de Tipos de Parada
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.1.3.2 Campos principales de Tipos de Parada
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -291,8 +314,8 @@ Campos principales de Tipos de Parada
    * - Es parada de optimizador
      - Eventos generados automáticamente.
 
-Comportamiento operativo de Tipos de Parada
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.1.3.3 Comportamiento operativo de Tipos de Parada
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Los tipos de parada intervienen directamente en la construcción de la estructura operativa de una orden.
 
@@ -317,11 +340,11 @@ También se utilizan en:
 
 
 
-Tipos de Destinatario
-~~~~~~~~~~~~~~~~~~~~~
+4.1.4 Tipos de Destinatario
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Contexto funcional de Tipos de Destinatario
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.1.4.1 Contexto funcional de Tipos de Destinatario
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Los Tipos de Destinatario permiten segmentar el perfil del receptor final de la mercancía.
 
@@ -336,11 +359,14 @@ Ejemplos habituales:
 
 La lista de tipos configurados muestra los segmentos disponibles en el sistema, junto con la marca de valor por defecto y el color asociado a cada uno.
 
-.. image:: /_static/images/Config_Tipo_Destinatario_Lista.png
+.. figure:: /_static/img/4_parametrization/4_1_operational-configuration_06_tipos-destinatario.png
    :align: center
+   :alt: Lista de Tipos de Destinatario
 
-Campos principales de Tipos de Destinatario
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   Lista de Tipos de Destinatario (``tms.receiper.type``).
+
+4.1.4.2 Campos principales de Tipos de Destinatario
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -361,8 +387,8 @@ Campos principales de Tipos de Destinatario
    * - Información adicional
      - Notas internas.
 
-Aplicación operativa de Tipos de Destinatario
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.1.4.3 Aplicación operativa de Tipos de Destinatario
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Se vinculan con:
 
@@ -379,21 +405,24 @@ Permiten:
 
 
 
-Tipos de Transportista
-~~~~~~~~~~~~~~~~~~~~~~
+4.1.5 Tipos de Transportista
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Contexto funcional de Tipos de Transportista
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.1.5.1 Contexto funcional de Tipos de Transportista
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Los Tipos de Transportista permiten clasificar los recursos que ejecutan el transporte.
 
 Esta clasificación permite distinguir, por ejemplo, entre transporte con medios propios, colaboradores regulares con contrato estable o proveedores puntuales para picos de demanda.
 
-.. image:: /_static/images/Config_Tipo_Transportista_Lista.png
+.. figure:: /_static/img/4_parametrization/4_1_operational-configuration_07_tipos-transportista.png
    :align: center
+   :alt: Lista de Tipos de Transportista
 
-Campos principales de Tipos de Transportista
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   Lista de Tipos de Transportista (``tms.carrier.type``).
+
+4.1.5.2 Campos principales de Tipos de Transportista
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -416,8 +445,8 @@ Campos principales de Tipos de Transportista
    * - Color
      - Identificador visual.
 
-Aplicación operativa de Tipos de Transportista
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.1.5.3 Aplicación operativa de Tipos de Transportista
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Se utilizan en:
 
@@ -433,11 +462,11 @@ Permiten:
 
 
 
-Tipos de Reembolso
-~~~~~~~~~~~~~~~~~~
+4.1.6 Tipos de Reembolso
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-Contexto funcional de Tipos de Reembolso
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.1.6.1 Contexto funcional de Tipos de Reembolso
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Los Tipos de Reembolso definen modalidades de cobro o devolución asociadas a una expedición.
 
@@ -449,11 +478,14 @@ Ejemplos:
 
 La configuración del sistema contempla las modalidades habituales: cobro en metálico, mediante TPV propio o del cliente, y cheque bancario.
 
-.. image:: /_static/images/Config_Tipo_Reembolso_Lista.png
+.. figure:: /_static/img/4_parametrization/4_1_operational-configuration_08_tipos-reembolso.png
    :align: center
+   :alt: Lista de Tipos de Reembolso
 
-Campos principales de Tipos de Reembolso
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   Lista de Tipos de Reembolso (``tms.cashvalue.type``).
+
+4.1.6.2 Campos principales de Tipos de Reembolso
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :header-rows: 1
@@ -476,8 +508,8 @@ Campos principales de Tipos de Reembolso
    * - Color
      - Identificador visual.
 
-Aplicación operativa de Tipos de Reembolso
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.1.6.3 Aplicación operativa de Tipos de Reembolso
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Permiten:
 

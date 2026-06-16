@@ -38,14 +38,11 @@ Esto garantiza que:
 .. toctree::
    :maxdepth: 2
 
-   5_1_orders
-   5_2_shipments
-   5_3_stops
-   5_4_trips
-   5_5_planning
-   5_6_driver-app
-   5_7_execution-and-tracking
-   5_8_tarification-and-purchase
-   5_9_billing-and-closing
-   5_10_exceptions-and-incidents
-   5_11_kpi-indicators
+   5_1_order-creation
+   5_2_trip-generation
+   5_3_resource-assignment
+   5_4_app-execution
+   5_5_trip-closing
+   5_6_settlement
+   5_7_invoicing
+   5_8_kpi-indicators

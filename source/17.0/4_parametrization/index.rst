@@ -1,5 +1,5 @@
-4. Parametrización del sistema 
-==============================
+4 Parametrización del Sistema
+=============================
 
 Este capítulo describe cómo se configura Guraify TMS para adaptarse a la operativa de una empresa de transporte. A diferencia de los capítulos anteriores —donde se ha explicado el modelo conceptual y la arquitectura funcional— aquí se documentan los elementos de parametrización que permiten que el sistema reproduzca el comportamiento real del negocio.
 

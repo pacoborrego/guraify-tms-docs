@@ -1,5 +1,12 @@
-Ejecución desde App
+5.4 Ejecución desde App
 -----------------------
+
+.. admonition:: Dónde ocurre
+   :class: tip
+
+   Este paso se ejecuta en la **app móvil del conductor**, no en el backend de Odoo. Las
+   pantallas y el detalle de uso se documentan en el :doc:`capítulo 10, Manual App
+   Conductor </17.0/10_manual_app/index>`.
 
 La aplicación móvil del conductor consume los viajes asignados a su partner y que se encuentran en estado operativo procesado.
 
@@ -39,30 +46,33 @@ Cada evento queda registrado con información completa de auditoría:
 
 
 
-Eventos operativos principales
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+5.4.1 Eventos operativos principales
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-+-------------------+--------------------------------------------------------------+
-| Evento            | Descripción                                                  |
-+===================+==============================================================+
-| standby           | Estado inicial previo al desplazamiento.                     |
-+-------------------+--------------------------------------------------------------+
-| on_way            | El conductor está en camino hacia la operación.              |
-+-------------------+--------------------------------------------------------------+
-| running           | Operación en curso.                                          |
-+-------------------+--------------------------------------------------------------+
-| lo_ok             | Carga realizada correctamente.                               |
-+-------------------+--------------------------------------------------------------+
-| lo_ok_reserve     | Carga realizada con reservas.                                |
-+-------------------+--------------------------------------------------------------+
-| lo_failed         | Carga no realizada.                                          |
-+-------------------+--------------------------------------------------------------+
-| ok                | Entrega o recogida completada correctamente.                 |
-+-------------------+--------------------------------------------------------------+
-| ok_reserve        | Operación completada con reservas.                           |
-+-------------------+--------------------------------------------------------------+
-| failed            | Operación fallida.                                           |
-+-------------------+--------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Evento
+     - Descripción
+   * - standby
+     - Estado inicial previo al desplazamiento.
+   * - on_way
+     - El conductor está en camino hacia la operación.
+   * - running
+     - Operación en curso.
+   * - lo_ok
+     - Carga realizada correctamente.
+   * - lo_ok_reserve
+     - Carga realizada con reservas.
+   * - lo_failed
+     - Carga no realizada.
+   * - ok
+     - Entrega o recogida completada correctamente.
+   * - ok_reserve
+     - Operación completada con reservas.
+   * - failed
+     - Operación fallida.
 
 La lógica funcional de la app distingue el comportamiento según el tipo de parada.
 

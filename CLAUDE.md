@@ -232,6 +232,10 @@ sphinx-intl update -p build/gettext -l es -l en
 - Tono del manual técnico: descriptivo, orientado a consultor/integrador, sin instrucciones de
   usuario final (eso vive en el Manual App Conductor, cap. 10). Sin bloques de código salvo
   campos generativos (p. ej. `Parcel_Array`).
+- **Nada de notas de cambio de versión en el contenido** (`.. versionchanged::`,
+  `.. versionadded::`, "antes/ahora", números de release). El contenido describe el
+  comportamiento **actual**; el historial de cambios vive solo en `CHANGELOG.md`.
+  (Decisión del propietario 2026-06-09.)
 
 ## Qué se documenta aquí (vs. dónde más)
 

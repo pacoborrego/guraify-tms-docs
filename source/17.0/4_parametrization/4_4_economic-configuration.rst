@@ -1,6 +1,13 @@
-Configuración económica
------------------------
+4.4 Configuración económica
+---------------------------
 
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   TMS › Configuración › Tarifas: Zonas Tarifarias (``tms.pricelist.zone``), Tarifas Base
+   (``tms.pricelist.base``), Reglas de Tarifa (``tms.pricelist.rule``), Tarifas
+   (``tms.pricelist``, con versiones ``tms.pricelist.version``) y los Productos asociados
+   (``product.product``).
 
 La Configuración Económica agrupa los maestros que transforman actividad logística en líneas de venta y compra.
 
@@ -10,8 +17,14 @@ El motor de tarificación combina estos datos con el contexto operativo: cliente
 
 
 
-Zonas Tarifarias
-~~~~~~~~~~~~~~~~
+4.4.1 Zonas Tarifarias
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. CAPTURA: 4_4_01 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_4_economic-configuration_01_zonas-tarifarias.png
+      :alt: Configuración de una Zona Tarifaria
+
+      Configuración de una Zona Tarifaria (``tms.pricelist.zone``).
 
 Las Zonas Tarifarias agrupan áreas geográficas utilizadas para calcular precios.
 
@@ -19,28 +32,31 @@ Son independientes de los Planes de Transporte: un plan organiza la operación, 
 
 **Campos principales**
 
-+------------------------+------------------------------------------------------------------+
-| Campo                  | Descripción                                                      |
-+========================+==================================================================+
-| Nombre y descripción   | Identifican la finalidad económica de la zona.                   |
-+------------------------+------------------------------------------------------------------+
-| Áreas                  | Áreas Geográficas de tipo Zona Tarifaria.                        |
-+------------------------+------------------------------------------------------------------+
-| Agencia                | Agencia de referencia para visualización y contexto territorial. |
-+------------------------+------------------------------------------------------------------+
-| Por defecto            | Zona principal de la compañía.                                   |
-+------------------------+------------------------------------------------------------------+
-| Activo                 | Permite ocultar zonas obsoletas sin eliminarlas.                 |
-+------------------------+------------------------------------------------------------------+
-| Secuencia y color      | Ordenación y clasificación visual.                               |
-+------------------------+------------------------------------------------------------------+
-| Compañía               | Empresa propietaria de la zona.                                  |
-+------------------------+------------------------------------------------------------------+
-| Vista de mapa          | Previsualización cartográfica.                                   |
-+------------------------+------------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Zonas Tarifarias
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Nombre y descripción
+     - Identifican la finalidad económica de la zona.
+   * - Áreas
+     - Áreas Geográficas de tipo Zona Tarifaria.
+   * - Agencia
+     - Agencia de referencia para visualización y contexto territorial.
+   * - Por defecto
+     - Zona principal de la compañía.
+   * - Activo
+     - Permite ocultar zonas obsoletas sin eliminarlas.
+   * - Secuencia y color
+     - Ordenación y clasificación visual.
+   * - Compañía
+     - Empresa propietaria de la zona.
+   * - Vista de mapa
+     - Previsualización cartográfica.
+
+4.4.1.1 Uso dentro del sistema en Zonas Tarifarias
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Cada Tarifa referencia una Zona Tarifaria.
 
@@ -67,8 +83,8 @@ Según el modo de la tarifa, puede usar:
 
 
 
-Tarifas Base
-~~~~~~~~~~~~
+4.4.2 Tarifas Base
+~~~~~~~~~~~~~~~~~~
 
 Las Tarifas Base definen la magnitud sobre la que se calcula una regla económica:
 
@@ -86,25 +102,27 @@ Funcionan como puente entre los datos logísticos medidos y los rangos de precio
 
 **Campos principales**
 
-+------------------------+------------------------------------------------------------------+
-| Campo                  | Descripción                                                      |
-+========================+==================================================================+
-| Nombre                 | Identificador de la base de cálculo.                             |
-+------------------------+------------------------------------------------------------------+
-| Código                 | Código técnico usado por UI y lógica interna.                    |
-+------------------------+------------------------------------------------------------------+
-| Tipo de cálculo        | Magnitud usada como factor económico.                            |
-+------------------------+------------------------------------------------------------------+
-| Descripción            | Explicación funcional de la base.                                |
-+------------------------+------------------------------------------------------------------+
-| Rangos                 | Plantillas de escalado reutilizables.                            |
-+------------------------+------------------------------------------------------------------+
-| Secuencia, compañía    | Ordenación y segmentación multiempresa.                          |
-| y color                |                                                                  |
-+------------------------+------------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Tarifas Base
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Nombre
+     - Identificador de la base de cálculo.
+   * - Código
+     - Código técnico usado por UI y lógica interna.
+   * - Tipo de cálculo
+     - Magnitud usada como factor económico.
+   * - Descripción
+     - Explicación funcional de la base.
+   * - Rangos
+     - Plantillas de escalado reutilizables.
+   * - Secuencia, compañía y color
+     - Ordenación, segmentación multiempresa y clasificación visual.
+
+4.4.2.1 Uso dentro del sistema en Tarifas Base
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Durante la tarificación, la base determina qué factor se utiliza para calcular el precio.
 
@@ -135,8 +153,8 @@ Los rangos permiten generar automáticamente escalados de tarifa mediante asiste
 
 
 
-Reglas de Tarifa
-~~~~~~~~~~~~~~~~~
+4.4.3 Reglas de Tarifa
+~~~~~~~~~~~~~~~~~~~~~~
 
 En este apartado, Reglas de Tarifa hace referencia al conjunto formado por el ítem de tarifa y sus detalles.
 
@@ -160,34 +178,37 @@ con condiciones distintas según el contexto operativo.
 
 **Campos principales**
 
-+---------------------------+------------------------------------------------------------------+
-| Campo                     | Descripción                                                      |
-+===========================+==================================================================+
-| Tarifa y versión          | Vinculan la regla con una tarifa y su periodo de vigencia.       |
-+---------------------------+------------------------------------------------------------------+
-| Base de tarifa            | Magnitud utilizada como factor económico.                        |
-+---------------------------+------------------------------------------------------------------+
-| Aplicar en                | Ámbito operativo de aplicación.                                  |
-+---------------------------+------------------------------------------------------------------+
-| Producto                  | Producto TMS utilizado para generar líneas económicas.           |
-+---------------------------+------------------------------------------------------------------+
-| Filtros operativos        | Condiciones funcionales de aplicación.                           |
-+---------------------------+------------------------------------------------------------------+
-| Conversión volumétrica    | Permite aplicar peso volumétrico.                                |
-+---------------------------+------------------------------------------------------------------+
-| Zonas del detalle         | Áreas tarifarias o zonas origen/destino.                         |
-+---------------------------+------------------------------------------------------------------+
-| Rango desde/hasta         | Intervalo del factor aplicable.                                  |
-+---------------------------+------------------------------------------------------------------+
-| Precio                    | Precio unitario, mínimo, máximo, forfait o porcentaje.           |
-+---------------------------+------------------------------------------------------------------+
-| Aplicación del precio     | Base económica concreta utilizada.                               |
-+---------------------------+------------------------------------------------------------------+
-| Partners y flota          | Restricciones opcionales por partner o vehículo.                 |
-+---------------------------+------------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Reglas de Tarifa
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Tarifa y versión
+     - Vinculan la regla con una tarifa y su periodo de vigencia.
+   * - Base de tarifa
+     - Magnitud utilizada como factor económico.
+   * - Aplicar en
+     - Ámbito operativo de aplicación.
+   * - Producto
+     - Producto TMS utilizado para generar líneas económicas.
+   * - Filtros operativos
+     - Condiciones funcionales de aplicación.
+   * - Conversión volumétrica
+     - Permite aplicar peso volumétrico.
+   * - Zonas del detalle
+     - Áreas tarifarias o zonas origen/destino.
+   * - Rango desde/hasta
+     - Intervalo del factor aplicable.
+   * - Precio
+     - Precio unitario, mínimo, máximo, forfait o porcentaje.
+   * - Aplicación del precio
+     - Base económica concreta utilizada.
+   * - Partners y flota
+     - Restricciones opcionales por partner o vehículo.
+
+4.4.3.1 Uso dentro del sistema en Reglas de Tarifa
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 El motor de tarificación selecciona primero los ítems compatibles con el ámbito que se está calculando.
 
@@ -249,8 +270,14 @@ Esto permite identificar si el fallo proviene de:
 
 
 
- Tarifas
-~~~~~~~~~
+4.4.4 Tarifas
+~~~~~~~~~~~~~
+
+.. CAPTURA: 4_4_02 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_4_economic-configuration_02_tarifa.png
+      :alt: Configuración de una Tarifa
+
+      Configuración de una Tarifa (``tms.pricelist``) y sus versiones.
 
 La Tarifa es el contenedor económico principal del sistema.
 
@@ -266,30 +293,33 @@ Su diseño permite mantener histórico de precios sin perder trazabilidad sobre 
 
 **Campos principales**
 
-+---------------------------+------------------------------------------------------------------+
-| Campo                     | Descripción                                                      |
-+===========================+==================================================================+
-| Nombre y descripción      | Identifican la tarifa y su alcance funcional.                    |
-+---------------------------+------------------------------------------------------------------+
-| Estado                    | Borrador, activa, expirada o archivada.                          |
-+---------------------------+------------------------------------------------------------------+
-| Moneda y compañía         | Contexto económico y multiempresa.                               |
-+---------------------------+------------------------------------------------------------------+
-| Partners asociados        | Clientes o transportistas vinculados.                            |
-+---------------------------+------------------------------------------------------------------+
-| Zona tarifaria            | Territorio económico de referencia.                              |
-+---------------------------+------------------------------------------------------------------+
-| Modo de referencia zona   | Criterio territorial de cálculo.                                 |
-+---------------------------+------------------------------------------------------------------+
-| Versiones                 | Periodos de vigencia con reglas propias.                         |
-+---------------------------+------------------------------------------------------------------+
-| Versión actual            | Versión activa de referencia.                                    |
-+---------------------------+------------------------------------------------------------------+
-| Fechas inicio/fin         | Intervalo calculado a partir de versiones.                       |
-+---------------------------+------------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Tarifas
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Nombre y descripción
+     - Identifican la tarifa y su alcance funcional.
+   * - Estado
+     - Borrador, activa, expirada o archivada.
+   * - Moneda y compañía
+     - Contexto económico y multiempresa.
+   * - Partners asociados
+     - Clientes o transportistas vinculados.
+   * - Zona tarifaria
+     - Territorio económico de referencia.
+   * - Modo de referencia zona
+     - Criterio territorial de cálculo.
+   * - Versiones
+     - Periodos de vigencia con reglas propias.
+   * - Versión actual
+     - Versión activa de referencia.
+   * - Fechas inicio/fin
+     - Intervalo calculado a partir de versiones.
+
+4.4.4.1 Uso dentro del sistema en Tarifas
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Las tarifas pueden asignarse a:
 
@@ -333,8 +363,8 @@ El estado y el campo activo se sincronizan con las fechas.
 Las tarifas expiradas pueden ocultarse sin perder histórico operativo.
 
 
-Productos asociados
-~~~~~~~~~~~~~~~~~~~~
+4.4.5 Productos asociados
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Los Productos asociados conectan la lógica TMS con la contabilidad estándar de Odoo.
 
@@ -346,26 +376,29 @@ Solo los productos marcados como producto TMS pueden utilizarse dentro de:
 
 **Campos principales**
 
-+------------------------------+--------------------------------------------------------------+
-| Campo                        | Descripción                                                  |
-+==============================+==============================================================+
-| Producto TMS                 | Marca de habilitación para uso en TMS.                       |
-+------------------------------+--------------------------------------------------------------+
-| Nombre y referencia interna  | Identificación comercial y contable.                         |
-+------------------------------+--------------------------------------------------------------+
-| Unidad de medida             | Unidad usada en líneas económicas.                           |
-+------------------------------+--------------------------------------------------------------+
-| Impuestos y cuentas          | Configuración fiscal y contable estándar Odoo.               |
-+------------------------------+--------------------------------------------------------------+
-| Relación con tipos servicio  | Restricciones funcionales opcionales.                        |
-+------------------------------+--------------------------------------------------------------+
-| Uso en reglas                | Producto utilizado en líneas generadas por tarifa.           |
-+------------------------------+--------------------------------------------------------------+
-| Producto del proyecto        | Producto por defecto del proyecto.                           |
-+------------------------------+--------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Productos asociados
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Producto TMS
+     - Marca de habilitación para uso en TMS.
+   * - Nombre y referencia interna
+     - Identificación comercial y contable.
+   * - Unidad de medida
+     - Unidad usada en líneas económicas.
+   * - Impuestos y cuentas
+     - Configuración fiscal y contable estándar Odoo.
+   * - Relación con tipos servicio
+     - Restricciones funcionales opcionales.
+   * - Uso en reglas
+     - Producto utilizado en líneas generadas por tarifa.
+   * - Producto del proyecto
+     - Producto por defecto del proyecto.
+
+4.4.5.1 Uso dentro del sistema en Productos asociados
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Cuando el motor de tarifa crea líneas económicas, convierte el producto plantilla TMS en su variante de producto Odoo y lo asigna a la línea resultante.
 

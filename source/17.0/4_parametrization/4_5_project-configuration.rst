@@ -1,6 +1,11 @@
-Configuración de proyectos
---------------------------
+4.5 Configuración de proyectos
+------------------------------
 
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   TMS › Configuración › Proyectos (el Proyecto, ``project.project``, extendido por el
+   TMS).
 
 El Proyecto es la unidad central de parametrización TMS.
 
@@ -25,29 +30,38 @@ El proyecto es especialmente útil porque permite precargar configuración duran
 
 
 
-Administración
-~~~~~~~~~~~~~~~~
+4.5.1 Administración
+~~~~~~~~~~~~~~~~~~~~
+
+.. CAPTURA: 4_5_01 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_5_project-configuration_01_proyecto.png
+      :alt: Formulario de configuración de un Proyecto
+
+      Formulario de configuración de un Proyecto (``project.project``).
 
 El bloque Administración define el alcance económico y estructural del proyecto.
 
 **Campos principales**
 
-+-----------------------------------+-------------------------------------------------------------+
-| Campo                             | Descripción                                                 |
-+===================================+=============================================================+
-| Aplicar en                        | Define si el proyecto opera sobre órdenes o viajes.         |
-+-----------------------------------+-------------------------------------------------------------+
-| Tarifa                            | Tarifa principal del proyecto.                              |
-+-----------------------------------+-------------------------------------------------------------+
-| Modo de división                  | Criterio de reparto económico u operativo.                  |
-+-----------------------------------+-------------------------------------------------------------+
-| Cuenta analítica                  | Cuenta Odoo para seguimiento financiero.                    |
-+-----------------------------------+-------------------------------------------------------------+
-| Política fecha administrativa     | Regla de selección temporal para tarificación.              |
-+-----------------------------------+-------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Administración del Proyecto
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Aplicar en
+     - Define si el proyecto opera sobre órdenes o viajes.
+   * - Tarifa
+     - Tarifa principal del proyecto.
+   * - Modo de división
+     - Criterio de reparto económico u operativo.
+   * - Cuenta analítica
+     - Cuenta Odoo para seguimiento financiero.
+   * - Política fecha administrativa
+     - Regla de selección temporal para tarificación.
+
+4.5.1.1 Uso dentro del sistema en Administración del Proyecto
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 La tarifa seleccionada alimenta la configuración económica disponible del proyecto.
 
@@ -70,42 +84,42 @@ Puede basarse en:
 - Fecha de descarga (descarga más tardía de los tramos)
 - Fecha de cierre operativo (fecha de la parada activa)
 
-.. versionchanged:: 260603_V05
-   La fecha administrativa se expone en un campo propio y estable de la Orden
-   (``order_date`` en ``sale.order``), calculado según esta política
-   (``tms_admin_date_policy`` del proyecto). Ya **no** copia ``date_order``,
-   que Odoo puede modificar al confirmar la venta. Si la política seleccionada
-   aún no tiene fecha disponible, el sistema recurre a ``date_order`` y, en
-   último término, a la fecha de creación. El valor por defecto de la política
-   es *cierre operativo*.
+La fecha administrativa se expone en un campo propio y estable de la Orden
+(``order_date`` en ``sale.order``), calculado según esta política
+(``tms_admin_date_policy`` del proyecto). Si la política seleccionada no tiene
+fecha disponible, el sistema recurre a ``date_order`` y, en último término, a la
+fecha de creación. El valor por defecto de la política es *cierre operativo*.
 
 El modo de división condiciona cómo se reparten importes o magnitudes cuando la operación se distribuye entre tramos o viajes.
 
 
 
-Entrada Hub / Recogida
-~~~~~~~~~~~~~~~~~~~~~~~~~
+4.5.2 Entrada Hub / Recogida
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Define cómo entra la mercancía en la red logística.
 
 **Campos principales**
 
-+-----------------------------------+-------------------------------------------------------------+
-| Campo                             | Descripción                                                 |
-+===================================+=============================================================+
-| Agencia                           | Centro operativo responsable.                               |
-+-----------------------------------+-------------------------------------------------------------+
-| Hub                               | Ubicación principal de consolidación.                       |
-+-----------------------------------+-------------------------------------------------------------+
-| Lugar de recogida                 | Punto permitido de recogida.                                |
-+-----------------------------------+-------------------------------------------------------------+
-| Horario de recogida               | Ventana operativa por defecto.                              |
-+-----------------------------------+-------------------------------------------------------------+
-| Servicio home collection          | Servicio específico para recogidas domiciliarias.           |
-+-----------------------------------+-------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Entrada Hub / Recogida
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Agencia
+     - Centro operativo responsable.
+   * - Hub
+     - Ubicación principal de consolidación.
+   * - Lugar de recogida
+     - Punto permitido de recogida.
+   * - Horario de recogida
+     - Ventana operativa por defecto.
+   * - Servicio home collection
+     - Servicio específico para recogidas domiciliarias.
+
+4.5.2.1 Uso dentro del sistema en Entrada Hub / Recogida
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Estos campos se utilizan durante:
 
@@ -123,8 +137,8 @@ Los horarios se copian como defaults cuando no existe un dato más específico.
 El servicio de home collection permite distinguir económicamente la recogida inicial respecto del resto de la operativa.
 
 
-Activación
-~~~~~~~~~~~
+4.5.3 Activación
+~~~~~~~~~~~~~~~~
 
 Activación define qué catálogos están disponibles dentro del proyecto.
 
@@ -132,22 +146,25 @@ No crea operaciones por sí misma.
 
 **Campos principales**
 
-+-----------------------------------+-------------------------------------------------------------+
-| Campo                             | Descripción                                                 |
-+===================================+=============================================================+
-| Tipos de expedición               | Modalidades permitidas.                                     |
-+-----------------------------------+-------------------------------------------------------------+
-| Tipos de servicio                 | Servicios operativos habilitados.                           |
-+-----------------------------------+-------------------------------------------------------------+
-| Tipos de transportista            | Categorías de carrier disponibles.                          |
-+-----------------------------------+-------------------------------------------------------------+
-| Tipos de destinatario             | Segmentos operativos permitidos.                            |
-+-----------------------------------+-------------------------------------------------------------+
-| Categorías de vehículo            | Recursos compatibles.                                       |
-+-----------------------------------+-------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Activación del Proyecto
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Tipos de expedición
+     - Modalidades permitidas.
+   * - Tipos de servicio
+     - Servicios operativos habilitados.
+   * - Tipos de transportista
+     - Categorías de carrier disponibles.
+   * - Tipos de destinatario
+     - Segmentos operativos permitidos.
+   * - Categorías de vehículo
+     - Recursos compatibles.
+
+4.5.3.1 Uso dentro del sistema en Activación del Proyecto
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Cuando una tarifa contiene reglas parametrizadas, el proyecto puede precargar automáticamente estos catálogos.
 
@@ -170,31 +187,34 @@ Estos catálogos actúan como:
 
 
 
-Asignación
-~~~~~~~~~~~~
+4.5.4 Asignación
+~~~~~~~~~~~~~~~~
 
 Asignación contiene los valores por defecto necesarios para transformar una orden en estructura logística ejecutable.
 
 **Campos principales**
 
-+-----------------------------------+-------------------------------------------------------------+
-| Campo                             | Descripción                                                 |
-+===================================+=============================================================+
-| Planning                          | Segmentación operativa principal.                           |
-+-----------------------------------+-------------------------------------------------------------+
-| Plan de Transporte                | Red territorial asociada.                                   |
-+-----------------------------------+-------------------------------------------------------------+
-| Tiempo de Servicio                | Esquema de cálculo de duración.                             |
-+-----------------------------------+-------------------------------------------------------------+
-| Producto                          | Producto TMS por defecto.                                   |
-+-----------------------------------+-------------------------------------------------------------+
-| Equipamientos vehículo            | Requisitos físicos o técnicos.                              |
-+-----------------------------------+-------------------------------------------------------------+
-| Categorías de carga               | Naturaleza logística permitida.                             |
-+-----------------------------------+-------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Asignación del Proyecto
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Planning
+     - Segmentación operativa principal.
+   * - Plan de Transporte
+     - Red territorial asociada.
+   * - Tiempo de Servicio
+     - Esquema de cálculo de duración.
+   * - Producto
+     - Producto TMS por defecto.
+   * - Equipamientos vehículo
+     - Requisitos físicos o técnicos.
+   * - Categorías de carga
+     - Naturaleza logística permitida.
+
+4.5.4.1 Uso dentro del sistema en Asignación del Proyecto
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 El Planning se copia automáticamente a:
 
@@ -219,8 +239,8 @@ Todo ello constituye la base operativa del motor de asignación y optimización.
 
 
 
-Configuración App
-~~~~~~~~~~~~~~~~~~
+4.5.5 Configuración App
+~~~~~~~~~~~~~~~~~~~~~~~
 
 La Configuración App define el comportamiento de la aplicación móvil del conductor para las operaciones del proyecto.
 
@@ -233,22 +253,25 @@ Permite activar o desactivar funcionalidades relacionadas con:
 
 **Campos principales**
 
-+-----------------------------+-------------------------------------------------------------+
-| Campo                       | Descripción                                                 |
-+=============================+=============================================================+
-| Perfil de la Aplicación     | Perfil funcional general de la app.                         |
-+-----------------------------+-------------------------------------------------------------+
-| POD Digital                 | Firma digital en pantalla.                                  |
-+-----------------------------+-------------------------------------------------------------+
-| POD Físico                  | Escaneo obligatorio de documentación física.                |
-+-----------------------------+-------------------------------------------------------------+
-| Escaneo Masivo              | Escaneo IA mediante vídeo (Scandit).                        |
-+-----------------------------+-------------------------------------------------------------+
-| Escaneo Spark               | Identificación visual avanzada de bultos.                   |
-+-----------------------------+-------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Configuración App
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Perfil de la Aplicación
+     - Perfil funcional general de la app.
+   * - POD Digital
+     - Firma digital en pantalla.
+   * - POD Físico
+     - Escaneo obligatorio de documentación física.
+   * - Escaneo Masivo
+     - Escaneo IA mediante vídeo (Scandit).
+   * - Escaneo Spark
+     - Identificación visual avanzada de bultos.
+
+4.5.5.1 Uso dentro del sistema en Configuración App
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Estos parámetros condicionan directamente la experiencia del conductor.
 
@@ -276,34 +299,37 @@ mostrando feedback en tiempo real.
    física intensiva.
 
 
-Otros Parámetros
-~~~~~~~~~~~~~~~~~
+4.5.6 Otros Parámetros
+~~~~~~~~~~~~~~~~~~~~~~
 
 
 Otros Parámetros agrupa automatismos que ajustan el comportamiento del proyecto en creación, validación, planificación, stock e integración.
 
 **Campos principales**
 
-+------------------------------------------+--------------------------------------------------------------+
-| Campo                                    | Descripción                                                  |
-+==========================================+==============================================================+
-| Horarios informados                      | Indica si las órdenes traen sus propias ventanas horarias.   |
-+------------------------------------------+--------------------------------------------------------------+
-| Programación predeterminada              | Horario por defecto cuando no hay horarios informados.       |
-+------------------------------------------+--------------------------------------------------------------+
-| Aplicar fecha común                      | Solicita fecha de servicio común al cerrar manifiestos.      |
-+------------------------------------------+--------------------------------------------------------------+
-| Auto secuenciar viaje                    | Reordena paradas automáticamente.                            |
-+------------------------------------------+--------------------------------------------------------------+
-| Generar viaje en validación              | Crea viajes automáticamente al validar órdenes.              |
-+------------------------------------------+--------------------------------------------------------------+
-| Crear transferencia a hub                | Genera movimientos automáticos entre hubs.                   |
-+------------------------------------------+--------------------------------------------------------------+
-| Autoasignar zona operativa/tarifaria     | Permite resolución por proximidad.                           |
-+------------------------------------------+--------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Otros Parámetros
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Horarios informados
+     - Indica si las órdenes traen sus propias ventanas horarias.
+   * - Programación predeterminada
+     - Horario por defecto cuando no hay horarios informados.
+   * - Aplicar fecha común
+     - Solicita fecha de servicio común al cerrar manifiestos.
+   * - Auto secuenciar viaje
+     - Reordena paradas automáticamente.
+   * - Generar viaje en validación
+     - Crea viajes automáticamente al validar órdenes.
+   * - Crear transferencia a hub
+     - Genera movimientos automáticos entre hubs.
+   * - Autoasignar zona operativa/tarifaria
+     - Permite resolución por proximidad.
+
+4.5.6.1 Uso dentro del sistema en Otros Parámetros
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Estos parámetros permiten adaptar el mismo motor TMS a operativas:
 
@@ -326,8 +352,8 @@ Los parámetros API convierten el proyecto en unidad de integración y seguridad
 
 
 
-Líneas por Defecto
-~~~~~~~~~~~~~~~~~~~
+4.5.7 Líneas por Defecto
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 La pestaña Líneas por Defecto permite definir plantillas reutilizables de mercancía para un proyecto.
 
@@ -339,26 +365,29 @@ Representan plantillas logísticas reutilizables.
 
 **Campos principales**
 
-+------------------------------+--------------------------------------------------------------+
-| Campo                        | Descripción                                                  |
-+==============================+==============================================================+
-| Líneas por defecto           | Conjunto de plantillas logísticas del proyecto.              |
-+------------------------------+--------------------------------------------------------------+
-| Nueva línea                  | Acción de creación rápida de plantilla.                      |
-+------------------------------+--------------------------------------------------------------+
-| Regla de Tarifa              | Define comportamiento operativo de la línea.                 |
-+------------------------------+--------------------------------------------------------------+
-| Tipo de Bulto                | Clasificación logística de mercancía.                        |
-+------------------------------+--------------------------------------------------------------+
-| Cantidades                   | Packs, pallets, quantity y meters por defecto.               |
-+------------------------------+--------------------------------------------------------------+
-| Peso, dimensiones y volumen  | Datos físicos de la línea.                                   |
-+------------------------------+--------------------------------------------------------------+
-| Descripciones                | Textos operativos para manifiesto o etiquetas.               |
-+------------------------------+--------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Líneas por Defecto
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Líneas por defecto
+     - Conjunto de plantillas logísticas del proyecto.
+   * - Nueva línea
+     - Acción de creación rápida de plantilla.
+   * - Regla de Tarifa
+     - Define comportamiento operativo de la línea.
+   * - Tipo de Bulto
+     - Clasificación logística de mercancía.
+   * - Cantidades
+     - Packs, pallets, quantity y meters por defecto.
+   * - Peso, dimensiones y volumen
+     - Datos físicos de la línea.
+   * - Descripciones
+     - Textos operativos para manifiesto o etiquetas.
+
+4.5.7.1 Uso dentro del sistema en Líneas por Defecto
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 En creación manual de tramos, el sistema puede copiar estas líneas cuando el flujo lo permita.
 
@@ -381,8 +410,8 @@ Estas plantillas son especialmente útiles en proyectos homogéneos con mercanc�
 
 
 
-Inventario
-~~~~~~~~~~~
+4.5.8 Inventario
+~~~~~~~~~~~~~~~~
 
 La pestaña Inventario conecta TMS con Odoo Inventory.
 
@@ -390,24 +419,27 @@ Su objetivo es decidir si las expediciones del proyecto deben generar movimiento
 
 **Campos principales**
 
-+------------------------------+--------------------------------------------------------------+
-| Campo                        | Descripción                                                  |
-+==============================+==============================================================+
-| Crear Stock Picking          | Activa creación de pickings.                                 |
-+------------------------------+--------------------------------------------------------------+
-| Tipo de Operación            | Tipo de picking Odoo utilizado.                              |
-+------------------------------+--------------------------------------------------------------+
-| Ubicación Origen             | Punto de salida del inventario.                              |
-+------------------------------+--------------------------------------------------------------+
-| Ubicación Destino            | Punto destino del inventario.                                |
-+------------------------------+--------------------------------------------------------------+
-| Grupo aprovisionamiento      | Relación técnica con pickings generados.                     |
-+------------------------------+--------------------------------------------------------------+
-| Mapeo de producto            | Conversión entre líneas TMS y productos físicos Odoo.        |
-+------------------------------+--------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Inventario
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - Crear Stock Picking
+     - Activa creación de pickings.
+   * - Tipo de Operación
+     - Tipo de picking Odoo utilizado.
+   * - Ubicación Origen
+     - Punto de salida del inventario.
+   * - Ubicación Destino
+     - Punto destino del inventario.
+   * - Grupo aprovisionamiento
+     - Relación técnica con pickings generados.
+   * - Mapeo de producto
+     - Conversión entre líneas TMS y productos físicos Odoo.
+
+4.5.8.1 Uso dentro del sistema en Inventario
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Cuando Crear Stock Picking está activo, validar una orden o manifiesto puede generar automáticamente un picking.
@@ -432,8 +464,8 @@ Este bloque debe utilizarse únicamente cuando la operativa impacta inventario r
 
 
 
-Bandeja de Entrada API
-~~~~~~~~~~~~~~~~~~~~~~~~
+4.5.9 Bandeja de Entrada API
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 La Bandeja de Entrada API configura el proyecto como punto de integración externa.
 
@@ -450,28 +482,31 @@ Es el perímetro de integración del proyecto.
 
 **Campos principales**
 
-+------------------------------+--------------------------------------------------------------+
-| Campo                        | Descripción                                                  |
-+==============================+==============================================================+
-| API Token                    | Token único de autenticación.                                |
-+------------------------------+--------------------------------------------------------------+
-| API Inbox                    | Bandeja de recepción del proyecto.                           |
-+------------------------------+--------------------------------------------------------------+
-| Permiso Post Import Data     | Autoriza importaciones externas.                             |
-+------------------------------+--------------------------------------------------------------+
-| Permiso Get Tracking         | Autoriza consultas de tracking.                              |
-+------------------------------+--------------------------------------------------------------+
-| Permiso Get Attachment       | Autoriza acceso a adjuntos.                                  |
-+------------------------------+--------------------------------------------------------------+
-| Límite por minuto            | Protección frente a exceso de llamadas.                      |
-+------------------------------+--------------------------------------------------------------+
-| Límite por día               | Límite operativo diario.                                     |
-+------------------------------+--------------------------------------------------------------+
-| Endpoints permitidos         | Restricciones técnicas de integración.                       |
-+------------------------------+--------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Uso dentro del sistema en Bandeja de Entrada API
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   * - Campo
+     - Descripción
+   * - API Token
+     - Token único de autenticación.
+   * - API Inbox
+     - Bandeja de recepción del proyecto.
+   * - Permiso Post Import Data
+     - Autoriza importaciones externas.
+   * - Permiso Get Tracking
+     - Autoriza consultas de tracking.
+   * - Permiso Get Attachment
+     - Autoriza acceso a adjuntos.
+   * - Límite por minuto
+     - Protección frente a exceso de llamadas.
+   * - Límite por día
+     - Límite operativo diario.
+   * - Endpoints permitidos
+     - Restricciones técnicas de integración.
+
+4.5.9.1 Uso dentro del sistema en Bandeja de Entrada API
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Los sistemas externos se autentican utilizando el token del proyecto.
 
@@ -516,8 +551,14 @@ Esto permite:
 
 
 
-Vista Kanban de Proyectos
-~~~~~~~~~~~~~~~~~~~~~~~~~
+4.5.10 Vista Kanban de Proyectos
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. CAPTURA: 4_5_02 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_5_project-configuration_02_kanban-proyectos.png
+      :alt: Vista Kanban de Proyectos
+
+      Vista Kanban de Proyectos con sus KPIs e indicadores de configuración.
 
 La vista Kanban del menú ``TMS → Configuración → Proyectos`` ofrece una lectura
 operativa de cada proyecto en una sola tarjeta.
@@ -534,34 +575,40 @@ Las tarjetas se agrupan por defecto en dos columnas según ``Aplicar en``:
 El color de la tarjeta respeta el color del proyecto.
 
 
-Estructura de la tarjeta
-^^^^^^^^^^^^^^^^^^^^^^^^
+4.5.10.1 Estructura de la tarjeta
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Cada tarjeta se divide en cuatro zonas leídas de arriba a abajo.
 
 **1. Cabecera**
 
-+-----------------------------------+-------------------------------------------------------------+
-| Elemento                          | Significado                                                 |
-+===================================+=============================================================+
-| Título                            | Nombre del proyecto.                                        |
-+-----------------------------------+-------------------------------------------------------------+
-| Badge de tipo                     | "Orders" (azul) o "Trips" (naranja) según Aplicar en.       |
-+-----------------------------------+-------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Elemento
+     - Significado
+   * - Título
+     - Nombre del proyecto.
+   * - Badge de tipo
+     - "Orders" (azul) o "Trips" (naranja) según Aplicar en.
 
 **2. Identidad del contrato**
 
-+-----------------------------------+-------------------------------------------------------------+
-| Elemento                          | Significado                                                 |
-+===================================+=============================================================+
-| Cliente                           | Solo en proyectos Orders. Cliente del contrato.             |
-+-----------------------------------+-------------------------------------------------------------+
-| Transportista                     | Solo en proyectos Trips. Carrier del contrato.              |
-+-----------------------------------+-------------------------------------------------------------+
-| Agencia                           | Visible si está informada en cualquier tipo de proyecto.    |
-+-----------------------------------+-------------------------------------------------------------+
-| Tarifa y Planning                 | Línea pequeña en gris con los dos valores configurados.     |
-+-----------------------------------+-------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Elemento
+     - Significado
+   * - Cliente
+     - Solo en proyectos Orders. Cliente del contrato.
+   * - Transportista
+     - Solo en proyectos Trips. Carrier del contrato.
+   * - Agencia
+     - Visible si está informada en cualquier tipo de proyecto.
+   * - Tarifa y Planning
+     - Línea pequeña en gris con los dos valores configurados.
 
 **3. KPIs operativos**
 
@@ -574,43 +621,59 @@ Badges en la esquina inferior derecha que reflejan automatismos activos en
 el proyecto, y una línea inferior con la fecha de última actividad.
 
 
-KPIs operativos por tipo
-^^^^^^^^^^^^^^^^^^^^^^^^
+4.5.10.2 KPIs operativos por tipo
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Los KPIs son distintos según el tipo de proyecto y se calculan al vuelo
 sobre los datos vivos de la base.
 
 **Proyectos Orders**
 
-+------------------------------+--------------------------------------------------------------+
-| KPI                          | Significado                                                  |
-+==============================+==============================================================+
-| Conteo de órdenes            | "Abiertas / Total". Abiertas = órdenes cuyo estado no es     |
-|                              | ``done`` ni ``cancel``. Total incluye todo el histórico del  |
-|                              | proyecto.                                                    |
-+------------------------------+--------------------------------------------------------------+
-| Revenue 30 días (verde)      | Suma de ``amount_untaxed`` de las órdenes creadas en los     |
-|                              | últimos 30 días para este proyecto. Solo aparece si el       |
-|                              | valor es mayor que cero.                                     |
-+------------------------------+--------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - KPI
+     - Significado
+   * - Conteo de órdenes
+     - "Abiertas / Total". Abiertas = órdenes cuyo estado no es
+   * - 
+     - ``done`` ni ``cancel``. Total incluye todo el histórico del
+   * - 
+     - proyecto.
+   * - Revenue 30 días (verde)
+     - Suma de ``amount_untaxed`` de las órdenes creadas en los
+   * - 
+     - últimos 30 días para este proyecto. Solo aparece si el
+   * - 
+     - valor es mayor que cero.
 
 **Proyectos Trips**
 
-+------------------------------+--------------------------------------------------------------+
-| KPI                          | Significado                                                  |
-+==============================+==============================================================+
-| Conteo de viajes             | "Abiertos / Total". Abiertos = viajes cuyo estado no es      |
-|                              | ``completed`` ni ``failed``.                                 |
-+------------------------------+--------------------------------------------------------------+
-| Revenue 30 días (rosa)       | Suma de ``amount_untaxed`` de las órdenes de compra          |
-|                              | vinculadas a viajes del proyecto creados en los últimos      |
-|                              | 30 días. Refleja la facturación esperada al carrier.         |
-+------------------------------+--------------------------------------------------------------+
-| Cost 30 días (rojo)          | Suma de ``trip_pasive`` de viajes creados en los últimos     |
-|                              | 30 días. Refleja el coste pasivo calculado por TMS antes     |
-|                              | de cerrar PO. Puede diferir de Revenue si la PO aún no       |
-|                              | está finalizada.                                             |
-+------------------------------+--------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - KPI
+     - Significado
+   * - Conteo de viajes
+     - "Abiertos / Total". Abiertos = viajes cuyo estado no es
+   * - 
+     - ``completed`` ni ``failed``.
+   * - Revenue 30 días (rosa)
+     - Suma de ``amount_untaxed`` de las órdenes de compra
+   * - 
+     - vinculadas a viajes del proyecto creados en los últimos
+   * - 
+     - 30 días. Refleja la facturación esperada al carrier.
+   * - Cost 30 días (rojo)
+     - Suma de ``trip_pasive`` de viajes creados en los últimos
+   * - 
+     - 30 días. Refleja el coste pasivo calculado por TMS antes
+   * - 
+     - de cerrar PO. Puede diferir de Revenue si la PO aún no
+   * - 
+     - está finalizada.
 
 .. note::
 
@@ -620,33 +683,42 @@ sobre los datos vivos de la base.
    cientos de proyectos y miles de órdenes o viajes.
 
 
-Indicadores de configuración
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.5.10.3 Indicadores de configuración
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Las banderas aparecen en la esquina inferior derecha como pequeños badges.
 
 Solo se muestran cuando el toggle correspondiente está activado en el
 proyecto, así un proyecto sin banderas indica configuración mínima.
 
-+------------------------------+--------------------------------------------------------------+
-| Bandera                      | Significado                                                  |
-+==============================+==============================================================+
-| HUB                          | ``Crear transferencia a hub`` activo. Al asignar paradas a   |
-|                              | la agencia desde este proyecto, el sistema divide los        |
-|                              | tramos y crea automáticamente paradas intermedias en el hub. |
-+------------------------------+--------------------------------------------------------------+
-| AUTO                         | ``Auto-process Agency Trip`` activo. Los viajes nacidos al   |
-|                              | asignar a agencia se crean directamente en estado            |
-|                              | ``processed`` en lugar de ``draft``.                         |
-+------------------------------+--------------------------------------------------------------+
-| API                          | ``Send by API on Assign`` activo. Al completar el flujo de   |
-|                              | Asignar se ejecutan los dispatch endpoints configurados en   |
-|                              | el proyecto para notificar a sistemas externos.              |
-+------------------------------+--------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Bandera
+     - Significado
+   * - HUB
+     - ``Crear transferencia a hub`` activo. Al asignar paradas a
+   * - 
+     - la agencia desde este proyecto, el sistema divide los
+   * - 
+     - tramos y crea automáticamente paradas intermedias en el hub.
+   * - AUTO
+     - ``Auto-process Agency Trip`` activo. Los viajes nacidos al
+   * - 
+     - asignar a agencia se crean directamente en estado
+   * - 
+     - ``processed`` en lugar de ``draft``.
+   * - API
+     - ``Send by API on Assign`` activo. Al completar el flujo de
+   * - 
+     - Asignar se ejecutan los dispatch endpoints configurados en
+   * - 
+     - el proyecto para notificar a sistemas externos.
 
 
-Última actividad
-^^^^^^^^^^^^^^^^
+4.5.10.4 Última actividad
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 La línea inferior muestra la fecha más reciente entre los ``create_date``
 de las órdenes (en proyectos Orders) o de los viajes (en proyectos Trips)
@@ -657,27 +729,30 @@ Si el proyecto nunca ha tenido actividad la línea no se muestra.
 Sirve para identificar de un vistazo contratos dormidos o estacionales.
 
 
-Búsqueda y filtros
-^^^^^^^^^^^^^^^^^^
+4.5.10.5 Búsqueda y filtros
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 La vista de búsqueda incorpora filtros rápidos pensados para la operación
 del día a día.
 
 **Filtros disponibles**
 
-+------------------------------------+---------------------------------------------------------+
-| Filtro                             | Descripción                                             |
-+====================================+=========================================================+
-| Orders projects / Trips projects   | Filtran por ``Aplicar en``.                             |
-+------------------------------------+---------------------------------------------------------+
-| Send by API                        | Proyectos con el toggle ``send_by_api`` activo.         |
-+------------------------------------+---------------------------------------------------------+
-| Auto Hub Transfer                  | Proyectos con ``create_hub_transfer`` activo.           |
-+------------------------------------+---------------------------------------------------------+
-| Auto-process Agency                | Proyectos con ``auto_process_agency_trip`` activo.      |
-+------------------------------------+---------------------------------------------------------+
-| Archived                           | Muestra proyectos archivados.                           |
-+------------------------------------+---------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Filtro
+     - Descripción
+   * - Orders projects / Trips projects
+     - Filtran por ``Aplicar en``.
+   * - Send by API
+     - Proyectos con el toggle ``send_by_api`` activo.
+   * - Auto Hub Transfer
+     - Proyectos con ``create_hub_transfer`` activo.
+   * - Auto-process Agency
+     - Proyectos con ``auto_process_agency_trip`` activo.
+   * - Archived
+     - Muestra proyectos archivados.
 
 **Agrupaciones**
 
@@ -688,8 +763,8 @@ del día a día.
 - Planning
 
 
-Panel lateral
-^^^^^^^^^^^^^
+4.5.10.6 Panel lateral
+^^^^^^^^^^^^^^^^^^^^^^
 
 A la izquierda de la vista se muestra un ``searchpanel`` con tres niveles
 de filtrado simultáneo:
@@ -703,8 +778,8 @@ de filtrado simultáneo:
 Los contadores actualizan automáticamente al combinar filtros.
 
 
-Smart buttons en el formulario
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.5.10.7 Smart buttons en el formulario
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Al abrir un proyecto desde la kanban se muestra en la cabecera del
 formulario un botón inteligente que navega al detalle:
@@ -718,8 +793,8 @@ formulario un botón inteligente que navega al detalle:
   / total".
 
 
-Botón Help
-^^^^^^^^^^
+4.5.10.8 Botón Help
+^^^^^^^^^^^^^^^^^^^
 
 La cabecera del kanban incluye un botón **Help** con icono de interrogación.
 

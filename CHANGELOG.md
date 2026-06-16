@@ -90,7 +90,70 @@ de comportamiento del release de producto 260603_V05 (que no se había llegado a
   reclamación de POD), analizados desde el código. Referencia cruzada desde 3.2 y capturas
   pendientes (KPI parada, KPI orden y orden bloqueada).
 
+### Planificación detallada (cap. 3) y enlaces desde el flujo
+- **3.3.1 Disponibilidad de recursos** ampliado: el **Plan de Disponibilidad de
+  Conductores** (slots ``planning.slot`` en vista Gantt) y qué define cada *slot*
+  (conductor, vehículo, transportista, tarifa de compra, ventana temporal, planning).
+- **3.3.2 Optimizador de Paradas** desarrollado como sección propia (la herramienta visual
+  con **mapa** sobre `tms.optimizator`): niveles PTV, **modo por slot** y **modo por
+  categoría**, requisitos previos y qué devuelve (viajes en borrador, ETAs, distancias,
+  polilínea, mapa). En 5.2.4 (cap. 5) se deja un resumen que enlaza aquí, sin duplicar.
+- 5.2.4.1 (Modo por slot) ahora indica dónde se crean los slots (Plan de Disponibilidad de
+  Conductores) y enlaza a 3.3.1.
+
+### Flujo operativo (cap. 5) redactado desde la óptica de usuario
+- **5.1 Creación de Orden** reescrito con la narrativa del propietario: alta **manual**
+  paso a paso (Nuevo → Cliente → autocarga/elección de Proyecto → Guardar → Tramos →
+  líneas/reembolsos/info operativa → **Validar**) y alta **masiva por manifiesto**
+  (Fichero EDI; con o sin cliente; o por integración API). El botón **Validar** se
+  documenta como lo que es: valida **y genera las Paradas**.
+- **Reestructuración del cap. 5**: la Validación y la Generación de Paradas se integran en
+  **5.1.3** y se elimina la sección independiente de Tramos; el resto del capítulo se
+  renumera (5.2 Viajes … 5.8 KPI) y se actualizan las referencias cruzadas. (Los ficheros
+  obsoletos `5_2_leg-generation`, `5_3_stop-generation` y `5_4_order-validation` quedan
+  como stubs `:orphan:` pendientes de `git rm`.)
+- **3.2.3 Manifiestos ampliado**: pantalla y **botones mágicos** (Stops, Normalizar),
+  **colas** de importación y cierre (tareas cada 5 min, forzado con "Validar e importar" /
+  "Cerrar Manifiesto") y los **criterios de normalización** de contactos que bloquean el
+  cierre (sin coordenadas, `tms_geo_score` < 80, geolocalización a nivel de código postal,
+  o sin franjas horarias), verificados en el código.
+
+### Revisado (estándar v2) — cap. 5
+- **Cap. 5 Flujos Operativos** revisado y alineado. Era el capítulo más desordenado:
+  - **Renombrados los 10 ficheros** para que el slug coincida con el contenido del flujo
+    (p. ej. `5_4_trips.rst` → `5_4_order-validation.rst`, `5_10_exceptions-and-incidents.rst`
+    → `5_10_invoicing.rst`); toctree actualizado. (No había contenido de excepciones/
+    incidencias; el paso 10 es Facturación.)
+  - **Warnings históricos resueltos** (build global ahora **0 warnings**): las tablas grid
+    de los 10 ficheros convertidas a `list-table` (resueltas las 4 mal formadas de 5_2,
+    5_5, 5_6 y 5_9) y corregida la estructura de 5_5 (un `^` que iba antes de un `~` y
+    subrayados cortos).
+  - **Numeración jerárquica** de títulos y subtítulos (5.1–5.11, 5.x.y.z), **rutas de UI**
+    en español con modelos citados, y **10 marcadores de captura** (5.7 remite al cap. 10
+    para las pantallas de la app). Registrado en `CAPTURAS_PENDIENTES.md`.
+
+### Imágenes alineadas al estándar
+- **Cap. 4 (4.1)**: las 8 imágenes que ya estaban embebidas (`Config_*` en
+  `_static/images/`) se han migrado a `_static/img/4_parametrization/`, renombradas a la
+  convención y convertidas de `.. image::` a `.. figure::` con `:alt:` y pie. El 4.1 queda
+  totalmente ilustrado; marcadas como hechas en `CAPTURAS_PENDIENTES.md`.
+- **Cap. 10 (Manual App)**: las 33 capturas existentes migradas de `_static/images/` a
+  `_static/img/10_manual_app/` con la convención de nombres y rutas actualizadas (las
+  sueltas como `.. figure::` con `:alt:`; las que van en celdas de tabla siguen como
+  `.. image::` hasta la revisión de texto). Ningún `.rst` referencia ya la carpeta antigua
+  `_static/images/` (quedan 7 imágenes huérfanas allí, pendientes de limpieza).
+
 ### Revisado (estándar v2)
+- **Cap. 4 Parametrización** revisado y alineado: índice "4 Parametrización del Sistema";
+  **numeración jerárquica completa** de los ~88 títulos y subtítulos (4.x, 4.x.y,
+  4.x.y.z); **rutas de UI** (aviso "Ruta en Odoo" en español) por sección con los modelos
+  citados (`tms.service.type`, `tms.stop.type`, `tms.equipment`, `tms.transport.plan`,
+  `tms.area`, `tms.service.time`, `tms.pricelist*`, `project.project`…); y 11 marcadores
+  de captura registrados en `CAPTURAS_PENDIENTES.md`.
+  - **Warnings históricos resueltos** (build verde): las tablas *grid* de 4_3/4_4/4_5
+    (26) convertidas a `list-table` —incluido el arreglo de las 2 tablas mal formadas—,
+    el subtítulo "Campos principales" duplicado de 4_2 resuelto por la numeración, el
+    encabezado "Tarifas" con sangría de 4_4 y la ancla pandoc `_section-25` de 4_1.
 - **Cap. 3 Arquitectura Funcional** revisado y ampliado: títulos en español y numerados
   (`3 Arquitectura Funcional del Sistema`, secciones 3.1–3.5); arreglado el subtítulo
   "Maestros operativos" (le faltaba el subrayado); modelos citados; rutas de UI en cada

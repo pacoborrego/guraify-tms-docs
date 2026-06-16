@@ -50,7 +50,7 @@ no inventa su estado, lo refleja del Tramo que está en curso.
        L -. "lugares · fechas · estado · importe" .-> O
 
 3.2.5.2 Por qué la información "se mueve"
-----------------------------------------
+-----------------------------------------
 
 Dado que la cabecera de la Orden refleja el tramo activo, la información que muestra cambia
 conforme avanza la operación: cuando el tramo activo se completa y otro pasa a estar
@@ -63,7 +63,7 @@ Esto es lo que permite que una operación compleja (varios tramos, arrastres ent
 sin perder el detalle, que permanece accesible tramo a tramo.
 
 3.2.5.3 Ejemplo: un tramo directo
-----------------------------------
+---------------------------------
 
 Supongamos una Orden con un único Tramo **directo** (recogida en origen y entrega en
 destino, sin paso por hub):
@@ -84,7 +84,7 @@ carga o la de descarga.
 
    Estos campos (``active_leg``, ``active_stop``, ``active_trip``) son la base de otras
    vistas del sistema: el estado operativo de la Orden (:doc:`3_2_1_orders`) y el indicador
-   KPI de la Orden (:doc:`/17.0/5_operational-flows/5_11_kpi-indicators`) se construyen a
+   KPI de la Orden (:doc:`/17.0/5_operational-flows/5_8_kpi-indicators`) se construyen a
    partir de la parada activa.
 
 .. CAPTURA: 3_2_5_01 — descomentar el figure cuando esté la imagen

@@ -151,7 +151,7 @@ final.
 
    Estos tres estados (operativo, administrativo y de facturación) y el bloqueo se
    resumen visualmente en el indicador KPI de la Orden, descrito en
-   :doc:`/17.0/5_operational-flows/5_11_kpi-indicators`.
+   :doc:`/17.0/5_operational-flows/5_8_kpi-indicators`.
 
 .. CAPTURA: 3_2_1_01 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/3_functional-architecture/3_2_1_orders_01_orden.png

@@ -5,9 +5,10 @@ Ruta
 
 Cuando entres en la app, esta es la pantalla principal. Aquí verás la ruta de trabajo que tienes que realizar.
 
-.. image:: /_static/images/Dashboard.PNG
+.. figure:: /_static/img/10_manual_app/10_2_route_01_dashboard.png
    :width: 300px
    :align: center
+   :alt: Dashboard
 
 
 Esta pantalla muestra:
@@ -21,9 +22,10 @@ Esta pantalla muestra:
 Información de la ruta
 ^^^^^^^^^^^^^^^^^^^^^^
 
-.. image:: /_static/images/Dashboard_Header.png
+.. figure:: /_static/img/10_manual_app/10_2_route_02_dashboard-header.png
    :width: 300px
    :align: center
+   :alt: Dashboard Header
 
 
 1. Primera Línea:
@@ -105,9 +107,10 @@ Información de cada parada
 
 
 
-.. image:: /_static/images/Parada_Card.png
+.. figure:: /_static/img/10_manual_app/10_2_route_03_parada-card.png
    :width: 300px
    :align: center
+   :alt: Parada Card
 
 
 

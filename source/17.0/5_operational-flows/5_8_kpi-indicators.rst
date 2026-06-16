@@ -1,5 +1,5 @@
-Indicadores visuales (KPI)
---------------------------
+5.8 Indicadores visuales (KPI)
+-------------------------------
 
 .. admonition:: Ruta en Odoo
    :class: tip
@@ -13,8 +13,8 @@ las listas de Paradas y de Órdenes incluyen un **indicador KPI**: un pequeño g
 automáticamente** a partir del estado de cada registro. No es un dato editable, sino un
 resumen visual que se regenera cuando cambian los estados subyacentes.
 
-Indicador de Parada
-~~~~~~~~~~~~~~~~~~~~
+5.8.1 Indicador de Parada
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 El KPI de la Parada (``tms.stop``) condensa cuatro informaciones en un mismo gráfico:
 
@@ -31,8 +31,8 @@ El KPI de la Parada (``tms.stop``) condensa cuatro informaciones en un mismo gr�
 Las paradas sugeridas por el optimizador se muestran con un único icono de información
 ("i"), ya que aún no son eventos ejecutables.
 
-Indicador de Orden
-~~~~~~~~~~~~~~~~~~~
+5.8.2 Indicador de Orden
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 El KPI de la Orden (``sale.order``) **se construye a partir del KPI de su parada activa** y
 le añade, a la derecha, iconos propios del nivel de pedido:
@@ -55,13 +55,13 @@ reclamar POD. Los estados que el indicador refleja se describen en
 :doc:`/17.0/3_functional-architecture/3_2_2_trips` (Viaje).
 
 .. CAPTURA: 5_11_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_11_kpi-indicators_01_kpi-parada.png
+   .. figure:: /_static/img/5_operational-flows/5_8_kpi-indicators_01_kpi-parada.png
       :alt: Indicador KPI en la lista de Paradas
 
       Indicador KPI en la lista de Paradas (triángulos de estado, barra de puntualidad y secuencia).
 
 .. CAPTURA: 5_11_02 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_11_kpi-indicators_02_kpi-orden.png
+   .. figure:: /_static/img/5_operational-flows/5_8_kpi-indicators_02_kpi-orden.png
       :alt: Indicador KPI en la lista de Órdenes
 
       Indicador KPI en la lista de Órdenes (parada activa + validación, factura/candado y POD).
