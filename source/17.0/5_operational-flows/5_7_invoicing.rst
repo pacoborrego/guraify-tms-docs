@@ -4,108 +4,74 @@
 .. admonition:: Ruta en Odoo
    :class: tip
 
-   TMS › Administración (facturación de cliente y de proveedor).
+   Botón **Crear factura** en la Orden y en el Viaje · TMS › Administración › Transacciones
+   (Líneas de Orden de Venta, Líneas de Orden de Compra, Lista de facturas)
 
 .. CAPTURA: 5_7_01 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/5_operational-flows/5_7_invoicing_01_factura.png
       :alt: Facturación
 
-      Generación de la factura de cliente / proveedor (``account.move``).
+      Generación de la factura de cliente y de la factura de proveedor.
 
-La facturación del TMS se divide en dos flujos diferenciados:
+La facturación es el último paso del ciclo y el que menos tiene de TMS: las facturas son las
+facturas de Odoo, con su contabilidad, sus impuestos y sus vencimientos. Lo que añade el TMS
+es el punto de partida (la Orden confirmada y la orden de compra bloqueada del cierre) y una
+forma de agrupar las líneas pensada para el transporte.
 
-- facturación de cliente
-- facturación de proveedor
+5.7.1 Factura al cliente
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-Ambos se apoyan en los mecanismos estándar de Odoo, reutilizando la capa financiera del ERP sobre la estructura logística generada por el TMS.
+Se factura desde la Orden (``sale.order``) confirmada con el botón estándar **Crear factura**,
+una a una o seleccionando varias en la lista. El asistente de Odoo incorpora un campo propio,
+**Modo de facturación TMS**, con dos opciones:
 
+- **Grupo TMS por producto, servicio y zona**, la opción por defecto. Las líneas de venta de
+  todas las Órdenes seleccionadas del mismo cliente se consolidan en una sola factura, con una
+  línea por cada combinación de producto, servicio y zona de tarifa. El cliente recibe un
+  documento compacto y cada línea de la factura conserva el enlace a las líneas de venta que la
+  componen.
+- **Estándar Odoo**, una factura por Orden con sus líneas tal cual.
 
+El asistente permite además fijar la **fecha de factura**. También se puede facturar desde la
+lista de **Líneas de Orden de Venta**: seleccionando líneas de varias Órdenes y pulsando
+**Crear factura agrupada** se facturan sólo esas líneas, siempre que pertenezcan a Órdenes
+confirmadas, tengan cantidad pendiente y no estén ya facturadas. Para corregir una línea ya
+facturada, **Línea de abono** genera la rectificativa.
 
-5.7.1 Facturación de cliente
+5.7.2 Factura del transportista
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+La factura del transportista se registra desde el Viaje (``tms.trip``) con **Crear factura**,
+sobre uno o varios Viajes a la vez. El sistema exige que cada Viaje tenga su orden de compra y
+que ésta tenga líneas pendientes de facturar; si alguno no cumple, lo dice y no crea nada. El
+cierre del Viaje ya dejó la orden de compra confirmada con las cantidades recibidas y a
+facturar fijadas, así que la factura sale con los importes de la liquidación. Como en la
+venta, desde la lista de **Líneas de Orden de Compra** se pueden facturar líneas sueltas con
+**Crear factura agrupada** o abonarlas con **Línea de abono**.
+
+5.7.3 Qué cambia al facturar
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-La facturación al cliente se apoya en las órdenes de venta TMS.
-
-Una vez que:
-
-- las líneas económicas han sido calculadas
-- la orden se encuentra confirmada
-
-Odoo puede generar la factura de cliente utilizando el flujo estándar de facturación.
-
-El módulo TMS añade capacidades específicas, como la facturación agrupada.
-
-En este modo, el sistema puede consolidar líneas según criterios como:
-
-- producto
-- servicio
-- zona de tarifa
-
-Esto permite generar documentos comerciales más compactos sin perder trazabilidad con las líneas originales.
-
-Durante la creación de facturas, el sistema controla:
-
-- que no se vuelvan a facturar líneas ya facturadas
-- que el proceso pueda limitarse a líneas seleccionadas
-- que se mantenga la relación entre origen logístico y documento financiero
-
-
-
-5.7.2 Facturación de proveedor
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-La facturación al transportista se apoya en la orden de compra vinculada al viaje.
-
-Desde el propio viaje puede iniciarse la creación de la factura de proveedor, siempre que se cumplan las condiciones necesarias.
-
-El cierre administrativo del viaje prepara previamente:
-
-- cantidades recibidas
-- cantidades pendientes de facturar
-- consistencia económica de compra
-
-Esto garantiza que la liquidación del transportista se apoye en información cerrada y validada.
-
-
-
-5.7.3 Controles relevantes
-~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 70
+   :widths: 34 66
 
    * - Control
-     - Descripción
-   * - Líneas cliente ya facturadas
-     - No deben volver a facturarse.
+     - Efecto
+   * - Línea de venta ya facturada
+     - No se vuelve a facturar; el sistema la rechaza.
    * - Viaje sin orden de compra
-     - No puede generar factura proveedor.
-   * - Orden compra sin líneas pendientes
-     - No procede facturación.
-   * - Operación ya facturada
-     - Limita modificaciones posteriores.
+     - No puede generar factura de proveedor.
+   * - Orden de compra sin líneas pendientes
+     - No procede facturar; el sistema lo indica con el nombre del Viaje.
+   * - Orden facturada
+     - Deja de recalcular su estado operativo y no se puede reabrir ni tarificar.
+   * - Viaje con orden de compra facturada
+     - No se puede desbloquear ni volver a tarificar.
 
-Una vez emitida la factura, determinados cambios operativos o económicos quedan restringidos para preservar consistencia documental.
-
-Esto afecta especialmente a:
-
-- viajes
-- órdenes
-- costes
-- importes
-- liquidaciones
-
-El estado de facturación queda visible tanto en:
-
-- la orden
-- el viaje
-
-Esto permite construir filtros operativos como:
-
-- órdenes pendientes de facturar
-- rutas pendientes de liquidar
-- operaciones ya facturadas
-- incidencias económicas pendientes de revisión
-
-De este modo, el ciclo operativo puede cerrarse con trazabilidad completa entre ejecución logística y documentación financiera.
+El **estado de facturación** queda visible en la Orden y en el Viaje, y en el indicador KPI de
+la Orden (:doc:`5_8_kpi-indicators`). Con él se construyen los filtros de trabajo del cierre
+económico: Órdenes confirmadas pendientes de facturar, Viajes completados pendientes de
+liquidar, y diagnósticos de tarifa pendientes de resolver antes de facturar
+(:doc:`5_6_settlement`). Facturado el último documento, el ciclo de la Orden queda cerrado con
+trazabilidad completa entre lo que se ejecutó y lo que se cobró y se pagó.
