@@ -18,13 +18,13 @@ Incluye los maestros que permiten transformar órdenes y paradas en viajes plani
 4.3.1 Planning
 ~~~~~~~~~~~~~~
 
-Planning es una de las entidades maestras más importantes del sistema, porque actúa como eje de segmentación operativa entre la expedición, las paradas, los viajes, la planificación de recursos, la optimización y la tarificación.
+Planning es una de las entidades maestras más importantes del sistema, porque actúa como eje de segmentación operativa entre la orden, las paradas, los viajes, la planificación de recursos, la optimización y la tarificación.
 
 No representa un viaje concreto, sino una forma de organizar cómo deben planificarse y procesarse determinados servicios logísticos.
 
-Un Planning permite clasificar operativamente expediciones que comparten una misma lógica de transporte: última milla, recogidas, distribución urbana, rutas con hub, rutas directas, servicios dedicados, reparto por zonas o cualquier otro flujo definido por la operación.
+Un Planning permite clasificar operativamente órdenes que comparten una misma lógica de transporte: última milla, recogidas, distribución urbana, rutas con hub, rutas directas, servicios dedicados, reparto por zonas o cualquier otro flujo definido por la operación.
 
-Esta clasificación se hereda normalmente desde el proyecto y se propaga a expediciones, tramos, paradas y viajes. Por este motivo, una selección incorrecta de Planning puede afectar a varios procesos posteriores.
+Esta clasificación se hereda normalmente desde el proyecto y se propaga a órdenes, tramos, paradas y viajes. Por este motivo, una selección incorrecta de Planning puede afectar a varios procesos posteriores.
 
 **Campos principales**
 
@@ -42,8 +42,8 @@ Esta clasificación se hereda normalmente desde el proyecto y se propaga a exped
      - Tiempos operativos aplicables a recogidas y entregas.
    * - Modo de división de viaje
      - Criterio usado para repartir carga o importes.
-   * - Shipper
-     - Cargador o entidad operativa asociada.
+   * - Remitente
+     - Contacto de origen o entidad operativa asociada.
    * - Valor por defecto, compañía y color
      - Campos estándar de clasificación, compañía y visualización.
 
@@ -54,7 +54,7 @@ El Planning está vinculado a un Plan de Transporte. Esta relación es relevante
 
 A partir de esta relación, el sistema puede filtrar áreas disponibles, asociar paradas a una lógica territorial concreta y mantener coherencia entre la planificación operativa y la estructura geográfica configurada.
 
-Dentro del flujo de creación de expediciones, el Planning se asigna desde el proyecto y queda registrado en la expedición. Cuando se crean los tramos, el Planning se transfiere también a cada tramo.
+Dentro del flujo de creación de órdenes, el Planning se asigna desde el proyecto y queda registrado en la orden. Cuando se crean los tramos, el Planning se transfiere también a cada tramo.
 
 Posteriormente, al generar paradas desde manifiestos o desde procesos operativos, el sistema utiliza el Planning como parte de la clave de agrupación. Esto significa que dos operaciones con la misma ubicación y franja horaria no se agrupan necesariamente si pertenecen a Planning diferentes.
 
@@ -82,9 +82,9 @@ La elección del Modo de división de viaje debe responder a la naturaleza real 
 
 Esta configuración tiene impacto económico, no solo operativo, porque condiciona cómo se imputan costes e ingresos sobre paradas y tramos.
 
-Planning también se utiliza como condición de tarifa. Las reglas de tarifa pueden limitarse a uno o varios Planning, de forma que una misma tarifa puede aplicar importes diferentes según el flujo operativo.
+Planning también se utiliza como condición de tarifa. Las Líneas de tarifa pueden limitarse a uno o varios Planning, de forma que una misma tarifa puede aplicar importes diferentes según el flujo operativo.
 
-Esto permite distinguir precios de reparto, recogida, directo, hub, urgente o cualquier otra planificación definida. Si una tarifa tiene configurado Planning y la expedición o el viaje no coincide, el motor de tarificación descartará esa regla.
+Esto permite distinguir precios de reparto, recogida, directo, hub, urgente o cualquier otra planificación definida. Si una tarifa tiene configurado Planning y la orden o el viaje no coincide, el motor de tarificación descartará esa regla.
 
 En integraciones e importaciones, Planning puede recibirse como dato externo del viaje. Cuando el fichero o API informa el Planning del viaje, el sistema lo utiliza para crear o actualizar el viaje y mantener la trazabilidad entre la planificación externa y la interna.
 
@@ -96,7 +96,7 @@ Si el Planning no existe, algunos flujos de importación pueden crearlo automát
    Es una dimensión operativa que determina cómo se agrupan las operaciones,
    qué zonas se aplican, qué recursos pueden utilizarse, cómo se optimizan rutas,
    cómo se calculan tiempos de servicio, cómo se reparten costes e ingresos
-   y qué reglas de tarifa son aplicables.
+   y qué Líneas de tarifa son aplicables.
 
 
 
@@ -166,7 +166,7 @@ Las Áreas Geográficas son polígonos o multipolígonos GeoJSON que representan
 Una misma entidad técnica se usa con distintos propósitos:
 
 - Áreas operativas de transporte
-- Zonas tarifarias
+- Zonas de tarifa
 - Áreas extra de precio
 - Elementos de operación
 - Zonas de bajas emisiones
@@ -193,7 +193,7 @@ Su importancia es doble: permiten ubicar direcciones dentro de una red operativa
      - Valores operativos que pueden propagarse a tramos o paradas.
    * - Planes de Transporte
      - Relación con los planes donde actúa como territorio operativo.
-   * - Zonas Tarifarias
+   * - Zonas de tarifa
      - Relación con zonas donde actúa como territorio económico.
    * - Días disponibles
      - Calendario semanal admitido para áreas de transporte.
@@ -213,7 +213,7 @@ El sistema evita recalcular zonas en estados cerrados, facturados o cancelados p
 
 En procesos masivos puede usar cachés de geometría y resolución, lo que reduce coste cuando muchas paradas comparten áreas o coordenadas.
 
-En el flujo económico, las áreas de tipo Zona Tarifaria delimitan qué tarifa aplica a una operación. Las áreas extra permiten suplementos geográficos mediante reglas de precio de tipo geo.
+En el flujo económico, las áreas de tipo Zona de tarifa delimitan qué tarifa aplica a una operación. Las áreas extra permiten suplementos geográficos mediante reglas de precio de tipo geo.
 
 Los días disponibles del área se usan como control operativo. Si una carga o descarga se programa en un día no permitido por la zona operativa, el sistema puede avisar o bloquear para evitar planificaciones fuera de calendario.
 

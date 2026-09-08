@@ -46,8 +46,8 @@ son:
      - Paradas completadas a falta del cierre.
    * - Completada (``completed``)
      - Servicio ejecutado en su totalidad.
-   * - Reservas (``reserves``)
-     - Entregada con reservas.
+   * - Con reservas (``reserves``)
+     - Ejecutada con incidencias o reservas.
    * - Fallida (``failed``)
      - Ejecución fallida.
    * - Reprogramada (``rescheduled``)

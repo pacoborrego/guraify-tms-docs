@@ -23,7 +23,7 @@ Tareas programadas
 Varias tareas programadas (``ir.cron``) orquestan el flujo a intervalos de pocos
 minutos. Entre ellas, el procesamiento de los ficheros en cola pendientes del asistente
 de importación (``tms_int.file.wizard``), el cómputo de las Órdenes de venta
-(``sale.order``) asociadas a las expediciones, el cálculo de la tarifa de los Viajes
+(``sale.order``) asociadas a las órdenes, el cálculo de la tarifa de los Viajes
 (``tms.trip``) y el cierre de los Manifiestos (``tms.edi.manifest``). Este escalonamiento
 permite que la ingesta (ver :doc:`7_2_file-import`) avance de forma diferida y ordenada.
 

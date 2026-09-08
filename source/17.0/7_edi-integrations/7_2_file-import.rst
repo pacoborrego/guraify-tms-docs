@@ -2,7 +2,7 @@
 ===========================
 
 La importación de ficheros es el canal de ingesta empleado para cargas manuales o
-periódicas de pedidos y datos maestros. Está pensada tanto para la puesta en marcha
+periódicas de Órdenes y datos maestros. Está pensada tanto para la puesta en marcha
 inicial de un cliente como para los intercambios recurrentes en los que el sistema de
 origen no dispone de API.
 
@@ -31,7 +31,7 @@ Formatos y normalización
 Se admiten ficheros **XLSX/XLS y CSV** (en CSV, con delimitador de columna, fila de
 cabecera y fila de inicio configurables). Tras el parseo, el contenido se normaliza a
 una representación JSON **interna** que preserva la estructura del intercambio
-(pedidos, clientes, transportistas, conductores, vehículos y viajes). Esa
+(Órdenes, clientes, transportistas, conductores, vehículos y viajes). Esa
 representación es la que alimenta el resto del flujo, de modo que el mapeo y la
 validación operan siempre sobre la misma estructura con independencia del formato del
 fichero de partida.
@@ -48,7 +48,7 @@ Del fichero a la Orden
 El recorrido completo es: parseo a la representación interna, validación contra el
 esquema y los mapeos configurados, creación del Manifiesto (``tms.edi.manifest``) y de
 sus *preview packs*, y materialización final de la Orden (``sale.order``) a través de
-``tms_int.sale.order.import``. La configuración de fichero EDI (``tms.edi.file``) actúa
+``tms_int.sale.order.import``. La Definición de fichero (``tms.edi.file``) actúa
 como contenedor de los mapeos de columnas aplicables a cada tipo de fichero (ver
 :doc:`7_2_1_field-mapping`).
 

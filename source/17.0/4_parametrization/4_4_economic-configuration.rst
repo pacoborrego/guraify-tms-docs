@@ -4,31 +4,31 @@
 .. admonition:: Ruta en Odoo
    :class: tip
 
-   TMS › Configuración › Tarifas: Zonas Tarifarias (``tms.pricelist.zone``), Tarifas Base
+   TMS › Configuración › Tarifas: Zonas de tarifa (``tms.pricelist.zone``), Tarifas Base
    (``tms.pricelist.base``), Reglas de Tarifa (``tms.pricelist.rule``), Tarifas
    (``tms.pricelist``, con versiones ``tms.pricelist.version``) y los Productos asociados
    (``product.product``).
 
 La Configuración Económica agrupa los maestros que transforman actividad logística en líneas de venta y compra.
 
-Incluye zonas tarifarias, bases de cálculo, reglas, versiones de tarifa y productos contables.
+Incluye zonas de tarifa, bases de cálculo, reglas, versiones de tarifa y productos contables.
 
 El motor de tarificación combina estos datos con el contexto operativo: cliente, transportista, proyecto, Planning, servicio, vehículo, zonas, fechas y magnitudes de carga.
 
 
 
-4.4.1 Zonas Tarifarias
-~~~~~~~~~~~~~~~~~~~~~~
+4.4.1 Zonas de tarifa
+~~~~~~~~~~~~~~~~~~~~~
 
 .. CAPTURA: 4_4_01 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/4_parametrization/4_4_economic-configuration_01_zonas-tarifarias.png
-      :alt: Configuración de una Zona Tarifaria
+      :alt: Configuración de una Zona de tarifa
 
-      Configuración de una Zona Tarifaria (``tms.pricelist.zone``).
+      Configuración de una Zona de tarifa (``tms.pricelist.zone``).
 
-Las Zonas Tarifarias agrupan áreas geográficas utilizadas para calcular precios.
+Las Zonas de tarifa agrupan áreas geográficas utilizadas para calcular precios.
 
-Son independientes de los Planes de Transporte: un plan organiza la operación, mientras una zona tarifaria organiza el criterio económico.
+Son independientes de los Planes de Transporte: un plan organiza la operación, mientras una zona de tarifa organiza el criterio económico.
 
 **Campos principales**
 
@@ -41,7 +41,7 @@ Son independientes de los Planes de Transporte: un plan organiza la operación, 
    * - Nombre y descripción
      - Identifican la finalidad económica de la zona.
    * - Áreas
-     - Áreas Geográficas de tipo Zona Tarifaria.
+     - Áreas Geográficas de tipo Zona de tarifa.
    * - Agencia
      - Agencia de referencia para visualización y contexto territorial.
    * - Por defecto
@@ -55,18 +55,18 @@ Son independientes de los Planes de Transporte: un plan organiza la operación, 
    * - Vista de mapa
      - Previsualización cartográfica.
 
-4.4.1.1 Uso dentro del sistema en Zonas Tarifarias
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.4.1.1 Uso dentro del sistema en Zonas de tarifa
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Cada Tarifa referencia una Zona Tarifaria.
+Cada Tarifa referencia una Zona de tarifa.
 
-Al actualizar zonas en tramos o paradas, el sistema toma la tarifa de cliente o transportista, obtiene su zona tarifaria y resuelve la dirección contra sus áreas.
+Al actualizar zonas en tramos o paradas, el sistema toma la tarifa de cliente o transportista, obtiene su zona de tarifa y resuelve la dirección contra sus áreas.
 
 La resolución se usa tanto para venta como para compra.
 
-En venta se informan zonas tarifarias del cliente.
+En venta se informan zonas de tarifa del cliente.
 
-En compra se informan zonas tarifarias del transportista.
+En compra se informan zonas de tarifa del transportista.
 
 En ambos casos, el resultado puede condicionar qué detalle de tarifa aplica.
 
@@ -128,7 +128,7 @@ Durante la tarificación, la base determina qué factor se utiliza para calcular
 
 Según el ámbito:
 
-- Expedición
+- Orden
 - Tramo
 - Parada
 - Viaje
@@ -153,12 +153,12 @@ Los rangos permiten generar automáticamente escalados de tarifa mediante asiste
 
 
 
-4.4.3 Reglas de Tarifa
+4.4.3 Líneas de tarifa
 ~~~~~~~~~~~~~~~~~~~~~~
 
-En este apartado, Reglas de Tarifa hace referencia al conjunto formado por el ítem de tarifa y sus detalles.
+Una Línea de tarifa es el conjunto formado por la línea propiamente dicha, que dice cuándo aplica un precio, y sus detalles, que fijan el importe.
 
-El ítem define cuándo aplica una regla.
+La línea define cuándo aplica.
 
 El detalle define:
 
@@ -169,7 +169,7 @@ El detalle define:
 
 Esta separación permite que una misma tarifa tenga reglas por:
 
-- Expedición
+- Orden
 - Tramo
 - Parada
 - Viaje
@@ -207,7 +207,7 @@ con condiciones distintas según el contexto operativo.
    * - Partners y flota
      - Restricciones opcionales por partner o vehículo.
 
-4.4.3.1 Uso dentro del sistema en Reglas de Tarifa
+4.4.3.1 Uso dentro del sistema en Líneas de tarifa
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 El motor de tarificación selecciona primero los ítems compatibles con el ámbito que se está calculando.
@@ -216,7 +216,7 @@ Posteriormente filtra por contexto:
 
 - Planning
 - Tipo de servicio
-- Tipo de expedición
+- Tipo de Orden
 - Tipo de parada
 - Cliente
 - Transportista
@@ -241,7 +241,7 @@ Las reglas pueden generar:
 
 sobre:
 
-- Pedido
+- Orden
 - Parada
 - Tramo
 - Viaje
@@ -285,7 +285,7 @@ Agrupa:
 
 - Clientes o transportistas
 - Moneda
-- Zona tarifaria
+- Zona de tarifa
 - Versiones
 - Reglas económicas
 
@@ -307,7 +307,7 @@ Su diseño permite mantener histórico de precios sin perder trazabilidad sobre 
      - Contexto económico y multiempresa.
    * - Partners asociados
      - Clientes o transportistas vinculados.
-   * - Zona tarifaria
+   * - Zona de tarifa
      - Territorio económico de referencia.
    * - Modo de referencia zona
      - Criterio territorial de cálculo.
@@ -324,7 +324,7 @@ Su diseño permite mantener histórico de precios sin perder trazabilidad sobre 
 Las tarifas pueden asignarse a:
 
 - Proyectos
-- Expediciones
+- Órdenes
 - Tramos
 - Paradas
 - Viajes

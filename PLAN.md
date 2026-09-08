@@ -34,7 +34,7 @@ Estados: ⬜ pendiente · 🔶 en curso · ✅ hecha.
 |---|---|---|---|
 | D1 | ✅ | **Infraestructura** | `PLAN.md`, `CLAUDE.md` v3, comandos, `deploy.sh`, CI, repo limpio, selectores ocultos, capturas existentes activadas. Hecha el 2026-09-08 |
 | D2 | 🔶 | **Capturas (María)** | Rehacer las 55 existentes (recortadas, anonimizadas, Odoo en español) y hacer las 26 que faltan. Lista en `CAPTURAS_PENDIENTES.md`. Corre en paralelo con todo lo demás |
-| D3 | ⬜ | **Glosario** | Página `glossary.rst` con los términos fijados (Orden, Tramo, Parada, Viaje, Manifiesto, Proyecto, Planning, Tarifa y Regla de tarifa, Reserva, KO, POD…) y el texto de todos los capítulos alineado con ella |
+| D3 | ✅ | **Glosario** | `source/17.0/glossary.rst` con 40 términos (definición, sinónimos descartados, modelo) y el texto de los 56 `.rst` alineado. Hecha el 2026-09-08. Deja una lista de correcciones para Odoo y la app (ver apartado al final) |
 | D4 | ⬜ | **Capa de producto** | Carpeta `0_product-overview/` y portada nueva: qué es Guraify TMS, qué resuelve, para quién, módulos, app del conductor, integraciones, casos de uso, preguntas frecuentes. Sin modelos Odoo. Es lo que hoy falta por completo |
 | D5 | ⬜ | **Cap. 1 Introducción** | Reorientar 1.1 y 1.3 al nuevo público. Recortar 1.4 (533 líneas de PTV y Scandit) a lo que está implementado, verificado en el código |
 | D6 | ⬜ | **Cap. 3 Arquitectura** | Sacar campos y métodos de la prosa (quedan en el aviso "Ruta en Odoo" o en anexo). Corregir las referencias a los caps. 6 y 8 |
@@ -59,6 +59,24 @@ Portada con cuatro recorridos, cada uno una tarjeta y un `toctree` con `:caption
 | **Manual de implantación** | Consultor, cliente avanzado | Caps. 1 a 6 (Introducción, Modelo, Arquitectura, Parametrización, Flujos, Administración económica) |
 | **Guía del integrador** | Técnico de integración | Cap. 7 + anexos de catálogos de campos |
 | **Manual del conductor** | Conductor | Cap. 10 (ya aislado visualmente) |
+
+## Correcciones en Odoo y en la app derivadas del glosario
+
+Decididas por Paco el 2026-09-08 al aprobar el glosario (D3). Son cambios de código en
+`tms_suite` (`tms/i18n/es.po`, menús) y en `tms_odoo_app`; **no** se hacen desde este repo.
+Mientras no se apliquen, la doc sigue al glosario y no a la pantalla.
+
+| Dónde | Hoy dice | Debe decir | Motivo |
+|---|---|---|---|
+| `tms/i18n/es.po`, entidad `tms.planning` | Planificación / Planificaciones | Planning / Plannings | Se confunde con el menú y la actividad "Planificación" |
+| `tms/i18n/es.po`, estado `reserves` de la Parada | Reservista | Con reservas | Traducción errónea |
+| `tms/i18n/es.po`, estado `failed` de la Parada | Fallo | Fallida | Coherencia con el resto de estados |
+| `tms/i18n/es.po`, estado `completed` de la Parada | Hecho | Completada | Coherencia |
+| `tms/i18n/es.po`, `tms.pricelist.item.zone.detail` | Detalle de regla de tarifa | Detalle de línea de tarifa | "Regla de tarifa" es `tms.pricelist.rule` |
+| `tms/i18n/es.po`, `tms.pricelist.item.zone` | Linea Tarifa | Línea de tarifa | Tilde y preposición |
+| Menú TMS › Configuración | Zonas Geográficas | Áreas Geográficas | Dos "zonas" distintas confunden con Zonas de Tarifa |
+| `tms_odoo_app`, `es_ES.json` `buttons.stateLabel.failed` | Cancelado | Fallido | En `results.failed` ya dice Fallido; el mismo estado con dos nombres |
+| `tms_odoo_app`, `es_ES.json` `company_domain` | sucompañina.com | tuempresa.com | Errata en el placeholder del Dominio |
 
 ## Diagnóstico (2026-09-08)
 

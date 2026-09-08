@@ -1,5 +1,5 @@
 5.8 Indicadores visuales (KPI)
--------------------------------
+------------------------------
 
 .. admonition:: Ruta en Odoo
    :class: tip
@@ -14,7 +14,7 @@ automáticamente** a partir del estado de cada registro. No es un dato editable,
 resumen visual que se regenera cuando cambian los estados subyacentes.
 
 5.8.1 Indicador de Parada
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 El KPI de la Parada (``tms.stop``) condensa cuatro informaciones en un mismo gráfico:
 
@@ -32,10 +32,10 @@ Las paradas sugeridas por el optimizador se muestran con un único icono de info
 ("i"), ya que aún no son eventos ejecutables.
 
 5.8.2 Indicador de Orden
-~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 El KPI de la Orden (``sale.order``) **se construye a partir del KPI de su parada activa** y
-le añade, a la derecha, iconos propios del nivel de pedido:
+le añade, a la derecha, iconos propios del nivel de Orden:
 
 - **Validación**: si la Orden no ha superado la validación (``show_validation``), se
   muestra **solo** un aviso rojo de advertencia; el resto de iconos no aparecen hasta que

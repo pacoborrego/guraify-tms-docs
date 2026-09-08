@@ -67,7 +67,7 @@ La tarifa seleccionada alimenta la configuración económica disponible del proy
 
 El onchange recopila automáticamente:
 
-- Tipos de expedición
+- Tipos de Orden
 - Servicios
 - Transportistas
 - Destinatarios
@@ -152,12 +152,12 @@ No crea operaciones por sí misma.
 
    * - Campo
      - Descripción
-   * - Tipos de expedición
+   * - Tipos de Orden
      - Modalidades permitidas.
    * - Tipos de servicio
      - Servicios operativos habilitados.
    * - Tipos de transportista
-     - Categorías de carrier disponibles.
+     - Categorías de Transportista disponibles.
    * - Tipos de destinatario
      - Segmentos operativos permitidos.
    * - Categorías de vehículo
@@ -218,7 +218,7 @@ Asignación contiene los valores por defecto necesarios para transformar una ord
 
 El Planning se copia automáticamente a:
 
-- expediciones
+- órdenes
 - tramos
 - viajes
 
@@ -415,7 +415,7 @@ Estas plantillas son especialmente útiles en proyectos homogéneos con mercanc�
 
 La pestaña Inventario conecta TMS con Odoo Inventory.
 
-Su objetivo es decidir si las expediciones del proyecto deben generar movimientos de stock.
+Su objetivo es decidir si las órdenes del proyecto deben generar movimientos de stock.
 
 **Campos principales**
 
@@ -456,7 +456,7 @@ Si falta alguno:
 
 La integración no usa líneas de venta.
 
-Usa líneas logísticas de expedición.
+Usa líneas logísticas de orden.
 
 El producto físico se resuelve mediante el código configurado en la Regla de Tarifa.
 
@@ -464,10 +464,10 @@ Este bloque debe utilizarse únicamente cuando la operativa impacta inventario r
 
 
 
-4.5.9 Bandeja de Entrada API
+4.5.9 Bandeja de entrada API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-La Bandeja de Entrada API configura el proyecto como punto de integración externa.
+La Bandeja de entrada API configura el proyecto como punto de integración externa.
 
 Agrupa:
 
@@ -490,7 +490,7 @@ Es el perímetro de integración del proyecto.
      - Descripción
    * - API Token
      - Token único de autenticación.
-   * - API Inbox
+   * - Bandeja de entrada API
      - Bandeja de recepción del proyecto.
    * - Permiso Post Import Data
      - Autoriza importaciones externas.
@@ -505,7 +505,7 @@ Es el perímetro de integración del proyecto.
    * - Endpoints permitidos
      - Restricciones técnicas de integración.
 
-4.5.9.1 Uso dentro del sistema en Bandeja de Entrada API
+4.5.9.1 Uso dentro del sistema en Bandeja de entrada API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Los sistemas externos se autentican utilizando el token del proyecto.
@@ -604,7 +604,7 @@ Cada tarjeta se divide en cuatro zonas leídas de arriba a abajo.
    * - Cliente
      - Solo en proyectos Orders. Cliente del contrato.
    * - Transportista
-     - Solo en proyectos Trips. Carrier del contrato.
+     - Solo en proyectos Trips. Transportista del contrato.
    * - Agencia
      - Visible si está informada en cualquier tipo de proyecto.
    * - Tarifa y Planning
@@ -665,7 +665,7 @@ sobre los datos vivos de la base.
    * - 
      - vinculadas a viajes del proyecto creados en los últimos
    * - 
-     - 30 días. Refleja la facturación esperada al carrier.
+     - 30 días. Refleja la facturación esperada al Transportista.
    * - Cost 30 días (rojo)
      - Suma de ``trip_pasive`` de viajes creados en los últimos
    * - 
@@ -758,7 +758,7 @@ del día a día.
 
 - Type (Aplicar en)
 - Customer
-- Carrier
+- Transportista
 - Pricelist
 - Planning
 

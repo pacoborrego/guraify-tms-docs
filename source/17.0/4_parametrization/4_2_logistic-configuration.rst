@@ -150,7 +150,7 @@ También pueden intervenir en reglas tarifarias cuando la naturaleza de la merca
 4.2.3 Reglas de Tarifa
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Las Reglas de Tarifa definen cómo se mide operativamente la mercancía dentro de una expedición.
+Las Reglas de Tarifa definen cómo se mide operativamente la mercancía dentro de una orden.
 
 Este maestro no define precios.
 
@@ -279,7 +279,7 @@ Ejemplos:
 4.2.4.2 Aplicación operativa de Tipos de Bulto
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-El Tipo de Bulto se utiliza principalmente en líneas de expedición.
+El Tipo de Bulto se utiliza principalmente en líneas de orden.
 
 Cada línea puede contener:
 
@@ -347,7 +347,7 @@ Esta parametrización es utilizada por:
      - Restricciones de distancia, intervalos y paradas.
    * - Horas de conducción
      - Preset normativo aplicable.
-   * - Zona tarifaria y valor por defecto
+   * - Zona de tarifa y valor por defecto
      - Datos de cálculo y asignación.
 
 4.2.5.2 Campos principales de Modelo

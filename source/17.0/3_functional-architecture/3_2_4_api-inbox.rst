@@ -1,13 +1,13 @@
-3.2.4 API Inbox
-===============
+3.2.4 Bandeja de entrada API
+============================
 
 .. admonition:: Ruta en Odoo
    :class: tip
 
    TMS › Operaciones › Tráfico › Bandeja de entrada API
 
-La Bandeja de Entrada API (``tms_int.api.inbox``) es el punto de recepción de la demanda
-que llega por API REST. Funciona como una bandeja por proyecto en la que cada pedido
+La Bandeja de entrada API (``tms_int.api.inbox``) es el punto de recepción de la demanda
+que llega por API REST. Funciona como una bandeja por proyecto en la que cada Orden
 entrante se deposita como una línea (``tms_int.api.inbox.line``) antes de vincularse a un
 Manifiesto y materializarse.
 
@@ -24,7 +24,7 @@ recepción de la materialización:
    * - Estado de la línea
      - Significado
    * - Recibido (``received``)
-     - El pedido ha entrado en la bandeja y está pendiente de tratamiento.
+     - La Orden ha entrado en la bandeja y está pendiente de tratamiento.
    * - Inválido (``invalid``)
      - No supera la validación; queda señalado para su revisión.
    * - Vinculado a Manifiesto (``linked``)
@@ -37,7 +37,7 @@ directamente los Manifiestos generados a partir de sus líneas.
 3.2.4.2 Relación con el Manifiesto
 ----------------------------------
 
-La Bandeja de Entrada API no crea Órdenes directamente: agrupa sus líneas en un
+La Bandeja de entrada API no crea Órdenes directamente: agrupa sus líneas en un
 Manifiesto (``tms.edi.manifest``), que es quien, al cerrarse, materializa la estructura
 operativa (ver :doc:`3_2_3_manifests`). De este modo, la ingesta por API comparte el
 mismo punto de validación y materialización que el resto de canales, manteniendo la
@@ -45,6 +45,6 @@ coherencia del modelo. Los contratos REST concretos de esta recepción se docume
 *gateway* y en :doc:`/17.0/7_edi-integrations/7_3_api-integrations`.
 
 .. figure:: /_static/img/3_functional-architecture/3_2_4_api-inbox_01_inbox.png
-   :alt: Bandeja de Entrada API con sus líneas y estados
+   :alt: Bandeja de entrada API con sus líneas y estados
 
-   Bandeja de Entrada API (``tms_int.api.inbox``) con sus líneas y estados.
+   Bandeja de entrada API (``tms_int.api.inbox``) con sus líneas y estados.

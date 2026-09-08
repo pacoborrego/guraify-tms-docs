@@ -56,7 +56,7 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 | 🔁 | `3_2_2_trips.rst` | `3_2_2_trips_01_viaje.png` | Formulario de un Viaje (tms.trip) con sus estados operativo, de compra y de facturación. | TMS › Operaciones › Tráfico › Viajes |
 | 🔁 | `3_2_3_manifests.rst` | `3_2_3_manifests_01_manifiesto.png` | Formulario de un Manifiesto EDI (tms.edi.manifest) con sus estados y botones. | TMS › Operaciones › Tráfico › Manifiestos |
 | ⬜ | `3_2_3_manifests.rst` | `3_2_3_manifests_02_botones-magicos.png` | Botones mágicos del Manifiesto: **Stops** y **Normalizar** (contactos pendientes). | TMS › Operaciones › Tráfico › Manifiestos |
-| 🔁 | `3_2_4_api-inbox.rst` | `3_2_4_api-inbox_01_inbox.png` | Bandeja de Entrada API (tms_int.api.inbox) con sus líneas y estados. | TMS › Operaciones › Tráfico › Bandeja de entrada API |
+| 🔁 | `3_2_4_api-inbox.rst` | `3_2_4_api-inbox_01_inbox.png` | Bandeja de entrada API (tms_int.api.inbox) con sus líneas y estados. | TMS › Operaciones › Tráfico › Bandeja de entrada API |
 | 🔁 | `3_2_5_active-leg.rst` | `3_2_5_active-leg_01_tramo-activo.png` | Cabecera de una Orden multitramo mostrando los datos del tramo activo. | TMS › Operaciones › Tráfico › Órdenes (la cabecera de la Orden muestra los datos del |
 | ⬜ | `3_3_planning-model.rst` | `3_3_planning-model_02_plan-disponibilidad.png` | Plan de Disponibilidad de Conductores: vista Gantt de *slots* (planning.slot). | TMS › Operaciones › Planificación (Plan Disponibilidad Conductores, Optimizador de Paradas) |
 | 🔁 | `3_3_planning-model.rst` | `3_3_planning-model_01_optimizador.png` | Optimizador de Paradas (tms.optimizator) en Odoo. | TMS › Operaciones › Planificación (Plan Disponibilidad Conductores, Optimizador de Paradas) |
@@ -81,8 +81,8 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 | ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_01_planes-transporte.png` | Configuración de un Plan de Transporte (tms.transport.plan). | TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas |
 | ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_02_areas-geograficas.png` | Configuración de un Área Geográfica (tms.area). | TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas |
 | ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_03_tiempos-servicio.png` | Configuración de Tiempos de Servicio (tms.service.time). | TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas |
-| ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_01_zonas-tarifarias.png` | Configuración de una Zona Tarifaria (tms.pricelist.zone). | TMS › Configuración › Tarifas: Zonas Tarifarias (``tms.pricelist.zone``), Tarifas Base |
-| ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_02_tarifa.png` | Configuración de una Tarifa (tms.pricelist) y sus versiones. | TMS › Configuración › Tarifas: Zonas Tarifarias (``tms.pricelist.zone``), Tarifas Base |
+| ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_01_zonas-tarifarias.png` | Configuración de una Zona de tarifa (tms.pricelist.zone). | TMS › Configuración › Tarifas: Zonas de tarifa (``tms.pricelist.zone``), Tarifas Base |
+| ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_02_tarifa.png` | Configuración de una Tarifa (tms.pricelist) y sus versiones. | TMS › Configuración › Tarifas: Zonas de tarifa (``tms.pricelist.zone``), Tarifas Base |
 | ⬜ | `4_5_project-configuration.rst` | `4_5_project-configuration_01_proyecto.png` | Formulario de configuración de un Proyecto (project.project). | TMS › Configuración › Proyectos (el Proyecto, ``project.project``, extendido por el |
 | ⬜ | `4_5_project-configuration.rst` | `4_5_project-configuration_02_kanban-proyectos.png` | Vista Kanban de Proyectos con sus KPIs e indicadores de configuración. | TMS › Configuración › Proyectos (el Proyecto, ``project.project``, extendido por el |
 
@@ -117,7 +117,7 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 | ⬜ | `7_2_file-import.rst` | `7_2_file-import_01_asistente.png` | Asistente de importación de fichero. | TMS › Configuración › EDI › Definición de Fichero |
 | 🔁 | `7_2_file-import.rst` | `7_2_file-import_02_validacion.png` | Reporte de validación del fichero importado. | TMS › Configuración › EDI › Definición de Fichero |
 | 🔁 | `7_3_api-integrations.rst` | `7_3_api-integrations_01_integracion.png` | Configuración de una integración API y su autenticación. | TMS › Configuración › EDI › Integraciones API |
-| ⬜ | `7_3_api-integrations.rst` | `7_3_api-integrations_02_inbox.png` | Bandeja de Entrada API con los estados de las líneas. | TMS › Configuración › EDI › Integraciones API |
+| ⬜ | `7_3_api-integrations.rst` | `7_3_api-integrations_02_inbox.png` | Bandeja de entrada API con los estados de las líneas. | TMS › Configuración › EDI › Integraciones API |
 | 🔁 | `7_4_endpoint-configuration.rst` | `7_4_endpoint-configuration_01_endpoint.png` | Configuración de un endpoint saliente. | TMS › Configuración › EDI › Endpoints API |
 | ⬜ | `7_5_webhooks.rst` | `7_5_webhooks_01_endpoint-webhook.png` | Endpoint configurado como webhook. | TMS › Configuración › EDI › Endpoints API |
 | ⬜ | `7_6_automated-actions.rst` | `7_6_automated-actions_01_crons.png` | Tareas programadas que orquestan las integraciones. | Ajustes › Técnico › Automatización › Acciones planificadas |

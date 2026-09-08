@@ -32,24 +32,25 @@ Tiene **cuatro públicos** y la portada los separa en cuatro recorridos (ver `PL
   referencia o en un anexo.
 - En la Guía del integrador sí caben campos, cabeceras y ejemplos de código.
 
-**Terminología**: hay un glosario (tarea D3 del plan; hasta que exista, esta tabla manda):
+**Terminología**: manda el glosario, `source/17.0/glossary.rst` (tarea D3, 2026-09-08). Cada
+término lleva su definición, los sinónimos que **no** se usan y el modelo Odoo. Resumen de las
+decisiones que más se incumplen:
 
-| Se dice | No se dice | Modelo |
-|---|---|---|
-| Orden | Expedición, Pedido, Envío | `sale.order` |
-| Tramo | Leg, Envío | `tms.shipment.leg` |
-| Parada | Stop | `tms.stop` |
-| Viaje | Ruta, Trip | `tms.trip` |
-| Manifiesto | Fichero EDI | `tms.edi.manifest` |
-| Bandeja de Entrada API | API Inbox | `tms_int.api.inbox` |
-| Proyecto | — | `project.project` |
-| Planning (sin traducir) | Planificación (cuando es la entidad) | `planning.*` |
-| Tarifa | Pricelist | `tms.pricelist` |
-| Regla de medida | Regla de tarifa (para lo que hoy es 4.2.3) | `tms.pricelist.rule` |
-| Ítem de tarifa | Regla de tarifa (para lo que hoy es 4.4.3) | `tms.pricelist.item.zone` + `.detail` |
+| Se dice | No se dice |
+|---|---|
+| Orden | Expedición, Pedido (salvo "pedido de venta" para el estado nativo de Odoo), Envío |
+| Viaje | Ruta (salvo "tu ruta" en el manual del conductor), Trip |
+| Manifiesto / Definición de fichero | Fichero EDI (son dos cosas distintas) |
+| Bandeja de entrada API | API Inbox, Inbox, Bandeja de Entrada |
+| Planning (sin traducir) | Planificación, cuando es la entidad `tms.planning` |
+| Regla de tarifa (qué se mide) / Línea de tarifa (el precio) | "Reglas de tarifa" para las dos |
+| Área geográfica / Zona de tarifa | Zona geográfica, Zona tarifaria |
+| Completada, Con reservas, Fallida, Reprogramada, Devuelta, Cancelada | Hecho, Reservista, Fallo, OK, KO |
+| Transportista, Conductor, Cliente, Remitente, Destinatario, Bulto | Carrier, Driver, Shipper, Cargador, Receiver, Paquete |
 
-Los dos últimos son provisionales: D3 decide el nombre definitivo mirando cómo los llama la
-UI en español.
+Al añadir un término nuevo, entra primero en el glosario. Donde la interfaz de Odoo o la app
+discrepen del glosario, la corrección va a Odoo o a la app (lista en `PLAN.md`, apartado
+"Correcciones en Odoo y en la app"), no a la doc.
 
 "TMS" y "EDI" no se traducen.
 

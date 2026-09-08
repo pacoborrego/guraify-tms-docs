@@ -1,5 +1,5 @@
 5.7 Facturación
-----------------
+---------------
 
 .. admonition:: Ruta en Odoo
    :class: tip
@@ -22,7 +22,7 @@ Ambos se apoyan en los mecanismos estándar de Odoo, reutilizando la capa financ
 
 
 5.7.1 Facturación de cliente
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 La facturación al cliente se apoya en las órdenes de venta TMS.
 
@@ -39,7 +39,7 @@ En este modo, el sistema puede consolidar líneas según criterios como:
 
 - producto
 - servicio
-- zona tarifaria
+- zona de tarifa
 
 Esto permite generar documentos comerciales más compactos sin perder trazabilidad con las líneas originales.
 
@@ -52,7 +52,7 @@ Durante la creación de facturas, el sistema controla:
 
 
 5.7.2 Facturación de proveedor
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 La facturación al transportista se apoya en la orden de compra vinculada al viaje.
 
@@ -69,7 +69,7 @@ Esto garantiza que la liquidación del transportista se apoye en información ce
 
 
 5.7.3 Controles relevantes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table::
    :header-rows: 1
@@ -103,7 +103,7 @@ El estado de facturación queda visible tanto en:
 
 Esto permite construir filtros operativos como:
 
-- expediciones pendientes de facturar
+- órdenes pendientes de facturar
 - rutas pendientes de liquidar
 - operaciones ya facturadas
 - incidencias económicas pendientes de revisión

@@ -16,6 +16,12 @@ Guraify TMS - Documentación 17.0
 
         Guía para conductores.
 
+    .. grid-item-card:: 📖 Glosario
+        :link: glossary
+        :link-type: doc
+
+        Los términos del producto, de la A a la Z.
+
 .. toctree::
    :maxdepth: 2
    :hidden:
@@ -27,3 +33,10 @@ Guraify TMS - Documentación 17.0
    4_parametrization/index
    5_operational-flows/index
    7_edi-integrations/index
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Referencia
+
+   glossary

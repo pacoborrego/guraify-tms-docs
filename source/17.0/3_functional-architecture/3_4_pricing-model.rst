@@ -14,7 +14,7 @@ esencial es que el precio **nace de la estructura operativa**: no es un cálculo
 sino una consecuencia de la Orden y sus Tramos.
 
 3.4.1 Componentes
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 El cálculo se apoya en un conjunto de entidades de configuración:
 
@@ -30,7 +30,7 @@ El cálculo se apoya en un conjunto de entidades de configuración:
      - Condiciones que determinan qué tarifa y qué cálculo se aplican a cada operación.
    * - Reglas de negocio (``tms.rule`` / ``tms.rule.model``)
      - Lógica configurable que adapta el comportamiento del sistema sin tocar el código.
-   * - Zonas tarifarias (``tms.pricelist.zone``)
+   * - Zonas de tarifa (``tms.pricelist.zone``)
      - Agrupaciones geográficas sobre las que se definen precios diferenciados.
    * - Tarifas base (``tms.pricelist.base``)
      - Estructura de precios de referencia, con rangos (``tms.pricelist.base.range``).
@@ -39,7 +39,7 @@ El cálculo se apoya en un conjunto de entidades de configuración:
        elementos anteriores.
 
 3.4.2 Cálculo del ingreso
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Cuando se valida o tarifica una Orden (``sale.order``), el sistema aplica las reglas de
 tasación configuradas y genera las líneas de venta correspondientes. El importe puede

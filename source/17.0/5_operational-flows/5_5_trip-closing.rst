@@ -28,17 +28,17 @@ Cuando todas las paradas válidas alcanzan un estado final de ejecución, el via
 
    * - Estado
      - Descripción
-   * - Completado
+   * - Completada
      - Operación ejecutada correctamente.
-   * - Reservas
+   * - Con reservas
      - Operación completada con incidencias o reservas.
-   * - Fallido
+   * - Fallida
      - Operación no ejecutada.
-   * - Reprogramado
+   * - Reprogramada
      - Operación cerrada con nueva ejecución prevista.
-   * - Devuelto
+   * - Devuelta
      - Operación finalizada con devolución asociada.
-   * - Cancelado
+   * - Cancelada
      - Operación cerrada sin ejecución.
 
 Cuando el viaje se cierra, el sistema ejecuta automáticamente varios procesos de consistencia económica y administrativa.

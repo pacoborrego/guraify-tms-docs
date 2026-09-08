@@ -5,7 +5,7 @@ Una vez definidas las entidades principales —Orden, Tramo, Parada y Viaje—, 
 
 
 Flujo lógico estructural
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 El flujo comienza cuando un cliente solicita un servicio. Ese compromiso se formaliza mediante la creación de una Orden, que actúa como unidad contractual y económica. A partir de ella se generan uno o varios Tramos que describen los movimientos logísticos necesarios para cumplir el servicio.
 
@@ -16,7 +16,7 @@ Este flujo no debe entenderse únicamente como una secuencia técnica, sino como
 
 
 Separación conceptual clave
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Cada entidad representa una capa distinta dentro del modelo y cumple un papel específico tanto operativo como económico. La Orden representa el ingreso y concentra el impacto en facturación; el Tramo estructura la operación logística y aporta trazabilidad dentro del servicio; la Parada materializa el evento físico y constituye la base de la planificación; el Viaje agrupa esas paradas en una ruta ejecutable y genera el coste asociado a su ejecución.
 

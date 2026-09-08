@@ -15,13 +15,13 @@ Modelo de mapeo
 
 .. CAPTURA: 7_2_1_01 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/7_edi-integrations/7_2_1_field-mapping_01_lista-mapeos.png
-      :alt: Mapeos de columnas de un fichero EDI
+      :alt: Mapeos de columnas de una Definición de fichero
 
-      Mapeos de columnas de un fichero EDI.
+      Mapeos de columnas de una Definición de fichero.
 
 El mapeo de entrada se define en ``tms.edi.field.mapping``, que asocia una columna de
 origen (``column_name``) con un campo de destino (``field``) y declara las conversiones
-de tipo aplicables tanto a la entrada como a la respuesta. Cada fichero EDI
+de tipo aplicables tanto a la entrada como a la respuesta. Cada Definición de fichero
 (``tms.edi.file``) agrupa los mapeos que le corresponden, de manera que un mismo tipo de
 intercambio reutiliza siempre la misma configuración de columnas (ver
 :doc:`7_2_file-import`).
@@ -32,7 +32,7 @@ Campos destino disponibles
 El campo de destino (``field``) no es texto libre: se elige de un catálogo cerrado de
 campos que el TMS sabe materializar. Ese catálogo está agrupado por la entidad de
 negocio a la que pertenece cada campo, de modo que un mismo fichero puede alimentar a la
-vez los datos del Viaje, de la Expedición, de los Tramos, de las líneas y de los datos
+vez los datos del Viaje, de la Orden, de los Tramos, de las líneas y de los datos
 maestros (clientes, transportistas, conductores y vehículos). La función de este
 catálogo es doble: garantiza que la columna del fichero externo apunta a un destino
 válido del modelo y sirve de referencia al consultor para saber qué información puede
@@ -46,7 +46,7 @@ importarse y bajo qué nombre.
 
 Los grupos disponibles y sus campos son los siguientes:
 
-.. list-table:: Viaje / Ruta (``tms.trip``)
+.. list-table:: Viaje (``tms.trip``)
    :header-rows: 1
    :widths: 30 70
 
@@ -75,22 +75,22 @@ Los grupos disponibles y sus campos son los siguientes:
    * - ``Trailers``
      - Semirremolque(s) asignado(s).
 
-.. list-table:: Expedición / Orden (``sale.order``)
+.. list-table:: Orden (``sale.order``)
    :header-rows: 1
    :widths: 30 70
 
    * - Campo destino
      - Significado
    * - ``Project``
-     - Proyecto al que pertenece la expedición.
+     - Proyecto al que pertenece la orden.
    * - ``Customer``
-     - Cliente de la expedición.
+     - Cliente de la orden.
    * - ``PriceList``
      - Tarifa de venta aplicable.
    * - ``ExternalRef``
-     - Referencia externa de la expedición (clave de idempotencia).
+     - Referencia externa de la orden (clave de idempotencia).
    * - ``ShipmentType``
-     - Tipo de expedición.
+     - Tipo de Orden.
    * - ``ServiceType``
      - Tipo de servicio contratado.
    * - ``CashValue``
@@ -102,11 +102,11 @@ Los grupos disponibles y sus campos son los siguientes:
    * - ``CashNote``
      - Nota asociada al reembolso.
    * - ``Info``
-     - Información / observaciones de la expedición.
+     - Información / observaciones de la orden.
    * - ``State``
-     - Estado de la expedición.
+     - Estado de la orden.
    * - ``ClosedPrice``
-     - Precio cerrado de la expedición.
+     - Precio cerrado de la orden.
 
 .. list-table:: Tramos — carga y descarga (``tms.shipment.leg``)
    :header-rows: 1
@@ -184,20 +184,20 @@ Los grupos disponibles y sus campos son los siguientes:
    * - ``PacksTemperature``
      - Tipo de embalaje / temperatura.
 
-.. list-table:: Paquetes / trazabilidad (``tms.shipment.pack.traceability``)
+.. list-table:: Bultos / trazabilidad (``tms.shipment.pack.traceability``)
    :header-rows: 1
    :widths: 30 70
 
    * - Campo destino
      - Significado
    * - ``Parcel_Barcode``
-     - Código de barras del paquete.
+     - Código de barras del bulto.
    * - ``Parcel_Cube``
-     - Volumen del paquete.
+     - Volumen del bulto.
    * - ``Parcel_GrossWeight``
-     - Peso bruto del paquete.
+     - Peso bruto del bulto.
    * - ``Parcel_Array``
-     - Conjunto de paquetes (estructura agrupada).
+     - Conjunto de bultos (estructura agrupada).
 
 .. list-table:: Clientes (``res.partner``)
    :header-rows: 1
@@ -333,30 +333,30 @@ El campo especial ``Parcel_Array``
 ----------------------------------
 
 Los campos ``Parcel_Barcode``, ``Parcel_Cube`` y ``Parcel_GrossWeight`` son escalares:
-cada uno toma el valor de una columna y describe **un** paquete. Funcionan bien cuando
-el fichero trae **una fila por paquete**.
+cada uno toma el valor de una columna y describe **un** bulto. Funcionan bien cuando
+el fichero trae **una fila por bulto**.
 
 ``Parcel_Array`` resuelve el caso contrario: clientes que envían **un único registro por
-expedición** (sin detalle de paquetes), pero cuyos códigos de barras impresos en las
+orden** (sin detalle de bultos), pero cuyos códigos de barras impresos en las
 etiquetas de origen siguen una regla de construcción conocida. En lugar de un valor
-escalar, ``Parcel_Array`` espera la **lista completa de paquetes** de la expedición, que
+escalar, ``Parcel_Array`` espera la **lista completa de bultos** de la orden, que
 se genera por código a partir de los datos de la fila.
 
 Cómo funciona internamente
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A diferencia del resto de campos de paquete, cuando la transformación escribe en
-``Parcel_Array`` el importador **sustituye** la estructura de paquete completa por el
+A diferencia del resto de campos de bulto, cuando la transformación escribe en
+``Parcel_Array`` el importador **sustituye** la estructura de bultos completa por el
 valor devuelto (no asigna un atributo suelto). Por eso la función debe devolver una
-**lista de diccionarios**, uno por paquete, con las claves que el importador sabe
+**lista de diccionarios**, uno por bulto, con las claves que el importador sabe
 materializar:
 
 - ``Parcel_Barcode`` — código de barras de la etiqueta de origen.
-- ``Parcel_GrossWeight`` — peso bruto del paquete.
-- ``Parcel_Cube`` — volumen del paquete.
+- ``Parcel_GrossWeight`` — peso bruto del bulto.
+- ``Parcel_Cube`` — volumen del bulto.
 
-Esa lista se asigna directamente a los paquetes (``Parcels``) de la línea de mercancía
-de la expedición.
+Esa lista se asigna directamente a los bultos (``Parcels``) de la línea de mercancía
+de la orden.
 
 Configuración del mapeo
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -384,17 +384,17 @@ fila completa, la lógica lee los datos de ``row`` por índice de columna, no de
 Ejemplo de uso
 ~~~~~~~~~~~~~~
 
-Supongamos un cliente que envía una fila por expedición con, entre otras, una columna de
-**referencia de expedición**, una de **número de bultos** y una de **peso bruto total**.
+Supongamos un cliente que envía una fila por orden con, entre otras, una columna de
+**referencia de orden**, una de **número de bultos** y una de **peso bruto total**.
 Las etiquetas de origen imprimen un código de barras con la regla
 ``<Referencia><NN>``, donde ``NN`` es el número de bulto correlativo con dos dígitos
-(``01``, ``02``, …). La función ``Parcel_Array`` reconstruye la lista de paquetes y
+(``01``, ``02``, …). La función ``Parcel_Array`` reconstruye la lista de bultos y
 reparte el peso a partes iguales:
 
 .. code-block:: python
 
    # Índices (base 0) de las columnas de origen en la fila
-   ref_index    = 0   # Referencia de expedición (ExternalRef)
+   ref_index    = 0   # Referencia de orden (ExternalRef)
    packs_index  = 5   # Número de bultos
    weight_index = 6   # Peso bruto total
 
@@ -415,10 +415,10 @@ reparte el peso a partes iguales:
 
    result = parcels
 
-Con una fila de referencia ``ALB12345`` y 3 bultos, la función genera tres paquetes con
+Con una fila de referencia ``ALB12345`` y 3 bultos, la función genera tres bultos con
 códigos ``ALB1234501``, ``ALB1234502`` y ``ALB1234503``, cada uno con su parte
 proporcional del peso. El importador los materializa como la trazabilidad de bultos
-(``tms.shipment.pack.traceability``) de la línea de la expedición.
+(``tms.shipment.pack.traceability``) de la línea de la orden.
 
 .. tip::
 
@@ -441,7 +441,7 @@ Prueba previa
 Antes de aplicar un mapeo a datos reales, el sistema permite probarlo de forma
 interactiva: se introduce un valor de ejemplo y se comprueba el resultado de la
 transformación. Esta validación previa reduce el riesgo de propagar errores de mapeo a
-los pedidos en producción.
+las Órdenes en producción.
 
 Entrada frente a salida
 -----------------------

@@ -8,7 +8,7 @@
 
 El Manifiesto EDI (``tms.edi.manifest``) es la entidad intermedia entre la ingesta de
 demanda en volumen y la estructura operativa. Agrupa los datos recibidos —de un fichero o
-de la Bandeja de Entrada API— en un área de trabajo donde se importan, se revisan y se
+de la Bandeja de entrada API— en un área de trabajo donde se importan, se revisan y se
 validan antes de convertirse en Órdenes.
 
 3.2.3.1 Origen
@@ -16,18 +16,18 @@ validan antes de convertirse en Órdenes.
 
 Un Manifiesto puede alimentarse de dos formas:
 
-- **Por fichero**: se crea el Manifiesto, se selecciona el cliente y el **Fichero EDI**
+- **Por fichero**: se crea el Manifiesto, se selecciona el cliente y la **Definición de fichero**
   (``tms.edi.file``, que define el mapeo de columnas) y se importa un fichero XLSX/CSV. Se
-  admiten Manifiestos **sin cliente** (cliente vacío y solo Fichero EDI).
-- **Por integración**: los datos llegan por API REST a la Bandeja de Entrada API
+  admiten Manifiestos **sin cliente** (cliente vacío y solo Definición de fichero).
+- **Por integración**: los datos llegan por API REST a la Bandeja de entrada API
   (``tms_int.api.inbox``) y desde ahí se agrupan en un Manifiesto (ver
   :doc:`3_2_4_api-inbox`).
 
 3.2.3.2 La pantalla del Manifiesto
 ----------------------------------
 
-La cabecera del Manifiesto ofrece las acciones principales: **Nueva expedición** (añadir
-una expedición manual al manifiesto), **Importar fichero** (abrir el asistente de
+La cabecera del Manifiesto ofrece las acciones principales: **Nueva Orden** (añadir
+una Orden manual al manifiesto), **Importar fichero** (abrir el asistente de
 importación), **Cerrar Manifiesto** y **Abrir Manifiesto** (reabrir uno cerrado).
 
 Además, dos **botones mágicos** (*smart buttons*) resumen el estado del manifiesto y
@@ -67,7 +67,7 @@ El Manifiesto recorre cuatro estados:
 *En cola*; la tarea **«Compute File Imports in Queue»** lo procesa cada 5 minutos. El
 usuario puede adelantarlo con el botón **«Validar e importar»** del asistente.
 
-**Cierre.** Cuando el Manifiesto ya tiene expediciones, aparece **«Cerrar Manifiesto»**. Al
+**Cierre.** Cuando el Manifiesto ya tiene órdenes, aparece **«Cerrar Manifiesto»**. Al
 cerrarlo, su contenido se materializa en la estructura operativa —Orden (``sale.order``),
 Tramos (``tms.shipment.leg``) y Paradas (``tms.stop``)—. El cierre también se procesa
 mediante una cola (tarea **«Compute Close Manifest»**, cada 5 minutos). Un Manifiesto

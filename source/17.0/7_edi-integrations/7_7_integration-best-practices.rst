@@ -30,7 +30,7 @@ operativa. Mantener esta separación facilita validar y corregir un intercambio 
 afectar a los registros operativos ya creados.
 
 Auditoría de transferencias de agencia
----------------------------------------
+--------------------------------------
 
 Las transferencias de agencia (``tms.agency.transfer.snapshot``) conservan el estado
 anterior y posterior a los *splits* y reasignaciones, lo que permite auditar qué cambió

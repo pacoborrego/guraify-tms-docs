@@ -2,7 +2,7 @@
 =============================
 
 Guraify TMS está concebido para operar en un ecosistema heterogéneo: clientes que
-remiten pedidos por API, plataformas que depositan ficheros y sistemas que notifican
+remiten Órdenes por API, plataformas que depositan ficheros y sistemas que notifican
 eventos mediante *webhooks*. La estrategia de integración parte de un principio único:
 con independencia del canal de entrada, todos los datos externos se normalizan hacia la
 misma estructura interna antes de materializarse en el modelo operativo.
@@ -22,7 +22,7 @@ Canales de entrada
 
 El sistema admite cuatro vías de ingesta, todas ellas equivalentes en su destino final:
 
-- **Importación de fichero**, para cargas manuales o periódicas de pedidos y datos
+- **Importación de fichero**, para cargas manuales o periódicas de Órdenes y datos
   maestros en formato XLSX o CSV (ver :doc:`7_2_file-import`).
 - **API REST** en formato JSON, para integraciones en tiempo real con sistemas de
   cliente (ver :doc:`7_3_api-integrations`).
@@ -53,7 +53,7 @@ El siguiente diagrama resume los canales y su convergencia en la estructura oper
 
    flowchart LR
        F[Fichero XLSX/CSV]:::ch --> FW[Asistente de importación<br/>tms_int.file.wizard]
-       A[API REST JSON]:::ch --> I[Bandeja de Entrada<br/>tms_int.api.inbox]
+       A[API REST JSON]:::ch --> I[Bandeja de entrada API<br/>tms_int.api.inbox]
        W[Webhook evento]:::ch --> EP[Endpoint webhook<br/>tms_int.api.endpoint]
        EP --> D{¿Orden?}
        D -->|Sí| I

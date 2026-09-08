@@ -12,7 +12,7 @@ La arquitectura separa claramente ingreso y coste, pero los mantiene vinculados 
    Es una propiedad estructural del modelo operativo.
 
 Ingreso 
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
 
 El ingreso nace en la Orden, ya que es la entidad que representa el compromiso contractual con el cliente. El cálculo puede realizarse automáticamente mediante reglas de tarifa configuradas en el sistema o aplicando condiciones económicas pactadas previamente. En ambos casos, el importe no es un valor aislado, sino el resultado de la estructura logística definida.
 
@@ -21,7 +21,7 @@ Cuando la operativa lo requiere, el ingreso puede segmentarse por Tramo, permiti
 De esta forma, el ingreso no es un dato agregado al final del proceso, sino una consecuencia directa de la configuración operativa.
 
 Coste 
-~~~~~
+~~~~~~
 
 El coste, por su parte, se genera en el Viaje, ya que este representa la ejecución real asignada a un recurso. El Viaje actúa como unidad de coste porque es la entidad que materializa la prestación efectiva del servicio, ya sea mediante flota propia o transportistas externos.
 

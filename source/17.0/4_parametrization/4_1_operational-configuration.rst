@@ -16,7 +16,7 @@ Aunque conceptualmente son simples catálogos, su impacto es significativo porqu
 
 Las tipologías definidas en esta sección se utilizan posteriormente en:
 
-• reglas de tarifa
+• Líneas de tarifa
 
 • filtros de planificación
 
@@ -47,7 +47,7 @@ Los Tipos de Servicio constituyen uno de los primeros elementos de configuració
 
 Su objetivo es clasificar la naturaleza de los servicios de transporte gestionados dentro del TMS y establecer la relación entre la operativa logística y los conceptos económicos que se utilizarán posteriormente en la facturación.
 
-En la práctica, el tipo de servicio permite identificar el modelo de transporte aplicado a una expedición.
+En la práctica, el tipo de servicio permite identificar el modelo de transporte aplicado a una orden.
 
 Esta clasificación facilita la gestión de diferentes operativas dentro de una misma organización, como por ejemplo:
 
@@ -57,7 +57,7 @@ Esta clasificación facilita la gestión de diferentes operativas dentro de una 
 - Same day
 - Entregas con compromiso horario
 
-La vista de lista permite revisar de un vistazo todos los tipos de servicio configurados, junto con los productos asociados, los tipos de expedición compatibles y las variables logísticas activas para cada uno.
+La vista de lista permite revisar de un vistazo todos los tipos de servicio configurados, junto con los productos asociados, los tipos de orden compatibles y las variables logísticas activas para cada uno.
 
 .. figure:: /_static/img/4_parametrization/4_1_operational-configuration_02_tipos-servicio-lista.png
    :align: center
@@ -104,8 +104,8 @@ El modelo de Tipos de Servicio incluye los siguientes campos funcionales.
      - Texto utilizado como concepto económico cuando el servicio genera líneas de facturación.
    * - Productos asociados
      - Productos del catálogo de Odoo que se utilizarán para registrar los ingresos generados por el servicio.
-   * - Tipos de expedición
-     - Define qué tipos de expedición pueden utilizar este servicio.
+   * - Tipos de Orden
+     - Define qué tipos de orden pueden utilizar este servicio.
    * - Bultos
      - Indica si el número de bultos puede intervenir en el cálculo económico del servicio.
    * - Cantidad
@@ -127,9 +127,9 @@ El modelo de Tipos de Servicio incluye los siguientes campos funcionales.
 
 Los tipos de servicio intervienen en diferentes procesos del TMS.
 
-Durante la creación de órdenes, el tipo de servicio define la naturaleza operativa de la expedición y determina qué variables logísticas pueden utilizarse posteriormente en las reglas de cálculo económico.
+Durante la creación de órdenes, el tipo de servicio define la naturaleza operativa de la orden y determina qué variables logísticas pueden utilizarse posteriormente en las reglas de cálculo económico.
 
-Durante el proceso de tarificación, el servicio actúa como uno de los criterios utilizados para seleccionar las reglas de tarifa aplicables.
+Durante el proceso de tarificación, el servicio actúa como uno de los criterios utilizados para seleccionar las Líneas de tarifa aplicables.
 
 Finalmente, en el proceso de facturación, los productos asociados al servicio permiten generar automáticamente las líneas económicas correspondientes dentro del sistema ERP.
 
@@ -149,11 +149,11 @@ Este diseño permite mantener alineadas las tres dimensiones principales del sis
 4.1.2 Tipos de Orden
 ~~~~~~~~~~~~~~~~~~~~
 
-Los Tipos de Orden definen la naturaleza operativa de una expedición dentro del sistema.
+Los Tipos de Orden definen la naturaleza operativa de una orden dentro del sistema.
 
 Mientras que los Tipos de Servicio clasifican la dimensión comercial del transporte, los Tipos de Orden describen el comportamiento logístico que tendrá la orden dentro del flujo operativo del TMS.
 
-En otras palabras, el tipo de orden determina cómo se comporta una expedición dentro de la red logística.
+En otras palabras, el tipo de orden determina cómo se comporta una orden dentro de la red logística.
 
 Esta clasificación permite diferenciar distintos escenarios operativos, como por ejemplo:
 
@@ -171,7 +171,7 @@ La vista de lista resume el conjunto de tipos disponibles. Las columnas booleana
 
    Lista de Tipos de Orden (``tms.shipment.type``).
 
-La definición del tipo de orden influye directamente en la forma en que el sistema genera la estructura logística de la expedición, especialmente en lo relativo a la creación de tramos y paradas.
+La definición del tipo de orden influye directamente en la forma en que el sistema genera la estructura logística de la orden, especialmente en lo relativo a la creación de tramos y paradas.
 
 Por este motivo, los Tipos de Orden forman parte de los elementos estructurales del modelo operativo del TMS.
 
@@ -202,7 +202,7 @@ El modelo de Tipos de Orden incluye los siguientes campos funcionales.
 
 Los Tipos de Orden intervienen principalmente durante el proceso de creación y estructuración de una orden de transporte.
 
-Cuando se registra una nueva expedición, el tipo de orden seleccionado indica al sistema qué lógica operativa debe aplicarse para generar la estructura logística correspondiente.
+Cuando se registra una nueva orden, el tipo de orden seleccionado indica al sistema qué lógica operativa debe aplicarse para generar la estructura logística correspondiente.
 
 Esta lógica puede afectar a:
 
@@ -223,19 +223,19 @@ Por ejemplo, una empresa puede gestionar simultáneamente:
 
 Los Tipos de Orden interactúan con varios componentes clave del modelo operativo del TMS.
 
-Se utilizan durante la creación de órdenes de transporte, donde determinan el comportamiento logístico de la expedición.
+Se utilizan durante la creación de órdenes de transporte, donde determinan el comportamiento logístico de la orden.
 
 Posteriormente, esta información se utiliza durante la generación de tramos y paradas, que constituyen la estructura operativa utilizada por planificación.
 
 Además, el tipo de orden puede utilizarse como criterio en:
 
 - Reglas de planificación
-- Reglas de tarifa
+- Líneas de tarifa
 - Validaciones operativas
 
 .. note::
 
-   El tipo de orden determina cómo se estructura una expedición
+   El tipo de orden determina cómo se estructura una orden
    en términos de tramos y paradas.
    Una configuración incorrecta impactará directamente
    en la representación logística del flujo operativo.
@@ -458,7 +458,7 @@ Permiten:
 
 - Definir transportistas admisibles
 - Condicionar tarifas de compra
-- Analizar rentabilidad por proveedor
+- Analizar rentabilidad por Transportista
 
 
 
@@ -468,7 +468,7 @@ Permiten:
 4.1.6.1 Contexto funcional de Tipos de Reembolso
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Los Tipos de Reembolso definen modalidades de cobro o devolución asociadas a una expedición.
+Los Tipos de Reembolso definen modalidades de cobro o devolución asociadas a una orden.
 
 Ejemplos:
 
