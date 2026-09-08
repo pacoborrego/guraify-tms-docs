@@ -62,6 +62,9 @@ html_theme_options = {
             "icon": "fa-brands fa-github",
         }
     ],
+    # Selector de versiones desactivado hasta que se publique una segunda versión
+    # (2026-09-08). Al reactivarlo: volver a incluir components/version-switcher.html
+    # en _templates/layout.html y ajustar versions.json.
     "switcher": {
         "json_url": "/docs/versions.json",
         "version_match": "17.0",
@@ -78,7 +81,8 @@ html_context = {
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
 html_extra_path = ["../versions.json"]
-html_js_files = ["language-switcher.js"]
+# language-switcher.js desactivado junto con el selector de idioma (2026-09-08).
+html_js_files = []
 
 # Logo / favicon
 html_logo = "_static/logo.svg"

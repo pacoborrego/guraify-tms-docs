@@ -13,11 +13,10 @@ Definición del endpoint
 
    TMS › Configuración › EDI › Endpoints API
 
-.. CAPTURA: 7_4_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/7_edi-integrations/7_4_endpoint-configuration_01_endpoint.png
-      :alt: Configuración de un endpoint saliente
+.. figure:: /_static/img/7_edi-integrations/7_4_endpoint-configuration_01_endpoint.png
+   :alt: Configuración de un endpoint saliente
 
-      Configuración de un endpoint saliente.
+   Configuración de un endpoint saliente.
 
 Cada endpoint (``tms_int.api.endpoint``) declara el método HTTP y la ruta relativa sobre
 la URL base de su Integración API, y construye las cabeceras, el cuerpo y la

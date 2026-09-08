@@ -48,8 +48,7 @@ distintas fases del servicio tengan impacto económico diferenciado. El detalle 
 división de ventas y de costes, así como la liquidación, se desarrolla en el capítulo 8
 (Administración y Control Económico).
 
-.. CAPTURA: 3_4_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/3_functional-architecture/3_4_pricing-model_01_tarifa.png
-      :alt: Configuración de una Tarifa en Odoo
+.. figure:: /_static/img/3_functional-architecture/3_4_pricing-model_01_tarifa.png
+   :alt: Configuración de una Tarifa en Odoo
 
-      Configuración de una Tarifa (``tms.pricelist``) en Odoo.
+   Configuración de una Tarifa (``tms.pricelist``) en Odoo.

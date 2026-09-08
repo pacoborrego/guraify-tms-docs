@@ -6,7 +6,7 @@
 
    TMS › Operaciones › Planificación (Optimizador de Paradas) y TMS › Operaciones › Tráfico › Viajes (``tms.trip``).
 
-.. CAPTURA: 5_5_01 — descomentar el figure cuando esté la imagen
+.. CAPTURA: 5_2_01 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_01_generacion-viajes.png
       :alt: Generación de viajes
 

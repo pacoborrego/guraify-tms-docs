@@ -30,11 +30,10 @@ puede ajustarse a la necesidad concreta. Las funciones que requieren parámetros
 (índices de columna, diccionarios de correspondencia, valores por defecto) los declaran
 al inicio del código mediante marcadores que el consultor sustituye.
 
-.. CAPTURA: 7_2_2_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/7_edi-integrations/7_2_2_python-transformations_01_lista-funciones.png
-      :alt: Catálogo de funciones preestablecidas
+.. figure:: /_static/img/7_edi-integrations/7_2_2_python-transformations_01_lista-funciones.png
+   :alt: Catálogo de funciones preestablecidas
 
-      Catálogo de funciones preestablecidas.
+   Catálogo de funciones preestablecidas.
 
 Las funciones cargadas por defecto (fichero ``tms_int/data/tms_int_preset_function.xml``)
 son las siguientes:

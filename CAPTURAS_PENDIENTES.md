@@ -1,104 +1,172 @@
-# Capturas pendientes — Documentación Guraify TMS
+# Capturas — lista de trabajo para María
 
-Lista de capturas de pantalla de la UI de Odoo que hay que insertar en la documentación
-Sphinx. **Responsable: María.**
+Todas las capturas de la documentación hay que **rehacerlas** (las que existen) o **hacerlas**
+(las que faltan). Motivo: las actuales son capturas a pantalla completa, con Odoo en inglés y,
+en el caso de la app, con nombres, teléfonos y direcciones reales de destinatarios en un repo
+público. Decisión de Paco, 2026-09-08.
 
-## Cómo trabajar esta lista
+## Requisitos de una captura válida
 
-1. **Hacer la captura** navegando a la *Ruta en Odoo* indicada en cada fila.
-2. **Guardar el PNG** en la carpeta de imágenes del capítulo (columna de cada bloque),
-   con el *nombre de fichero* exacto de la columna correspondiente.
-3. **Activar la imagen** en el `.rst` de destino: abre el fichero, busca el marcador
-   `.. CAPTURA: <ID>` y **descomenta** el bloque `.. figure::` que hay justo debajo
-   (quita la indentación que lo mantiene como comentario). El `figure` ya viene escrito
-   con la ruta y el pie correctos.
-4. **Compilar** para comprobar que se ve: `make html` y abrir `build/html/index.html`.
-5. Marcar la fila como hecha (cambiar `⬜` por `✅`).
+1. **Recorte**: solo la ventana de Odoo (o la zona relevante: un formulario, una lista, un
+   menú). Sin barra de menús del Mac, sin dock, sin hora, sin pestañas ni barra de direcciones
+   del navegador. En Chrome, `Cmd+Shift+4` y arrastrar sobre la zona, o usar el modo
+   "Capturar área" de las herramientas de desarrollador.
+2. **Odoo en español**: la interfaz debe estar en español (Preferencias del usuario › Idioma),
+   porque el texto de la doc da las rutas de menú en español (TMS › Operaciones › Tráfico…).
+3. **Sin datos reales**: ningún nombre de cliente, destinatario, conductor, teléfono,
+   dirección, matrícula ni email real. Opciones, en este orden: usar una base de datos de
+   demo; crear registros de prueba con nombres inventados; como último recurso, difuminar
+   (pero el difuminado a mano se nota y deja rastros, mejor evitarlo). Las capturas de la app
+   se hacen con una ruta de prueba, nunca con una ruta real.
+4. **Tamaño**: ancho entre 1400 y 1600 px para pantallas de Odoo; para la app, la captura
+   nativa del teléfono. Formato PNG. Idealmente por debajo de 400 KB (si pesa más, pasarla por
+   https://tinypng.com o similar).
+5. **Nombre de fichero**: exactamente el de la columna "Fichero" de las tablas de abajo, en la
+   carpeta indicada. Si el nombre no coincide, la imagen no se muestra.
 
-### Convenciones
+## Cómo entregar
 
-- Carpeta: `source/_static/img/<slug-capítulo>/` (una por capítulo, p. ej.
-  `source/_static/img/2_conceptual-model/` o `source/_static/img/7_edi-integrations/`).
-- Nombre de fichero: `<sección>_<slug>_<NN>_<slug-captura>.png` (en minúsculas, sin
-  espacios ni acentos). El nombre exacto está en cada fila.
-- Formato: PNG. Recortar a la zona relevante de la pantalla; ocultar datos sensibles de
-  clientes reales si los hubiera.
-- Resolución recomendada: ancho ~1400–1600 px (legible sin pesar de más).
-- La ruta raíz en todas las imágenes del `.rst` es absoluta desde `source/`:
-  `/_static/img/<slug-capítulo>/...`.
+1. Guardar el PNG en `source/_static/img/<carpeta>/` con el nombre exacto.
+2. Commit y push a la rama de trabajo acordada con Paco.
+3. Avisar a Paco: él ejecuta `/capturas`, que activa las imágenes en el texto, comprueba los
+   requisitos y actualiza esta lista. No hace falta tocar los `.rst`.
 
----
+Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y validada.
 
-## Capítulo 2 — Modelo Conceptual
 
-> Carpeta de imágenes: `source/_static/img/2_conceptual-model/`
+## Capítulo 2 — Modelo conceptual
+
+> Carpeta: `source/_static/img/2_conceptual-model/`
+
+| Estado | Sección (.rst) | Fichero | Qué se ve (pie de figura) | Ruta en Odoo |
+|---|---|---|---|---|
+| 🔁 | `2_1_structural-logic.rst` | `2_1_structural-logic_01_orden.png` | Formulario de una Orden (sale.order) en Odoo. | Las cuatro entidades del modelo se consultan en TMS › Operaciones › Tráfico: |
+| 🔁 | `2_1_structural-logic.rst` | `2_1_structural-logic_02_viaje.png` | Formulario de un Viaje (tms.trip) en Odoo. | Las cuatro entidades del modelo se consultan en TMS › Operaciones › Tráfico: |
+| 🔁 | `2_3_traceability-model.rst` | `2_3_traceability-model_01_trazabilidad.png` | Vista de Trazabilidad (tms.traceability) en Odoo. | TMS › Operaciones › Tráfico › Trazabilidad |
+
+## Capítulo 3 — Arquitectura funcional
+
+> Carpeta: `source/_static/img/3_functional-architecture/`
+
+| Estado | Sección (.rst) | Fichero | Qué se ve (pie de figura) | Ruta en Odoo |
+|---|---|---|---|---|
+| 🔁 | `3_1_functional-organization.rst` | `3_1_functional-organization_01_menu-raiz.png` | Áreas funcionales del menú raíz de Guraify TMS. | Menú raíz: TMS, con las áreas TMS › **Operaciones**, TMS › **Administración**, |
+| 🔁 | `3_2_1_orders.rst` | `3_2_1_orders_01_orden.png` | Formulario de una Orden (sale.order) con su estado operativo. | TMS › Operaciones › Tráfico › Órdenes |
+| 🔁 | `3_2_1_orders.rst` | `3_2_1_orders_02_orden-bloqueada.png` | Orden bloqueada: candado cerrado tras confirmarse la ejecución. | TMS › Operaciones › Tráfico › Órdenes |
+| 🔁 | `3_2_2_trips.rst` | `3_2_2_trips_01_viaje.png` | Formulario de un Viaje (tms.trip) con sus estados operativo, de compra y de facturación. | TMS › Operaciones › Tráfico › Viajes |
+| 🔁 | `3_2_3_manifests.rst` | `3_2_3_manifests_01_manifiesto.png` | Formulario de un Manifiesto EDI (tms.edi.manifest) con sus estados y botones. | TMS › Operaciones › Tráfico › Manifiestos |
+| ⬜ | `3_2_3_manifests.rst` | `3_2_3_manifests_02_botones-magicos.png` | Botones mágicos del Manifiesto: **Stops** y **Normalizar** (contactos pendientes). | TMS › Operaciones › Tráfico › Manifiestos |
+| 🔁 | `3_2_4_api-inbox.rst` | `3_2_4_api-inbox_01_inbox.png` | Bandeja de Entrada API (tms_int.api.inbox) con sus líneas y estados. | TMS › Operaciones › Tráfico › Bandeja de entrada API |
+| 🔁 | `3_2_5_active-leg.rst` | `3_2_5_active-leg_01_tramo-activo.png` | Cabecera de una Orden multitramo mostrando los datos del tramo activo. | TMS › Operaciones › Tráfico › Órdenes (la cabecera de la Orden muestra los datos del |
+| ⬜ | `3_3_planning-model.rst` | `3_3_planning-model_02_plan-disponibilidad.png` | Plan de Disponibilidad de Conductores: vista Gantt de *slots* (planning.slot). | TMS › Operaciones › Planificación (Plan Disponibilidad Conductores, Optimizador de Paradas) |
+| 🔁 | `3_3_planning-model.rst` | `3_3_planning-model_01_optimizador.png` | Optimizador de Paradas (tms.optimizator) en Odoo. | TMS › Operaciones › Planificación (Plan Disponibilidad Conductores, Optimizador de Paradas) |
+| 🔁 | `3_4_pricing-model.rst` | `3_4_pricing-model_01_tarifa.png` | Configuración de una Tarifa (tms.pricelist) en Odoo. | TMS › Configuración (Tarifas, Reglas, Productos) |
+
+## Capítulo 4 — Parametrización
+
+> Carpeta: `source/_static/img/4_parametrization/`
+
+| Estado | Sección (.rst) | Fichero | Qué se ve (pie de figura) | Ruta en Odoo |
+|---|---|---|---|---|
+| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_01_datos-auxiliares.png` | Panel "Datos auxiliares" en TMS › Configuración › Ajustes. | TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los |
+| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_02_tipos-servicio-lista.png` | Lista de Tipos de Servicio (tms.service.type). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los |
+| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_03_tipos-servicio-form.png` | Formulario de un Tipo de Servicio con sus variables logísticas. | TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los |
+| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_04_tipos-orden.png` | Lista de Tipos de Orden (tms.shipment.type). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los |
+| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_05_tipos-parada.png` | Lista de Tipos de Parada (tms.stop.type). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los |
+| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_06_tipos-destinatario.png` | Lista de Tipos de Destinatario (tms.receiper.type). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los |
+| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_07_tipos-transportista.png` | Lista de Tipos de Transportista (tms.carrier.type). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los |
+| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_08_tipos-reembolso.png` | Lista de Tipos de Reembolso (tms.cashvalue.type). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los |
+| ⬜ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_01_equipamientos.png` | Configuración de Equipamientos (tms.equipment). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*): Equipamientos |
+| ⬜ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_02_vehiculos.png` | Modelos y Categorías de Vehículo (fleet.vehicle.model / fleet.vehicle.model.category). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*): Equipamientos |
+| ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_01_planes-transporte.png` | Configuración de un Plan de Transporte (tms.transport.plan). | TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas |
+| ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_02_areas-geograficas.png` | Configuración de un Área Geográfica (tms.area). | TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas |
+| ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_03_tiempos-servicio.png` | Configuración de Tiempos de Servicio (tms.service.time). | TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas |
+| ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_01_zonas-tarifarias.png` | Configuración de una Zona Tarifaria (tms.pricelist.zone). | TMS › Configuración › Tarifas: Zonas Tarifarias (``tms.pricelist.zone``), Tarifas Base |
+| ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_02_tarifa.png` | Configuración de una Tarifa (tms.pricelist) y sus versiones. | TMS › Configuración › Tarifas: Zonas Tarifarias (``tms.pricelist.zone``), Tarifas Base |
+| ⬜ | `4_5_project-configuration.rst` | `4_5_project-configuration_01_proyecto.png` | Formulario de configuración de un Proyecto (project.project). | TMS › Configuración › Proyectos (el Proyecto, ``project.project``, extendido por el |
+| ⬜ | `4_5_project-configuration.rst` | `4_5_project-configuration_02_kanban-proyectos.png` | Vista Kanban de Proyectos con sus KPIs e indicadores de configuración. | TMS › Configuración › Proyectos (el Proyecto, ``project.project``, extendido por el |
+
+## Capítulo 5 — Flujos operativos
+
+> Carpeta: `source/_static/img/5_operational-flows/`
+
+| Estado | Sección (.rst) | Fichero | Qué se ve (pie de figura) | Ruta en Odoo |
+|---|---|---|---|---|
+| ⬜ | `5_1_order-creation.rst` | `5_1_order-creation_01_orden-nueva.png` | Formulario de creación de una Orden (sale.order). | TMS › Operaciones › Tráfico › Órdenes (la Orden, ``sale.order``). |
+| ⬜ | `5_1_order-creation.rst` | `5_1_order-creation_02_validar.png` | Botón **Validar** de la orden: valida y genera las Paradas. | TMS › Operaciones › Tráfico › Órdenes (la Orden, ``sale.order``). |
+| ⬜ | `5_2_trip-generation.rst` | `5_2_trip-generation_01_generacion-viajes.png` | Generación de Viajes (tms.trip): asistente manual u optimizador PTV. | TMS › Operaciones › Planificación (Optimizador de Paradas) y TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
+| ⬜ | `5_3_resource-assignment.rst` | `5_3_resource-assignment_01_recursos.png` | Viaje (tms.trip) con conductor, vehículo y transportista asignados. | TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
+| ⬜ | `5_5_trip-closing.rst` | `5_5_trip-closing_01_cierre.png` | Viaje cerrado tras completarse sus paradas. | TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
+| ⬜ | `5_6_settlement.rst` | `5_6_settlement_01_liquidacion.png` | Liquidación económica de venta (cliente) y de compra (transportista). | TMS › Administración (liquidación de venta y de compra). |
+| ⬜ | `5_7_invoicing.rst` | `5_7_invoicing_01_factura.png` | Generación de la factura de cliente / proveedor (account.move). | TMS › Administración (facturación de cliente y de proveedor). |
+| 🔁 | `5_8_kpi-indicators.rst` | `5_8_kpi-indicators_01_kpi-parada.png` | Indicador KPI en la lista de Paradas (triángulos de estado, barra de puntualidad y secuencia). | Columna de KPI en las listas de TMS › Operaciones › Tráfico › Órdenes y de las Paradas |
+| 🔁 | `5_8_kpi-indicators.rst` | `5_8_kpi-indicators_02_kpi-orden.png` | Indicador KPI en la lista de Órdenes (parada activa + validación, factura/candado y POD). | Columna de KPI en las listas de TMS › Operaciones › Tráfico › Órdenes y de las Paradas |
+
+## Capítulo 7 — Integraciones
+
+> Carpeta: `source/_static/img/7_edi-integrations/`
+
+| Estado | Sección (.rst) | Fichero | Qué se ve (pie de figura) | Ruta en Odoo |
+|---|---|---|---|---|
+| 🔁 | `7_1_integration-strategy.rst` | `7_1_integration-strategy_01_menu-edi.png` | Menú de configuración EDI en Odoo. | TMS › Configuración › EDI |
+| ⬜ | `7_2_1_field-mapping.rst` | `7_2_1_field-mapping_01_lista-mapeos.png` | Mapeos de columnas de un fichero EDI. | TMS › Configuración › EDI › Definición de Fichero |
+| ⬜ | `7_2_1_field-mapping.rst` | `7_2_1_field-mapping_02_selector-campo.png` | Catálogo de campos destino agrupado por entidad (selector *Tms Field*). | TMS › Configuración › EDI › Definición de Fichero |
+| 🔁 | `7_2_1_field-mapping.rst` | `7_2_1_field-mapping_03_parcel-array.png` | Configuración del campo computado Parcel_Array (*Computed* + *Apply Code?*). | TMS › Configuración › EDI › Definición de Fichero |
+| 🔁 | `7_2_2_python-transformations.rst` | `7_2_2_python-transformations_01_lista-funciones.png` | Catálogo de funciones preestablecidas. | TMS › Configuración › EDI › Funciones preestablecidas |
+| ⬜ | `7_2_2_python-transformations.rst` | `7_2_2_python-transformations_02_funcion-detalle.png` | Detalle de una función preestablecida (descripción y código de ejemplo). | TMS › Configuración › EDI › Funciones preestablecidas |
+| ⬜ | `7_2_file-import.rst` | `7_2_file-import_01_asistente.png` | Asistente de importación de fichero. | TMS › Configuración › EDI › Definición de Fichero |
+| 🔁 | `7_2_file-import.rst` | `7_2_file-import_02_validacion.png` | Reporte de validación del fichero importado. | TMS › Configuración › EDI › Definición de Fichero |
+| 🔁 | `7_3_api-integrations.rst` | `7_3_api-integrations_01_integracion.png` | Configuración de una integración API y su autenticación. | TMS › Configuración › EDI › Integraciones API |
+| ⬜ | `7_3_api-integrations.rst` | `7_3_api-integrations_02_inbox.png` | Bandeja de Entrada API con los estados de las líneas. | TMS › Configuración › EDI › Integraciones API |
+| 🔁 | `7_4_endpoint-configuration.rst` | `7_4_endpoint-configuration_01_endpoint.png` | Configuración de un endpoint saliente. | TMS › Configuración › EDI › Endpoints API |
+| ⬜ | `7_5_webhooks.rst` | `7_5_webhooks_01_endpoint-webhook.png` | Endpoint configurado como webhook. | TMS › Configuración › EDI › Endpoints API |
+| ⬜ | `7_6_automated-actions.rst` | `7_6_automated-actions_01_crons.png` | Tareas programadas que orquestan las integraciones. | Ajustes › Técnico › Automatización › Acciones planificadas |
+| ⬜ | `7_7_integration-best-practices.rst` | `7_7_integration-best-practices_01_api-log.png` | Registro de actividad de las APIs (tms.api.log). |  |
+
+## Manual del conductor (cap. 10) — app móvil
+
+> Carpeta: `source/_static/img/10_manual_app/`
 >
-> Capítulo conceptual: solo llevan captura las secciones que tienen pantalla propia en
-> Odoo (las entidades del modelo y la trazabilidad). Las secciones de diagrama (2.5, 2.6)
-> y las puramente conceptuales no llevan captura.
+> Todas se rehacen con una **ruta de prueba** (datos inventados). Son capturas del teléfono,
+> sin recortar. Mismo nombre de fichero que la actual. Al hacer la tarea D11 del plan pueden
+> cambiar algunos nombres; Paco avisará.
 
-| Estado | ID | Sección (.rst destino) | Qué capturar | Ruta en Odoo | Nombre del fichero PNG | Pie de figura |
-|---|---|---|---|---|---|---|
-| ✅ | 2_1_01 | 2.1 Lógica estructural (`2_1_structural-logic.rst`) | Formulario de una Orden (datos de cliente, proyecto, tramos, líneas) | TMS › Operaciones › Tráfico › Órdenes | `2_1_structural-logic_01_orden.png` | Formulario de una Orden (`sale.order`) en Odoo. |
-| ✅ | 2_1_02 | 2.1 Lógica estructural (`2_1_structural-logic.rst`) | Formulario de un Viaje (paradas agrupadas, recurso asignado) | TMS › Operaciones › Tráfico › Viajes | `2_1_structural-logic_02_viaje.png` | Formulario de un Viaje (`tms.trip`) en Odoo. |
-| ✅ | 2_3_01 | 2.3 Trazabilidad (`2_3_traceability-model.rst`) | Vista de Trazabilidad con el histórico de eventos | TMS › Operaciones › Tráfico › Trazabilidad | `2_3_traceability-model_01_trazabilidad.png` | Vista de Trazabilidad (`tms.traceability`) en Odoo. |
-
----
-
-## Capítulo 3 — Arquitectura Funcional
-
-> Carpeta de imágenes: `source/_static/img/3_functional-architecture/`
-
-| Estado | ID | Sección (.rst destino) | Qué capturar | Ruta en Odoo | Nombre del fichero PNG | Pie de figura |
-|---|---|---|---|---|---|---|
-| ✅ | 3_1_01 | 3.1 Organización funcional (`3_1_functional-organization.rst`) | Menú raíz de TMS desplegado mostrando las cuatro áreas | TMS (menú raíz: Operaciones, Administración, Maestros, Configuración) | `3_1_functional-organization_01_menu-raiz.png` | Áreas funcionales del menú raíz de Guraify TMS. |
-| ✅ | 3_2_1_01 | 3.2.1 Órdenes (`3_2_1_orders.rst`) | Formulario de una Orden con su estado operativo (Oper State) | TMS › Operaciones › Tráfico › Órdenes | `3_2_1_orders_01_orden.png` | Formulario de una Orden (`sale.order`) con su estado operativo. |
-| ✅ | 3_2_1_02 | 3.2.1 Órdenes (`3_2_1_orders.rst`) | Orden bloqueada: candado cerrado tras confirmarse la ejecución | TMS › Operaciones › Tráfico › Órdenes › (una orden confirmada/bloqueada) | `3_2_1_orders_02_orden-bloqueada.png` | Orden bloqueada: candado cerrado tras confirmarse la ejecución. |
-| ✅ | 3_2_2_01 | 3.2.2 Viajes (`3_2_2_trips.rst`) | Formulario de un Viaje mostrando estado operativo, de compra (OC) y de facturación | TMS › Operaciones › Tráfico › Viajes | `3_2_2_trips_01_viaje.png` | Formulario de un Viaje (`tms.trip`) con sus tres estados. |
-| ✅ | 3_2_3_01 | 3.2.3 Manifiestos (`3_2_3_manifests.rst`) | Formulario de un Manifiesto EDI con su estado (open/in_queue/processing/closed) | TMS › Operaciones › Tráfico › Manifiestos | `3_2_3_manifests_01_manifiesto.png` | Formulario de un Manifiesto EDI (`tms.edi.manifest`) y su estado. |
-| ✅ | 3_2_4_01 | 3.2.4 API Inbox (`3_2_4_api-inbox.rst`) | Bandeja de Entrada API con sus líneas y estados (recibido/inválido/vinculado) | TMS › Operaciones › Tráfico › Bandeja de entrada API | `3_2_4_api-inbox_01_inbox.png` | Bandeja de Entrada API (`tms_int.api.inbox`) con sus líneas y estados. |
-| ✅ | 3_2_5_01 | 3.2.5 Tramo activo (`3_2_5_active-leg.rst`) | Cabecera de una Orden multitramo mostrando los datos del tramo activo (lugares/fechas/estado) | TMS › Operaciones › Tráfico › Órdenes › (orden con varios tramos) | `3_2_5_active-leg_01_tramo-activo.png` | Cabecera de una Orden multitramo mostrando los datos del tramo activo. |
-| ✅ | 3_3_01 | 3.3 Planificación (`3_3_planning-model.rst`) | Optimizador de Paradas | TMS › Operaciones › Planificación › Optimizador de Paradas | `3_3_planning-model_01_optimizador.png` | Optimizador de Paradas (`tms.optimizator`) en Odoo. |
-| ✅ | 3_4_01 | 3.4 Tarificación (`3_4_pricing-model.rst`) | Formulario de una Tarifa | TMS › Configuración › Tarifas | `3_4_pricing-model_01_tarifa.png` | Configuración de una Tarifa (`tms.pricelist`) en Odoo. |
-
----
-
-## Capítulo 5 — Flujos Operativos
-
-> Carpeta de imágenes: `source/_static/img/5_operational-flows/`
->
-> (El cap. 5 está pendiente de revisión completa; de momento solo se listan las capturas
-> de la sección de indicadores KPI.)
-
-| Estado | ID | Sección (.rst destino) | Qué capturar | Ruta en Odoo | Nombre del fichero PNG | Pie de figura |
-|---|---|---|---|---|---|---|
-| ✅ | 5_11_01 | Indicadores KPI (`5_11_kpi-indicators.rst`) | Columna KPI en la lista de Paradas (triángulos de estado + barra de puntualidad + secuencia) | TMS › Operaciones › Maestros operativos › Paradas | `5_11_kpi-indicators_01_kpi-parada.png` | Indicador KPI en la lista de Paradas. |
-| ✅ | 5_11_02 | Indicadores KPI (`5_11_kpi-indicators.rst`) | Columna KPI en la lista de Órdenes (badge compuesto: parada activa + validación/factura/candado/POD) | TMS › Operaciones › Tráfico › Órdenes | `5_11_kpi-indicators_02_kpi-orden.png` | Indicador KPI en la lista de Órdenes. |
+| Estado | Sección (.rst) | Fichero |
+|---|---|---|
+| 🔁 | `10_1_application-access.rst` | `10_1_application-access_01_activar-cuenta-step-1.png` |
+| 🔁 | `10_1_application-access.rst` | `10_1_application-access_02_activar-cuenta-step-2.png` |
+| 🔁 | `10_1_application-access.rst` | `10_1_application-access_03_login.png` |
+| 🔁 | `10_2_route.rst` | `10_2_route_01_dashboard.png` |
+| 🔁 | `10_2_route.rst` | `10_2_route_02_dashboard-header.png` |
+| 🔁 | `10_2_route.rst` | `10_2_route_03_parada-card.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_01_parada-report-inicio.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_02_parada-report-botones-exito.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_03_orden-card.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_04_parada-footer.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_05_parada-acciones.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_06_parada-accion.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_07_parada-report-he-llegado.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_08_bultos-lista-scan-off.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_09_bulto-card.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_10_bultos-lista-scan-on.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_11_bultos-lista-footer.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_12_reembolso-step-1.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_13_reembolso-step-2.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_14_reporte-carga-1.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_15_reporte-carga-2.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_16_reporte-carga-3.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_17_reporte-entrega.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_18_reporte-entrega-4.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_19_scanmatrix-step-1.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_20_scanmatrix-step-2.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_21_scanmatrix-step-3.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_22_parada-report-pod-phisical-pre-scan.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_23_parada-report-pod-phisical-post-scan.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_24_parada-report-pre-sign-digital.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_25_parada-report-pod-digital-post-sign.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_26_img-1021.png` |
+| 🔁 | `10_3_report.rst` | `10_3_report_27_img-1020.png` |
 
 ---
 
-## Capítulo 7 — EDI e Integraciones
-
-> Carpeta de imágenes: `source/_static/img/7_edi-integrations/`
-
-| Estado | ID | Sección (.rst destino) | Qué capturar | Ruta en Odoo | Nombre del fichero PNG | Pie de figura |
-|---|---|---|---|---|---|---|
-| ✅ | 7_1_01 | 7.1 Estrategia (`7_1_integration-strategy.rst`) | Submenú EDI desplegado mostrando sus opciones | TMS › Configuración › EDI | `7_1_integration-strategy_01_menu-edi.png` | Menú de configuración EDI en Odoo. |
-| ✅ | 7_2_01 | 7.2 Importación (`7_2_file-import.rst`) | Asistente de importación con el fichero subido y el selector de formato | TMS › Configuración › EDI › Definición de Fichero › (asistente de importación) | `7_2_file-import_01_asistente.png` | Asistente de importación de fichero. |
-| ✅ | 7_2_02 | 7.2 Importación (`7_2_file-import.rst`) | Reporte de validación tras procesar (estados borrador→validado) | TMS › Configuración › EDI › Definición de Fichero › (asistente, log de validación) | `7_2_file-import_02_validacion.png` | Reporte de validación del fichero importado. |
-| ✅ | 7_2_1_01 | 7.2.1 Mapeo (`7_2_1_field-mapping.rst`) | Formulario de un fichero EDI con sus líneas de mapeo (columna → campo) | TMS › Configuración › EDI › Definición de Fichero | `7_2_1_field-mapping_01_lista-mapeos.png` | Mapeos de columnas de un fichero EDI. |
-| ✅ | 7_2_1_02 | 7.2.1 Mapeo (`7_2_1_field-mapping.rst`) | Desplegable del campo destino mostrando los grupos (TRIPS, SHIPMENTS, LEGS…) | TMS › Configuración › EDI › Definición de Fichero › (línea de mapeo, campo *Tms Field*) | `7_2_1_field-mapping_02_selector-campo.png` | Catálogo de campos destino agrupado por entidad. |
-| ✅ | 7_2_1_03 | 7.2.1 Mapeo (`7_2_1_field-mapping.rst`) | Mapeo computado de `Parcel_Array`: casillas *Computed* y *Apply Code?* + Python Code | TMS › Configuración › EDI › Definición de Fichero › (línea de mapeo, opciones de transformación) | `7_2_1_field-mapping_03_parcel-array.png` | Configuración del campo computado Parcel_Array. |
-| ✅ | 7_2_2_01 | 7.2.2 Transformaciones (`7_2_2_python-transformations.rst`) | Lista de funciones preestablecidas | TMS › Configuración › EDI › Funciones preestablecidas | `7_2_2_python-transformations_01_lista-funciones.png` | Catálogo de funciones preestablecidas. |
-| ✅ | 7_2_2_02 | 7.2.2 Transformaciones (`7_2_2_python-transformations.rst`) | Formulario de una función con descripción y código de ejemplo | TMS › Configuración › EDI › Funciones preestablecidas › (una función) | `7_2_2_python-transformations_02_funcion-detalle.png` | Detalle de una función preestablecida. |
-| ✅ | 7_3_01 | 7.3 Integraciones API (`7_3_api-integrations.rst`) | Formulario de Integración API con el selector de tipo de autenticación | TMS › Configuración › EDI › Integraciones API | `-integration7_3_apis_01_integracion.png` | Configuración de una integración API y su autenticación. |
-| ✅ | 7_3_02 | 7.3 Integraciones API (`7_3_api-integrations.rst`) | Bandeja de Entrada API con líneas y sus estados (recibido/inválido/vinculado) | TMS › Operaciones › Tráfico › Bandeja de entrada API | `7_3_api-integrations_02_inbox.png` | Bandeja de Entrada API con los estados de las líneas. |
-| ✅ | 7_4_01 | 7.4 Endpoints (`7_4_endpoint-configuration.rst`) | Formulario de Endpoint: método, ruta, plantillas Jinja y `send_mode`/`max_batch_size` | TMS › Configuración › EDI › Endpoints API | `7_4_endpoint-configuration_01_endpoint.png` | Configuración de un endpoint saliente. |
-| ✅ | 7_5_01 | 7.5 Webhooks (`7_5_webhooks.rst`) | Endpoint marcado como webhook: `is_webhook`, `webhook_route`, `webhook_secret` | TMS › Configuración › EDI › Endpoints API › (endpoint con *Is Webhook?*) | `7_5_webhooks_01_endpoint-webhook.png` | Endpoint configurado como webhook. |
-| ✅ | 7_6_01 | 7.6 Acciones Automáticas (`7_6_automated-actions.rst`) | Lista de tareas programadas (ir.cron) relacionadas con las integraciones | Ajustes › Técnico › Automatización › Acciones planificadas (filtrar TMS) | `7_6_automated-actions_01_crons.png` | Tareas programadas que orquestan las integraciones. |
-| ✅ | 7_7_01 | 7.7 Buenas Prácticas (`7_7_integration-best-practices.rst`) | Registro de actividad API (`tms.api.log`): entrada/salida, estado, código HTTP | (acción del modelo `tms.api.log`) | `7_7_integration-best-practices_01_api-log.png` | Registro de actividad de las APIs. |
-
----
-
-*Última actualización: 2026-06-04. Cuando se migren los capítulos 6, 8 y 3.2, se añadirán
-sus bloques siguiendo esta misma convención (manteniendo el orden por número de capítulo).*
+*Regenerada el 2026-09-08 (tarea D1). Se mantiene al día con `/capturas` y `/cerrar-tarea`.*

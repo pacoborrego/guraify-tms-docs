@@ -118,8 +118,7 @@ estructural: cada Parada conserva su vínculo con el Tramo y la Orden de origen,
 que la reorganización de la ejecución nunca rompe la trazabilidad ni la dimensión
 económica.
 
-.. CAPTURA: 3_3_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/3_functional-architecture/3_3_planning-model_01_optimizador.png
-      :alt: Optimizador de Paradas en Odoo
+.. figure:: /_static/img/3_functional-architecture/3_3_planning-model_01_optimizador.png
+   :alt: Optimizador de Paradas en Odoo
 
-      Optimizador de Paradas (``tms.optimizator``) en Odoo.
+   Optimizador de Paradas (``tms.optimizator``) en Odoo.

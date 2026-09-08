@@ -14,11 +14,9 @@
 
 <div class="guraify-subheader border-bottom">
     <div class="bd-page-width d-flex align-items-center justify-content-end gap-3">
-        {# Language (custom template) #}
-        {% include "language-switcher.html" ignore missing %}
-
-        {# Version switcher (PyData theme component) #}
-        {% include "components/version-switcher.html" ignore missing %}
+        {# Selectores de idioma y versión desactivados hasta que existan traducciones
+           y una segunda versión publicada (decisión 2026-09-08). Las plantillas
+           language-switcher.html y components/version-switcher.html se conservan. #}
 
         {# GitHub / icon links (PyData theme component) #}
         {% include "components/navbar-icon-links.html" ignore missing %}

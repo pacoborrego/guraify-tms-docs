@@ -61,11 +61,10 @@ tarea programada las recoge periódicamente y completa su tratamiento (ver
 fecha y hora sin un formato reconocible— y el resto de incidencias se recogen en el
 reporte de validación, sin interrumpir el procesamiento de las filas correctas.
 
-.. CAPTURA: 7_2_02 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/7_edi-integrations/7_2_file-import_02_validacion.png
-      :alt: Reporte de validación del fichero importado
+.. figure:: /_static/img/7_edi-integrations/7_2_file-import_02_validacion.png
+   :alt: Reporte de validación del fichero importado
 
-      Reporte de validación del fichero importado.
+   Reporte de validación del fichero importado.
 
 Configuración del mapeo
 -----------------------

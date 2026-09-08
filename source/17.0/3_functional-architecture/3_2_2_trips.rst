@@ -91,8 +91,7 @@ La interacción con los estados es automática y sigue al estado de las Paradas:
 De este modo, bloquear un Viaje equivale a "cerrar el coste" del transportista, y
 desbloquearlo a reabrirlo para corregirlo, siempre que no se haya facturado todavía.
 
-.. CAPTURA: 3_2_2_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/3_functional-architecture/3_2_2_trips_01_viaje.png
-      :alt: Formulario de un Viaje con sus tres estados
+.. figure:: /_static/img/3_functional-architecture/3_2_2_trips_01_viaje.png
+   :alt: Formulario de un Viaje con sus tres estados
 
-      Formulario de un Viaje (``tms.trip``) con sus estados operativo, de compra y de facturación.
+   Formulario de un Viaje (``tms.trip``) con sus estados operativo, de compra y de facturación.

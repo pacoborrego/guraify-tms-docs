@@ -87,8 +87,7 @@ carga o la de descarga.
    KPI de la Orden (:doc:`/17.0/5_operational-flows/5_8_kpi-indicators`) se construyen a
    partir de la parada activa.
 
-.. CAPTURA: 3_2_5_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/3_functional-architecture/3_2_5_active-leg_01_tramo-activo.png
-      :alt: Cabecera de una Orden mostrando los datos del tramo activo
+.. figure:: /_static/img/3_functional-architecture/3_2_5_active-leg_01_tramo-activo.png
+   :alt: Cabecera de una Orden mostrando los datos del tramo activo
 
-      Cabecera de una Orden multitramo mostrando los datos del tramo activo.
+   Cabecera de una Orden multitramo mostrando los datos del tramo activo.

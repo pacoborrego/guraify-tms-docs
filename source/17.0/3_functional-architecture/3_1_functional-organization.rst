@@ -35,11 +35,10 @@ Cada una de estas áreas agrupa distintos menús y herramientas que permiten ges
        MAE --> MAE1["Clientes · Transportistas · Vehículos<br/>Recursos humanos · Localizaciones · Proyectos"]
        CFG --> CFG1["Parámetros · Integraciones (EDI) · Reglas de negocio<br/>Automatizaciones · Planificación · Tarificación"]
 
-.. CAPTURA: 3_1_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/3_functional-architecture/3_1_functional-organization_01_menu-raiz.png
-      :alt: Menú raíz de Guraify TMS en Odoo
+.. figure:: /_static/img/3_functional-architecture/3_1_functional-organization_01_menu-raiz.png
+   :alt: Menú raíz de Guraify TMS en Odoo
 
-      Áreas funcionales del menú raíz de Guraify TMS.
+   Áreas funcionales del menú raíz de Guraify TMS.
 
 3.1.1 Operaciones
 ~~~~~~~~~~~~~~~~~~

@@ -44,8 +44,7 @@ mismo punto de validación y materialización que el resto de canales, mantenien
 coherencia del modelo. Los contratos REST concretos de esta recepción se documentan en el
 *gateway* y en :doc:`/17.0/7_edi-integrations/7_3_api-integrations`.
 
-.. CAPTURA: 3_2_4_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/3_functional-architecture/3_2_4_api-inbox_01_inbox.png
-      :alt: Bandeja de Entrada API con sus líneas y estados
+.. figure:: /_static/img/3_functional-architecture/3_2_4_api-inbox_01_inbox.png
+   :alt: Bandeja de Entrada API con sus líneas y estados
 
-      Bandeja de Entrada API (``tms_int.api.inbox``) con sus líneas y estados.
+   Bandeja de Entrada API (``tms_int.api.inbox``) con sus líneas y estados.

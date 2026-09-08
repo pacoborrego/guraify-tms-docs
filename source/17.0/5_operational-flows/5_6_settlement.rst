@@ -6,7 +6,7 @@
 
    TMS › Administración (liquidación de venta y de compra).
 
-.. CAPTURA: 5_9_01 — descomentar el figure cuando esté la imagen
+.. CAPTURA: 5_6_01 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/5_operational-flows/5_6_settlement_01_liquidacion.png
       :alt: Liquidación económica
 

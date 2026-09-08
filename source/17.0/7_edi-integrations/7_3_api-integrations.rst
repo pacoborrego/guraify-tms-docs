@@ -27,11 +27,10 @@ Configuración de la conexión
 
    TMS › Configuración › EDI › Integraciones API
 
-.. CAPTURA: 7_3_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/7_edi-integrations/7_3_api-integrations_01_integracion.png
-      :alt: Configuración de una integración API y su autenticación
+.. figure:: /_static/img/7_edi-integrations/7_3_api-integrations_01_integracion.png
+   :alt: Configuración de una integración API y su autenticación
 
-      Configuración de una integración API y su autenticación.
+   Configuración de una integración API y su autenticación.
 
 La conexión HTTP se define en la Integración API (``tms_int.api.integration``), que
 declara la URL base y el método de autenticación. Se admiten cinco modalidades: sin
