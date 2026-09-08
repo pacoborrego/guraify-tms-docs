@@ -15,7 +15,7 @@ recoge aparte, al final, en :ref:`17.0/1_introduction/1_4_technological-architec
 
    flowchart TB
        ODOO[Plataforma ERP Odoo 17] --> TMS[Módulo Guraify TMS<br/>tms_suite]
-       TMS --> PTV[Servicios PTV<br/>geocodificación · mapa · routing<br/>secuenciación · optimización]
+       TMS --> PTV[Servicios PTV<br/>geocodificación · mapa · cálculo de ruta<br/>secuenciación · optimización]
        PTV -.respaldo.-> OSM[Google · OpenStreetMap]
        TMS --> INT[Capa de integración<br/>ficheros · API REST · webhooks]
        TMS --> APP[App móvil del conductor<br/>POD · escaneo Scandit · trazabilidad]
@@ -57,7 +57,7 @@ planificación intervienen tres servicios, con tres niveles de uso progresivos:
      - Cuándo se lanza
      - Qué envía el TMS
      - Qué vuelve y dónde queda
-   * - **Routing**
+   * - **Cálculo de ruta**
      - Al crear Viajes desde un Manifiesto que trae la secuencia; al reordenar, añadir o quitar
        paradas en el mapa del Optimizador; con los botones del Viaje.
      - Cada parada con su coordenada, tiempo de servicio y ventana horaria; el perfil de
@@ -72,7 +72,7 @@ planificación intervienen tres servicios, con tres niveles de uso progresivos:
        de apertura de hubs y clientes; perfil, inicio, fin y distancia máxima del vehículo;
        disponibilidad del conductor.
      - El nuevo orden de las Paradas y sus horas de llegada y salida. Después se relanza el
-       routing para refrescar el trazado.
+       cálculo de ruta para refrescar el trazado.
    * - **Optimización completa**
      - Desde el Optimizador de Paradas sobre las Paradas pendientes de una fecha.
      - Vehículos con capacidades, equipamiento, inicio, fin y distancia máxima; conductores con
@@ -81,7 +81,7 @@ planificación intervienen tres servicios, con tres niveles de uso progresivos:
      - Viajes nuevos con sus Paradas asignadas y secuenciadas, vehículo y conductor, horas por
        parada, y la lista de lo que no se ha podido planificar.
 
-El **routing** es el nivel básico: el Viaje ya existe, con sus paradas y su recurso, y PTV lo
+El **cálculo de ruta** es el nivel básico: el Viaje ya existe, con sus paradas y su recurso, y PTV lo
 enriquece con la red viaria profesional. El preset de horas de conducción sale del
 :term:`Plan de disponibilidad de conductores` (por defecto, el reglamento europeo 561/2006). El
 ETA que devuelve es el que ven el planificador, el conductor en la app y, por las
@@ -109,7 +109,7 @@ El planificador revisa la propuesta, la ajusta a mano si hace falta y la confirm
 
 .. tip::
 
-   Routing enriquece Viajes existentes. Secuenciación ordena las Paradas de un Viaje.
+   El cálculo de ruta enriquece Viajes existentes. Secuenciación ordena las Paradas de un Viaje.
    Optimización completa propone qué Viajes crear y cómo llenarlos. Toda la parametrización
    sale de los maestros del TMS: categorías de vehículo, planes de disponibilidad, horarios de
    los contactos y tiempos de servicio.
@@ -121,7 +121,7 @@ La geolocalización es un fundamento estructural, no un accesorio: de ella depen
 asignación a planes de transporte, la tarificación por zonas, el cálculo de rutas y la
 planificación. Tres geometrías bastan para todo. La **coordenada** (latitud y longitud)
 representa una localización; el **polígono**, guardado en GeoJSON, representa un área; la
-**polilínea** representa el trazado de una ruta calculada por el routing.
+**polilínea** representa el trazado de una ruta calculada por el cálculo de ruta.
 
 Geocodificación de direcciones
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -247,7 +247,7 @@ veces, se procesa una sola.
 Son los prerrequisitos de la **torre de control** que se está construyendo sobre el TMS, y
 afectan sobre todo a los servicios de PTV:
 
-- **Routing enriquecido.** Peajes por país y moneda, emisiones de CO₂ y consumo según los
+- **Cálculo de ruta enriquecido.** Peajes por país y moneda, emisiones de CO₂ y consumo según los
   esquemas EN 16258 e ISO 14083, calculados con los parámetros del modelo de vehículo, y
   reparto de las emisiones del Viaje a cada Orden.
 - **ETA incremental.** Recalcular sólo las paradas pendientes a partir de la posición real del

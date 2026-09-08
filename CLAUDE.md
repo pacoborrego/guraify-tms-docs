@@ -30,6 +30,8 @@ Tiene **cuatro públicos** y la portada los separa en cuatro recorridos (ver `PL
   que aparece la entidad en cada página (p. ej. "la Parada (`tms.stop`)"). Campos, métodos y
   códigos internos **no van en la prosa**: van en el aviso "Ruta en Odoo", en una tabla de
   referencia o en un anexo.
+  La tabla de referencia se titula **"N.N.N Referencia técnica"** y va al final de la sección
+  (patrón fijado en D6: 3.2.1.6, 3.2.2.5, 3.2.5.4).
 - En la Guía del integrador sí caben campos, cabeceras y ejemplos de código.
 
 **Terminología**: manda el glosario, `source/17.0/glossary.rst` (tarea D3, 2026-09-08). Cada
@@ -45,6 +47,8 @@ decisiones que más se incumplen:
 | Planning (sin traducir) | Planificación, cuando es la entidad `tms.planning` |
 | Regla de tarifa (qué se mide) / Línea de tarifa (el precio) | "Reglas de tarifa" para las dos |
 | Área geográfica / Zona de tarifa | Zona geográfica, Zona tarifaria |
+| Cálculo de ruta / Secuenciación / Optimización completa | Routing (salvo como nombre del servicio de PTV en tablas), Sequence |
+| Franja (del Plan de disponibilidad) / Botones inteligentes | Slot, Smart buttons, Botones mágicos |
 | Completada, Con reservas, Fallida, Reprogramada, Devuelta, Cancelada | Hecho, Reservista, Fallo, OK, KO |
 | Transportista, Conductor, Cliente, Remitente, Destinatario, Bulto | Carrier, Driver, Shipper, Cargador, Receiver, Paquete |
 
@@ -189,5 +193,5 @@ confirma**.
 
 ---
 
-*Actualizado el 2026-09-08 (v3, D5). Si algo de aquí queda desactualizado, actualízalo en el
+*Actualizado el 2026-09-08 (v3, D6). Si algo de aquí queda desactualizado, actualízalo en el
 mismo cambio que lo desactualiza.*

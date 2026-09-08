@@ -29,6 +29,11 @@ para quien lo necesite.
       varios bultos; la app del conductor los escanea en carga y en entrega. (No se dice
       *paquete*, *parcel* ni *pack*.) Modelo ``tms.shipment.pack``.
 
+   Cálculo de ruta
+      Enriquecimiento de un Viaje con la red viaria de PTV: trazado, distancia, duración y,
+      por Parada, hora estimada de llegada (ETA), llegada y salida. No cambia el orden de las
+      Paradas; eso es la secuenciación. (No se dice *routing*.)
+
    Cliente
       Empresa o persona que encarga el servicio y a quien se factura la Orden. (No se dice
       *shipper* ni *cargador*.) Modelo ``res.partner``.

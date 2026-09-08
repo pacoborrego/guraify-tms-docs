@@ -13,21 +13,33 @@ interoperabilidad con plataformas logísticas, transformando los datos externos
 directamente en entidades nativas del sistema (Orden, Tramo, Parada, Viaje) sin crear
 estructuras paralelas.
 
-El sistema soporta varios mecanismos, gestionados por el módulo de integraciones
-(``tms_int``):
+Todos los mecanismos los gestiona el módulo de integraciones (``tms_int``):
 
-- Definición de ficheros estructurados (``tms.edi.file``) para la importación.
-- Integraciones API REST (``tms_int.api.integration``) y su Bandeja de entrada API
-  (``tms_int.api.inbox``).
-- Endpoints de servicio salientes (``tms_int.api.endpoint``).
-- Webhooks entrantes sobre esos mismos endpoints.
-- Automatizaciones programadas (``ir.cron``) que orquestan el flujo.
+.. list-table::
+   :header-rows: 1
+   :widths: 32 68
+
+   * - Mecanismo
+     - Qué hace
+   * - :term:`Definición de fichero`
+     - Describe cómo leer el fichero de un cliente (columnas, transformaciones) para
+       importarlo en un Manifiesto.
+   * - Integración API
+     - Un sistema externo con el que se habla: dirección, autenticación y sus endpoints.
+   * - Endpoint
+     - Cada llamada concreta, entrante o saliente, con su método, su ruta y su mapeo de
+       datos. Los entrantes reciben webhooks; los salientes envían estados y documentos.
+   * - :term:`Bandeja de entrada API`
+     - Donde se depositan las Órdenes que llegan por API antes de pasar al Manifiesto.
+   * - Automatizaciones
+     - Acciones automáticas y tareas programadas que disparan los envíos y procesan las
+       colas.
 
 .. admonition:: Dónde se detalla
    :class: important
 
-   Este apartado es solo el encuadre arquitectónico. El funcionamiento completo de cada
-   mecanismo —configuración, mapeo, transformaciones, webhooks, acciones automáticas y
-   buenas prácticas— se desarrolla en el :doc:`capítulo 7, EDI e Integraciones
-   </17.0/7_edi-integrations/index>`. Los contratos de la API REST pública viven en el
-   *gateway* (``/api/docs``) y no se duplican aquí.
+   Este apartado es sólo el encuadre arquitectónico. El funcionamiento completo de cada
+   mecanismo (configuración, mapeo, transformaciones, webhooks, acciones automáticas y
+   buenas prácticas) se desarrolla en la :doc:`Guía del integrador
+   </17.0/7_edi-integrations/index>`. Los contratos de la API REST pública viven en la
+   pasarela de API y no se duplican aquí.

@@ -80,17 +80,17 @@ el sistema crea los Viajes (``tms.trip``) con la información del fichero y les 
 paradas. El enriquecimiento de la ruta depende de si el fichero trae o no la secuencia:
 
 - **Con secuencia informada en el fichero.** El sistema respeta ese orden y calcula el
-  **routing** con PTV —distancias, tiempos, ETA, peajes, etc.— (ver
+  **cálculo de ruta** con PTV —distancias, tiempos, ETA, peajes, etc.— (ver
   :doc:`/17.0/1_introduction/1_4_technological-architecture` y
   :doc:`/17.0/3_functional-architecture/3_3_planning-model`).
 - **Sin secuencia.** El comportamiento depende de la **configuración del Proyecto** (ver
   :doc:`/17.0/4_parametrization/4_5_project-configuration`):
 
   - Si el proyecto tiene activada la **autosecuenciación**, el sistema primero
-    **secuencia automáticamente** las paradas (secuenciación PTV) y después calcula el
-    **routing**.
+    **secuencia automáticamente** las paradas (secuenciación PTV) y después calcula la
+    **ruta**.
   - Si **no** está activada, las paradas se asignan al viaje **en el orden en que vienen en
-    el fichero** y el viaje **no se enriquece** con datos de routing: no tendrá kilómetros,
+    el fichero** y el viaje **no se enriquece** con datos de ruta: no tendrá kilómetros,
     tiempos, ETA ni cálculo de peajes.
 
 .. note::

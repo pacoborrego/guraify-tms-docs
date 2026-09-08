@@ -8,6 +8,36 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Cap. 3 Arquitectura funcional (tarea D6 del plan, 2026-09-08)
+- **Identificadores fuera de la prosa** en 3.1 a 3.5. Los estados se nombran como en pantalla
+  (sin el código entre paréntesis), los botones por su etiqueta en español (**Bloquear**,
+  **Desbloquear**, **Validar e importar**, **Importar Fichero Ahora**, **Cerrar Manifiesto
+  Ahora**) y los métodos desaparecen. Los campos que un consultor necesita para filtros y
+  exportaciones van a una tabla **Referencia técnica** al final de 3.2.1 (Órdenes), 3.2.2
+  (Viajes) y 3.2.5 (Tramo activo). El mermaid de 3.2.5 se dibuja con conceptos, no con campos.
+- **3.1 alineado con el menú real** de Odoo (verificado en los `menuitem` de `tms` y `tms_int`
+  y en `es.po`): Trazabilidad cuelga de Tráfico y no de Maestros operativos, que incluye
+  Líneas; Administración son Opciones de tarifa, maestros económicos, Reembolsos y
+  Transacciones (antes decía "facturación, liquidación, control de costes"); Maestros son
+  Equipos, Recursos humanos y Operaciones; Configuración incluye el submenú EDI.
+- **Referencias a los capítulos 6 y 8** (3.2 y 3.4) sustituidas por enlaces a 5.4, 5.6 y 5.7
+  hasta que D10 escriba Administración y Control Económico.
+- **Duplicidades con el cap. 5**: el cap. 3 se queda con qué es y cómo se comporta cada
+  entidad y enlaza al flujo (3.2.1.5 y 3.2.2.4 a 5.5; 3.2.3.3 y 3.3.2 a 5.2). Nada de 5.x
+  se ha tocado salvo la palabra *routing*.
+- **3.3 corregido**: el planificador no elige el objetivo de la optimización (no existe tal
+  opción); el resultado se describe con lo que devuelve PTV (ETA, distancias, tiempos de
+  conducción, trazado) sin "esperas y descansos". 3.2.2.1 ya no atribuye "costes" al cálculo
+  de ruta.
+- **3.4**: ruta corregida a TMS › Administración › Opciones de Tarifa; la tabla de componentes
+  distingue Reglas de tarifa (qué se mide) de Líneas de tarifa (el precio) según el glosario.
+- **Anglicismos**: *slot* → franja, *smart buttons* / botones mágicos → botones inteligentes,
+  *gateway* → pasarela de API, *routing* → **cálculo de ruta**. Este último entra en el
+  glosario como término nuevo y se aplica también en 1.4 y en 5.2.
+- Discrepancia detectada para Odoo: el botón `Import File` del Manifiesto está traducido como
+  "Fichero de Importación"; debería ser "Importar fichero". Añadida a la lista de
+  correcciones de PLAN.md.
+
 ### Cap. 1 Introducción (tarea D5 del plan, 2026-09-08)
 - **1.1 y 1.3** reescritos para el recorrido "Manual de implantación": el capítulo ya no dice
   que la doc no es para el usuario final; presenta el manual, su público (consultores,
