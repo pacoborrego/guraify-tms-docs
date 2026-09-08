@@ -34,6 +34,18 @@ público. Decisión de Paco, 2026-09-08.
 Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y validada.
 
 
+## Conocer Guraify TMS (capa de producto)
+
+> Carpeta: `source/_static/img/0_product-overview/`
+>
+> Estas páginas reutilizan además cuatro capturas de otros capítulos (Orden, Optimizador,
+> pantalla principal de la app), que se actualizan solas cuando se rehagan las originales.
+
+| Estado | Sección (.rst) | Fichero | Qué se ve (pie de figura) | Ruta en Odoo |
+|---|---|---|---|---|
+| ⬜ | `0_4_what-it-includes.rst` | `0_4_what-it-includes_01_tablero.png` | Tablero de operaciones: volumen, puntualidad y estado de las paradas del día. | TMS › Operaciones › Tableros (tablero de operaciones, con datos de demo) |
+| ⬜ | `0_6_integrations.rst` | `0_6_integrations_01_portal.png` | El portal del cliente: envíos recibidos, rechazados y su manifiesto. | Portal del cliente, entrando con un usuario de portal: Mi cuenta › Bandejas API |
+
 ## Capítulo 2 — Modelo conceptual
 
 > Carpeta: `source/_static/img/2_conceptual-model/`
