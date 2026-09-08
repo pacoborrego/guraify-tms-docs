@@ -8,6 +8,41 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Cap. 5 Flujos operativos (tarea D8 del plan, 2026-09-08)
+- **Index** reescrito: desaparece la frase cortada y entra un mermaid del ciclo completo (alta,
+  Manifiesto, validación, Viaje, ejecución, cierre, orden de compra y factura, con la
+  tarificación como tarea periódica).
+- **5.1** ajustado: 5.1.2 pasa a ser los cinco pasos del alta por Manifiesto; identificadores
+  fuera de la prosa.
+- **5.2 a 5.7 redactados como flujo** al nivel de 5.1, verificados en el código:
+  - 5.2: el asistente **Asignar a viaje** (desde Órdenes o desde Paradas con **Acciones
+    operativas**), sus modos Nuevo y Existente, lo que completa el Proyecto, los botones
+    Secuenciar Viaje, Enrutar Viaje y Actualizar, y los pasos del Optimizador. Ya no dice que el
+    cálculo de ruta devuelva peajes.
+  - 5.3: los cuatro orígenes de los recursos, cuándo nace la orden de compra (transportista más
+    tarifa de compra o precio cerrado), la flota propia sin orden de compra y la propagación a
+    las Paradas (campos calculados desde el Viaje).
+  - 5.4: **Enviar a la app** pone el Viaje en Procesado; la app carga el procesado más reciente
+    del conductor; cada evento es un apunte de Trazabilidad con su contexto; orden de
+    actualización Parada → Tramos → Orden → Viaje. Remite al cap. 10, no al 6. Códigos de
+    estado en una tabla de referencia técnica.
+  - 5.5: la cadena de cierre tal y como está programada (Viaje: tarifica, bloquea la OC,
+    Completado; Orden: pendiente de confirmar y confirmada por la tarea programada cada cinco
+    minutos, con la explicación de por qué el desfase), la reapertura, la reprogramación y la
+    protección por facturación.
+  - 5.6: cuándo se tarifica (validar, cerrar, botón Tarificar, tarea cada 5 min con lote y
+    tope de tiempo), venta y compra, y el diagnóstico de tarifa con **Resolver diagnosis** y
+    **Crear trayecto faltante**.
+  - 5.7: **Modo de facturación TMS** del asistente estándar (Grupo TMS por producto, servicio y
+    zona / Estándar Odoo), **Crear factura agrupada** y **Línea de abono** desde las listas de
+    líneas, **Crear factura** desde el Viaje y sus condiciones.
+- **5.8**: campos fuera de la prosa, a una referencia técnica.
+- **Reparto con el cap. 3** aplicado: el 5 enlaza al 3 para estados y botones; 3.2.1.5,
+  3.2.2.4, 3.2.3 y 3.3 ya enlazaban al 5.
+- **Detectado**: la tarea P3 de la torre de control se cerró el 2026-09-08, así que 1.4.6 da por
+  futuro (ETA incremental, peajes, CO₂) lo que ya está en el código. Anotado en PLAN.md como
+  pendiente suelto.
+
 ### Cap. 3 Arquitectura funcional (tarea D6 del plan, 2026-09-08)
 - **Identificadores fuera de la prosa** en 3.1 a 3.5. Los estados se nombran como en pantalla
   (sin el código entre paréntesis), los botones por su etiqueta en español (**Bloquear**,

@@ -1,39 +1,35 @@
 5 Flujos Operativos
 ===================
 
-Este capítulo describe el flujo operativo completo de una orden TMS, desde su creación hasta su facturación.
+Este capítulo recorre el ciclo completo de una Orden en Guraify TMS, desde que entra en el
+sistema hasta que se factura, en el orden en que ocurre. Cada sección cuenta qué hace el
+usuario, qué comprueba el sistema y qué automatismos se disparan según la parametrización del
+Proyecto. El comportamiento de cada entidad (estados, botones, campos) está en el
+:doc:`capítulo 3 </17.0/3_functional-architecture/index>`; aquí se enlaza a él en lugar de
+repetirlo.
 
-El objetivo es identificar qué objeto del sistema participa en cada fase, qué validaciones se ejecutan y qué automatismos pueden intervenir según la parametrización del proyecto.
+El flujo se apoya en las cuatro entidades del modelo conceptual. La **Orden** es la venta al
+cliente; el **Tramo**, la estructura logística; la **Parada**, la unidad de planificación y
+ejecución; el **Viaje**, la ejecución con un recurso y su coste. La Orden puede entrar a mano,
+por fichero o por API, pero a partir de la validación el camino es el mismo para todas: la
+planificación, la ejecución en la app, el cierre, la liquidación y la facturación trabajan
+sobre la misma estructura, venga de donde venga la Orden.
 
-El flujo se apoya en cuatro entidades principales:
+.. mermaid::
 
-- La Orden o Orden, representada por ``sale.order``
-- El Tramo, representado por ``tms.shipment.leg``
-- La Parada, representada por ``tms.stop``
-- El Viaje, representado por ``tms.trip``
-
-Cada una agrupa un nivel distinto de información y permite separar:
-
-- La venta al cliente
-- La estructura logística
-- La planificación
-- La liquidación al transportista
-
-A nivel funcional, el proceso puede iniciarse mediante:
-
-- Creación manual desde Odoo
-- Importación de fichero
-- Integración API
-
-Independientemente del canal de entrada, el sistema normaliza la información hacia una estructura interna común.
-
-Esto garantiza que:
-
-- La validación
-- La planificación
-- La ejecución en app
-- La facturación
-
+   flowchart LR
+       MAN["Alta manual"] --> ORD["Orden"]
+       FILE["Fichero"] --> MF["Manifiesto"]
+       API["API"] --> MF
+       MF -->|cerrar| ORD
+       ORD -->|validar| ST["Paradas<br/>(desde los Tramos)"]
+       ST -->|asignar · optimizar| TR["Viaje"]
+       TR -->|enviar a la app| EXE["Ejecución<br/>parada a parada"]
+       EXE -->|última parada cerrada| CLO["Cierre<br/>Viaje completado · Orden confirmada"]
+       CLO --> OC["Orden de compra<br/>al transportista"]
+       CLO --> FAC["Factura<br/>al cliente"]
+       TAR["Tarificación<br/>(tarea cada 5 min)"] -.-> ORD
+       TAR -.-> TR
 
 .. toctree::
    :maxdepth: 2
