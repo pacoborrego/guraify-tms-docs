@@ -480,21 +480,16 @@ nav.bd-links .current>a {
   gap: 0.5rem;
 }
 
-/* Hide original text */
-.bd-sidebar .sidebar-heading span,
+/* Captions de los toctree (Conocer Guraify TMS · Manual de implantación · Guía del
+   integrador). Antes se ocultaban y se sustituían por un rótulo fijo "TMS User Docs";
+   desde 2026-09-08 cada recorrido de la portada muestra su propio nombre. */
 .bd-sidebar .bd-links .caption-text {
-  visibility: hidden;
-  position: relative;
-}
-
-/* Inject custom title + icon LEFT SIDEBAR */
-.bd-sidebar .sidebar-heading span::before,
-.bd-sidebar .bd-links .caption-text::before {
-  content: "📦 TMS User Docs";
-  visibility: visible;
-  position: absolute;
-  left: 0;
   color: var(--guraify-primary);
+  font-family: "Mulish", "Open Sans", sans-serif;
+  font-weight: 800;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 .bd-links__title{
   display: none;

@@ -8,6 +8,23 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Capa de producto y portada (tarea D4 del plan, 2026-09-08)
+- **Nueva sección "Conocer Guraify TMS"** (`source/17.0/0_product-overview/`, 8 páginas) para
+  clientes y distribuidores: qué es, para quién (cinco operativas y para quién no), cómo
+  funciona (los cuatro conceptos y el ciclo completo, con un mermaid), qué incluye (nueve
+  áreas y su cruce con los módulos, verificado contra los `__manifest__.py`; `tms_crm` queda
+  fuera por ser interno), la app del conductor, integraciones, cuatro casos de uso sin nombres
+  de cliente y preguntas frecuentes. Sin modelos ni campos de Odoo; títulos sin numerar.
+  Los aspectos comerciales (edición de Odoo, despliegue, licencia, soporte) remiten a Guraify.
+- **Portada nueva** (`17.0/index.rst`): título "Documentación de Guraify TMS", cuatro
+  tarjetas (Conocer Guraify TMS, Manual de implantación, Guía del integrador, Manual del
+  conductor) y un toctree con `:caption:` por recorrido. El manual del conductor sigue
+  `:orphan:` con su cabecera propia.
+- **Barra lateral**: los captions de los toctree vuelven a verse con el nombre de cada
+  recorrido. `custom.css` los ocultaba y pintaba un rótulo fijo "📦 TMS User Docs".
+- Dos capturas nuevas registradas (tablero de operaciones y portal del cliente); las páginas
+  reutilizan además capturas de los caps. 3 y 10.
+
 ### Glosario y terminología (tarea D3 del plan, 2026-09-08)
 - Nueva página **Glosario** (`source/17.0/glossary.rst`, directiva `glossary` de Sphinx,
   40 términos con definición, sinónimos descartados y modelo Odoo), enlazada desde la portada
