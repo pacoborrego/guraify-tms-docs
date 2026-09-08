@@ -19,7 +19,7 @@ La liquidación económica del TMS se divide en dos dimensiones diferenciadas:
 
 Esta separación permite calcular margen económico a distintos niveles operativos:
 
-- orden
+- Orden
 - tramo
 - parada
 - viaje
@@ -27,7 +27,7 @@ Esta separación permite calcular margen económico a distintos niveles operativ
 También permite diferenciar claramente:
 
 - la tarifa comercial cobrada al cliente
-- el coste operativo pagado al proveedor
+- el coste operativo pagado al Transportista
 
 
 
@@ -46,7 +46,7 @@ En el lado de venta, la orden TMS calcula líneas económicas a partir de:
 
 Según la parametrización económica, la tarifa puede aplicarse sobre:
 
-- expedición
+- Orden
 - tramo
 - parada
 - viaje
@@ -89,10 +89,10 @@ La orden de compra queda enlazada directamente con el viaje y recoge informació
    * - Tarifa cliente
      - Precio comercial aplicado al cliente.
    * - Tarifa transportista
-     - Coste económico aplicado al proveedor.
+     - Coste económico aplicado al Transportista.
    * - Magnitudes logísticas
      - Peso, volumen, bultos, pallets, metros, cantidad, tiempo.
-   * - Zonas tarifarias
+   * - Zonas de tarifa
      - Territorios económicos origen/destino.
    * - Reembolsos
      - Importes adicionales asociados a la operación.
@@ -110,7 +110,7 @@ Las magnitudes utilizadas en liquidación pueden incluir:
 - distancia
 - tiempo de ejecución
 
-Las zonas tarifarias pueden resolverse mediante:
+Las zonas de tarifa pueden resolverse mediante:
 
 - origen y destino del tramo
 - zonas de parada

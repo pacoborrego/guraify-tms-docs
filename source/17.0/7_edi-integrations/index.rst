@@ -2,7 +2,7 @@
 =====================
 
 Este capítulo describe cómo Guraify TMS intercambia información con sistemas
-externos: la ingesta de pedidos y eventos desde ficheros (XLSX/CSV), API REST
+externos: la ingesta de Órdenes y eventos desde ficheros (XLSX/CSV), API REST
 (JSON) y webhooks; el mapeo y la transformación de los datos hacia el modelo
 interno; y la trazabilidad de cada intercambio.
 

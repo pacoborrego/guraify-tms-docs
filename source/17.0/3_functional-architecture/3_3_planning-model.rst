@@ -16,7 +16,7 @@ ventana horaria y tiempo de servicio— y el resultado se consolida en **Viajes*
 .. _disponibilidad-recursos:
 
 3.3.1 Disponibilidad de recursos
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. admonition:: Ruta en Odoo
    :class: tip
@@ -48,7 +48,7 @@ su **modo por slot** (ver :ref:`optimizador-paradas`).
 .. _optimizador-paradas:
 
 3.3.2 Optimización: el Optimizador de Paradas
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. admonition:: Ruta en Odoo
    :class: tip
@@ -68,21 +68,21 @@ antes de confirmarla.
 La optimización puede trabajar de dos formas:
 
 3.3.2.1 Modo por slot
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 El sistema optimiza sobre **recursos ya definidos** en los *slots* del Plan de
 Disponibilidad de Conductores (conductor, vehículo, transportista, tarifa de compra y
 disponibilidad temporal). Es la opción para planificar sobre recursos reales ya reservados.
 
 3.3.2.2 Modo por categoría
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 El sistema optimiza según la **capacidad disponible por categoría de vehículo**, sin fijar
 aún un recurso concreto. El operador asigna después conductor y vehículo a cada Viaje
 propuesto.
 
 3.3.2.3 Requisitos previos
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Para que la optimización produzca rutas viables deben cumplirse algunas condiciones:
 

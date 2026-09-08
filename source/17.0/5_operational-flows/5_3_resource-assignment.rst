@@ -37,7 +37,7 @@ El objetivo de esta fase es garantizar que el viaje disponga de toda la informac
    * - Recurso
      - Descripción
    * - Transportista
-     - Proveedor, agencia o flota que ejecuta el viaje.
+     - Transportista, agencia o flota propia que ejecuta el viaje.
    * - Tarifa de compra
      - Tarifa económica para cálculo del coste.
    * - Conductor

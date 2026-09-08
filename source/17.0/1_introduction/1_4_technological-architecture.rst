@@ -17,7 +17,7 @@ Esta arquitectura permite evolucionar cada componente sin comprometer la estabil
        INT <--> EXT[Sistemas externos]
 
 Plataforma base Odoo
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 El núcleo del sistema es Odoo, que proporciona la infraestructura ORM, el modelo de seguridad por roles, la capa de vistas, el motor de automatizaciones y la integración nativa con módulos financieros y analíticos.
 
@@ -40,12 +40,12 @@ El módulo Guraify TMS se implementa como extensión sobre esta base, reutilizan
 Esta decisión permite que el TMS no sea un sistema aislado, sino una especialización logística dentro de un ERP horizontal.
 
 Integración con PTV 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 La integración con PTV en Guraify TMS se articula en tres niveles de uso progresivos: Routing, Secuenciación y Optimización completa con OptiFlow. Todos ellos se apoyan en la misma base: la entidad planificable sigue siendo la Parada y la unidad de ejecución el Viaje; PTV aporta la inteligencia matemática sobre esta estructura, no la sustituye.
 
 Routing
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^
 
 En el nivel de Routing, el Viaje ya existe en el TMS (paradas asignadas y recurso definido) y lo que se hace es enriquecerlo con la red viaria profesional de PTV, utilizando la Routing API. Esta API trabaja con waypoints (los puntos del viaje), parámetros de vehículo y contexto temporal para calcular distancias, tiempos, ETAs, peajes, costes y emisiones.
 
@@ -74,7 +74,7 @@ La respuesta de Routing se vuelca de nuevo en el Viaje y en sus Paradas:
 En operativa, esto permite recalcular la ETA durante la ejecución, combinando la ruta planificada de PTV con la posición real del conductor obtenida desde la app móvil, de modo que el Viaje en Guraify se convierte en un objeto dinámico que refleja la situación real y no solo el plan teórico.
 
 Secuenciación
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 En el nivel de Secuenciación, las paradas ya están asignadas a un Viaje, pero su orden no es óptimo. Aquí se usa la Sequence Optimization API, que trabaja con el concepto de *locations, transports and stops*, vehículo y conductor, tiempos de servicio, ventanas horarias y prioridades de transporte para devolver el mejor orden posible de ejecución.
 
@@ -103,7 +103,7 @@ La secuenciación devuelve:
 En Guraify, esto se traduce en una reordenación de las Paradas del Viaje, con actualización de ETAs y KPIs de ruta (km, duración, nivel de servicio), manteniendo la vinculación de cada parada con su Tramo y su Orden para no romper el modelo estructural.
 
 Optimización completa
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 El nivel más avanzado utiliza Route Optimization OptiFlow API. Aquí ya no hablamos solo de ordenar paradas dentro de un viaje existente, sino de dejar que PTV proponga el plan completo de asignación y secuenciación de las paradas a viajes, en base a órdenes, vehículos, depósitos y un conjunto rico de reglas y restricciones.
 
@@ -154,7 +154,7 @@ El usuario del TMS no ve el detalle técnico de la API, sino una propuesta de pl
    Toda la parametrización nace de los maestros del TMS.
 
 Capa de integración 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 El sistema incorpora una capa de integración que permite intercambiar información estructurada con sistemas externos mediante:
 
@@ -170,7 +170,7 @@ Las integraciones no crean estructuras paralelas, sino que alimentan directament
 
 
 Arquitectura móvil y tecnologías embarcadas
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 La aplicación móvil de Guraify TMS es una extensión operativa del backend. No es únicamente una interfaz de confirmación de entregas, sino un punto activo de generación de datos estructurales que alimentan la trazabilidad en tiempo real,
 
@@ -183,7 +183,7 @@ Cada escaneo actualiza automáticamente la trazabilidad y puede activar eventos 
 
 
 Tipologías de escaneo
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 **Escaneo simple**
 
@@ -242,7 +242,7 @@ Este modo permite interacción dinámica y reduce drásticamente el tiempo opera
    Es validación contextual en tiempo real contra la estructura del Viaje.
 
 Uso dentro del flujo operativo
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Una vez definidos los modos de escaneo, su aplicación dentro del flujo logístico es la siguiente:
 
@@ -288,7 +288,7 @@ Se utiliza principalmente el escaneo masivo, asegurando que:
 
 
 Impacto estructural
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 En todos los casos, el escaneo no es una acción aislada. Cada lectura genera:
 
@@ -303,7 +303,7 @@ En todos los casos, el escaneo no es una acción aislada. Cada lectura genera:
 La tecnología de Scandit actúa como acelerador operativo, pero el resultado siempre es estructural: el modelo de datos se actualiza en tiempo real y mantiene coherencia entre ejecución física y representación digital.
 
 Modelo de geolocalización y normalización de coordenadas
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Guraify TMS se basa en la geolocalización como fundamento estructural para múltiples procesos: asignación automática a áreas operativas, cálculo de rutas, segmentación tarifaria y planificación por zonas.
 
@@ -319,7 +319,7 @@ Estos tres elementos constituyen la base geométrica sobre la que se construyen 
 
 
 Coordenada: la representación puntual
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Toda entidad que represente una localización física dentro del sistema —punto de entrega, recogida, hub, almacén o cualquier dirección operativa— dispone de una coordenada geográfica compuesta por: Latitud (lat), Longitud (lon)
 
@@ -342,7 +342,7 @@ En el TMS, cada registro de localización almacena estas coordenadas como parte 
    Sin coordenada válida no existe planificación fiable.
 
 Polígono: la representación de superficie
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Mientras que una coordenada representa un punto, un polígono representa una superficie delimitada por un conjunto de vértices conectados.
 
@@ -369,7 +369,7 @@ La lógica que se aplica es puramente geométrica: se comprueba si la coordenada
    La pertenencia se calcula geométricamente.
 
 Polilínea: la representación de una ruta
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 El tercer elemento geométrico utilizado en el sistema es la polilínea.
 
@@ -403,7 +403,7 @@ Desde el punto de vista técnico, la polilínea es una lista ordenada de coorden
 
 
 Proceso de geolocalización de coordenadas
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Para que este modelo funcione, cada dirección debe transformarse en una coordenada fiable. Este proceso se denomina geocodificación.
 
@@ -419,18 +419,18 @@ El flujo de geocodificación es el siguiente:
 
 4. Si la calidad sigue siendo inferior al 80 %, se asigna automáticamente la coordenada del centroide del código postal o localidad.
 
-En este último escenario, la localización queda marcada como “Normalizable”, lo que implica que la coordenada no es suficientemente precisa y requiere validación manual por parte del usuario antes de utilizarla en una expedición definitiva.
+En este último escenario, la localización queda marcada como “Normalizable”, lo que implica que la coordenada no es suficientemente precisa y requiere validación manual por parte del usuario antes de utilizarla en una orden definitiva.
 
 .. important::
 
    Una coordenada con calidad inferior al 80 % no se considera válida para planificación definitiva.
 
-   Cuando un usuario intenta validar una expedición que utiliza una localización con baja calidad, el sistema obliga a realizar una normalización manual. Este mecanismo no es una excepción operativa, sino un control de calidad estructural que evita errores de planificación, desvíos innecesarios y problemas en la ETA.
+   Cuando un usuario intenta validar una orden que utiliza una localización con baja calidad, el sistema obliga a realizar una normalización manual. Este mecanismo no es una excepción operativa, sino un control de calidad estructural que evita errores de planificación, desvíos innecesarios y problemas en la ETA.
 
    Más adelante en el manual se detallará el procedimiento paso a paso de normalización manual.
 
 Gestión y creación de áreas geográficas
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Para la creación y mantenimiento de áreas (polígonos), el sistema integra servicios basados en OpenStreetMap, plataforma cartográfica de uso libre.
 
@@ -448,7 +448,7 @@ El uso de OSM permite que la gestión de áreas sea independiente de proveedores
 
 
 Modelo conceptual de asignación geográfica
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 El funcionamiento interno puede representarse de forma simplificada mediante el siguiente esquema lógico:
 

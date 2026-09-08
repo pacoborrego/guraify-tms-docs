@@ -17,7 +17,7 @@ El sistema soporta varios mecanismos, gestionados por el módulo de integracione
 (``tms_int``):
 
 - Definición de ficheros estructurados (``tms.edi.file``) para la importación.
-- Integraciones API REST (``tms_int.api.integration``) y su Bandeja de Entrada
+- Integraciones API REST (``tms_int.api.integration``) y su Bandeja de entrada API
   (``tms_int.api.inbox``).
 - Endpoints de servicio salientes (``tms_int.api.endpoint``).
 - Webhooks entrantes sobre esos mismos endpoints.

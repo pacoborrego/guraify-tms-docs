@@ -67,11 +67,11 @@ En todos los casos, el viaje termina vinculando:
 
 
 5.2.2 Generación por importación de fichero
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Cuando las órdenes entran por fichero, el propio fichero puede traer ya la **asignación a
-viajes**. En la configuración del **Fichero EDI** (``tms.edi.file``) se mapean los campos
-que indican **a qué Viaje va cada expedición** (nombre de viaje) y, opcionalmente, la
+viajes**. En la **Definición de fichero** (``tms.edi.file``) se mapean los campos
+que indican **a qué Viaje va cada orden** (nombre de viaje) y, opcionalmente, la
 **secuencia** de las paradas dentro del viaje (campos ``TripName`` y ``Sequence`` del
 mapeo; ver :doc:`/17.0/7_edi-integrations/7_2_1_field-mapping`).
 
@@ -156,7 +156,7 @@ Si el proyecto tiene secuenciación automática activa:
 - el sistema puede reordenar la ruta automáticamente
 
 5.2.4 Generación Automática con PTV
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 La generación automática se ejecuta desde el **Optimizador de Paradas**: reúne las paradas
 pendientes y, con el motor PTV, propone los Viajes (asignación, secuencia y enriquecimiento

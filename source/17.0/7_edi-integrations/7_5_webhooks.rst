@@ -38,14 +38,14 @@ Al recibir una petición, el sistema localiza el endpoint por su ``webhook_route
 valida el secreto, que el emisor envía en la cabecera ``X-Webhook-Secret`` o como
 parámetro. Si la validación es correcta, parsea el JSON recibido y el tratamiento
 depende del contenido del evento: si corresponde a una **Orden**, se encamina a la
-Bandeja de Entrada (``tms_int.api.inbox``) y sigue el mismo circuito de validación y
+Bandeja de entrada API (``tms_int.api.inbox``) y sigue el mismo circuito de validación y
 materialización que la ingesta API (ver :doc:`7_3_api-integrations`); en el resto de
 casos, ejecuta ``response_mapper_code`` para crear o actualizar los registros
 correspondientes, con la misma mecánica de mapeo de respuesta empleada en los
 endpoints salientes (ver :doc:`7_4_endpoint-configuration`).
 
 Trazabilidad y códigos de respuesta
-------------------------------------
+-----------------------------------
 
 Cada recepción se registra en ``tms.api.log`` con ``api_type = in_api``, guardando las
 cabeceras, los *payloads*, el código HTTP devuelto y la IP de origen. El servicio

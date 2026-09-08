@@ -8,7 +8,7 @@
 
 La creación de la Orden (``sale.order``) es **donde empieza todo el flujo operativo**:
 todo lo demás —tramos, paradas, viajes, ejecución, liquidación y facturación— se
-construye a partir de ella. Técnicamente, la Orden es una expedición TMS sobre el pedido
+construye a partir de ella. Técnicamente, la Orden es una extensión TMS del pedido
 de venta estándar de Odoo (indicador ``is_tms_order``), por lo que reutiliza la
 maquinaria comercial del ERP (líneas de venta, facturación, estados administrativos) y le
 añade la capa logística del TMS.
@@ -39,9 +39,9 @@ Una Orden puede darse de alta de **dos formas**:
 .. _alta-manual:
 
 5.1.1 Alta manual
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
-El alta manual es el camino habitual para registrar una expedición puntual. Los pasos son:
+El alta manual es el camino habitual para registrar una orden puntual. Los pasos son:
 
 #. **Nuevo.** Desde la lista de Órdenes, pulsar **Nuevo** para abrir una orden en blanco.
 #. **Cliente.** Seleccionar el cliente. Si el cliente tiene **un único proyecto**
@@ -78,17 +78,17 @@ Tras validar, la orden queda **lista para planificación**.
 .. _alta-masiva:
 
 5.1.2 Alta masiva por manifiesto
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Cuando la demanda llega en volumen, las órdenes no se teclean una a una: se importan
 mediante un **Manifiesto** (``tms.edi.manifest``), que agrupa los datos recibidos, los
 valida y los materializa en Órdenes. Hay dos orígenes:
 
 - **Por fichero.** El operador crea un Manifiesto, selecciona el **cliente** y el campo
-  **Fichero EDI** (``tms.edi.file``, que define cómo se interpretan las columnas del
+  **Definición de fichero** (``tms.edi.file``, que define cómo se interpretan las columnas del
   fichero), pulsa importar y elige el **fichero** (XLSX/CSV). También es posible crear
   Manifiestos **no vinculados a un cliente**: en ese caso se deja el cliente vacío y se
-  selecciona únicamente el **Fichero EDI**.
+  selecciona únicamente la **Definición de fichero**.
 - **Por integración.** Los datos entran por API REST y se depositan en la **Bandeja de
   Entrada API** (``tms_int.api.inbox``), desde la que se agrupan en un Manifiesto (ver
   :doc:`/17.0/3_functional-architecture/3_2_4_api-inbox`).
@@ -104,7 +104,7 @@ el :doc:`capítulo 7 </17.0/7_edi-integrations/index>`.
 .. _validacion-orden:
 
 5.1.3 Validación de Orden y generación de Paradas
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 La validación es el paso que **transforma una orden introducida en una estructura
 operativa lista para planificar**. Se lanza con el botón **Validar** y, antes de generar

@@ -7,10 +7,10 @@ El objetivo es identificar qué objeto del sistema participa en cada fase, qué 
 
 El flujo se apoya en cuatro entidades principales:
 
-- La Orden o Expedición, representada por ``sale.order``
+- La Orden o Orden, representada por ``sale.order``
 - El Tramo, representado por ``tms.shipment.leg``
 - La Parada, representada por ``tms.stop``
-- El Viaje o Ruta, representado por ``tms.trip``
+- El Viaje, representado por ``tms.trip``
 
 Cada una agrupa un nivel distinto de información y permite separar:
 

@@ -9,7 +9,7 @@ Las entidades principales del modelo de datos operativo son la Orden (``sale.ord
 el Tramo (``tms.shipment.leg``), la Parada (``tms.stop``) y el Viaje (``tms.trip``),
 junto con los Bultos (``tms.shipment.pack``) y las líneas económicas de venta y de
 compra. A ellas se añaden dos entidades propias de la ingesta de demanda: el Manifiesto
-EDI (``tms.edi.manifest``) y la Bandeja de Entrada API (``tms_int.api.inbox``), que
+EDI (``tms.edi.manifest``) y la Bandeja de entrada API (``tms_int.api.inbox``), que
 actúan como antesala antes de materializar la estructura operativa.
 
 Cada una cumple un papel específico dentro del ciclo operativo del transporte. Las

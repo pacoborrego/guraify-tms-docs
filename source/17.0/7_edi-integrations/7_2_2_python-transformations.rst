@@ -95,17 +95,17 @@ Sum Parcel
 ~~~~~~~~~~
 
 Función de **agregación**: suma una columna numérica (peso, volumen, bultos…) de todas
-las filas del dataset (``rows``) que comparten el identificador de expedición y de
+las filas del dataset (``rows``) que comparten el identificador de orden y de
 bulto de la fila actual. Los índices de las columnas (valor a sumar, identificador de
-expedición e identificador de bulto) se indican como parámetros. Es la forma de
+orden e identificador de bulto) se indican como parámetros. Es la forma de
 totalizar líneas de detalle en ficheros donde cada bulto llega en una fila.
 
 Count Parcel
 ~~~~~~~~~~~~
 
 Complementaria de la anterior: **cuenta** cuántas filas del dataset comparten el
-identificador de expedición y de bulto de la fila actual. Sirve para calcular el número
-de bultos de una expedición a partir de sus líneas de detalle.
+identificador de orden y de bulto de la fila actual. Sirve para calcular el número
+de bultos de una orden a partir de sus líneas de detalle.
 
 Convert to Uppercase
 ~~~~~~~~~~~~~~~~~~~~

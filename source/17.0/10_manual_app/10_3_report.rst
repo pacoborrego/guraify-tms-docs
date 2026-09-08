@@ -1,8 +1,8 @@
 Reporte
---------
+-------
 
 Datos de la parada
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 
 Cuando pulses sobre una parada, accederás a la pantalla de detalle.
 
@@ -22,13 +22,13 @@ La pantalla está organizada en dos niveles:
 
 - Encabezado con la tarjeta de la parada seleccionada
 
-- Lista de los pedidos de cliente vinculados a esta parada
+- Lista de las Órdenes vinculadas a esta parada
 
 - Pie con los botones de acción.
 
 
 Información general de la parada
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Es exactamente lo mismo que las tarjetas de parada en la vista Viaje.
@@ -39,7 +39,7 @@ Es exactamente lo mismo que las tarjetas de parada en la vista Viaje.
 
 
 Lista de Órdenes
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 A continuación de la información de la parada, verás una lista de las órdenes vinculadas a la parada. Cada tarjeta que ves en la pantalla representa a una orden.
 
@@ -60,7 +60,7 @@ Una misma parada puede tener:
 
 
 Información de cada orden
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 En cada tarjeta podrás ver:
 
@@ -182,7 +182,7 @@ Flujo operativo de una parada
 
 
 Reportar una parada
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
 
 
 **Flujo estándar (sin incidencias)**
@@ -194,7 +194,7 @@ A continuación se describe el flujo habitual cuando una parada se realiza corre
 
 
 Inicio del desplazamiento
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Una vez seleccionada la parada, el conductor debe pulsar el botón Inicio.
@@ -212,7 +212,7 @@ Esta acción indica al sistema que el conductor está en camino hacia el destino
 
 
 Llegada a la parada
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 
 Al llegar al destino, el conductor debe pulsar el botón He llegado.
@@ -254,7 +254,7 @@ Antes de iniciar la operación, el conductor debe revisar la información dispon
 .. _section-app-report-documentacion:
 
 Documentación
-^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 
 Si la parada requiere POD físico, preparar albarán.
@@ -322,7 +322,7 @@ Al pulsar OK, la aplicación cambia automáticamente a la pantalla de verificaci
 
 
 Información de cada bulto
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Cada tarjeta contiene la siguiente información:
 
@@ -365,7 +365,7 @@ Cada tarjeta contiene la siguiente información:
 
 
 Validación de los bultos
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 El objetivo de esta pantalla es confirmar que todos los bultos han sido correctamente entregados.
@@ -397,7 +397,7 @@ Existen dos formas de validación:
 
 
 Indicador de progreso
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 
 En la parte inferior de la pantalla se muestra un contador:
@@ -470,7 +470,7 @@ El método de confirmación depende del tipo de POD:
 
 
 Finalización
-^^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
 
 Una vez completada la firma:
@@ -488,14 +488,14 @@ Una vez completada la firma:
 
 
 Reportar un reembolso
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
 En determinadas paradas, antes de finalizar la entrega, es necesario gestionar un reembolso. Esto implica que el conductor debe cobrar un importe al destinatario como parte del proceso operativo.
 
 
 
 Cómo identificar un reembolso
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Si una parada tiene reembolso, el sistema mostrará una indicación visual dentro de la orden.
@@ -521,7 +521,7 @@ Esto indica que el conductor debe cobrar dicho importe antes de completar la ent
 
 
 Cuándo se gestiona el reembolso
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 El reembolso se gestiona automáticamente durante el flujo de reporte de la parada.
@@ -555,7 +555,7 @@ Estas opciones están destinadas a la gestión de incidencias y se detallarán e
 
 
 Continuación del proceso
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Una vez confirmado el reembolso:
@@ -579,7 +579,7 @@ Reportar incidencias
 ~~~~~~~~~~~~~~~~~~~~
 
 Reportar incidencias durante la carga
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Durante el proceso de carga, el conductor debe verificar el estado físico de los bultos antes de incorporarlos al vehículo.
@@ -588,7 +588,7 @@ En caso de detectar cualquier anomalía, el sistema permite registrar una incide
 
 
 Tipos de incidencia en carga
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Existen dos situaciones principales:
@@ -625,7 +625,7 @@ Al clicar , observaremos que nos aparecen dos opcciones dependiendo de en que es
 
 
 Bulto transportable con incidencia (Reserva)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Se utiliza cuando el bulto puede continuar en el proceso, pero presenta algún tipo de anomalía.
 
@@ -654,8 +654,8 @@ En estos casos, el conductor debe:
 
 
 
-Bulto no transportable (KO)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Bulto no transportable (Fallido)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Se utiliza cuando el bulto no puede ser cargado y no debe continuar en el transporte.
@@ -678,7 +678,7 @@ En estos casos, el conductor debe:
 
 .. warning::
 
-   Un bulto marcado como KO no debe cargarse en el vehículo bajo ningún concepto.
+   Un bulto marcado como Fallido no debe cargarse en el vehículo bajo ningún concepto.
 
 
 **Importante**
@@ -698,7 +698,7 @@ El registro de incidencias en carga permite:
 
 
 Reportar incidencias durante la entrega
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 
@@ -708,11 +708,11 @@ Al escanear un bulto, la aplicación mostrará las opciones de reporte disponibl
 
 - Entrega OK (sin incidencias)  
 - Entrega con incidencia (Reserva)  
-- No entregado (KO)  
+- No entregado (Fallido)  
 
 
 Entrega con incidencia (Reserva)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Se utiliza cuando el bulto ha sido entregado, pero no en las condiciones inicialmente previstas.
@@ -746,8 +746,8 @@ En estos casos, el conductor debe:
 
 
 
-Entrega no realizada (KO)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Entrega no realizada (Fallido)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Se utiliza cuando la entrega no ha podido completarse.
@@ -762,7 +762,7 @@ Opciones habituales disponibles en la app:
 En estos casos, el conductor debe:
 
 - Seleccionar el bulto correspondiente  
-- Elegir la opción KO  
+- Elegir la opción Fallido  
 - Indicar el motivo de la incidencia  
 - Confirmar el reporte  
 
@@ -775,7 +775,7 @@ En estos casos, el conductor debe:
 
 .. warning::
 
-   Un bulto reportado como KO implica que la entrega no se ha realizado y deberá gestionarse posteriormente.
+   Un bulto reportado como Fallido implica que la entrega no se ha realizado y deberá gestionarse posteriormente.
 
 
 **Importante**
@@ -806,8 +806,8 @@ Cuando se accede a la pantalla de reembolso, la aplicación mostrará dos opcion
 - Pagado a medias  
 
 
-Reembolso no pagado (KO)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Reembolso no pagado (Fallido)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Se utiliza cuando el destinatario no realiza ningún pago.
@@ -830,7 +830,7 @@ Ejemplos habituales:
 
 
 Reembolso pagado parcialmente (Reserva)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Se utiliza cuando el destinatario realiza un pago parcial del importe.

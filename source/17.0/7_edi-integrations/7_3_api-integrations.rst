@@ -2,7 +2,7 @@
 =====================
 
 La integración por API REST en formato JSON es el canal en tiempo real del TMS: permite
-recibir pedidos y eventos de los sistemas de cliente y consultar información de
+recibir Órdenes y eventos de los sistemas de cliente y consultar información de
 seguimiento sin intervención manual. Esta sección describe la orquestación común del
 camino de integración (API REST y webhooks) y la mecánica propia de las APIs.
 
@@ -41,7 +41,7 @@ cuando expira, evitando renovaciones innecesarias. La configuración incluye ade
 prueba de credenciales para validar la conexión antes de ponerla en producción.
 
 Almacenamiento intermedio y materialización
---------------------------------------------
+-------------------------------------------
 
 .. admonition:: Ruta en Odoo
    :class: tip
@@ -50,12 +50,12 @@ Almacenamiento intermedio y materialización
 
 .. CAPTURA: 7_3_02 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/7_edi-integrations/7_3_api-integrations_02_inbox.png
-      :alt: Bandeja de Entrada API con los estados de las líneas
+      :alt: Bandeja de entrada API con los estados de las líneas
 
-      Bandeja de Entrada API con los estados de las líneas.
+      Bandeja de entrada API con los estados de las líneas.
 
 Los datos que llegan por API no se convierten directamente en registros operativos.
-Primero se depositan en la Bandeja de Entrada API (``tms_int.api.inbox``) y sus líneas
+Primero se depositan en la Bandeja de entrada API (``tms_int.api.inbox``) y sus líneas
 (``tms_int.api.inbox.line``), organizadas por proyecto. Cada línea atraviesa una
 secuencia de estados —recibido, inválido y vinculado— y se agrupa en un Manifiesto
 (``tms.edi.manifest``) junto con sus *preview packs*. Los datos maestros que acompañan
@@ -78,7 +78,7 @@ APIs de lectura
 ---------------
 
 Además de la ingesta, la integración expone consultas de solo lectura: la API de
-seguimiento (``tms_int.api.get.tracking``), que devuelve el estado de las expediciones,
+seguimiento (``tms_int.api.get.tracking``), que devuelve el estado de las órdenes,
 y la descarga de adjuntos (``tms_int.api.get.attachment``), que aplica control de acceso
 por proyecto para que cada cliente solo acceda a su propia documentación.
 

@@ -8,6 +8,28 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Glosario y terminología (tarea D3 del plan, 2026-09-08)
+- Nueva página **Glosario** (`source/17.0/glossary.rst`, directiva `glossary` de Sphinx,
+  40 términos con definición, sinónimos descartados y modelo Odoo), enlazada desde la portada
+  y desde un toctree "Referencia".
+- **Terminología unificada** en los 56 `.rst` (29 ficheros tocados): Orden (antes también
+  Expedición y Pedido), Viaje (antes también Ruta), Bandeja de entrada API (antes API Inbox,
+  Inbox, Bandeja de Entrada), Definición de fichero frente a Manifiesto (antes ambos "Fichero
+  EDI"), Zona de tarifa (antes Zona tarifaria), Transportista (antes carrier, proveedor),
+  Remitente (antes Shipper/Cargador), Bulto (antes paquete), Tipos de Orden (antes Tipos de
+  expedición).
+- **Reglas de tarifa desambiguadas**: la sección 4.4.3 pasa a llamarse **Líneas de tarifa**
+  (`tms.pricelist.item.zone` y su detalle); "Regla de tarifa" queda sólo para la unidad de
+  medida (`tms.pricelist.rule`, sección 4.2.3). Referencias en 4.1 y 4.3 ajustadas.
+- **Estados de la Parada** en femenino y sin siglas: Completada, Con reservas, Fallida,
+  Reprogramada, Devuelta, Cancelada. En el manual del conductor "KO" pasa a "Fallido", que es
+  lo que muestra la app.
+- Decisiones del propietario (2026-09-08): *Planning* se mantiene sin traducir; "tu ruta" se
+  admite en el manual del conductor; las discrepancias con la interfaz se corrigen en Odoo y
+  en la app, no en la doc (lista en `PLAN.md`, "Correcciones en Odoo y en la app").
+- Subrayados de títulos normalizados a la longitud exacta del título en todos los ficheros
+  (antes muchos eran más largos; sin efecto visible).
+
 ### Infraestructura (tarea D1 del plan, 2026-09-08)
 - **Plan de cierre** en `PLAN.md` (tareas D1–D13, estructura objetivo del índice con cuatro
   recorridos, diagnóstico). Sustituye a `MIGRACION.md` y `REVISION_ESTANDAR.md`, borrados.

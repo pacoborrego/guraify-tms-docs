@@ -6,7 +6,7 @@ El Modelo Relacional Conceptual formaliza las relaciones estructurales entre las
 Este modelo constituye la base sobre la que se construye la arquitectura técnica del sistema. No es una representación teórica, sino la traducción estructural del comportamiento real del TMS.
 
 Entidades principales
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
 La Orden representa el encargo comercial del cliente. Es la entidad contractual, genera el ingreso y puede contener múltiples tramos.
 
@@ -25,7 +25,7 @@ El Viaje es la unidad de ejecución operativa. Agrupa múltiples paradas en una 
        O -.->|"N : M (indirecta vía Paradas)"| V
 
 Cardinalidades estructurales
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Desde el punto de vista relacional, el modelo puede representarse de forma simplificada mediante las siguientes cardinalidades:
 
@@ -49,7 +49,7 @@ La relación entre Parada y Viaje es distinta. Una Parada pertenece a un único 
 
 
 Relación indirecta Orden ↔ Viaje
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 No existe una relación estructural directa entre Orden y Viaje. La conexión se produce de forma indirecta a través de las Paradas.
 
@@ -61,7 +61,7 @@ Esta ausencia de dependencia directa es lo que permite reorganizar la ejecución
 
 
 Dependencias funcionales
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 El modelo distingue claramente entre dependencias estructurales y dependencias operativas.
 
@@ -72,7 +72,7 @@ Las dependencias operativas son débiles: la Parada se asigna a un Viaje, pero e
 Esta diferenciación es esencial para la escalabilidad del sistema.
 
 Impacto en la arquitectura del sistema
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 La arquitectura relacional descrita no solo define relaciones técnicas; habilita comportamientos funcionales avanzados. Gracias a este modelo es posible agrupar múltiples órdenes en un mismo viaje, redistribuir paradas entre recursos, realizar imputación económica multidimensional y mantener independencia entre facturación y ejecución.
 
