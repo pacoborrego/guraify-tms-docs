@@ -7,19 +7,9 @@
    Menú raíz: TMS, con las áreas TMS › **Operaciones**, TMS › **Administración**,
    TMS › **Maestros** y TMS › **Configuración**.
 
-Guraify TMS organiza sus funcionalidades en varios bloques que reflejan la lógica operativa de una empresa de transporte. Esta organización permite separar claramente las actividades de ejecución diaria, planificación, gestión económica y configuración estructural del sistema.
-
-La estructura principal del sistema se divide en cuatro áreas funcionales:
-
-- Operaciones
-
-- Administración
-
-- Maestros
-
-- Configuración
-
-Cada una de estas áreas agrupa distintos menús y herramientas que permiten gestionar los diferentes aspectos de la operativa del transporte.
+Guraify TMS organiza sus funcionalidades en cuatro áreas que reflejan la lógica de una empresa
+de transporte: la ejecución diaria, la gestión económica, los datos maestros y la configuración
+estructural. Cada área agrupa los menús con los que se gestiona ese aspecto de la operativa.
 
 .. mermaid::
 
@@ -28,12 +18,12 @@ Cada una de estas áreas agrupa distintos menús y herramientas que permiten ges
        TMS --> ADM["Administración"]
        TMS --> MAE["Maestros"]
        TMS --> CFG["Configuración"]
-       OP --> TRA["Tráfico<br/>Órdenes · Viajes · Manifiestos · Bandeja de entrada API"]
-       OP --> PLA["Planificación<br/>Plan de conductores · Optimizador"]
-       OP --> MOP["Maestros operativos<br/>Tramos · Paradas · Bultos · Trazabilidad"]
-       ADM --> ADM1["Facturación a clientes · Liquidación a transportistas<br/>Control de costes · Estados económicos"]
-       MAE --> MAE1["Clientes · Transportistas · Vehículos<br/>Recursos humanos · Localizaciones · Proyectos"]
-       CFG --> CFG1["Parámetros · Integraciones (EDI) · Reglas de negocio<br/>Automatizaciones · Planificación · Tarificación"]
+       OP --> TRA["Tráfico<br/>Órdenes · Viajes · Manifiestos<br/>Bandeja de entrada API · Trazabilidad"]
+       OP --> PLA["Planificación<br/>Plan de disponibilidad de conductores<br/>Optimizador de Paradas"]
+       OP --> MOP["Maestros operativos<br/>Tramos · Líneas · Paradas · Bultos"]
+       ADM --> ADM1["Opciones de tarifa · Productos, clientes y proveedores<br/>Reembolsos · Transacciones"]
+       MAE --> MAE1["Equipos (vehículos) · Recursos humanos<br/>Operaciones (contactos, hubs, agencias)"]
+       CFG --> CFG1["Proyectos · Planes de transporte · Zonas geográficas<br/>Tiempos de servicio · Reglas · EDI"]
 
 .. figure:: /_static/img/3_functional-architecture/3_1_functional-organization_01_menu-raiz.png
    :alt: Menú raíz de Guraify TMS en Odoo
@@ -43,110 +33,63 @@ Cada una de estas áreas agrupa distintos menús y herramientas que permiten ges
 3.1.1 Operaciones
 ~~~~~~~~~~~~~~~~~
 
-El bloque de Operaciones constituye el núcleo operativo del sistema. En esta sección se gestionan las entidades vivas del modelo conceptual y se ejecuta la operativa diaria del departamento de tráfico.
-
-Este bloque se organiza en tres subconjuntos funcionales:
+Operaciones es el núcleo del sistema: aquí viven las entidades del modelo conceptual y aquí
+trabaja a diario el departamento de tráfico. Se organiza en tres submenús.
 
 3.1.1.1 Tráfico
 ^^^^^^^^^^^^^^^
 
-Contiene las herramientas utilizadas para gestionar la demanda de transporte y la ejecución de los servicios, incluye los siguientes menús principales:
-
-- Órdenes (``sale.order``)
-
-- Viajes (``tms.trip``)
-
-- Manifiestos (``tms.edi.manifest``)
-
-- Bandeja de entrada API (``tms_int.api.inbox``)
-
-Estas herramientas permiten registrar los encargos de los clientes, estructurar las órdenes, organizar los servicios y controlar su ejecución.
+Reúne las herramientas para gestionar la demanda y la ejecución de los servicios: las
+**Órdenes**, los **Viajes**, los **Manifiestos**, la **Bandeja de entrada API** y la
+**Trazabilidad**. Desde aquí se registran los encargos de los clientes, se estructuran en
+viajes y se controla su ejecución; la Trazabilidad es el histórico de eventos de cada
+Parada, Tramo y Orden. Cada una de estas entidades tiene su propia sección en
+:doc:`3_2_operational-data-model`.
 
 3.1.1.2 Planificación
 ^^^^^^^^^^^^^^^^^^^^^
 
-La sección de planificación agrupa las herramientas destinadas a organizar los recursos y optimizar la ejecución de los servicios.
-
-Incluye:
-
-- Plan de disponibilidad de conductores
-
-- Optimizador de Paradas
-
-Estas herramientas permiten gestionar la disponibilidad de recursos humanos y ejecutar procesos de optimización de rutas mediante el motor de planificación integrado.
+Agrupa las dos herramientas con las que se organizan los recursos y se optimiza la ejecución:
+el :term:`Plan de disponibilidad de conductores`, donde se declara qué conductor está
+disponible, cuándo y con qué vehículo, y el :term:`Optimizador de Paradas`, que agrupa las
+Paradas pendientes en Viajes sobre el mapa con el motor de PTV. Ambas se describen en
+:doc:`3_3_planning-model`.
 
 3.1.1.3 Maestros operativos
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Esta sección agrupa entidades operativas que forman parte del modelo logístico y que son utilizadas por los distintos procesos del sistema.
-
-Incluye:
-
-- Tramos (``tms.shipment.leg``)
-
-- Paradas (``tms.stop``)
-
-- Bultos (``tms.shipment.pack``)
-
-- Trazabilidad (``tms.traceability``)
-
-Aunque estas entidades se generan habitualmente de forma automática durante el flujo operativo, el sistema permite consultarlas y gestionarlas directamente desde estos menús para tareas de control, auditoría o gestión de incidencias.
+Da acceso directo a las entidades que el flujo operativo genera por sí solo: los **Tramos**,
+las **Líneas** (las líneas de servicio de cada Orden), las **Paradas** y los **Bultos**. Aunque
+normalmente no se crean a mano, el sistema permite consultarlas y gestionarlas desde estos
+menús para tareas de control, auditoría o resolución de incidencias.
 
 3.1.2 Administración
 ~~~~~~~~~~~~~~~~~~~~
 
-El bloque de Administración agrupa los procesos relacionados con la gestión económica del transporte.
-
-En esta sección se gestionan los procesos administrativos derivados de la operativa logística, incluyendo:
-
-- facturación a clientes
-
-- liquidación de servicios a transportistas
-
-- control de costes operativos
-
-- seguimiento de estados económicos de las operaciones
-
-La estrecha vinculación entre operativa y economía permite que los eventos logísticos generen automáticamente información económica coherente dentro del ERP.
+Administración agrupa la gestión económica del transporte. Contiene las **Opciones de tarifa**
+(tarifas, zonas de tarifa, tarifas base, detalles de línea de tarifa y el diagnóstico de tarifa
+de órdenes y de viajes), los maestros económicos (**Productos**, **Clientes** y
+**Proveedores**), los **Reembolsos** cobrados en la entrega y las **Transacciones**: las líneas
+de venta, las líneas de compra y la lista de facturas. La vinculación entre operativa y
+economía hace que los eventos logísticos generen aquí información económica coherente sin
+intervención manual.
 
 3.1.3 Maestros
 ~~~~~~~~~~~~~~
 
-La sección de Maestros contiene las entidades estructurales que configuran el comportamiento del sistema.
-
-Incluye información relativamente estable que se utiliza como base para los procesos operativos, tales como:
-
-- clientes
-
-- transportistas
-
-- vehículos
-
-- recursos humanos
-
-- localizaciones
-
-- proyectos logísticos
-
-Estos datos constituyen la base de configuración sobre la que operan los diferentes módulos del TMS.
+Maestros contiene los datos estructurales, relativamente estables, sobre los que operan los
+procesos: los **Equipos** (vehículos, sus modelos y sus categorías), los **Recursos humanos**
+(conductores) y las **Operaciones** (contactos, hubs y agencias). Los clientes y los
+transportistas son contactos de Odoo con un papel marcado en su ficha.
 
 3.1.4 Configuración
 ~~~~~~~~~~~~~~~~~~~
 
-La sección de Configuración permite definir los parámetros estructurales del sistema y adaptar su comportamiento a las necesidades específicas de cada implantación.
-
-En esta área se gestionan, entre otros aspectos:
-
-- parámetros del sistema
-
-- configuración de integraciones
-
-- reglas de negocio
-
-- automatizaciones
-
-- estructuras de planificación
-
-- configuraciones de tarificación
-
-Estas configuraciones permiten adaptar el TMS a distintos modelos operativos sin necesidad de modificar su arquitectura base.
+Configuración define los parámetros estructurales del sistema y adapta su comportamiento a cada
+implantación: los **Proyectos**, que concentran la configuración de cada cliente u operativa;
+los **Planes de transporte** y las **Zonas geográficas**, con su asistente de importación desde
+OpenStreetMap; los **Tiempos de servicio**; las **Reglas** de negocio; y el submenú **EDI**, con
+las integraciones API, sus endpoints, las definiciones de fichero, las funciones
+preestablecidas de transformación y los registros de las llamadas. Estas configuraciones
+adaptan el TMS a distintos modelos operativos sin modificar su arquitectura base; el capítulo 4
+las recorre una a una.
