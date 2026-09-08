@@ -153,14 +153,12 @@ final.
    resumen visualmente en el indicador KPI de la Orden, descrito en
    :doc:`/17.0/5_operational-flows/5_8_kpi-indicators`.
 
-.. CAPTURA: 3_2_1_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/3_functional-architecture/3_2_1_orders_01_orden.png
-      :alt: Formulario de una Orden con su estado operativo
+.. figure:: /_static/img/3_functional-architecture/3_2_1_orders_01_orden.png
+   :alt: Formulario de una Orden con su estado operativo
 
-      Formulario de una Orden (``sale.order``) con su estado operativo.
+   Formulario de una Orden (``sale.order``) con su estado operativo.
 
-.. CAPTURA: 3_2_1_02 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/3_functional-architecture/3_2_1_orders_02_orden-bloqueada.png
-      :alt: Orden bloqueada (candado cerrado)
+.. figure:: /_static/img/3_functional-architecture/3_2_1_orders_02_orden-bloqueada.png
+   :alt: Orden bloqueada (candado cerrado)
 
-      Orden bloqueada: candado cerrado tras confirmarse la ejecución.
+   Orden bloqueada: candado cerrado tras confirmarse la ejecución.

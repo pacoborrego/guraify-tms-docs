@@ -54,14 +54,12 @@ reclamar POD. Los estados que el indicador refleja se describen en
 :doc:`/17.0/3_functional-architecture/3_2_1_orders` (Orden) y
 :doc:`/17.0/3_functional-architecture/3_2_2_trips` (Viaje).
 
-.. CAPTURA: 5_11_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_8_kpi-indicators_01_kpi-parada.png
-      :alt: Indicador KPI en la lista de Paradas
+.. figure:: /_static/img/5_operational-flows/5_8_kpi-indicators_01_kpi-parada.png
+   :alt: Indicador KPI en la lista de Paradas
 
-      Indicador KPI en la lista de Paradas (triángulos de estado, barra de puntualidad y secuencia).
+   Indicador KPI en la lista de Paradas (triángulos de estado, barra de puntualidad y secuencia).
 
-.. CAPTURA: 5_11_02 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_8_kpi-indicators_02_kpi-orden.png
-      :alt: Indicador KPI en la lista de Órdenes
+.. figure:: /_static/img/5_operational-flows/5_8_kpi-indicators_02_kpi-orden.png
+   :alt: Indicador KPI en la lista de Órdenes
 
-      Indicador KPI en la lista de Órdenes (parada activa + validación, factura/candado y POD).
+   Indicador KPI en la lista de Órdenes (parada activa + validación, factura/candado y POD).

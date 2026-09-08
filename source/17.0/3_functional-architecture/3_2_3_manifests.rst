@@ -105,11 +105,10 @@ cuando se cumple alguno de estos criterios:
 El botón mágico **Normalizar** lleva directamente a la lista de estos contactos; una vez
 corregidos (coordenadas válidas y, en su caso, horarios), el Manifiesto ya puede cerrarse.
 
-.. CAPTURA: 3_2_3_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/3_functional-architecture/3_2_3_manifests_01_manifiesto.png
-      :alt: Formulario de un Manifiesto EDI con su estado
+.. figure:: /_static/img/3_functional-architecture/3_2_3_manifests_01_manifiesto.png
+   :alt: Formulario de un Manifiesto EDI con su estado
 
-      Formulario de un Manifiesto EDI (``tms.edi.manifest``) con sus estados y botones.
+   Formulario de un Manifiesto EDI (``tms.edi.manifest``) con sus estados y botones.
 
 .. CAPTURA: 3_2_3_02 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/3_functional-architecture/3_2_3_manifests_02_botones-magicos.png

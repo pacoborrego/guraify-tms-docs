@@ -6,7 +6,7 @@
 
    TMS › Administración (facturación de cliente y de proveedor).
 
-.. CAPTURA: 5_10_01 — descomentar el figure cuando esté la imagen
+.. CAPTURA: 5_7_01 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/5_operational-flows/5_7_invoicing_01_factura.png
       :alt: Facturación
 

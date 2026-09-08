@@ -6,7 +6,7 @@
 
    TMS › Operaciones › Tráfico › Viajes (``tms.trip``).
 
-.. CAPTURA: 5_8_01 — descomentar el figure cuando esté la imagen
+.. CAPTURA: 5_5_01 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/5_operational-flows/5_5_trip-closing_01_cierre.png
       :alt: Cierre de un viaje
 

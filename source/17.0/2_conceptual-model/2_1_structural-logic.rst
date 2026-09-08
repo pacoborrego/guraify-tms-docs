@@ -37,11 +37,10 @@ En consecuencia, la lógica estructural de Guraify TMS no consiste únicamente e
 La Orden
 ~~~~~~~~
 
-.. CAPTURA: 2_1_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/2_conceptual-model/2_1_structural-logic_01_orden.png
-      :alt: Formulario de una Orden en Odoo
+.. figure:: /_static/img/2_conceptual-model/2_1_structural-logic_01_orden.png
+   :alt: Formulario de una Orden en Odoo
 
-      Formulario de una Orden (``sale.order``) en Odoo.
+   Formulario de una Orden (``sale.order``) en Odoo.
 
 La Orden es la entidad que representa digitalmente el encargo del cliente dentro de Guraify TMS. Constituye el punto de partida estructural del sistema y el eje sobre el que se articula toda la operativa posterior. Desde una perspectiva conceptual, la Orden responde a una pregunta sencilla pero fundamental: qué servicio debemos ejecutar y posteriormente facturar.
 
@@ -106,11 +105,10 @@ En consecuencia, la Parada actúa como el punto de convergencia entre estructura
 El Viaje
 ~~~~~~~~
 
-.. CAPTURA: 2_1_02 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/2_conceptual-model/2_1_structural-logic_02_viaje.png
-      :alt: Formulario de un Viaje en Odoo
+.. figure:: /_static/img/2_conceptual-model/2_1_structural-logic_02_viaje.png
+   :alt: Formulario de un Viaje en Odoo
 
-      Formulario de un Viaje (``tms.trip``) en Odoo.
+   Formulario de un Viaje (``tms.trip``) en Odoo.
 
 El Viaje es la entidad que representa la ejecución real del transporte. Si la Orden formaliza el compromiso con el cliente y el Tramo estructura el movimiento logístico, el Viaje responde a una pregunta operativa concreta: qué conjunto de paradas ejecuta un recurso en una ruta real.
 

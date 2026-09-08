@@ -12,11 +12,10 @@ misma estructura interna antes de materializarse en el modelo operativo.
 
    TMS › Configuración › EDI
 
-.. CAPTURA: 7_1_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/7_edi-integrations/7_1_integration-strategy_01_menu-edi.png
-      :alt: Menú de configuración EDI en Odoo
+.. figure:: /_static/img/7_edi-integrations/7_1_integration-strategy_01_menu-edi.png
+   :alt: Menú de configuración EDI en Odoo
 
-      Menú de configuración EDI en Odoo.
+   Menú de configuración EDI en Odoo.
 
 Canales de entrada
 ------------------

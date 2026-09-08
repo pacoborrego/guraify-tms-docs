@@ -370,11 +370,10 @@ directo:
 #. Marcar **Apply Code?** (``apply_code``) y escribir la lógica de construcción en
    **Python Code** (``python_code``).
 
-.. CAPTURA: 7_2_1_03 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/7_edi-integrations/7_2_1_field-mapping_03_parcel-array.png
-      :alt: Configuración del campo computado Parcel_Array
+.. figure:: /_static/img/7_edi-integrations/7_2_1_field-mapping_03_parcel-array.png
+   :alt: Configuración del campo computado Parcel_Array
 
-      Configuración del campo computado ``Parcel_Array`` (*Computed* + *Apply Code?*).
+   Configuración del campo computado ``Parcel_Array`` (*Computed* + *Apply Code?*).
 
 El código se ejecuta en el mismo entorno controlado que las demás transformaciones
 (:doc:`7_2_2_python-transformations`): dispone de ``value``, ``row`` (la fila actual,

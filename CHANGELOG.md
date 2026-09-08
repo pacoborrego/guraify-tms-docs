@@ -8,11 +8,31 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Infraestructura (tarea D1 del plan, 2026-09-08)
+- **Plan de cierre** en `PLAN.md` (tareas D1–D13, estructura objetivo del índice con cuatro
+  recorridos, diagnóstico). Sustituye a `MIGRACION.md` y `REVISION_ESTANDAR.md`, borrados.
+- **`CLAUDE.md` v3**: públicos y política de nombres técnicos por recorrido, terminología
+  provisional hasta el glosario (D3), guía de capturas, publicación y alcance (versiones y
+  traducciones aparcadas por decisión de Paco).
+- **Comandos** `.claude/commands/`: `/estado`, `/d3`…`/d13`, `/capturas`, `/publicar`,
+  `/cerrar-tarea`.
+- **Publicación documentada**: `deploy.sh` (pull + build con `-W` + rsync a
+  `/var/www/tms-docs` en epartner). Se descubre que la web servía el build del 21 de mayo;
+  publicado el estado actual el 2026-09-08.
+- **CI**: `.github/workflows/build.yml` compila con `-W` en cada push.
+- **Selectores de idioma y versión ocultos** en la cabecera (no había traducciones y las tres
+  versiones apuntaban a 17.0). Plantillas conservadas. Botón "More Info" → "Más información".
+- **Capturas**: activadas las 20 que ya tenían imagen (estaban comentadas y no se veían);
+  6 ficheros renombrados (espacios en el nombre, numeración vieja `5_11_*`, `_7_3_01-*`);
+  marcadores del cap. 5 renumerados a la numeración actual. `CAPTURAS_PENDIENTES.md`
+  regenerada como lista de trabajo de María: todas las existentes se rehacen (recorte, Odoo en
+  español, sin datos reales) y quedan 26 por hacer.
+- **Limpieza**: borrados `manual.rst` (conversión antigua del Word), `make.bat`, los tres
+  stubs `:orphan:` del cap. 5, `source/_static/images/` (4 MB sin referenciar, incluidos los
+  originales sin anonimizar) y los `.DS_Store` versionados.
+
 ### Pendiente
-- Insertar las capturas pendientes listadas en `CAPTURAS_PENDIENTES.md` (responsable: María).
-- Portar cap. 6 Aplicación Móvil → `source/17.0/6_mobile-app/`.
-- Portar cap. 8 Administración y Control Económico → `source/17.0/8_administration/`.
-- Revisar caps. 4 y 5 (incl. warnings históricos y orden de títulos del cap. 5) y cap. 10.
+- Resto del plan: ver `PLAN.md`.
 
 ---
 

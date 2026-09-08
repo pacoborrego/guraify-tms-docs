@@ -6,7 +6,7 @@
 
    TMS › Operaciones › Tráfico › Viajes (``tms.trip``).
 
-.. CAPTURA: 5_6_01 — descomentar el figure cuando esté la imagen
+.. CAPTURA: 5_3_01 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/5_operational-flows/5_3_resource-assignment_01_recursos.png
       :alt: Asignación de recursos a un viaje
 
