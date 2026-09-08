@@ -1,534 +1,265 @@
 1.4 Arquitectura tecnológica
 ----------------------------
 
-Guraify TMS está construido sobre una arquitectura modular y desacoplada que separa claramente la capa de datos, la lógica de negocio y la capa de presentación, siguiendo las buenas prácticas del framework Odoo y principios de diseño orientados a escalabilidad.
+Guraify TMS está construido sobre una arquitectura modular que separa la capa de datos, la
+lógica de negocio y la presentación, siguiendo las prácticas del framework Odoo. No es una
+aplicación monolítica, sino un conjunto de bloques que se hablan de forma controlada: la
+plataforma ERP, el módulo TMS, los servicios cartográficos de PTV, la capa de integración con
+sistemas externos y la aplicación móvil del conductor. Cada bloque puede evolucionar sin
+comprometer el núcleo funcional.
 
-El sistema no es una aplicación monolítica, sino un ecosistema compuesto por varios bloques tecnológicos que interactúan entre sí de forma controlada: la plataforma ERP base, el módulo TMS, el motor de optimización, la capa de integración externa y la aplicación móvil operativa.
-
-Esta arquitectura permite evolucionar cada componente sin comprometer la estabilidad del núcleo funcional.
+Esta sección describe cada bloque **tal y como está implementado**. Lo que está en desarrollo se
+recoge aparte, al final, en :ref:`17.0/1_introduction/1_4_technological-architecture:1.4.6 Evolución prevista`.
 
 .. mermaid::
 
    flowchart TB
        ODOO[Plataforma ERP Odoo 17] --> TMS[Módulo Guraify TMS<br/>tms_suite]
-       TMS --> PTV[Motor de optimización PTV<br/>Routing · Secuenciación · OptiFlow]
-       TMS --> INT[Capa de integración<br/>API REST · EDI · webhooks]
-       TMS --> APP[App móvil del conductor<br/>POD · escaneo · trazabilidad]
+       TMS --> PTV[Servicios PTV<br/>geocodificación · mapa · routing<br/>secuenciación · optimización]
+       PTV -.respaldo.-> OSM[Google · OpenStreetMap]
+       TMS --> INT[Capa de integración<br/>ficheros · API REST · webhooks]
+       TMS --> APP[App móvil del conductor<br/>POD · escaneo Scandit · trazabilidad]
        INT <--> EXT[Sistemas externos]
 
-Plataforma base Odoo
-~~~~~~~~~~~~~~~~~~~~
+1.4.1 Plataforma base Odoo
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-El núcleo del sistema es Odoo, que proporciona la infraestructura ORM, el modelo de seguridad por roles, la capa de vistas, el motor de automatizaciones y la integración nativa con módulos financieros y analíticos.
+El núcleo es Odoo 17, que aporta el ORM, la seguridad por roles, las vistas, las
+automatizaciones y la integración nativa con la contabilidad y la analítica. El TMS se
+implementa como una extensión sobre esa base y reutiliza lo que ya existe: contabilidad y
+facturación, contactos, empleados y Planificación (Planning), flota, proyectos, documentos
+adjuntos y acciones automáticas y programadas. Así el TMS no es un sistema aislado, sino una
+especialización logística dentro de un ERP horizontal: la factura del transporte es una
+factura de Odoo y el transportista es un proveedor de Odoo.
 
-El módulo Guraify TMS se implementa como extensión sobre esta base, reutilizando:
+1.4.2 Servicios de PTV
+~~~~~~~~~~~~~~~~~~~~~~
 
-- Gestión contable y facturación.
+.. admonition:: Ruta en Odoo
+   :class: tip
 
-- Gestión de empleados y contactos.
+   Ajustes › Integraciones › Rutas del mapa (PTV) › Token
 
-- Gestión de flota.
+PTV Developer es el proveedor cartográfico y matemático del sistema: geocodifica direcciones,
+sirve el mapa base, calcula rutas, ordena paradas y propone viajes completos. Todos los
+servicios se autentican con **un token por compañía**, de modo que cada compañía paga sus
+propias llamadas aunque el usuario que las lance trabaje en varias.
 
-- Proyectos.
+La regla de diseño no cambia por usar PTV: la entidad planificable sigue siendo la Parada y la
+unidad de ejecución el Viaje. PTV aporta el cálculo sobre esa estructura, no la sustituye. En la
+planificación intervienen tres servicios, con tres niveles de uso progresivos:
 
-- CRM.
+.. list-table::
+   :header-rows: 1
+   :widths: 14 26 30 30
 
-- Gestión documental.
+   * - Servicio
+     - Cuándo se lanza
+     - Qué envía el TMS
+     - Qué vuelve y dónde queda
+   * - **Routing**
+     - Al crear Viajes desde un Manifiesto que trae la secuencia; al reordenar, añadir o quitar
+       paradas en el mapa del Optimizador; con los botones del Viaje.
+     - Cada parada con su coordenada, tiempo de servicio y ventana horaria; el perfil de
+       vehículo de la categoría; el preset de horas de conducción; la hora de salida; tráfico
+       realista.
+     - En el Viaje: trazado, distancia, duración y hora prevista de fin. En cada Parada: ETA,
+       llegada, salida, kilómetros y tiempo de conducción acumulados.
+   * - **Secuenciación**
+     - Desde el Optimizador de Paradas sobre un Viaje ya formado; al cerrar un Manifiesto sin
+       secuencia si el Proyecto tiene autosecuenciación.
+     - Las paradas como transportes con cantidades, tiempo de servicio y prioridad; horarios
+       de apertura de hubs y clientes; perfil, inicio, fin y distancia máxima del vehículo;
+       disponibilidad del conductor.
+     - El nuevo orden de las Paradas y sus horas de llegada y salida. Después se relanza el
+       routing para refrescar el trazado.
+   * - **Optimización completa**
+     - Desde el Optimizador de Paradas sobre las Paradas pendientes de una fecha.
+     - Vehículos con capacidades, equipamiento, inicio, fin y distancia máxima; conductores con
+       disponibilidad y jornada; transportes con cantidades, tiempos de servicio y prioridad;
+       hubs con horarios.
+     - Viajes nuevos con sus Paradas asignadas y secuenciadas, vehículo y conductor, horas por
+       parada, y la lista de lo que no se ha podido planificar.
 
-- Acciones automáticas y programadas.
+El **routing** es el nivel básico: el Viaje ya existe, con sus paradas y su recurso, y PTV lo
+enriquece con la red viaria profesional. El preset de horas de conducción sale del
+:term:`Plan de disponibilidad de conductores` (por defecto, el reglamento europeo 561/2006). El
+ETA que devuelve es el que ven el planificador, el conductor en la app y, por las
+integraciones, el cliente. El cálculo cubre siempre el Viaje completo desde su hora de salida;
+si la llamada falla, el Viaje queda sin datos de ruta y se puede relanzar.
 
-Esta decisión permite que el TMS no sea un sistema aislado, sino una especialización logística dentro de un ERP horizontal.
+La **secuenciación** actúa cuando las paradas ya están en un Viaje pero su orden no es el
+mejor. Las cantidades de cada parada se envían en seis dimensiones (peso, volumen, bultos,
+palés, unidades y metros lineales) y los horarios de hubs y clientes salen de las franjas por
+día de cada contacto. El TMS aplica el orden devuelto conservando la vinculación de cada Parada
+con su Tramo y su Orden. Si alguna parada no cabe en las restricciones, reintenta hasta dos
+veces relajando las ventanas horarias y, si sigue fuera, avisa al planificador con la lista.
 
-Integración con PTV 
-~~~~~~~~~~~~~~~~~~~~
-
-La integración con PTV en Guraify TMS se articula en tres niveles de uso progresivos: Routing, Secuenciación y Optimización completa con OptiFlow. Todos ellos se apoyan en la misma base: la entidad planificable sigue siendo la Parada y la unidad de ejecución el Viaje; PTV aporta la inteligencia matemática sobre esta estructura, no la sustituye.
-
-Routing
-^^^^^^^
-
-En el nivel de Routing, el Viaje ya existe en el TMS (paradas asignadas y recurso definido) y lo que se hace es enriquecerlo con la red viaria profesional de PTV, utilizando la Routing API. Esta API trabaja con waypoints (los puntos del viaje), parámetros de vehículo y contexto temporal para calcular distancias, tiempos, ETAs, peajes, costes y emisiones.
-
-**Parámetros que se toman de los maestros del TMS**
-
-Desde Guraify se construye la petición a PTV a partir de:
-
-- Maestro de localizaciones y de paradas: coordenadas geográficas de cada parada, orden actual, tipo de parada (recogida, entrega, hub) y, cuando aplica, ventanas horarias y tiempos de servicio configurados por tipo de cliente o tipo de operación. Estas ventanas y tiempos se trasladan a PTV como *opening intervals* y *service times* para que el cálculo respete la realidad operativa.
-
-- Maestro de vehículos: perfil de vehículo (camión rígido, tráiler, furgoneta, eléctrico), dimensiones y capacidades (peso máximo, volumen, ejes, altura), restricciones de mercancías peligrosas o refrigeradas y, cuando aplica, costes asociados al vehículo (coste por km, por hora, etc.), que se mapean con los *vehicle parameters* y la lógica de *monetary costs* de la API.
-
-- Maestro de calendarios y planificación: fecha y hora de salida previstas del viaje, zona horaria y, opcionalmente, reglas de horas de conducción y descanso del conductor, que se trasladan a PTV a través de los parámetros de *date and time* y *drivers’ working hours*.
-
-**Resultados que vuelven y se exponen en el TMS**
-
-La respuesta de Routing se vuelca de nuevo en el Viaje y en sus Paradas:
-
-- Geometría de ruta (polilínea) asociada al Viaje, para representación en mapa.
-
-- Distancia total y por segmento entre paradas, tiempo de conducción y de servicio, y tiempo total de ruta.
-
-- ETA calculada por parada, indispensable tanto en planificación como en seguimiento en ejecución.
-
-- Información de peajes y costes cuando se activan las opciones de *toll* y *monetary costs*, y, si se configura, emisiones estimadas (CO₂, etc.) usando la funcionalidad de *emissions*.
-
-En operativa, esto permite recalcular la ETA durante la ejecución, combinando la ruta planificada de PTV con la posición real del conductor obtenida desde la app móvil, de modo que el Viaje en Guraify se convierte en un objeto dinámico que refleja la situación real y no solo el plan teórico.
-
-Secuenciación
-^^^^^^^^^^^^^
-
-En el nivel de Secuenciación, las paradas ya están asignadas a un Viaje, pero su orden no es óptimo. Aquí se usa la Sequence Optimization API, que trabaja con el concepto de *locations, transports and stops*, vehículo y conductor, tiempos de servicio, ventanas horarias y prioridades de transporte para devolver el mejor orden posible de ejecución.
-
-**Parámetros que se toman de los maestros del TMS**
-
-La petición a PTV se construye con:
-
-- Las Paradas del Viaje como *stops*, cada una con su localización, tiempo de servicio, ventana horaria y, cuando aplica, prioridad (por ejemplo, entregas urgentes o condicionadas a cut-off horarios).
-
-- El Vehículo asignado al Viaje como *vehicle*, incluyendo capacidades básicas (peso, volumen, pallets) y restricciones (ADR, refrigerado, etc.), así como el perfil de conducción.
-
-- El Conductor o recurso humano, a través de parámetros de jornada máxima, pausas y reglas de horas de trabajo, reutilizando las reglas internas del TMS y mapeándolas a los parámetros de *drivers’ working hours*.
-
-A nivel de configuración, el planificador puede definir el objetivo de optimización (minimizar distancia, tiempo, retrasos respecto a ventanas, etc.), que se mapea a la configuración de *objective of optimization* de PTV.
-
-**Resultados que vuelven y se exponen en el TMS**
-
-La secuenciación devuelve:
-
-- Un nuevo orden de paradas dentro del Viaje, con su posición en ruta.
-
-- Horarios previstos de llegada y salida por parada, ya ajustados a ventanas horarias y tiempos de servicio.
-
-- Indicaciones de posibles violaciones (ventana no cumplible, jornada de conductor excedida) cuando la secuenciación no puede respetar todas las restricciones, apoyándose en la lógica de *drivers’ working hours* y *violations*.
-
-En Guraify, esto se traduce en una reordenación de las Paradas del Viaje, con actualización de ETAs y KPIs de ruta (km, duración, nivel de servicio), manteniendo la vinculación de cada parada con su Tramo y su Orden para no romper el modelo estructural.
-
-Optimización completa
-^^^^^^^^^^^^^^^^^^^^^
-
-El nivel más avanzado utiliza Route Optimization OptiFlow API. Aquí ya no hablamos solo de ordenar paradas dentro de un viaje existente, sino de dejar que PTV proponga el plan completo de asignación y secuenciación de las paradas a viajes, en base a órdenes, vehículos, depósitos y un conjunto rico de reglas y restricciones.
-
-OptiFlow trabaja con el concepto de Orders, que en su terminología representan peticiones de transporte o servicio (pickup, delivery, pickup–delivery o servicio puro), con cargas, categorías, ventanas horarias, tiempos de servicio y parámetros económicos como *outsourcing cost* e *insourcing revenue* para ayudar a decidir qué pedidos merece la pena planificar o dejar fuera.
-
-**Parámetros que se toman de los maestros del TMS**
-
-
-En este caso, el mapeo desde Guraify hacia OptiFlow es más rico:
-
-- Las Órdenes / Paradas del TMS se transforman en Orders y Tasks de OptiFlow: para un simple reparto desde hub serán típicamente *delivery orders*; para un transporte origen–destino, *pickup-delivery orders*; para ciertos servicios de solo visita, *service orders*. Cada task incorpora localización, ventanas horarias y tiempo de servicio.
-
-- Las cargas (peso, volumen, pallets, metros lineales, etc.) se toman de las líneas o de los bultos asociados en Guraify y se mapean a los *loads* del order para controlar capacidades de los vehículos.
-
-- Las categorías de pedido (temperatura controlada, ADR, requisitos de equipamiento) se mapean a *order categories*, que luego se cruzan con las categorías de vehículos, depósitos y recursos para asegurar compatibilidad.
-
-- Los Vehículos del maestro de flota se convierten en *vehicles/resources* de OptiFlow, con sus capacidades, costes, restricciones, equipamientos y, si se quiere, perfiles de coste horario y por kilómetro.
-
-- Los Depósitos / Hubs definidos en Guraify se mapean a *depots*, con sus localizaciones, horarios y, en su caso, perfiles de servicio específicos.
-
-- Opcionalmente, se pueden utilizar parámetros económicos de cada pedido para alimentar los campos de *outsourcing cost* e *insourcing revenue*, de forma que el optimizador pueda decidir dejar fuera pedidos poco rentables o priorizar aquellos que aportan mayor margen, de acuerdo a la definición de la propia API.
-
-**Resultados que vuelven y se exponen en el TMS**
-
-
-OptiFlow devuelve un plan de rutas completo: listado de rutas con sus vehículos asignados, secuencias de órdenes/paradas, horarios, ocupación de capacidades y métricas globales de coste y rendimiento.
-
-En Guraify, ese plan se traduce en:
-
-- Creación o actualización de Viajes propuestos, con sus Paradas ya asignadas y secuenciadas.
-
-- Asignación automática de recursos (vehículo y, cuando corresponda, conductor).
-
-- Cálculo de distancias, tiempos y niveles de ocupación por viaje y por tramo.
-
-- Identificación de órdenes no planificadas, junto con la razón (incompatibilidades, sobrecoste, falta de recursos), alineado con la lógica de órdenes “outsourced” que describe OptiFlow.
-
-El usuario del TMS no ve el detalle técnico de la API, sino una propuesta de planificación coherente con el modelo Orden–Tramo–Parada–Viaje. Puede aceptarla tal cual, ajustarla manualmente o combinarla con reglas de negocio propias de la compañía.
+La **optimización completa** no ordena paradas dentro de un Viaje: propone qué Viajes crear y
+cómo llenarlos. Se lanza desde el :term:`Optimizador de Paradas` en uno de dos modos. **Por
+turnos del Planning**, cada turno aporta un vehículo y un conductor concretos, con su
+disponibilidad y su preset de jornada, y el resultado los deja asignados a cada Viaje. **Por
+categorías de vehículo**, el planificador indica cuántos vehículos de cada categoría tiene, sin
+decir cuáles, y el recurso se asigna después. Las paradas se envían como entregas desde el
+hub, recogidas hacia el hub o servicios directos, con capacidades reales en las mismas seis
+dimensiones, y la optimización se pide con calidad alta y respetando las prioridades. Si
+ningún vehículo puede cubrir las paradas, el sistema lo dice con las causas posibles
+(capacidad, jornada, distancia máxima o número de paradas) en lugar de crear viajes vacíos.
+El planificador revisa la propuesta, la ajusta a mano si hace falta y la confirma.
 
 .. tip::
 
-   Routing enriquece Viajes existentes.
+   Routing enriquece Viajes existentes. Secuenciación ordena las Paradas de un Viaje.
+   Optimización completa propone qué Viajes crear y cómo llenarlos. Toda la parametrización
+   sale de los maestros del TMS: categorías de vehículo, planes de disponibilidad, horarios de
+   los contactos y tiempos de servicio.
 
-   Secuenciación optimiza el orden de Paradas.
+1.4.3 Geolocalización, mapa y áreas
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   OptiFlow propone directamente qué Viajes crear y cómo llenarlos.
+La geolocalización es un fundamento estructural, no un accesorio: de ella dependen la
+asignación a planes de transporte, la tarificación por zonas, el cálculo de rutas y la
+planificación. Tres geometrías bastan para todo. La **coordenada** (latitud y longitud)
+representa una localización; el **polígono**, guardado en GeoJSON, representa un área; la
+**polilínea** representa el trazado de una ruta calculada por el routing.
 
-   Toda la parametrización nace de los maestros del TMS.
-
-Capa de integración 
-~~~~~~~~~~~~~~~~~~~~
-
-El sistema incorpora una capa de integración que permite intercambiar información estructurada con sistemas externos mediante:
-
-- Ficheros CSV o Excel.
-
-- API REST.
-
-- Webhooks.
-
-- Automatizaciones programadas.
-
-Las integraciones no crean estructuras paralelas, sino que alimentan directamente las entidades nativas del modelo (Orden, Tramo, Parada, Viaje). Esto garantiza coherencia entre datos importados y ejecución real.
-
-
-Arquitectura móvil y tecnologías embarcadas
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-La aplicación móvil de Guraify TMS es una extensión operativa del backend. No es únicamente una interfaz de confirmación de entregas, sino un punto activo de generación de datos estructurales que alimentan la trazabilidad en tiempo real,
-
-Es la responsable de actualizar estados, registrar incidencias, capturar POD digitales y sincronizar eventos operativos con el backend en tiempo real
-
-La aplicación móvil de Guraify TMS integra el Scandit Barcode Scanner SDK como motor de captura inteligente de códigos de barras. La tecnología no se utiliza de una única forma, sino que se estructura en tres modos operativos distintos: escaneo simple, escaneo masivo y escaneo en vídeo continuo. Cada uno responde a una necesidad diferente dentro del flujo logístico.
-
-Cada escaneo actualiza automáticamente la trazabilidad y puede activar eventos posteriores como desbloqueo de facturación o liquidación, recalculos de ETA o envío de alertas.
-
-
-
-Tipologías de escaneo
-^^^^^^^^^^^^^^^^^^^^^
-
-**Escaneo simple**
-
-
-Es el modo clásico de lectura individual. El usuario enfoca un único código y el sistema lo identifica inmediatamente.
-
-Este tipo de escaneo se caracteriza por:
-
-- Lectura rápida y precisa de un único código.
-
-- Confirmación inmediata.
-
-- Validación directa contra el modelo de datos (bulto, parada, viaje).
-
-- Registro automático del evento en la trazabilidad.
-
-Es el modo más controlado y se utiliza cuando se requiere precisión individual en la validación de mercancía.
-
-**Escaneo masivo**
-
-
-El escaneo masivo permite capturar múltiples códigos de forma consecutiva en una misma sesión, validándolos contra el conjunto esperado de bultos asociados a un Viaje o Parada.
-
-A diferencia del modo simple, aquí el objetivo no es validar una unidad concreta, sino verificar el conjunto completo.
-
-El sistema:
-
-- Compara los bultos escaneados con los asignados.
-
-- Detecta faltantes.
-
-- Detecta duplicados.
-
-- Impide validar el proceso si existen inconsistencias.
-
-Este modo actúa como mecanismo de control y verificación global antes de cerrar una fase operativa.
-
-**Escaneo en vídeo**
-
-Es el modo más avanzado y diferencial. Utiliza la cámara en modo continuo para detectar múltiples códigos simultáneamente en tiempo real.
-
-El sistema analiza constantemente la imagen capturada y superpone información visual en pantalla:
-
-- Indicador verde si el bulto pertenece al Viaje o Parada.
-
-- Indicador rojo si no corresponde.
-
-- Confirmación inmediata sin necesidad de lectura individualizada.
-
-Este modo permite interacción dinámica y reduce drásticamente el tiempo operativo en escenarios de alto volumen.
-
-.. note::
-
-   El escaneo en vídeo no es una lectura rápida.
-
-   Es validación contextual en tiempo real contra la estructura del Viaje.
-
-Uso dentro del flujo operativo
+Geocodificación de direcciones
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Una vez definidos los modos de escaneo, su aplicación dentro del flujo logístico es la siguiente:
-
-**Entrada de mercancía en almacén**
-
-
-Se utiliza el escaneo simple. Cada bulto que entra en el sistema —ya sea por primera vez o en procesos de devolución— se identifica individualmente, activando su trazabilidad. Aquí prima la precisión individual.
-
-**Proceso de removido en hub**
-
-
-Se utiliza el escaneo en vídeo. El conductor o el operario enfoca las etiquetas y el sistema indica visualmente si cada bulto pertenece o no a su ruta. Esto permite separar rápidamente mercancía correcta de mercancía incorrecta sin validaciones manuales adicionales. Aquí prima la velocidad con validación contextual.
-
-**Verificación completa antes de carga**
-
-
-Se utiliza el escaneo masivo. Una vez que el conductor considera que tiene toda la mercancía preparada, el sistema verifica que el conjunto de bultos escaneados coincide exactamente con los asignados al Viaje. Si falta alguno, no se permite validar la salida. Aquí prima el control de coherencia total.
+Cada dirección se convierte en coordenada mediante una cascada de cuatro proveedores, por
+orden de preferencia: PTV con la dirección completa; Google Maps, si la compañía tiene
+configurada su clave; PTV de nuevo, sólo con país, provincia y código postal; y OpenStreetMap
+(Nominatim) como respaldo gratuito. Cada resultado trae una **puntuación de calidad** y un tipo
+de precisión, que se guardan en la localización. Una coordenada con puntuación inferior a 80,
+o que sólo llega a precisión de código postal, queda **pendiente de normalizar**: sitúa el punto
+en el mapa, pero no vale para planificar.
 
 .. important::
 
-   El escaneo masivo es un punto de control previo a la ejecución del Viaje.
+   Una coordenada con puntuación inferior a 80 no se considera válida para la planificación.
+   La Orden calcula la lista de sus direcciones pendientes de normalizar y el Manifiesto no se
+   cierra mientras las haya. La normalización se hace a mano sobre la ficha de la localización,
+   con un buscador de direcciones sobre el mapa. No es una excepción operativa sino un control
+   de calidad estructural: evita paradas mal situadas, desvíos y ETAs falsos.
 
+La cascada funciona también al revés: cuando una localización llega con coordenada pero sin
+código postal, localidad o país, el sistema completa la dirección a partir del punto.
 
+Mapa base
+^^^^^^^^^
 
-**Localización de bultos durante el reparto**
+El mapa del backend (la vista mapa, el Optimizador de Paradas y el editor de áreas) y el mapa
+de la app del conductor se dibujan con MapLibre GL sobre las **teselas vectoriales de PTV**,
+autenticadas con el token de la compañía. Sin token, o si PTV no responde, el mapa arranca
+sobre OpenStreetMap y lo avisa: la operación no se detiene por una caída del proveedor.
 
+Áreas geográficas
+^^^^^^^^^^^^^^^^^
 
-Durante la ejecución, el conductor puede utilizar el escaneo en vídeo para localizar mercancía dentro del vehículo.
+.. admonition:: Ruta en Odoo
+   :class: tip
 
-Simplemente enfocando las etiquetas, el sistema le indica si ese bulto corresponde a la parada actual o a una parada posterior. Esto reduce errores de entrega y evita búsquedas manuales innecesarias dentro del vehículo. Aquí prima la asistencia operativa en tiempo real.
+   TMS › Configuración › Zonas Geográficas
 
+Cualquier superficie con significado operativo es un :term:`Área geográfica` (``tms.area``): un
+polígono GeoJSON con un tipo que dice para qué sirve. Hay cinco: área de un
+:term:`Plan de transporte`, :term:`Zona de tarifa`, extra de tarifa, elemento de operación y
+zona de bajas emisiones. Un área puede llevar los días y franjas horarias en que está activa.
 
-**Confirmación en entrega o recogida**
+Las áreas se **dibujan** sobre el mapa desde la ficha del área, de la zona de tarifa o del plan
+de transporte, o se **importan de OpenStreetMap** con un asistente que busca límites
+administrativos (municipios, comarcas, provincias) y los trae como polígonos, de uno en uno o
+en bloque. Varias áreas se pueden fusionar en una.
 
-
-Se utiliza principalmente el escaneo masivo, asegurando que:
-
-- Se entregan exactamente los bultos asignados.
-
-- No quedan bultos pendientes.
-
-- Las recogidas se vinculan correctamente a la parada correspondiente.
-
-
-Impacto estructural
-^^^^^^^^^^^^^^^^^^^
-
-En todos los casos, el escaneo no es una acción aislada. Cada lectura genera:
-
-- Actualización de estado del Bulto.
-
-- Registro en el histórico de la Parada.
-
-- Impacto en el estado del Viaje.
-
-- Evidencia operativa trazable.
-
-La tecnología de Scandit actúa como acelerador operativo, pero el resultado siempre es estructural: el modelo de datos se actualiza en tiempo real y mantiene coherencia entre ejecución física y representación digital.
-
-Modelo de geolocalización y normalización de coordenadas
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Guraify TMS se basa en la geolocalización como fundamento estructural para múltiples procesos: asignación automática a áreas operativas, cálculo de rutas, segmentación tarifaria y planificación por zonas.
-
-Para comprender correctamente este modelo, es necesario distinguir tres conceptos geométricos fundamentales que se utilizan de forma recurrente dentro del sistema:
-
-- Coordenada (punto)
-
-- Polígono (superficie)
-
-- Polilínea (trayectoria)
-
-Estos tres elementos constituyen la base geométrica sobre la que se construyen muchas de las funciones del TMS.
-
-
-Coordenada: la representación puntual
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Toda entidad que represente una localización física dentro del sistema —punto de entrega, recogida, hub, almacén o cualquier dirección operativa— dispone de una coordenada geográfica compuesta por: Latitud (lat), Longitud (lon)
-
-Esta pareja de valores numéricos define un punto exacto sobre la superficie terrestre. Desde el punto de vista matemático, una coordenada es una posición puntual sin superficie.
-
-En el TMS, cada registro de localización almacena estas coordenadas como parte estructural de su modelo de datos. No se trata de un atributo accesorio; es el elemento que permite:
-
-- Calcular distancias reales.
-
-- Planificar rutas.
-
-- Determinar pertenencia a áreas.
-
-- Aplicar tarifas zonales.
-
-- Evaluar restricciones geográficas.
-
-.. warning::
-
-   Sin coordenada válida no existe planificación fiable.
-
-Polígono: la representación de superficie
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Mientras que una coordenada representa un punto, un polígono representa una superficie delimitada por un conjunto de vértices conectados.
-
-En Guraify TMS, cualquier entidad que represente un área geográfica —zona operativa, área tarifaria, zona de bajas emisiones, región de planificación o segmento logístico— se modeliza mediante un polígono.
-
-La información del polígono se almacena utilizando el estándar GeoJSON, un formato estructurado ampliamente utilizado para representar geometrías geográficas. Un polígono en GeoJSON está compuesto por una lista ordenada de coordenadas que definen su perímetro.
-
-Este enfoque permite que el sistema pueda responder a preguntas como:
-
-- ¿Esta entrega pertenece a la Zona Norte?
-
-- ¿Este cliente está dentro de un área tarifaria específica?
-
-- ¿Este destino se encuentra dentro de una ZBE (Zona de Bajas Emisiones)?
-
-La lógica que se aplica es puramente geométrica: se comprueba si la coordenada (punto) cae dentro del polígono (superficie).
+La pregunta que responde el sistema es siempre la misma: ¿esta coordenada cae dentro de este
+polígono? Con ella asigna cada Tramo a su zona operativa y a sus zonas de tarifa de cliente y
+de transportista, en origen y en destino. Si la coordenada no cae en ningún área, el Tramo
+queda sin zona; el Proyecto puede pedir que en ese caso se asigne **el área más cercana**, con
+una opción para la zona operativa y otra para la de tarifa.
 
 .. important::
 
-   Una localización es un punto (lat, lon).
+   La asignación a áreas no se basa en texto ni en códigos postales, sino en geometría sobre
+   coordenadas verificadas. Si se corrige la coordenada de una dirección, su zona cambia sola.
 
-   Un área es una superficie (polígono GeoJSON).
+1.4.4 Capa de integración
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   La pertenencia se calcula geométricamente.
+El sistema intercambia información con el exterior por cuatro canales: ficheros CSV o Excel
+con una definición de fichero por cliente, una API REST con su Bandeja de entrada API,
+webhooks entrantes protegidos con clave, y envíos salientes de estados y pruebas de entrega
+hacia el sistema de cada cliente. Delante de la API hay una pasarela con documentación
+interactiva, autenticación y registro de cada llamada.
 
-Polilínea: la representación de una ruta
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Las integraciones no crean estructuras paralelas: alimentan directamente la Orden, el Tramo, la
+Parada y el Viaje, de modo que lo importado y lo ejecutado son la misma cosa. La
+:doc:`Guía del integrador </17.0/7_edi-integrations/index>` explica cada canal.
 
-El tercer elemento geométrico utilizado en el sistema es la polilínea.
+1.4.5 La app del conductor y el escaneo
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Una polilínea representa una trayectoria formada por una secuencia ordenada de coordenadas conectadas entre sí. A diferencia del polígono, no define una superficie cerrada, sino un recorrido.
+La aplicación móvil es una extensión operativa del backend, no una interfaz de confirmación.
+Es una app híbrida (Ionic y Capacitor) para iOS y Android que habla con Odoo por una API
+propia: recibe el Viaje, guía al conductor parada a parada, registra estados, incidencias,
+firmas, fotos y cobros, y devuelve cada evento al TMS con quién lo hizo, cuándo y desde dónde.
+Su mapa usa el token PTV de la compañía, que recibe al iniciar sesión.
 
-En el contexto del TMS, las polilíneas se utilizan principalmente para representar la geometría de una ruta calculada por el motor de routing.
+Para leer los códigos de barras de los bultos integra el **Scandit Barcode Scanner SDK** en
+tres modos:
 
-Cuando el sistema ejecuta un cálculo de ruta mediante la integración con PTV Routing, el servicio devuelve, entre otros datos:
+.. list-table::
+   :header-rows: 1
+   :widths: 18 22 60
 
-- Distancia total
+   * - Modo
+     - Tecnología
+     - Para qué sirve
+   * - **Lectura individual**
+     - Barcode Capture
+     - Leer una etiqueta, localizar ese bulto en el sistema, ver su estado y actuar sobre él.
+       Interpreta las etiquetas GS1 con identificadores de aplicación.
+   * - **Comprobación de carga**
+     - SparkScan (lectura continua)
+     - Recorrer la lista de bultos esperados de una parada o de un tramo escaneando en ráfaga.
+       La app marca cada bulto encontrado, lleva el contador sobre el total y responde con
+       acierto o error. Se usa al comprobar la carga antes de salir y en la entrega con
+       reservas.
+   * - **Encontrar bultos**
+     - Barcode Find (realidad aumentada)
+     - Con la cámara sobre muchas etiquetas a la vez, la app resalta las que pertenecen a la
+       parada actual, para localizar mercancía en el vehículo sin leerlas una a una.
 
-- Tiempo estimado
+Cada lectura llega a Odoo con la fecha, el conductor y el contexto de la parada: el Bulto cambia
+de estado y el evento queda en la trazabilidad de la Parada. El servidor puede rechazar la
+lectura por una regla de negocio (un bulto que no corresponde a esa parada, un estado que no
+admite la acción) y la app se lo dice al conductor al instante. Si la misma lectura llega dos
+veces, se procesa una sola.
 
-- Segmentos entre paradas
-
-- Rutas alternativas
-
-- Peajes y emisiones
-
-Y también la polilínea de la ruta, que describe el recorrido exacto sobre la red viaria.
-
-Esta polilínea permite:
-
-- Representar gráficamente la ruta en el mapa.
-
-- Visualizar el trayecto real entre paradas.
-
-- Analizar desviaciones entre ruta planificada y ejecución real.
-
-Desde el punto de vista técnico, la polilínea es una lista ordenada de coordenadas que describe el recorrido que debe seguir el vehículo entre origen y destino.
-
-
-Proceso de geolocalización de coordenadas
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Para que este modelo funcione, cada dirección debe transformarse en una coordenada fiable. Este proceso se denomina geocodificación.
-
-Guraify TMS utiliza un modelo jerárquico de geolocalización basado en dos proveedores: PTV y Google Maps, ambos configurables mediante token en la configuración del sistema Odoo.
-
-El flujo de geocodificación es el siguiente:
-
-1. Se intenta geolocalizar utilizando PTV como primera capa.
-
-2. Se evalúa la calidad del resultado devuelto.
-
-3. Si la calidad es inferior al 80 %, se realiza un segundo intento mediante Google Maps.
-
-4. Si la calidad sigue siendo inferior al 80 %, se asigna automáticamente la coordenada del centroide del código postal o localidad.
-
-En este último escenario, la localización queda marcada como “Normalizable”, lo que implica que la coordenada no es suficientemente precisa y requiere validación manual por parte del usuario antes de utilizarla en una orden definitiva.
-
-.. important::
-
-   Una coordenada con calidad inferior al 80 % no se considera válida para planificación definitiva.
-
-   Cuando un usuario intenta validar una orden que utiliza una localización con baja calidad, el sistema obliga a realizar una normalización manual. Este mecanismo no es una excepción operativa, sino un control de calidad estructural que evita errores de planificación, desvíos innecesarios y problemas en la ETA.
-
-   Más adelante en el manual se detallará el procedimiento paso a paso de normalización manual.
-
-Gestión y creación de áreas geográficas
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Para la creación y mantenimiento de áreas (polígonos), el sistema integra servicios basados en OpenStreetMap, plataforma cartográfica de uso libre.
-
-OpenStreetMap se utiliza para:
-
-- Visualizar mapas base.
-
-- Dibujar polígonos manualmente.
-
-- Editar áreas existentes.
-
-- Exportar e importar geometrías en formato GeoJSON.
-
-El uso de OSM permite que la gestión de áreas sea independiente de proveedores propietarios y garantiza flexibilidad en la definición de superficies operativas.
-
-
-Modelo conceptual de asignación geográfica
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-El funcionamiento interno puede representarse de forma simplificada mediante el siguiente esquema lógico:
+1.4.6 Evolución prevista
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. note::
 
-   Dirección (texto)
+   Lo que sigue **está en desarrollo** en el momento de escribir este manual (septiembre de
+   2026) y no forma parte de la versión que describen las secciones anteriores. A medida que se
+   entregue, pasará a ellas.
 
-   ↓
+Son los prerrequisitos de la **torre de control** que se está construyendo sobre el TMS, y
+afectan sobre todo a los servicios de PTV:
 
-   Proceso de geocodificación (PTV → Google → Centroide)
-
-   ↓
-
-   Coordenada válida (lat, lon)
-
-   ↓
-
-   Evaluación geométrica
-
-   ¿La coordenada cae dentro de un polígono?
-
-   ↓
-
-   Asignación automática a Área
-
-Desde el punto de vista matemático, el sistema realiza una operación conocida como Point-in-Polygon: se comprueba si un punto definido por latitud y longitud se encuentra dentro de la superficie delimitada por un conjunto de coordenadas que forman un polígono en formato GeoJSON.
-
-Podemos visualizarlo conceptualmente así:
-
-.. note::
-
-   ::
-
-      +---------------------------+
-      | Área Operativa            |
-      | (Polígono GeoJSON)        |
-      |                           |
-      | •                         |
-      | (lat, lon)                |
-      | Punto Localización        |
-      +---------------------------+
-
-   Si el punto se encuentra dentro de los límites del polígono, la localización queda automáticamente asociada a esa área. 
-   Si no pertenece a ningún polígono definido, el sistema puede:
-
-   - Dejarla sin asignación.
-   - Asociarla al área más cercana.
-   - Requerir intervención manual según configuración.
-
-
-.. important::
-
-   La asignación a áreas no se basa en texto ni en códigos postales.  
-   Se basa en geometría real sobre coordenadas verificadas.
-
-
-
-Implicaciones prácticas
-^^^^^^^^^^^^^^^^^^^^^^^
-
-Este modelo permite que:
-
-- Una misma dirección cambie automáticamente de área si se corrige su coordenada.
-- Las tarifas zonales se apliquen de forma automática y coherente.
-- Las restricciones geográficas (ZBE, áreas restringidas) se validen antes de planificar.
-- La planificación avanzada tenga información espacial fiable.
-
-En definitiva, el sistema no interpreta “direcciones”, interpreta geometría. La dirección textual es solo el punto de partida; la coordenada validada es la base real de toda la lógica espacial del TMS.
-
-
-Impacto arquitectónico
-^^^^^^^^^^^^^^^^^^^^^^
-
-La combinación de:
-
-- Coordenadas precisas (lat, lon)
-- Polígonos en formato GeoJSON
-- Geocodificación jerárquica con control de calidad
-- Normalización manual obligatoria cuando procede
-
-permite que la asignación automática a áreas, la tarificación zonal y la planificación avanzada funcionen sobre bases geométricas fiables.
-
-Este modelo convierte la geolocalización en un componente estructural del TMS, no en una funcionalidad accesoria. Sin precisión geográfica no hay planificación fiable, y sin áreas correctamente definidas no existe automatización tarifaria ni segmentación operativa coherente.
+- **Routing enriquecido.** Peajes por país y moneda, emisiones de CO₂ y consumo según los
+  esquemas EN 16258 e ISO 14083, calculados con los parámetros del modelo de vehículo, y
+  reparto de las emisiones del Viaje a cada Orden.
+- **ETA incremental.** Recalcular sólo las paradas pendientes a partir de la posición real del
+  conductor o de la última parada completada, según una política por compañía y por Proyecto.
+  El ETA prometido en la planificación se conserva junto al vigente, con historial, y un fallo
+  de PTV deja el valor anterior en lugar de borrarlo.
+- **Telemática.** Un conector de proveedores de telemática que traiga al Viaje y al vehículo la
+  posición, el odómetro y otras señales, con la app del conductor como un proveedor más.
+- **Optimizador.** Migración a PTV OptiFlow en convivencia con el servicio actual, comparando
+  resultados sobre planificaciones reales antes de cambiar. Aporta capacidades reales también
+  en la secuenciación, pausas y jornada del conductor explícitas, categorías de carga y
+  compatibilidades vehículo ↔ pedido, costes por vehículo (fijo, por hora, por kilómetro, por
+  parada), coste de subcontratación e ingreso de internalización por pedido, preferencias de
+  compacidad y equilibrio entre rutas, y un informe de pedidos no planificados con su motivo y
+  de restricciones incumplidas. Cada optimización quedará guardada como registro consultable.

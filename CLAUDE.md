@@ -138,6 +138,8 @@ toctree, se llega por la tarjeta de portada y `layout.html` le pone cabecera pro
   (`Parcel_Array`).
 - **Nada de notas de versión** en el contenido (`versionadded`, "antes/ahora"). El texto
   describe el comportamiento actual; el historial vive en `CHANGELOG.md`.
+  Única excepción, por decisión de Paco (2026-09-08): **1.4.6 Evolución prevista** recoge lo
+  que está en desarrollo, etiquetado como tal. Nada futuro se cuela en el resto del texto.
 - **Nada de notas de desarrollador** ("conviene revisar", "el onchange reconstruye…"). Si algo
   del código parece un bug, se anota en `CHANGELOG.md` o se le dice a Paco, no al lector.
 - Prosa redactada, no apuntes: párrafos completos, nada de listas de una palabra.
@@ -187,5 +189,5 @@ confirma**.
 
 ---
 
-*Actualizado el 2026-09-08 (v3). Si algo de aquí queda desactualizado, actualízalo en el
+*Actualizado el 2026-09-08 (v3, D5). Si algo de aquí queda desactualizado, actualízalo en el
 mismo cambio que lo desactualiza.*

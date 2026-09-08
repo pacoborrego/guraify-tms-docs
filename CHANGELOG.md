@@ -8,6 +8,37 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Cap. 1 Introducción (tarea D5 del plan, 2026-09-08)
+- **1.1 y 1.3** reescritos para el recorrido "Manual de implantación": el capítulo ya no dice
+  que la doc no es para el usuario final; presenta el manual, su público (consultores,
+  responsables de operaciones, equipos financieros, arquitectos ERP) y remite a los otros tres
+  recorridos y al glosario.
+- **1.4 Arquitectura tecnológica** reescrita desde el código (de 3.577 a 2.300 palabras, con
+  subsecciones numeradas 1.4.1 a 1.4.6 y el mermaid actualizado). Verificado en `tms_suite` y
+  en `tms_odoo_app`:
+  - PTV: los tres servicios existen (`routing/v1`, `sequenceoptimization/v1` y
+    `routeoptimization/v1`); el tercero **no es OptiFlow**, como decía el texto antiguo. Se
+    documenta qué se envía y qué vuelve en cada uno, los dos modos del optimizador (turnos del
+    Planning o categorías de vehículo) y el reintento de la secuenciación.
+  - Geocodificación: la cascada real es PTV → Google → PTV sólo código postal → Nominatim
+    (antes decía PTV → Google → centroide). Umbral 80 y normalización confirmados. Se añade la
+    geocodificación inversa.
+  - Mapa base: teselas vectoriales PTV con respaldo OpenStreetMap (antes se presentaba OSM
+    como el mapa de las áreas). Áreas: cinco tipos, dibujo o importación desde OSM, fusión,
+    opción por Proyecto de asignar el área más cercana.
+  - Scandit: los tres modos reales de la app (Barcode Capture, SparkScan para comprobar carga
+    y entrega con reservas, Barcode Find para encontrar bultos). Se quitan la "entrada de
+    mercancía en almacén", el semáforo verde/rojo por viaje y los efectos de un escaneo sobre
+    facturación, ETA o alertas, que no existen.
+  - Lo que el texto antiguo daba por hecho y está en desarrollo (peajes, emisiones, ETA
+    incremental desde la posición del conductor, telemática, OptiFlow con categorías de carga,
+    costes y motivos de no planificación) pasa a **1.4.6 Evolución prevista**, etiquetado como
+    trabajo en curso, por decisión de Paco (2026-09-08).
+- **1.2** sin modelos Odoo en las viñetas; **1.5** deja el principio ingreso/coste en una frase
+  con enlace a 2.1 y remite a 1.4 para las tecnologías.
+- Discrepancias detectadas para otras tareas: 3.3 afirma que el planificador elige el objetivo
+  del optimizador (no existe; D6) y 5.2 que el routing devuelve peajes (no se piden; D8).
+
 ### Capa de producto y portada (tarea D4 del plan, 2026-09-08)
 - **Nueva sección "Conocer Guraify TMS"** (`source/17.0/0_product-overview/`, 8 páginas) para
   clientes y distribuidores: qué es, para quién (cinco operativas y para quién no), cómo
