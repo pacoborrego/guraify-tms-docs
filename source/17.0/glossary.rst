@@ -9,6 +9,12 @@ para quien lo necesite.
 .. glossary::
    :sorted:
 
+   Activo y pasivo
+      Lo que se cobra al cliente (activo) y lo que se paga al transportista (pasivo) por una
+      operación. Existen en los cuatro niveles del modelo: Orden, Tramo, Parada y Viaje. La
+      diferencia es el margen (en la interfaz, «Beneficio»). (No se dice *ingreso* y *coste* al
+      hablar de los campos.)
+
    Agencia
       Delegación territorial del operador de transporte a la que se adscriben Órdenes, Paradas
       y Viajes para su gestión y su análisis. Es un contacto marcado como agencia
@@ -58,6 +64,19 @@ para quien lo necesite.
       Contacto de destino de la mercancía: quien la recibe en la entrega. (No se dice
       *receiver* ni *consignatario*.) Modelo ``res.partner``.
 
+   División de ventas
+      Reparto del importe de una Orden entre sus Tramos con el Modo de División del Proyecto
+      (peso, volumen, bultos, palés, cantidad, metros, lineal, o combinados con kilómetros), y
+      dentro del Tramo entre carga y descarga con los porcentajes del Tipo de Orden.
+
+   División de costes
+      Reparto del coste de un Viaje entre sus Paradas con el Modo División Viaje del Planning.
+      Las paradas de hub y las cargas de reparto no reciben coste.
+
+   Diagnóstico de tarifa
+      Resultado del último cálculo de venta (Orden) o de compra (Viaje), con el motivo cuando
+      no pudo hacerse. Se revisa en TMS › Administración › Opciones de Tarifa › Diagnosis.
+
    Dominio
       Dirección del servidor de la empresa que el conductor escribe una sola vez al entrar en
       la app, junto a su usuario y su contraseña. Se la facilita su empresa.
@@ -83,6 +102,11 @@ para quien lo necesite.
       Anomalía registrada por el conductor en una carga o una entrega: bulto dañado, bulto
       ausente, rechazo del destinatario, ausente, etc. Queda en la trazabilidad de la Parada.
       (No se dice *problema* ni *issue*.) Modelo ``tms.traceability.incidents``.
+
+   Indicador
+      Registro del motor de indicadores (``tms.kpi``): un cálculo con formato, sección, objetivo y
+      audiencias (cliente, transportista, interno). Al pulsarlo abre el listado que lo compone.
+      (No se dice *KPI* en la prosa, salvo en el nombre del menú.)
 
    Línea de tarifa
       Elemento de una :term:`Tarifa` que dice **cuándo** aplica un precio (ámbito: Orden,
@@ -157,6 +181,10 @@ para quien lo necesite.
       destinatario en la pantalla del móvil) o **POD físico** (fotografía del albarán
       firmado). Se adjunta a la Parada y queda disponible para el Cliente.
 
+   Precio cerrado
+      Importe fijo pactado con el transportista por un Viaje, que sustituye a la tarifa de compra
+      en la orden de compra.
+
    Proyecto
       Contenedor de configuración de una operativa o de un cliente: tarifa, Planning, tipos
       de servicio permitidos, división de ventas, comportamiento de la app y demás
@@ -181,6 +209,11 @@ para quien lo necesite.
    Remitente
       Contacto de origen de la mercancía cuando no coincide con el Cliente que encarga el
       servicio. (No se dice *shipper*.) Modelo ``res.partner``.
+
+   Tablero
+      Hoja de cálculo de Odoo con tablas dinámicas sobre los datos vivos del TMS, en
+      TMS › Operaciones › Tableros. Vienen tres: Operations KPI, Stops Operations y Pending
+      Invoicing. (No se dice *dashboard*.)
 
    Tarea de mantenimiento
       Clasificación con la que el taller filtra las órdenes: Preventivo, Taller, Reparación,

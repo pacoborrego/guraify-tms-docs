@@ -49,7 +49,9 @@ Tramo cuando la operativa lo requiere, de modo que distintas fases del servicio 
 impacto económico diferenciado. La configuración de cada elemento se recorre en
 :doc:`/17.0/4_parametrization/4_4_economic-configuration`; el cálculo del coste y la
 liquidación al transportista, en :doc:`/17.0/5_operational-flows/5_6_settlement`, y la
-facturación al cliente en :doc:`/17.0/5_operational-flows/5_7_invoicing`.
+facturación al cliente en :doc:`/17.0/5_operational-flows/5_7_invoicing`. Cómo se reparten
+ventas y costes entre Tramos y Paradas y cómo se controla el margen, en
+:doc:`/17.0/8_economic-administration/index`.
 
 .. figure:: /_static/img/3_functional-architecture/3_4_pricing-model_01_tarifa.png
    :alt: Configuración de una Tarifa en Odoo

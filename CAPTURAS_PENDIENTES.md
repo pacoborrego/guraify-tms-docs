@@ -166,6 +166,20 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 | ⬜ | `6_6_outputs.rst` | `6_6_outputs_03_rankings.png` | Asistente Rankings de objetivos con el texto generado. | Gestión de Recursos › Mantenimiento › Rankings de objetivos |
 | ⬜ | `6_7_kpis.rst` | `6_7_kpis_01_indicadores.png` | Lista de Indicadores de mantenimiento con sus valores. | Gestión de Recursos › Mantenimiento › Indicadores |
 
+## Administración y Control Económico (cap. 8)
+
+> Carpeta: `source/_static/img/8_economic-administration/`
+>
+> Odoo en español, datos de demo, sin importes ni nombres reales de clientes o transportistas.
+
+| Estado | Fichero .rst | Fichero | Qué muestra | Dónde |
+|---|---|---|---|---|
+| ⬜ | `8_1_active-passive-margin.rst` | `8_1_active-passive-margin_01_viaje.png` | Lista de Viajes con las columnas Activo, Pasivo, Beneficio y Margen %. | TMS › Operaciones › Tráfico › Viajes |
+| ⬜ | `8_4_purchase-orders.rst` | `8_4_purchase-orders_01_oc.png` | Orden de compra de un Viaje: línea de sección con la ruta y líneas por parada. | Viaje › botón inteligente de la orden de compra |
+| ⬜ | `8_6_refunds.rst` | `8_6_refunds_01_lista.png` | Lista de Reembolsos con importe, cobrado, ingresado, pagado, saldos y estado. | TMS › Administración › Reembolsos |
+| ⬜ | `8_8_control-reporting.rst` | `8_8_control-reporting_01_kpis.png` | Lista de KPIs del motor de indicadores con sección, formato y audiencias. | TMS › Métricas › KPIs |
+| ⬜ | `8_8_control-reporting.rst` | `8_8_control-reporting_02_tablero.png` | Tablero Pending Invoicing. | TMS › Operaciones › Tableros › Pending Invoicing |
+
 ## Manual del conductor (cap. 10) — app móvil
 
 > Carpeta: `source/_static/img/10_manual_app/`
