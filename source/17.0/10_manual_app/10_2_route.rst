@@ -1,161 +1,83 @@
-Ruta
-----
+10.2 Tu ruta
+------------
 
-
-
-Cuando entres en la app, esta es la pantalla principal. Aquí verás la ruta de trabajo que tienes que realizar.
+Al entrar, la app te lleva a la pantalla principal, **Panel**: tu ruta del día.
 
 .. figure:: /_static/img/10_manual_app/10_2_route_01_dashboard.png
    :width: 300px
    :align: center
-   :alt: Dashboard
+   :alt: Pantalla principal con la cabecera de la ruta y las paradas
 
+   Tu ruta: la cabecera arriba y las paradas en orden.
 
-Esta pantalla muestra:
-
-- Tu ruta asignada
-
-- Las paradas que tienes que hacer
-
-- El orden de trabajo
-
-Información de la ruta
-^^^^^^^^^^^^^^^^^^^^^^
+10.2.1 La cabecera
+~~~~~~~~~~~~~~~~~~
 
 .. figure:: /_static/img/10_manual_app/10_2_route_02_dashboard-header.png
    :width: 300px
    :align: center
-   :alt: Dashboard Header
+   :alt: Cabecera de la ruta
 
+   La cabecera de la ruta.
 
-1. Primera Línea:
+La cabecera resume tu jornada en tres líneas:
 
-   a. Número de paradas → ejemplo: 0/41 (hechas / total)
+#. **Paradas hechas / total** (por ejemplo 0/41), el **nombre de la ruta** y la **hora de salida**.
+#. Tu **nombre** y la **matrícula** del vehículo.
+#. La **duración** prevista, los **kilómetros**, la **carga** en kilos y el **volumen** en metros
+   cúbicos.
 
-   b. Nombre de la ruta → ejemplo: AMB_42443
+Arriba a la derecha está tu **avatar**. Si aparece un número encima, hay datos que la app todavía
+no ha podido enviar a la oficina; en :doc:`10_8_end-of-day` te contamos qué hacer.
 
-   c. Hora de inicio
+10.2.2 Las paradas
+~~~~~~~~~~~~~~~~~~
 
-2. Segunda Línea:
-
-   a. Tu álias
-
-   b. La matrícula del vehículo
-
-3. Tercera Línea:
-
-   a. Duración total de la ruta
-
-   b. Kilómetros
-
-   c. Carga total en Kilos
-
-   d. Volúmen total de la carga en m3
-
-
-
-
-.. note:: 
-    Esta información te ayuda a entender tu jornada antes de empezar.
-
-
-
-
-Paradas
-~~~~~~~
-
-A continuación de la información de la ruta encontrarás la lista de paradas secuenciadas. Cada tarjeta representa una parada. Es vital que sigas el orden de secuencia para que todo el sistema de predicción funcione correctamente, en caso de querer cambiar la secuencia de entrega, ponte en contacto con la oficina para coordinarse con ellos.
-
-Orden de las paradas
-^^^^^^^^^^^^^^^^^^^^
-
-En el lado izquierdo verás el número de la parada:
-
-- 0 → primera parada
-
-- 1 → siguiente
-
-- 2 → siguiente
-
-.. important::
-    Debes seguir el orden de secuencia para que el sistema de predicción funcione correctamente.
-
-
-
-Estado de la parada
-^^^^^^^^^^^^^^^^^^^
-
-El color del círculo que envuelve el número de parada, indica si vas en hora o no:
-
-- Sin color → vas en hora
-
-- Rojo → vas con retraso
-
-- Verde → vas con adelanto
-
-.. important::
-
-   Si ves rojo, significa que vas tarde.  
-   Intenta recuperar tiempo en las siguientes paradas.
-
-
-
-.. _section-paradas-info:
-
-Información de cada parada
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-
+Debajo de la cabecera están las paradas, una tarjeta cada una, en el orden en que tienes que
+hacerlas.
 
 .. figure:: /_static/img/10_manual_app/10_2_route_03_parada-card.png
    :width: 300px
    :align: center
-   :alt: Parada Card
+   :alt: Tarjeta de una parada
 
+   La tarjeta de una parada.
 
+En cada tarjeta ves:
 
-1. En la primera parte podrás ver:
-
-   a. Icono sobre el tipo de Parada
-
-   b. Nombre de la Ubicación
-
-   c. Código Postal y Localidad
-
-   d. A la izquierda verás la cantidad y tipo de órdenes vinculadas a la parada.
-
-2. En la parte central verás:
-
-   a. Franja Horaria.
-
-   b. Hora Estimada de Llegada y si vas con retraso o adelanto entre paréntesis podrás ver el tiempo de retraso o adelanto.
-
-3. Y en la parte inferior:
-
-   a. Kilómetros hasta esa Ubicación
-
-   b. Carga en Kilos
-
-   c. Volúmen en m3
-
-   d. Número de Bultos.
-
-Acceso a una parada
-^^^^^^^^^^^^^^^^^^^
-
-Para ver el detalle de una parada 👉 Pulsa sobre la tarjeta de la parada.
-
-Al entrar podrás ver toda la información necesaria y realizar la operación (carga o entrega).
-
-Actualización de la ruta
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-
-A medida que vas trabajando, las paradas realizadas desaparecen de la pantalla. Solo verás las paradas pendientes. Esto te permite, saber siempre qué te queda por hacer, trabajar de forma ordenada
+- A la izquierda, el **número de la parada** (la 0 es la primera). El color del círculo te dice
+  cómo vas de tiempo: **sin color**, en hora; **rojo**, con retraso; **verde**, con adelanto.
+- Arriba, el **tipo de parada** (icono), el **nombre del sitio**, el **código postal y la
+  localidad**, y cuántas **órdenes** lleva.
+- En el centro, la **franja horaria** acordada y la **hora estimada de llegada**, con el retraso o
+  el adelanto entre paréntesis.
+- Abajo, los **kilómetros** hasta allí, los **kilos**, el **volumen** y el **número de bultos**.
 
 .. important::
-    Si una parada ya no aparece, significa que ya está completada correctamente.
 
+   Haz las paradas **en el orden de la lista**. Las horas de llegada de las paradas siguientes se
+   calculan con ese orden, y la oficina y los destinatarios las ven. Si necesitas cambiarlo,
+   llama a la oficina antes.
 
+Cuando terminas una parada, desaparece de la lista: siempre ves sólo lo que te queda. Para
+entrar en una parada, **pulsa su tarjeta**.
 
-.. _section-1:
+10.2.3 Las pestañas de abajo
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. CAPTURA: 10_2_04 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/10_manual_app/10_2_route_04_pestanas.png
+      :width: 300px
+      :align: center
+      :alt: Barra de pestañas inferior: Panel, Mapas, Escanear, Chat, Perfil
+
+      Las cinco pestañas de la app.
+
+En la parte de abajo hay cinco pestañas:
+
+- **Panel**: tu ruta, la pantalla en la que estás.
+- **Mapas**: el mapa con el recorrido de tu ruta y tus paradas numeradas.
+- **Escanear**: buscar bultos con la cámara (ver :doc:`10_4_delivery`).
+- **Chat**: mensajes con la oficina, cuando tu empresa lo tenga activado.
+- **Perfil**: tu cuenta, la sincronización con la oficina y cerrar sesión (ver
+  :doc:`10_8_end-of-day`).

@@ -8,6 +8,29 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Manual del conductor (tarea D11 del plan, 2026-09-10)
+- **Reescrito entero** para el conductor: tono de tú, frases cortas, pasos numerados, sin
+  tecnicismos. Un glosario de seis palabras en el index (Ruta, Parada, Bulto, POD, Con Reservas,
+  Dominio). Un solo nombre en todas partes: «Manual del conductor».
+- **Dividido en ocho páginas**: 10.1 Entrar en la app, 10.2 Tu ruta (con las cinco pestañas),
+  10.3 La parada (qué ves, el pie de botones, los tres pasos Inicio › He Llegado › Resultado,
+  Reiniciar), 10.4 Entregar (encontrar bultos, comprobar, POD física y digital), 10.5 Cargar
+  (nuevo), 10.6 Cobrar un reembolso, 10.7 Cuando algo no va bien (Con Reservas y Cancelado,
+  bultos con problema en entrega y carga, reembolso incompleto), 10.8 Fin de la jornada y sin
+  cobertura (nuevo: fin de ruta, trabajo sin internet, el número del avatar, la pantalla Cuenta
+  con Sincronizar ahora, Actualizar mi ruta y Limpiar errores). Todo verificado en el código de la
+  app (`tms_odoo_app`): botones, textos y flujos; no se describe ninguna pantalla que no exista.
+- **Barra lateral propia** del manual actualizada a las ocho páginas (`sidebar-nav-bs.html`).
+- Las cuatro `list-table` con imágenes pasan a figuras seguidas de 300 px, que caben en el móvil.
+  Fuera los restos de Word (líneas duplicadas, viñetas con tabulador, «---» sueltos), la
+  tercera persona y las faltas.
+- **Capturas**: se conservan las 33 existentes con su nombre (el lote de María está en curso) y se
+  registran seis nuevas (pestañas, comprobar carga, foto de motivo, Panel sin ruta, avatar con
+  aviso, pantalla Cuenta).
+- El botón rojo de resultado se llama «Cancelado» en la app aunque la parada quede Fallida: la
+  doc lo cita así y explica el equivalente; la corrección de la app sigue en la lista de PLAN.md,
+  junto con tres títulos en inglés y una falta de ortografía detectados ahora.
+
 ### Cap. 7 Guía del integrador (tarea D9 del plan, 2026-09-10)
 - **Index** reescrito para presentarlo como la Guía del integrador: a quién va dirigido, qué
   necesitas saber antes (modelo conceptual, Manifiesto y Bandeja de entrada API, Proyecto) y el

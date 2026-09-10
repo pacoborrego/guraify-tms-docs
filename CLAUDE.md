@@ -200,5 +200,5 @@ confirma**.
 
 ---
 
-*Actualizado el 2026-09-10 (v3, D9). Si algo de aquí queda desactualizado, actualízalo en el
+*Actualizado el 2026-09-10 (v3, D11). Si algo de aquí queda desactualizado, actualízalo en el
 mismo cambio que lo desactualiza.*
