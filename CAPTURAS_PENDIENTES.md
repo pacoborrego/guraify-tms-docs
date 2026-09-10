@@ -185,44 +185,52 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 > Carpeta: `source/_static/img/10_manual_app/`
 >
 > Todas se rehacen con una **ruta de prueba** (datos inventados). Son capturas del teléfono,
-> sin recortar. Mismo nombre de fichero que la actual. Al hacer la tarea D11 del plan pueden
-> cambiar algunos nombres; Paco avisará.
+> sin recortar. **Los nombres de fichero no cambian** aunque en D11 (2026-09-10) el capítulo se
+> haya dividido en ocho páginas: las imágenes `10_3_report_NN` se usan ahora desde 10.3 a 10.7 y
+> conservan su nombre para no chocar con el lote que María ya ha preparado. Las nuevas llevan el
+> prefijo de su página.
 
-| Estado | Sección (.rst) | Fichero |
-|---|---|---|
-| 🔁 | `10_1_application-access.rst` | `10_1_application-access_01_activar-cuenta-step-1.png` |
-| 🔁 | `10_1_application-access.rst` | `10_1_application-access_02_activar-cuenta-step-2.png` |
-| 🔁 | `10_1_application-access.rst` | `10_1_application-access_03_login.png` |
-| 🔁 | `10_2_route.rst` | `10_2_route_01_dashboard.png` |
-| 🔁 | `10_2_route.rst` | `10_2_route_02_dashboard-header.png` |
-| 🔁 | `10_2_route.rst` | `10_2_route_03_parada-card.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_01_parada-report-inicio.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_02_parada-report-botones-exito.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_03_orden-card.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_04_parada-footer.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_05_parada-acciones.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_06_parada-accion.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_07_parada-report-he-llegado.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_08_bultos-lista-scan-off.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_09_bulto-card.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_10_bultos-lista-scan-on.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_11_bultos-lista-footer.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_12_reembolso-step-1.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_13_reembolso-step-2.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_14_reporte-carga-1.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_15_reporte-carga-2.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_16_reporte-carga-3.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_17_reporte-entrega.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_18_reporte-entrega-4.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_19_scanmatrix-step-1.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_20_scanmatrix-step-2.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_21_scanmatrix-step-3.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_22_parada-report-pod-phisical-pre-scan.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_23_parada-report-pod-phisical-post-scan.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_24_parada-report-pre-sign-digital.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_25_parada-report-pod-digital-post-sign.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_26_img-1021.png` |
-| 🔁 | `10_3_report.rst` | `10_3_report_27_img-1020.png` |
+| Estado | Sección (.rst) | Fichero | Qué muestra |
+|---|---|---|---|
+| 🔁 | `10_1_application-access.rst` | `10_1_application-access_01_activar-cuenta-step-1.png` | Correo de invitación con el botón Activar cuenta |
+| 🔁 | `10_1_application-access.rst` | `10_1_application-access_02_activar-cuenta-step-2.png` | Pantalla de crear contraseña |
+| 🔁 | `10_1_application-access.rst` | `10_1_application-access_03_login.png` | Pantalla de entrada: Dominio, correo, contraseña, botón ACCESO |
+| 🔁 | `10_2_route.rst` | `10_2_route_01_dashboard.png` | Panel con la ruta y las paradas |
+| 🔁 | `10_2_route.rst` | `10_2_route_02_dashboard-header.png` | Cabecera de la ruta |
+| 🔁 | `10_2_route.rst` | `10_2_route_03_parada-card.png` | Tarjeta de una parada |
+| ⬜ | `10_2_route.rst` | `10_2_route_04_pestanas.png` | Barra inferior con las cinco pestañas |
+| 🔁 | `10_3_stop.rst` | `10_3_report_01_parada-report-inicio.png` | Pantalla de la parada con el botón Inicio |
+| 🔁 | `10_3_stop.rst` | `10_3_report_02_parada-report-botones-exito.png` | Los tres botones de resultado: Hecho, Con Reservas, Cancelado |
+| 🔁 | `10_3_stop.rst` | `10_3_report_03_orden-card.png` | Tarjeta de una orden |
+| 🔁 | `10_3_stop.rst` | `10_3_report_04_parada-footer.png` | Pie de la parada: navegar, botón central, escáner y menú |
+| 🔁 | `10_3_stop.rst` | `10_3_report_05_parada-acciones.png` | Menú de tres puntos con Reiniciar |
+| 🔁 | `10_3_stop.rst` | `10_3_report_06_parada-accion.png` | Confirmación de Reiniciar |
+| 🔁 | `10_3_stop.rst` | `10_3_report_07_parada-report-he-llegado.png` | Parada con el botón He Llegado |
+| 🔁 | `10_4_delivery.rst` | `10_3_report_19_scanmatrix-step-1.png` | Encontrar bultos: cámara sobre las etiquetas |
+| 🔁 | `10_4_delivery.rst` | `10_3_report_20_scanmatrix-step-2.png` | Encontrar bultos: los de la parada en verde |
+| 🔁 | `10_4_delivery.rst` | `10_3_report_21_scanmatrix-step-3.png` | Encontrar bultos: contador |
+| 🔁 | `10_4_delivery.rst` | `10_3_report_08_bultos-lista-scan-off.png` | Comprobar bultos: la lista |
+| 🔁 | `10_4_delivery.rst` | `10_3_report_09_bulto-card.png` | Tarjeta de un bulto |
+| 🔁 | `10_4_delivery.rst` | `10_3_report_10_bultos-lista-scan-on.png` | Comprobar bultos con el escáner activo |
+| 🔁 | `10_4_delivery.rst` | `10_3_report_11_bultos-lista-footer.png` | Contador de bultos y botón Siguiente |
+| 🔁 | `10_4_delivery.rst` | `10_3_report_22_parada-report-pod-phisical-pre-scan.png` | POD física: fotografiar el albarán |
+| 🔁 | `10_4_delivery.rst` | `10_3_report_23_parada-report-pod-phisical-post-scan.png` | POD física: albarán fotografiado |
+| 🔁 | `10_4_delivery.rst` | `10_3_report_24_parada-report-pre-sign-digital.png` | POD digital: nombre, DNI, resumen y recuadro de firma |
+| 🔁 | `10_4_delivery.rst` | `10_3_report_25_parada-report-pod-digital-post-sign.png` | POD digital: firma hecha |
+| ⬜ | `10_5_loading.rst` | `10_5_loading_01_comprobar-carga.png` | Comprobar bultos en una parada de carga |
+| 🔁 | `10_5_loading.rst` | `10_3_report_14_reporte-carga-1.png` | Tarjeta de un bulto en la carga |
+| 🔁 | `10_5_loading.rst` | `10_3_report_15_reporte-carga-2.png` | Botón Reportar Problema |
+| 🔁 | `10_5_loading.rst` | `10_3_report_16_reporte-carga-3.png` | Pregunta ¿Se entrega el bulto? |
+| 🔁 | `10_6_refunds.rst` | `10_3_report_12_reembolso-step-1.png` | Orden con la línea de reembolso |
+| 🔁 | `10_6_refunds.rst` | `10_3_report_13_reembolso-step-2.png` | Pantalla del reembolso: Cobrado, Cobrado en parte, No Cobrado |
+| 🔁 | `10_7_incidents.rst` | `10_3_report_17_reporte-entrega.png` | Motivos de una entrega con reservas |
+| 🔁 | `10_7_incidents.rst` | `10_3_report_18_reporte-entrega-4.png` | Motivos de una parada cancelada |
+| ⬜ | `10_7_incidents.rst` | `10_7_incidents_01_foto.png` | Pantalla de foto que pide un motivo |
+| 🔁 | `10_7_incidents.rst` | `10_3_report_26_img-1021.png` | Cobrado en parte: importe recibido |
+| 🔁 | `10_7_incidents.rst` | `10_3_report_27_img-1020.png` | Motivos del cobro incompleto |
+| ⬜ | `10_8_end-of-day.rst` | `10_8_end-of-day_01_sin-viaje.png` | Panel sin ruta: «No se encontró ningún viaje» |
+| ⬜ | `10_8_end-of-day.rst` | `10_8_end-of-day_02_avatar-aviso.png` | Avatar con el número de pendientes/errores |
+| ⬜ | `10_8_end-of-day.rst` | `10_8_end-of-day_03_cuenta.png` | Pantalla Cuenta con Sincronización y botones |
 
 ---
 
