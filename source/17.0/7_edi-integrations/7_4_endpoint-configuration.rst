@@ -5,8 +5,8 @@ Los endpoints definen las llamadas HTTP **salientes** del TMS hacia sistemas rem
 contrapartida de la recepción descrita en :doc:`7_3_api-integrations`. Describen qué se
 envía, cómo se construye y cuándo se dispara.
 
-Definición del endpoint
------------------------
+7.4.1 Definición del endpoint
+-----------------------------
 
 .. admonition:: Ruta en Odoo
    :class: tip
@@ -18,7 +18,7 @@ Definición del endpoint
 
    Configuración de un endpoint saliente.
 
-Cada endpoint (``tms_int.api.endpoint``) declara el método HTTP y la ruta relativa sobre
+Cada endpoint (``tms_int.api.endpoint``) declara el método HTTP y la dirección relativa sobre
 la URL base de su Integración API, y construye las cabeceras, el cuerpo y la
 *query string* mediante plantillas Jinja. La respuesta del sistema remoto se procesa con
 ``response_mapper_code``, que mapea los datos devueltos sobre los registros de Odoo. El
@@ -26,8 +26,8 @@ envío puede ser individual o por lotes según ``send_mode``: en modo *single* s
 una llamada por registro y en modo *batch* se agrupan hasta ``max_batch_size`` registros
 por llamada. La autenticación es la definida en la Integración API asociada.
 
-Disparadores
-------------
+7.4.2 Disparadores
+------------------
 
 Un endpoint puede ejecutarse de dos formas. La primera, mediante reglas automáticas
 (``base.automation`` con disparo ``on_write``) que se generan desde la propia
@@ -53,8 +53,8 @@ El siguiente diagrama resume el flujo saliente:
        H --> G[Traza<br/>tms.api.log]
        classDef tr fill:#efe,stroke:#8a8;
 
-Despacho por proyecto
----------------------
+7.4.3 Despacho por proyecto
+---------------------------
 
 Para los flujos de subcontratación, los endpoints de despacho por proyecto
 (``tms_int.project.dispatch.endpoint``) determinan qué endpoints se ejecutan al asignar
@@ -62,8 +62,8 @@ paradas a una agencia. Cada uno se declara con un propósito —``dispatch`` par
 la asignación o ``cancel`` para revertirla—, de modo que la comunicación con la agencia
 queda alineada con el ciclo de vida de la asignación.
 
-Trazabilidad
-------------
+7.4.4 Trazabilidad
+------------------
 
 Cada ejecución de un endpoint queda registrada en ``tms.api.log``, con sus cabeceras,
 *payloads* y código de respuesta. El tratamiento de estas trazas y las recomendaciones

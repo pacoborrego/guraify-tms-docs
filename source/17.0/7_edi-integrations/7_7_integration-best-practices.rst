@@ -5,8 +5,8 @@ Una integración robusta no depende solo de una configuración correcta, sino de
 de trazabilidad, validación y seguridad sostenidos en el tiempo. Esta sección reúne las
 recomendaciones que conviene aplicar en cualquier despliegue.
 
-Trazabilidad y observabilidad
------------------------------
+7.7.1 Trazabilidad y observabilidad
+-----------------------------------
 
 El registro ``tms.api.log`` es la pieza central de la observabilidad: recoge cada
 intercambio —de entrada y de salida— con sus cabeceras, *payloads*, estado, código HTTP
@@ -20,8 +20,8 @@ trazabilidad de los intentos previos.
 
       Registro de actividad de las APIs (``tms.api.log``).
 
-EDI: ficheros y manifiestos
----------------------------
+7.7.2 EDI: ficheros y manifiestos
+---------------------------------
 
 En los flujos EDI, conviene apoyarse en los dos niveles previstos: el contenedor de
 configuración ``tms.edi.file``, que agrupa los mapeos aplicables, y el Manifiesto
@@ -29,24 +29,24 @@ configuración ``tms.edi.file``, que agrupa los mapeos aplicables, y el Manifies
 operativa. Mantener esta separación facilita validar y corregir un intercambio sin
 afectar a los registros operativos ya creados.
 
-Auditoría de transferencias de agencia
---------------------------------------
+7.7.3 Auditoría de transferencias de agencia
+--------------------------------------------
 
 Las transferencias de agencia (``tms.agency.transfer.snapshot``) conservan el estado
 anterior y posterior a los *splits* y reasignaciones, lo que permite auditar qué cambió
 y revertir la operación si fuera necesario. Es la salvaguarda ante reasignaciones
 erróneas en la subcontratación.
 
-Seguridad
----------
+7.7.4 Seguridad
+---------------
 
 Como medidas de seguridad básicas: emplear siempre el secreto en los webhooks (ver
 :doc:`7_5_webhooks`), gestionar el *token* de API por proyecto y respetar el control de
 acceso por *tenant* en la descarga de adjuntos, de modo que cada cliente acceda
 únicamente a su propia información.
 
-Recomendaciones operativas
---------------------------
+7.7.5 Recomendaciones operativas
+--------------------------------
 
 Por último, conviene diseñar las integraciones de forma idempotente, apoyándose en
 referencias externas únicas (``external_ref``) para no duplicar registros ante reenvíos;

@@ -36,6 +36,8 @@ Tiene **cuatro públicos** y la portada los separa en cuatro recorridos (ver `PL
   una página `A_NN_slug.rst` por maestro, títulos «A.N Nombre», tabla Campo / Tipo / Qué es con la
   etiqueta de la interfaz en español). El cuerpo del cap. 4 sólo lleva la tabla corta
   «Decisión / Efecto» y enlaza al anexo (patrón fijado en D7).
+  Excepción de numeración en el cap. 7: las páginas hijas 7.2.1 y 7.2.2 conservan sus ficheros
+  `7_2_1_*`/`7_2_2_*`, y las secciones internas de 7.2 se numeran a partir de 7.2.3 (D9).
 - En la Guía del integrador sí caben campos, cabeceras y ejemplos de código.
 
 **Terminología**: manda el glosario, `source/17.0/glossary.rst` (tarea D3, 2026-09-08). Cada
@@ -198,5 +200,5 @@ confirma**.
 
 ---
 
-*Actualizado el 2026-09-10 (v3, D10). Si algo de aquí queda desactualizado, actualízalo en el
+*Actualizado el 2026-09-10 (v3, D9). Si algo de aquí queda desactualizado, actualízalo en el
 mismo cambio que lo desactualiza.*

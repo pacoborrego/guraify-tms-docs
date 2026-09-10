@@ -6,8 +6,8 @@ recibir Órdenes y eventos de los sistemas de cliente y consultar información d
 seguimiento sin intervención manual. Esta sección describe la orquestación común del
 camino de integración (API REST y webhooks) y la mecánica propia de las APIs.
 
-Orquestación
-------------
+7.3.1 Orquestación
+------------------
 
 Cada conexión con un sistema externo se define mediante la Integración
 (``tms_int.integration``) y sus líneas (``tms_int.integration.line``). Cada línea
@@ -19,8 +19,8 @@ Para los flujos de salida, los patrones (``tms_int.pattern`` y sus líneas
 ``tms_int.pattern.line`` / ``tms_int.pattern.line.field``) describen cómo construir el
 *payload* que se remite a los sistemas remotos (ver :doc:`7_4_endpoint-configuration`).
 
-Configuración de la conexión
-----------------------------
+7.3.2 Configuración de la conexión
+----------------------------------
 
 .. admonition:: Ruta en Odoo
    :class: tip
@@ -40,8 +40,8 @@ solicita el *token* con usuario y contraseña, lo cachea y lo refresca automáti
 cuando expira, evitando renovaciones innecesarias. La configuración incluye además una
 prueba de credenciales para validar la conexión antes de ponerla en producción.
 
-Almacenamiento intermedio y materialización
--------------------------------------------
+7.3.3 Almacenamiento intermedio y materialización
+-------------------------------------------------
 
 .. admonition:: Ruta en Odoo
    :class: tip
@@ -65,8 +65,8 @@ Solo tras la validación y el cierre del Manifiesto se materializa la estructura
 operativa: la Orden (``sale.order``), el Tramo (``tms.shipment.leg``), la Parada
 (``tms.stop``) y el Viaje (``tms.trip``).
 
-Ingesta de datos
-----------------
+7.3.4 Ingesta de datos
+----------------------
 
 La entrada de datos se canaliza a través de ``tms_int.api.post.import.data``, que crea
 las líneas de bandeja y los *preview packs* asociados a un *token* de etiqueta, **sin
@@ -74,8 +74,8 @@ crear todavía la Orden**. La materialización en ``sale.order`` se produce en u
 posterior, una vez validados y agrupados los datos, manteniendo así separadas la
 recepción y la creación de registros operativos.
 
-APIs de lectura
----------------
+7.3.5 APIs de lectura
+---------------------
 
 Además de la ingesta, la integración expone consultas de solo lectura: la API de
 seguimiento (``tms_int.api.get.tracking``), que devuelve el estado de las órdenes,
