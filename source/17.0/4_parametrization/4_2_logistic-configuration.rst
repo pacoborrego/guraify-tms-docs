@@ -4,388 +4,206 @@
 .. admonition:: Ruta en Odoo
    :class: tip
 
-   TMS › Configuración › Ajustes (bloque *Datos auxiliares*): Equipamientos
-   (``tms.equipment``), Categorías de Carga (``tms.load.category``), Reglas de Tarifa
-   (``tms.pricelist.rule``) y Tipos de Bulto. Los Modelos y Categorías de Vehículo se
-   gestionan en TMS › Maestros › Vehículos (``fleet.vehicle.model`` /
-   ``fleet.vehicle.model.category``).
+   TMS › Configuración › Ajustes, bloque **Optimización de ruta** (Equipamientos, Categoría de
+   Carga) y bloque **Datos auxiliares** (Regla de tarifa, Tipos de Bulto). Las categorías y los
+   modelos de vehículo están en TMS › Maestros › Equipos.
 
-La configuración logística describe los recursos físicos y las restricciones materiales que condicionan la ejecución del transporte.
+La configuración logística describe la mercancía y los vehículos: qué se transporta, cómo se
+mide, qué necesita el vehículo para llevarlo y cuánto cabe en cada tipo de vehículo. Son cinco
+maestros pequeños, pero de ellos dependen tres cosas grandes: que el optimizador sólo proponga
+vehículos capaces de llevar la carga, que las líneas de mercancía se midan igual en toda la
+casa, y que las capacidades con las que se planifica sean las reales.
 
-En este bloque se definen equipamientos, categorías de carga, reglas de medición logística, tipos de mercancía y capacidades de vehículo.
-
-Estos elementos permiten que el sistema determine compatibilidades entre mercancía, vehículo, transportista y planificación.
-
-También alimentan procesos de optimización, cálculo de capacidad, validaciones operativas y generación de líneas logísticas.
-
-
+Cada maestro se describe aquí por lo que decide el cliente. La lista completa de campos de
+cada pantalla está en el :doc:`anexo A </17.0/annexes/index>`.
 
 4.2.1 Equipamientos
 ~~~~~~~~~~~~~~~~~~~
 
 .. CAPTURA: 4_2_01 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/4_parametrization/4_2_logistic-configuration_01_equipamientos.png
-      :alt: Configuración de Equipamientos
+      :alt: Lista de Equipamientos
 
-      Configuración de Equipamientos (``tms.equipment``).
+      Equipamientos: lo que un vehículo lleva instalado.
 
-Los Equipamientos representan capacidades, accesorios o requisitos técnicos necesarios para ejecutar determinados servicios de transporte.
+Un Equipamiento (``tms.equipment``) es algo que un vehículo lleva o puede ofrecer: plataforma
+elevadora, equipo de frío, homologación ADR, jaula, transpaleta, doble tripulación. El maestro
+no dice qué vehículos lo tienen; eso se marca en cada categoría de vehículo y, si hace falta,
+en el vehículo concreto. Lo que hace es dar nombre a la capacidad para que la mercancía pueda
+exigirla y el optimizador pueda comprobarla.
 
-Pueden describir elementos como:
-
-- Plataforma elevadora
-- Frío
-- ADR
-- Jaula
-- Transpaleta
-- Doble tripulación
-- Otros requisitos operativos específicos
-
-4.2.1.1 Campos principales
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+El cliente decide poco al crearlos, pero conviene hacerlo con criterio:
 
 .. list-table::
    :header-rows: 1
    :widths: 30 70
 
-   * - Campo
-     - Descripción
-   * - Nombre
-     - Código o identificador funcional del equipamiento.
-   * - Secuencia
-     - Orden de visualización dentro del sistema.
-   * - Descripción
-     - Texto descriptivo del equipamiento.
-   * - Compañía
-     - Configuración específica por compañía.
-   * - Valor por defecto
-     - Clasificación estándar.
-   * - Información adicional
-     - Notas internas de parametrización.
-   * - Color
-     - Identificador visual utilizado en interfaces.
+   * - Decisión
+     - Efecto
+   * - Qué equipamientos existen
+     - Sólo se pueden exigir capacidades que estén en el catálogo. Conviene crear los que de
+       verdad condicionan la asignación, no un inventario exhaustivo del vehículo.
+   * - El código
+     - Es la clave con la que el optimizador empareja lo que exige la carga con lo que tiene el
+       vehículo. El nombre se traduce y el código no: una vez en uso, no se cambia.
 
-4.2.1.2 Aplicación operativa de Equipamientos
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Los equipamientos se exigen desde tres sitios: la categoría de carga (una carga refrigerada
+exige frío), el tipo de bulto y el Proyecto (toda la operativa del proyecto exige plataforma).
+Al planificar, el Tramo exige la unión de todos ellos y el optimizador descarta los vehículos
+que no los tengan. Cómo se aplica en la práctica está en
+:doc:`/17.0/5_operational-flows/5_2_trip-generation`; los campos, en
+:doc:`/17.0/annexes/A_01_equipamientos`.
 
-Los equipamientos se relacionan con:
-
-- Categorías de vehículo
-- Proyectos
-- Reglas operativas
-- Restricciones logísticas
-
-Su función es garantizar que el recurso asignado disponga de las capacidades necesarias para ejecutar correctamente el servicio.
-
-Cuando una operación exige determinados equipamientos, estos actúan como criterio de filtrado para:
-
-- Asignación de vehículos
-- Validaciones operativas
-- Reglas económicas
-- Restricciones de planificación
-
-
-
-4.2.2 Categorías de Carga
+4.2.2 Categorías de carga
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Las Categorías de Carga permiten clasificar la naturaleza logística de la mercancía transportada.
-
-A diferencia del Tipo de Bulto, que describe la unidad física manipulada, la categoría de carga define el comportamiento operativo de la mercancía.
-
-Ejemplos habituales:
-
-- Refrigerada
-- Seca
-- Paletizada
-- Frágil
-- ADR
-- Voluminosa
-
-4.2.2.1 Campos principales
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Una Categoría de carga (``tms.load.category``) clasifica la naturaleza logística de la
+mercancía: refrigerada, seca, paletizada, frágil, ADR, voluminosa. No dice qué es el bulto
+(eso es el tipo de bulto) ni cómo se mide (eso es la regla de tarifa): dice cómo hay que
+tratarla y con qué puede viajar.
 
 .. list-table::
    :header-rows: 1
    :widths: 30 70
 
-   * - Campo
-     - Descripción
-   * - Nombre
-     - Código identificador de la categoría.
-   * - Secuencia
-     - Orden de visualización.
-   * - Descripción
-     - Definición funcional.
-   * - Compañía
-     - Configuración multiempresa.
-   * - Valor por defecto
-     - Clasificación estándar.
-   * - Información adicional
-     - Notas internas.
-   * - Color
-     - Identificador visual.
+   * - Decisión
+     - Efecto
+   * - Equipamiento requerido
+     - Qué debe llevar el vehículo para transportar esta carga. Es la forma normal de exigir
+       equipamiento: se declara una vez en la categoría y la heredan todos los tramos que la
+       lleven.
+   * - Incompatible con
+     - Qué categorías no pueden ir juntas en el mismo vehículo a la vez (alimentación y
+       productos químicos, por ejemplo). Basta declararlo en una de las dos.
 
-4.2.2.2 Aplicación operativa de Categorías de Carga
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Las categorías se asignan en el Proyecto, como lo que la operativa mueve, y en la categoría de
+vehículo, como lo que el vehículo admite. Con las dos, el optimizador sabe qué vehículos
+pueden cargar qué tramos y qué tramos no pueden compartir vehículo. También pueden entrar
+como condición en las reglas de negocio. Campos en
+:doc:`/17.0/annexes/A_02_categorias-carga`.
 
-Las categorías de carga intervienen en:
+4.2.3 Reglas de tarifa: la unidad de medida
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- Proyectos
-- Categorías de vehículo
-- Reglas TMS
-- Restricciones operativas
-- Optimización
+.. CAPTURA: 4_2_03 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_2_logistic-configuration_03_reglas-tarifa.png
+      :alt: Formulario de una Regla de tarifa
 
-Permiten determinar:
+      Una Regla de tarifa: qué se mide en la línea de mercancía y con qué dimensiones por defecto.
 
-- Qué vehículos son compatibles
-- Qué restricciones deben respetarse
-- Qué reglas económicas o de planificación deben aplicarse
-
-También pueden intervenir en reglas tarifarias cuando la naturaleza de la mercancía afecta al cálculo económico.
-
-
-
-4.2.3 Reglas de Tarifa
-~~~~~~~~~~~~~~~~~~~~~~
-
-Las Reglas de Tarifa definen cómo se mide operativamente la mercancía dentro de una orden.
-
-Este maestro no define precios.
-
-Define la forma en que la carga se representa operativamente.
-
-Ejemplos:
-
-- Bultos
-- Pallets
-- Cantidad
-- Metros lineales
-
-4.2.3.1 Campos principales
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+La :term:`Regla de tarifa` (``tms.pricelist.rule``) define **cómo se mide** una línea de
+mercancía dentro de una Orden: por bultos, por palés, por cantidad o por metros lineales. A
+pesar del nombre, este maestro **no lleva precios**; el precio lo fijan las
+:term:`líneas de tarifa <Línea de tarifa>` del capítulo económico, que eligen qué magnitud
+cobrar. Aquí se decide qué magnitudes existen y qué implica cada una.
 
 .. list-table::
    :header-rows: 1
-   :widths: 40 60
+   :widths: 30 70
 
-   * - Campo
-     - Descripción
-   * - Nombre
-     - Identificador funcional de la regla.
-   * - Descripción
-     - Definición operativa.
-   * - Físico
-     - Indica si representa una unidad física trazable.
-   * - Ancho, alto, largo y peso por defecto
-     - Datos utilizados para volumen y validaciones.
-   * - Descripción singular/plural
-     - Textos mostrados en líneas e informes.
-   * - Magnitudes disponibles
-     - Bultos, cantidad, metros o pallets.
+   * - Decisión
+     - Efecto
+   * - Físico o no
+     - Una regla física genera un Bulto por unidad, con su código de barras: se etiqueta, se
+       escanea y se traza. Una regla no física (cantidad, metros) es un dato de la línea: no hay
+       bultos que escanear.
+   * - Qué magnitudes pide
+     - Bultos, Cantidad, Metros o Pallets, solas o combinadas. Una regla de palés que también
+       pide bultos permite declarar «3 palés con 40 bultos».
+   * - Dimensiones y peso por defecto
+     - Cuando la línea no trae medidas, el sistema calcula el volumen y el peso con estos
+       valores. En operativas de bulto estándar evitan teclear las medidas en cada orden.
+   * - Cliente
+     - Una regla puede ser exclusiva de un cliente que mide su mercancía a su manera.
 
-4.2.3.2 Comportamiento operativo de Reglas de Tarifa
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Las reglas más habituales son cuatro. **Bultos**: la unidad es el bulto individual; el sistema
+pide el número de unidades, calcula el volumen, genera un registro por bulto y permite el
+escaneo. **Pallets**: igual, con el palé como unidad. **Cantidad**: unidades que no se trazan
+una a una; no hay bultos ni códigos. **Metros**: metros lineales de ocupación.
 
-**Bultos**
+Cada línea de mercancía lleva una regla de tarifa y un tipo de bulto, y los dos son
+complementarios: la regla dice cómo se mide y el tipo qué es. En el Proyecto, las líneas por
+defecto fijan la regla con la que se crean las líneas cuando el fichero no las trae. Campos en
+:doc:`/17.0/annexes/A_03_reglas-tarifa`.
 
-Se utiliza cuando la unidad operativa es el bulto individual.
-
-El sistema:
-
-- Solicita número de unidades
-- Calcula volumen
-- Genera registros físicos individuales
-- Permite trazabilidad y escaneo
-
-**Pallets**
-
-Funciona de forma equivalente, utilizando el pallet como unidad operativa principal.
-
-**Cantidad**
-
-Representa unidades no trazadas individualmente.
-
-No genera bultos físicos ni códigos de barras.
-
-**Metros**
-
-Representa metros lineales de ocupación de carga.
-
-.. note::
-
-   La Regla de Tarifa define cómo se mide la línea operativa.
-
-   La tarifa económica determinará posteriormente qué magnitud
-   se utilizará para calcular el precio.
-
-.. note::
-
-   Actualmente la validación dimensional en ``tms.pricelist.rule``
-   se ejecuta antes de distinguir entre reglas físicas y no físicas.
-
-   Conviene revisar este comportamiento para reglas basadas
-   en cantidad o metros.
-
-
-
-4.2.4 Tipos de Bulto
+4.2.4 Tipos de bulto
 ~~~~~~~~~~~~~~~~~~~~
 
-El Tipo de Bulto representa la clasificación logística de la mercancía transportada.
+.. CAPTURA: 4_2_04 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_2_logistic-configuration_04_tipos-bulto.png
+      :alt: Lista de Tipos de Bulto
 
-Debe diferenciarse claramente de la Regla de Tarifa.
+      Tipos de Bulto: qué mercancía se transporta.
 
-Mientras la Regla de Tarifa responde a cómo se mide la carga, el Tipo de Bulto responde a qué tipo de mercancía se está transportando.
-
-Ejemplos:
-
-- Seco
-- Refrigerado
-- Congelado
-- Frágil
-- Textil
-- Alimentación
-
-4.2.4.1 Campos principales
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+El Tipo de Bulto (``tms.temperature``) responde a **qué mercancía** se transporta: seco,
+refrigerado, congelado, frágil, textil, alimentación. El modelo se llama «temperatura» porque
+nació para las clases de temperatura y se generalizó; en la interfaz aparece siempre como
+Tipos de Bulto.
 
 .. list-table::
    :header-rows: 1
    :widths: 30 70
 
-   * - Campo
-     - Descripción
-   * - Nombre
-     - Identificador corto del tipo.
-   * - Descripción
-     - Definición funcional.
-   * - Información
-     - Campo informativo adicional.
-   * - Imagen
-     - Icono asociado.
+   * - Decisión
+     - Efecto
+   * - Rango de temperatura
+     - En los tipos de temperatura controlada, los grados mínimo y máximo. Una lectura fuera
+       del rango es una excursión. Un tipo con los dos a cero no tiene rango y no se controla.
    * - Equipamientos
-     - Requisitos vinculados.
-   * - Por defecto
-     - Registro fallback.
-   * - Secuencia
-     - Orden de aparición.
-   * - Color
-     - Clasificación visual.
-   * - Compañía
-     - Empresa propietaria.
+     - Lo que el vehículo necesita para llevar este tipo (frío, por ejemplo).
+   * - Imagen
+     - El icono que ven el conductor en la app y el operario en las etiquetas.
 
-4.2.4.2 Aplicación operativa de Tipos de Bulto
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+El tipo de bulto viaja en cada línea de mercancía junto a la regla de tarifa, llega por fichero
+y por API, y el Proyecto activa cuáles admite y cuál propone por defecto. Campos en
+:doc:`/17.0/annexes/A_04_tipos-bulto`.
 
-El Tipo de Bulto se utiliza principalmente en líneas de orden.
-
-Cada línea puede contener:
-
-- Una Regla de Tarifa
-- Un Tipo de Bulto
-
-Ambos datos son complementarios.
-
-También interviene en:
-
-- Integraciones EDI/API
-- Manifiestos
-- Clasificación operativa
-- Preparación de carga
-
-.. note::
-
-   El Tipo de Bulto responde a:
-
-   "Qué mercancía transporto"
-
-   La Regla de Tarifa responde a:
-
-   "Cómo se mide operativamente"
-
-
-
-4.2.5 Modelos y Categorías de Vehículo
+4.2.5 Categorías y modelos de vehículo
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. CAPTURA: 4_2_02 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/4_parametrization/4_2_logistic-configuration_02_vehiculos.png
-      :alt: Modelos y Categorías de Vehículo
+      :alt: Categoría de vehículo con sus capacidades
 
-      Modelos y Categorías de Vehículo (``fleet.vehicle.model`` / ``fleet.vehicle.model.category``).
+      Una categoría de vehículo: perfil de PTV, capacidades y equipamientos.
 
-Los Modelos y Categorías de Vehículo amplían la gestión estándar de flota de Odoo con información logística específica de transporte.
+La Flota de Odoo organiza los vehículos en marcas, modelos y categorías de modelo. El TMS
+planifica con la **categoría** (``fleet.vehicle.model.category``): tráiler, camión de 12
+toneladas, furgoneta. El **modelo** (``fleet.vehicle.model``) aporta los datos técnicos del
+vehículo concreto, y el TMS lo extiende con lo que PTV necesita para calcular rutas, peajes y
+emisiones.
 
-Esta parametrización es utilizada por:
-
-- Planificación interna
-- Routing
-- Optimización
-- Tarificación
-- Validaciones operativas
-
-4.2.5.1 Campos principales de Categoría
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :header-rows: 1
-   :widths: 40 60
-
-   * - Campo
-     - Descripción
-   * - Perfil de vehículo
-     - Perfil compatible con PTV.
-   * - Equipamientos y categorías de carga
-     - Capacidades asociadas.
-   * - Capacidades máximas
-     - Peso, volumen, pallets, metros y otras magnitudes.
-   * - Ubicación inicial y final
-     - Referencias utilizadas para routing.
-   * - Límites operativos
-     - Restricciones de distancia, intervalos y paradas.
-   * - Horas de conducción
-     - Preset normativo aplicable.
-   * - Zona de tarifa y valor por defecto
-     - Datos de cálculo y asignación.
-
-4.2.5.2 Campos principales de Modelo
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Lo que el cliente decide en la categoría es lo que el optimizador va a respetar:
 
 .. list-table::
    :header-rows: 1
    :widths: 30 70
 
-   * - Campo
-     - Descripción
-   * - Tipo de vehículo
-     - Rígido, tractor, semirremolque u otros.
-   * - Pesos técnicos
-     - Peso permitido, peso vacío y capacidad.
-   * - Dimensiones
-     - Altura, anchura y longitud.
-   * - Motor y combustible
-     - Tipología energética.
-   * - Emisiones
-     - CO2, Euro class y restricciones ambientales.
+   * - Decisión
+     - Efecto
+   * - Perfil Vehículo
+     - El perfil de red viaria de PTV (tráiler, camión de 40 t, de 12 t, de 7,5 t, furgoneta).
+       Determina por dónde puede circular el vehículo y a qué velocidad: es el dato que más
+       cambia distancias y tiempos.
+   * - Las seis capacidades
+     - Peso, volumen, bultos, palés, cantidad y metros máximos. El optimizador no llena un
+       vehículo por encima de ninguna de ellas. Un vehículo concreto puede tener las suyas.
+   * - Equipamientos y categorías de carga
+     - Lo que llevan y lo que admiten los vehículos de la categoría. Es la otra mitad de la
+       compatibilidad con la mercancía.
+   * - Inicio, fin y límites de ruta
+     - Dónde arranca y termina la ruta (la base, el hub), en qué ventana horaria, y los
+       kilómetros y paradas máximos por ruta.
+   * - Horas de conducción
+     - El preset de jornada que se envía a PTV cuando el viaje no viene de una franja del Plan
+       de disponibilidad (ver :doc:`4_3_planning-configuration`).
 
-4.2.5.3 Aplicación operativa de Categorías de Vehículo
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+En el modelo, los datos que importan son los físicos y ambientales: pesos autorizados y en
+vacío, ejes y neumáticos, dimensiones exteriores e interiores, tipo de motor, combustible y
+consumos, clase Euro y distintivos de bajas emisiones. Con ellos PTV aplica las restricciones
+viarias y calcula los peajes y las emisiones de cada viaje.
 
-La categoría de vehículo es uno de los principales criterios de asignación operativa.
-
-Sus capacidades determinan:
-
-- Qué carga puede consolidarse
-- Qué rutas son viables
-- Qué restricciones deben respetarse
-- Qué reglas económicas son aplicables
-
-En integraciones con PTV se consideran:
-
-- Dimensiones reales
-- Restricciones viarias
-- Emisiones
-- Tiempos de conducción
-- Tipología del vehículo
+La categoría es el criterio de asignación por excelencia: el Optimizador de Paradas en modo
+por categoría pregunta cuántos vehículos de cada una hay disponibles, el Proyecto activa las
+que admite, y las tarifas pueden fijar precios distintos por categoría. Campos en
+:doc:`/17.0/annexes/A_05_categorias-vehiculo` y :doc:`/17.0/annexes/A_06_modelos-vehiculo`.
