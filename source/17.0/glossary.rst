@@ -43,6 +43,11 @@ para quien lo necesite.
       del Transportista. (No se dice *chófer*, *driver* ni *repartidor*.) Es un contacto,
       ``res.partner``.
 
+   Control de service
+      Seguimiento de los dos services de un vehículo (de combustible cada 15.000 km y completo cada
+      30.000, por defecto) sobre el kilometraje del último service registrado. Sin ese dato el
+      estado es «Sin datos», nunca vencido. Campos de ``fleet.vehicle`` en ``tms_maintenance``.
+
    Definición de fichero
       Plantilla que describe cómo leer el fichero de un cliente: formato, columnas, mapeo de
       cada columna a un campo del TMS y transformaciones. Cada importación con esa plantilla
@@ -96,6 +101,16 @@ para quien lo necesite.
       cerrarse se convierte en Órdenes, Tramos y Paradas. Tiene sus propios estados (abierto,
       en cola, procesando, cerrado). (No se dice *fichero EDI*.) Modelo ``tms.edi.manifest``.
 
+   Objetivo periódico
+      Trabajo de taller que se mide en días desde la última vez: lavado y engrase (30 días),
+      calibración y relevamiento de cubiertas (90). Son Trabajos del catálogo cuyo intervalo es el
+      objetivo; alimentan los rankings y la orden de trabajo impresa.
+
+   Odómetro único
+      La serie de kilometraje de cada vehículo, en la que confluyen todas las lecturas (taller,
+      combustible, app, telemetría) con detección de anomalías y validación. Sólo las lecturas
+      válidas cuentan. Modelo ``fleet.vehicle.odometer`` extendido por ``tms_resources``.
+
    Optimizador de Paradas
       Herramienta visual con mapa que agrupa Paradas en Viajes y las secuencia usando el
       motor de PTV, por franja de disponibilidad o por categoría. Modelo ``tms.optimizator``.
@@ -110,6 +125,11 @@ para quien lo necesite.
       Documento que formaliza el coste de un Viaje hacia su Transportista y del que sale la
       factura de compra. Tras la primera mención puede abreviarse **OC**. Modelo
       ``purchase.order``.
+
+   Orden de trabajo
+      Solicitud de mantenimiento sobre un vehículo: correctiva (algo que reparar) o preventiva
+      (generada por una regla o una recurrencia). No se puede cerrar sin el kilometraje del
+      vehículo. (No se dice *request* ni *solicitud*.) Modelo ``maintenance.request``.
 
    Parada
       Evento físico planificable y trazable: una carga, una descarga o un paso por Hub, con
@@ -148,6 +168,11 @@ para quien lo necesite.
       cuyo resultado (pagado, pagado en parte, no pagado) reporta desde la app. (No se dice
       *contra reembolso*, *COD* ni *cobro*.)
 
+   Regla de preventivo
+      Para un vehículo y un trabajo, cada cuántos kilómetros o días toca. El motor calcula su
+      estado (al día, por vencer, vencido, no evaluada) a partir del último realizado y del
+      kilometraje actual. Modelo ``tms.maintenance.rule``.
+
    Regla de tarifa
       Define **qué se mide** para tarificar (peso, bultos, kilómetros, pallets, metros…) y
       cómo se convierte, por ejemplo peso volumétrico. No fija precios: eso lo hacen las
@@ -156,6 +181,10 @@ para quien lo necesite.
    Remitente
       Contacto de origen de la mercancía cuando no coincide con el Cliente que encarga el
       servicio. (No se dice *shipper*.) Modelo ``res.partner``.
+
+   Tarea de mantenimiento
+      Clasificación con la que el taller filtra las órdenes: Preventivo, Taller, Reparación,
+      Gomería, Lavado, Engrase, Mejora... Modelo ``tms.maintenance.task``.
 
    Tarifa
       Conjunto de Líneas de tarifa que determina el precio de venta de las Órdenes de un
@@ -177,6 +206,11 @@ para quien lo necesite.
       recogida, directo…), el servicio contratado (con sus variables logísticas) y la Parada
       (carga, descarga, hub…). (No se dice *tipo de expedición*.) Modelos
       ``tms.shipment.type``, ``tms.service.type`` y ``tms.stop.type``.
+
+   Trabajo
+      Lo que se hace en una orden de mantenimiento: cambio de aceite, filtro de aire, frenos. Es
+      el tipo de servicio de la Flota de Odoo con tarea, material e intervalo por defecto. (No se
+      dice *job* ni *tipo de servicio* para hablar del taller.) Modelo ``fleet.service.type``.
 
    Tramo
       Movimiento de una Orden entre un punto de carga y un punto de descarga. Una Orden

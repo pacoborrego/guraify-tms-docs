@@ -130,7 +130,7 @@ tms-docs/
 
 Capítulos actuales en `source/17.0/`: `1_introduction`, `2_conceptual-model`,
 `3_functional-architecture`, `4_parametrization`, `5_operational-flows`,
-`7_edi-integrations`, `10_manual_app` y el anexo `annexes/`. El cap. 10 es `:orphan:` a propósito: no cuelga del
+`6_resources`, `7_edi-integrations`, `10_manual_app` y el anexo `annexes/`. El cap. 10 es `:orphan:` a propósito: no cuelga del
 toctree, se llega por la tarjeta de portada y `layout.html` le pone cabecera propia.
 
 ### Convenciones de RST
@@ -198,5 +198,5 @@ confirma**.
 
 ---
 
-*Actualizado el 2026-09-10 (v3, D7). Si algo de aquí queda desactualizado, actualízalo en el
+*Actualizado el 2026-09-10 (v3, D14). Si algo de aquí queda desactualizado, actualízalo en el
 mismo cambio que lo desactualiza.*

@@ -31,3 +31,5 @@ se indica en la tabla y la corrección está anotada en la lista de correcciones
    A_16_tarifas
    A_17_productos
    A_18_proyecto
+   A_19_odometro
+   A_20_mantenimiento

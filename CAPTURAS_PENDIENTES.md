@@ -144,6 +144,28 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 | ⬜ | `7_6_automated-actions.rst` | `7_6_automated-actions_01_crons.png` | Tareas programadas que orquestan las integraciones. | Ajustes › Técnico › Automatización › Acciones planificadas |
 | ⬜ | `7_7_integration-best-practices.rst` | `7_7_integration-best-practices_01_api-log.png` | Registro de actividad de las APIs (tms.api.log). |  |
 
+## Gestión de Recursos (cap. 6)
+
+> Carpeta: `source/_static/img/6_resources/`
+>
+> Odoo en español, unidades de prueba (matrículas inventadas), sin datos reales del cliente.
+
+| Estado | Fichero .rst | Fichero | Qué muestra | Dónde |
+|---|---|---|---|---|
+| ⬜ | `6_1_area.rst` | `6_1_area_01_menu.png` | El menú Gestión de Recursos desplegado con sus cuatro bloques. | Menú raíz Gestión de Recursos |
+| ⬜ | `6_2_odometer.rst` | `6_2_odometer_01_pestana-vehiculo.png` | Pestaña Odometer (TMS) de un vehículo: lectura actual, origen, antigüedad, km/día. | TMS › Maestros › Equipos › Vehículos › ficha › pestaña Odometer (TMS) |
+| ⬜ | `6_2_odometer.rst` | `6_2_odometer_02_anomalias.png` | Pantalla Odometer Anomalies con lecturas en borrador agrupadas por vehículo. | Gestión de Recursos › Configuración › Odometer Anomalies |
+| ⬜ | `6_3_maintenance-model.rst` | `6_3_maintenance-model_01_orden-trabajo.png` | Formulario de una orden de trabajo con vehículo, trabajo, tarea, odómetro y etapa. | Gestión de Recursos › Mantenimiento › Órdenes de trabajo |
+| ⬜ | `6_3_maintenance-model.rst` | `6_3_maintenance-model_02_pestana-mantenimiento.png` | Pestaña Maintenance (TMS) del vehículo: control de service, fiabilidad, reglas y órdenes. | Ficha del vehículo › pestaña Maintenance (TMS) |
+| ⬜ | `6_4_preventive-rules.rst` | `6_4_preventive-rules_01_reglas.png` | Lista de Reglas de preventivo con semáforo, restante y confianza. | Gestión de Recursos › Mantenimiento › Reglas de preventivo |
+| ⬜ | `6_4_preventive-rules.rst` | `6_4_preventive-rules_02_control-service.png` | Pantalla Control de service con los dos niveles por unidad. | Gestión de Recursos › Mantenimiento › Control de service |
+| ⬜ | `6_5_workshop-flows.rst` | `6_5_workshop-flows_01_cerrar-orden.png` | Asistente Close Order con fecha y kilometraje. | Orden de trabajo › botón Close Order |
+| ⬜ | `6_5_workshop-flows.rst` | `6_5_workshop-flows_02_carga-masiva.png` | Asistente Carga masiva de service con las reglas marcadas. | Gestión de Recursos › Mantenimiento › Carga masiva de service |
+| ⬜ | `6_6_outputs.rst` | `6_6_outputs_01_orden-impresa.png` | El PDF de la orden de trabajo impresa. | Ficha del vehículo › Print Work Order |
+| ⬜ | `6_6_outputs.rst` | `6_6_outputs_02_copiar-estado.png` | Ventana Copy Workshop Status con el texto WhatsApp y el botón de copiar. | Ficha del vehículo › Copy Workshop Status |
+| ⬜ | `6_6_outputs.rst` | `6_6_outputs_03_rankings.png` | Asistente Rankings de objetivos con el texto generado. | Gestión de Recursos › Mantenimiento › Rankings de objetivos |
+| ⬜ | `6_7_kpis.rst` | `6_7_kpis_01_indicadores.png` | Lista de Indicadores de mantenimiento con sus valores. | Gestión de Recursos › Mantenimiento › Indicadores |
+
 ## Manual del conductor (cap. 10) — app móvil
 
 > Carpeta: `source/_static/img/10_manual_app/`

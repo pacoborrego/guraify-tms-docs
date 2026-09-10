@@ -8,6 +8,29 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Cap. 6 Gestión de Recursos (tarea D14 del plan, 2026-09-10)
+- **Capítulo nuevo** del Manual de implantación (`source/17.0/6_resources/`, 8 páginas) para los
+  módulos `tms_resources` y `tms_maintenance`, verificado contra el código y los handoffs:
+  6.1 el área y su menú; 6.2 el odómetro único (fuentes, referencia externa, estados, las cuatro
+  anomalías en orden, pantalla de anomalías, resumen del vehículo y estimación con confianza);
+  6.3 el vehículo como elemento mantenible, la orden de trabajo y sus cuatro etapas, trabajos y
+  tareas; 6.4 las reglas de preventivo (motor por km y por días, umbrales 85/100, motivos de
+  exclusión, recálculo, generación idempotente de pendientes por la tarea diaria, recurrencia
+  nativa por días) y el control de service a dos niveles con «Sin datos» en vez del falso
+  vencido; 6.5 cerrar orden con km, carga masiva y alta/baja; 6.6 orden impresa, texto de
+  WhatsApp y rankings; 6.7 los once indicadores y el perímetro de mantenimiento; 6.8
+  configuración. Mermaid del ciclo en el index.
+- **Numeración**: Gestión de Recursos es el cap. 6; Administración y Control Económico (D10) será
+  el cap. 8. Portada actualizada.
+- **Glosario**: Control de service, Objetivo periódico, Odómetro único, Orden de trabajo, Regla
+  de preventivo, Tarea de mantenimiento, Trabajo.
+- **Anexo A**: A.19 Odómetro único y A.20 Mantenimiento (regla, orden, trabajo, tarea, vehículo y
+  umbrales de compañía).
+- **Capturas**: trece nuevas registradas, con figures comentados.
+- Las etiquetas de la interfaz de estos dos módulos están aún en inglés (Odometer Anomalies,
+  Close Order, Print Work Order, Maintenance (TMS)...): la doc las cita tal cual. El plan de
+  traducción de los módulos (`specs/resources/05_PLAN_i18n.md`) está pendiente en `tms_suite`.
+
 ### Cap. 4 Parametrización y anexo A (tarea D7 del plan, 2026-09-10)
 - **4.2 a 4.5 reescritas en prosa** desde los modelos de `tms_suite` (campos, selecciones y
   ayudas verificados con un volcado del código y las traducciones de `es.po`). Cada maestro se

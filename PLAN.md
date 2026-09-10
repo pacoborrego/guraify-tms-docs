@@ -41,12 +41,14 @@ Estados: ⬜ pendiente · 🔶 en curso · ✅ hecha.
 | D7 | ✅ | **Cap. 4 Parametrización** | 4.2 a 4.5 reescritas en prosa desde los modelos (qué es el maestro, qué decide el cliente, qué efecto tiene), con una tabla corta «Decisión / Efecto» por maestro. Las 25 tablas «Campos principales» salen a un **anexo A** (`source/17.0/annexes/`, 18 páginas, una por maestro, con la etiqueta de la interfaz en español, el tipo y el significado). Fuera las notas de desarrollador, las dos tablas rotas de 4.5.10 y los códigos técnicos en prosa; «Reglas de tarifa» sólo para la unidad de medida (4.2.3) y «Líneas de tarifa» para el precio (4.4.3); kanban de proyectos en español. Nueve capturas nuevas para María. Hecha el 2026-09-10 |
 | D8 | ✅ | **Cap. 5 Flujos** | Index reescrito con el mermaid del ciclo completo. 5.2 a 5.7 redactados como flujo paso a paso y verificados en el código (asistentes Asignar a viaje y Acciones operativas, Enviar a la app, trazabilidad, cadena de cierre, tarificación por tarea programada cada 5 min, Modo de facturación TMS). Reparto con el cap. 3 aplicado (entidad en el 3, flujo en el 5). Códigos de la app en una tabla de referencia técnica (5.4.4). Sin peajes en 5.2, sin *slot*, sin cap. 6. Hecha el 2026-09-08 |
 | D9 | ⬜ | **Cap. 7 Integraciones** | Etiquetarlo como *Guía del integrador* en portada y toctree. Numerar los títulos internos. Mover el catálogo de campos de mapeo (280 líneas) a anexo |
-| D10 | ⬜ | **Caps. 6 y 8** | Escribir **Administración y Control Económico** (costes, división de ventas y costes, OC automáticas, liquidación, analítica, reporting) desde el código. El cap. 6 técnico de la app **no se escribe**: se fusiona con el cap. 10 más una sección corta en el 3. Renumerar según se decida con Paco al empezar la tarea |
+| D10 | ⬜ | **Cap. 8** | Escribir **Administración y Control Económico** (costes, división de ventas y costes, OC automáticas, liquidación, analítica, reporting) desde el código. El cap. 6 técnico de la app **no se escribe**: se fusiona con el cap. 10 más una sección corta en el 3. Renumerar según se decida con Paco al empezar la tarea |
 | D11 | ⬜ | **Cap. 10 Manual del conductor** | Limpiar restos de Word, unificar el tono (tú), glosario inicial (POD, Reserva, KO, Dominio), dividir `10_3_report.rst` en 4 ficheros, escribir el flujo de **carga**, el **cierre de ruta** y el **modo sin cobertura**. Sustituir las 4 `list-table` con imágenes por figuras |
 | D12 | ⬜ | **Cierre editorial** | Lectura completa de principio a fin como lector externo. `CHANGELOG`, tag de release, `/publicar` |
 | D13 | ⬜ | **Historial git** | Al final de todo: `git filter-repo` para borrar de todos los commits las imágenes con datos reales (`source/_static/images/`, capturas de la app antiguas). María vuelve a clonar. Decisión de Paco 2026-09-08 |
+| D14 | ✅ | **Cap. 6 Gestión de Recursos** | Capítulo nuevo del Manual de implantación para `tms_resources` y `tms_maintenance` (`source/17.0/6_resources/`, 8 páginas + index con mermaid): el área y su menú, el odómetro único (fuentes, anomalías, validación, resumen y estimación), el vehículo mantenible y la orden de trabajo, las reglas de preventivo y el control de service, los flujos del taller, las salidas de taller, los indicadores y la configuración. Verificado contra el código y los handoffs (M1 a M7). Siete términos nuevos en el glosario, anexos A.19 y A.20, trece capturas para María. Hecha el 2026-09-10 |
 
-Orden: D3 y D4 primero (lo demás las usa). D5 a D11 en cualquier orden. D12 y D13 al final.
+Orden: D3 y D4 primero (lo demás las usa). D5 a D11 y D14 en cualquier orden. D12 y D13 al final.
+Numeración cerrada el 2026-09-10: el cap. 6 es Gestión de Recursos (D14) y Administración y Control Económico será el cap. 8 (D10).
 D2 corre en paralelo todo el tiempo.
 
 ## Pendientes sueltos
@@ -60,7 +62,7 @@ Portada con cuatro recorridos, cada uno una tarjeta y un `toctree` con `:caption
 | Recorrido | Público | Contenido |
 |---|---|---|
 | **Conocer Guraify TMS** | Cliente, distribuidor | `0_product-overview/` (D4) + glosario (D3) |
-| **Manual de implantación** | Consultor, cliente avanzado | Caps. 1 a 6 (Introducción, Modelo, Arquitectura, Parametrización, Flujos, Administración económica) |
+| **Manual de implantación** | Consultor, cliente avanzado | Caps. 1 a 6 y 8 (Introducción, Modelo, Arquitectura, Parametrización, Flujos, Gestión de Recursos, Administración económica) + anexo A |
 | **Guía del integrador** | Técnico de integración | Cap. 7 + anexos de catálogos de campos |
 | **Manual del conductor** | Conductor | Cap. 10 (ya aislado visualmente) |
 

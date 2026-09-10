@@ -51,6 +51,7 @@ Y para todos, el :doc:`glosario <glossary>`: cada término del producto, con su 
    3_functional-architecture/index
    4_parametrization/index
    5_operational-flows/index
+   6_resources/index
    annexes/index
 
 .. toctree::
