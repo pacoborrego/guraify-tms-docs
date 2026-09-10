@@ -100,7 +100,7 @@ integraciones y se enlaza.
 ```bash
 source .venv/bin/activate
 make html && open build/html/index.html          # build local
-python -m sphinx -b html -W source build/html     # lo mismo que CI y servidor
+python -m sphinx -b html -W -E -a source build/html  # lo mismo que CI y servidor: completo, no incremental
 ```
 
 ### Estructura

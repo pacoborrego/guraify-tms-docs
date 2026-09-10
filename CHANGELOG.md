@@ -8,6 +8,12 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Publicación (2026-09-10)
+- `deploy.sh` compila siempre completo (`-E -a`). La compilación incremental del servidor dejaba
+  obsoleta la barra lateral de las páginas sin cambios al añadir un capítulo: tras publicar el
+  cap. 6, la portada lo mostraba y las páginas de los caps. 1 a 5 y 7 no. Corregido con una
+  recompilación completa en el servidor.
+
 ### Cap. 6 Gestión de Recursos (tarea D14 del plan, 2026-09-10)
 - **Capítulo nuevo** del Manual de implantación (`source/17.0/6_resources/`, 8 páginas) para los
   módulos `tms_resources` y `tms_maintenance`, verificado contra el código y los handoffs:
