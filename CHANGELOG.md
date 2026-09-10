@@ -8,6 +8,33 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Cap. 4 Parametrización y anexo A (tarea D7 del plan, 2026-09-10)
+- **4.2 a 4.5 reescritas en prosa** desde los modelos de `tms_suite` (campos, selecciones y
+  ayudas verificados con un volcado del código y las traducciones de `es.po`). Cada maestro se
+  explica por lo que decide el cliente y el efecto que tiene en planificación, tarifa y
+  ejecución, con una tabla corta «Decisión / Efecto»; se enlaza al cap. 5 para el flujo y al
+  anexo para los campos.
+- **Anexo A · Catálogo de campos** (`source/17.0/annexes/`, 18 páginas, A.1 a A.18): una página
+  por maestro (equipamientos, categorías de carga, reglas de tarifa, tipos de bulto, categorías
+  y modelos de vehículo, Planning, planes de transporte, áreas, franjas, tiempos de servicio,
+  horas de conducción, zonas de tarifa, tarifas base, líneas de tarifa y detalles, tarifas y
+  versiones, productos, proyecto) con la etiqueta en español de la interfaz, el tipo y el
+  significado. Colgado del Manual de implantación en la portada. Sustituye a las 25 tablas
+  «Campos principales» que estaban en el cuerpo.
+- **Correcciones de fondo**: «Reglas de tarifa» queda sólo para la unidad de medida (4.2.3) y
+  «Líneas de tarifa» para el precio (4.4.3); los Tipos de Bulto son el modelo
+  `tms.temperature`, no un modelo propio; el Modo de división se explica con sus valores en
+  español y no con `km_weight`; el grupo de asignación del proyecto se llama «Tarea» en la
+  interfaz. Fuera las notas de desarrollador (validación dimensional, cachés de geometría,
+  onchange con comandos One2many, read_group) y las dos tablas rotas de 4.5.10.
+- **4.5.9 (antes 4.5.10) kanban de proyectos** reescrita en español y en prosa; la interfaz sigue
+  en inglés en esas cadenas (anotado como corrección de Odoo).
+- **Capturas**: nueve nuevas registradas en `CAPTURAS_PENDIENTES.md`, con su `figure` comentado
+  bajo el marcador `.. CAPTURA:` hasta que exista la imagen. Build limpio con `-W`.
+- Discrepancias para Odoo anotadas en PLAN.md: etiquetas de Datos auxiliares fuera del glosario
+  (Tipos de expediciones, receptor, valores de caja, Planificaciones), «Zona Horaria» por
+  franja, y las cadenas de la kanban sin traducir.
+
 ### Cap. 5 Flujos operativos (tarea D8 del plan, 2026-09-08)
 - **Index** reescrito: desaparece la frase cortada y entra un mermaid del ciclo completo (alta,
   Manifiesto, validación, Viaje, ejecución, cierre, orden de compra y factura, con la

@@ -4,366 +4,240 @@
 .. admonition:: Ruta en Odoo
    :class: tip
 
-   TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas
-   (``tms.area``), Tiempos de Servicio (``tms.service.time``) y Franjas Horarias
-   (``tms.time.zone``). El Planning (``tms.planning``) se gestiona desde
-   TMS › Operaciones › Planificación.
+   TMS › Configuración: Planes de Transporte y Zonas Geográficas. TMS › Configuración ›
+   Ajustes: Planificaciones y Franjas Horarias en **Datos auxiliares**; Operación de tiempos de
+   servicio y Horas de Conducción en **Optimización de ruta**. Los Tiempos de Servicio tienen
+   su propio menú en TMS › Configuración.
 
-La configuración de planificación define cómo se agrupan, ordenan y ejecutan las operaciones.
-
-Incluye los maestros que permiten transformar órdenes y paradas en viajes planificables: Planning, Planes de Transporte, Áreas Geográficas, Franjas Horarias, Tiempos de Servicio y Horas de Conducción.
-
-
+La configuración de planificación define cómo se agrupan las operaciones, sobre qué
+territorio, con qué horarios y cuánto duran. Son los seis maestros con los que las Paradas se
+convierten en Viajes planificables: el Planning, los Planes de transporte, las Áreas
+geográficas, las Franjas horarias, los Tiempos de servicio y las Horas de conducción. La lista
+completa de campos de cada uno está en el :doc:`anexo A </17.0/annexes/index>`.
 
 4.3.1 Planning
 ~~~~~~~~~~~~~~
 
-Planning es una de las entidades maestras más importantes del sistema, porque actúa como eje de segmentación operativa entre la orden, las paradas, los viajes, la planificación de recursos, la optimización y la tarificación.
+.. CAPTURA: 4_3_04 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_04_planning.png
+      :alt: Formulario de un Planning
 
-No representa un viaje concreto, sino una forma de organizar cómo deben planificarse y procesarse determinados servicios logísticos.
+      Un Planning: su plan de transporte, sus tiempos de servicio y su modo de división.
 
-Un Planning permite clasificar operativamente órdenes que comparten una misma lógica de transporte: última milla, recogidas, distribución urbana, rutas con hub, rutas directas, servicios dedicados, reparto por zonas o cualquier otro flujo definido por la operación.
+El :term:`Planning` (``tms.planning``) es la segmentación operativa del sistema: agrupa las
+Órdenes que comparten una misma lógica de transporte, como última milla, recogidas,
+distribución urbana, rutas con hub o larga distancia. No es un viaje ni un calendario; es la
+dimensión que dice «estas operaciones se planifican juntas y así». Se escribe siempre
+Planning, sin traducir, para no confundirlo con la actividad de planificar; en la interfaz de
+Odoo el campo se llama todavía «Planificación».
 
-Esta clasificación se hereda normalmente desde el proyecto y se propaga a órdenes, tramos, paradas y viajes. Por este motivo, una selección incorrecta de Planning puede afectar a varios procesos posteriores.
-
-**Campos principales**
+El Planning se hereda del Proyecto y se propaga a la Orden, a sus Tramos, a las Paradas y al
+Viaje. Por eso una elección equivocada se nota en todas partes: en cómo se agrupan las
+paradas, en qué franjas del Plan de disponibilidad son compatibles, en qué precios aplican.
 
 .. list-table::
    :header-rows: 1
    :widths: 30 70
 
-   * - Campo
-     - Descripción
-   * - Nombre y Descripción
-     - Identifican la planificación.
+   * - Decisión
+     - Efecto
    * - Plan de transporte
-     - Red geográfica asociada al Planning.
-   * - Tiempos de servicio de recogida y entrega
-     - Tiempos operativos aplicables a recogidas y entregas.
+     - La red territorial del Planning. Cuando el sistema resuelve la zona operativa de una
+       dirección, sólo busca en las áreas de esta red.
+   * - Tiempos de recogida y de entrega
+     - Los segundos que se añaden a cada recogida y a cada entrega al enviar el Planning al
+       optimizador, además del tiempo propio de la parada. Mal calibrados, el optimizador
+       propone rutas que caben en el papel y no en el día.
    * - Modo de división de viaje
-     - Criterio usado para repartir carga o importes.
-   * - Remitente
-     - Contacto de origen o entidad operativa asociada.
-   * - Valor por defecto, compañía y color
-     - Campos estándar de clasificación, compañía y visualización.
+     - Cómo se reparte el coste de un Viaje entre sus paradas: por peso, volumen, bultos, palés,
+       cantidad, metros lineales, o cada uno combinado con los kilómetros. Tiene efecto
+       económico, no sólo operativo: decide cómo se imputa el coste a cada Orden.
 
-4.3.1.1 Uso dentro del sistema en Planning
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+El Planning interviene en cinco momentos. Al **generar Paradas**, forma parte de la clave de
+agrupación: dos operaciones en la misma dirección y franja no se juntan si son de Plannings
+distintos. Al **crear Viajes**, es obligatorio y filtra qué franjas del Plan de disponibilidad
+sirven para esa fecha. Al **optimizar**, aporta sus tiempos de servicio. Al **tarificar**, las
+líneas de tarifa pueden limitarse a uno o varios Plannings, de modo que reparto, recogida o
+urgente tengan precios distintos. Y en las **importaciones**, el fichero puede traer el
+Planning del viaje; si no existe, algunos flujos lo crean con una configuración mínima, así que
+conviene tener los maestros definidos antes.
 
-El Planning está vinculado a un Plan de Transporte. Esta relación es relevante porque el Plan de Transporte define el marco territorial sobre el que se opera: zonas, áreas de transporte y agencia asociada.
+El modo de división más adecuado depende de la operativa: en distribución ligera, por bultos o
+por kilómetros y bultos; en paletería, por palés; en carga voluminosa, por metros o volumen.
+Campos en :doc:`/17.0/annexes/A_07_planning`.
 
-A partir de esta relación, el sistema puede filtrar áreas disponibles, asociar paradas a una lógica territorial concreta y mantener coherencia entre la planificación operativa y la estructura geográfica configurada.
-
-Dentro del flujo de creación de órdenes, el Planning se asigna desde el proyecto y queda registrado en la orden. Cuando se crean los tramos, el Planning se transfiere también a cada tramo.
-
-Posteriormente, al generar paradas desde manifiestos o desde procesos operativos, el sistema utiliza el Planning como parte de la clave de agrupación. Esto significa que dos operaciones con la misma ubicación y franja horaria no se agrupan necesariamente si pertenecen a Planning diferentes.
-
-Esta separación evita mezclar flujos operativos distintos en una misma parada o viaje.
-
-En la creación de viajes, Planning también es obligatorio. El sistema lo utiliza para construir viajes coherentes, filtrar recursos disponibles y agrupar paradas que pertenecen al mismo flujo operativo.
-
-En las pantallas de planificación de conductores, los slots se asocian a un Planning, de modo que al asignar paradas a recursos el sistema puede buscar únicamente slots compatibles para una fecha determinada.
-
-Esto permite separar, por ejemplo, rutas de reparto, rutas de recogida, rutas de temperatura controlada o servicios especiales.
-
-Planning también interviene en la optimización. Cuando se envía información al motor de optimización, se utilizan los tiempos de servicio definidos en el Planning: tiempo de servicio de recogida y tiempo de servicio de entrega.
-
-Estos valores se añaden a los tiempos propios de las paradas y permiten calcular rutas más realistas. Si estos tiempos están mal configurados, el optimizador puede generar rutas aparentemente válidas pero inviables en operación.
-
-Otro punto crítico es el campo Modo de división de viaje. Este parámetro define cómo se calcula el factor de reparto dentro de un viaje.
-
-El sistema puede repartir importes o cargas según peso, volumen, bultos, pallets, metros, cantidad, distancia o combinaciones de distancia con esas magnitudes.
-
-Por ejemplo, un Planning configurado con ``km_weight`` reparte considerando distancia por peso; uno configurado con ``packs`` reparte según número de bultos; uno configurado con ``km_pallets`` pondera pallets y distancia.
-
-Este factor se utiliza en paradas y viajes para calcular bases de reparto, porcentajes y asignaciones económicas cuando hay importes de viaje que deben distribuirse entre operaciones.
-
-La elección del Modo de división de viaje debe responder a la naturaleza real del servicio. En distribución ligera puede tener sentido repartir por bultos o por distancia y bultos. En paletería puede ser más adecuado usar pallets o kilómetros por pallet. En transporte voluminoso puede ser mejor usar metros, volumen o kilómetros por volumen.
-
-Esta configuración tiene impacto económico, no solo operativo, porque condiciona cómo se imputan costes e ingresos sobre paradas y tramos.
-
-Planning también se utiliza como condición de tarifa. Las Líneas de tarifa pueden limitarse a uno o varios Planning, de forma que una misma tarifa puede aplicar importes diferentes según el flujo operativo.
-
-Esto permite distinguir precios de reparto, recogida, directo, hub, urgente o cualquier otra planificación definida. Si una tarifa tiene configurado Planning y la orden o el viaje no coincide, el motor de tarificación descartará esa regla.
-
-En integraciones e importaciones, Planning puede recibirse como dato externo del viaje. Cuando el fichero o API informa el Planning del viaje, el sistema lo utiliza para crear o actualizar el viaje y mantener la trazabilidad entre la planificación externa y la interna.
-
-Si el Planning no existe, algunos flujos de importación pueden crearlo automáticamente con una configuración básica, por lo que es recomendable mantener previamente los Planning maestros bien definidos.
-
-.. important::
-
-   Planning no debe entenderse como una simple etiqueta.
-   Es una dimensión operativa que determina cómo se agrupan las operaciones,
-   qué zonas se aplican, qué recursos pueden utilizarse, cómo se optimizan rutas,
-   cómo se calculan tiempos de servicio, cómo se reparten costes e ingresos
-   y qué Líneas de tarifa son aplicables.
-
-
-
-4.3.2 Planes de Transporte
+4.3.2 Planes de transporte
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. CAPTURA: 4_3_01 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_01_planes-transporte.png
       :alt: Configuración de un Plan de Transporte
 
-      Configuración de un Plan de Transporte (``tms.transport.plan``).
+      Un Plan de Transporte con su agencia y sus áreas sobre el mapa.
 
-Los Planes de Transporte definen la red geográfica operativa sobre la que trabaja un Planning.
-
-Agrupan áreas de transporte, agencia responsable y representación cartográfica, y sirven como marco territorial para resolver zonas operativas durante la creación de tramos, paradas y viajes.
-
-No son una ruta ni una tarifa. Su función es delimitar qué polígonos pertenecen a una red operativa concreta y qué agencia o hub debe quedar asociado cuando una dirección cae dentro de una de esas áreas.
-
-**Campos principales**
+El :term:`Plan de transporte` (``tms.transport.plan``) es la red territorial de una operativa:
+el conjunto de áreas geográficas por las que circula, y la agencia responsable. No es una ruta
+ni una tarifa. Delimita qué polígonos forman una red y qué agencia y hub debe heredar una
+dirección que caiga dentro de uno de ellos.
 
 .. list-table::
    :header-rows: 1
    :widths: 30 70
 
-   * - Campo
-     - Descripción
-   * - Nombre
-     - Identificador funcional del plan de transporte.
-   * - Agencia
-     - Partner marcado como agencia responsable del plan.
+   * - Decisión
+     - Efecto
    * - Áreas
-     - Conjunto de Áreas Geográficas que componen la red operativa.
-   * - Por defecto
-     - Marca el plan principal de la compañía.
-   * - Compañía
-     - Empresa propietaria del plan.
-   * - Vista de mapa
-     - Previsualización embebida de agencia y polígonos asociados.
+     - Las áreas de tipo Plan de Transporte que forman la red. Una dirección fuera de todas
+       ellas queda sin zona operativa, salvo que el Proyecto pida asignar la más cercana.
+   * - Agencia
+     - La agencia responsable, que heredan los tramos de la red cuando su área no tiene otra.
 
-4.3.2.1 Uso dentro del sistema en Planes de Transporte
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+El plan se vincula al Planning, y a través de él llega a Tramos y Paradas: al recalcular la
+zona operativa de una carga o descarga, el sistema toma el plan del Planning y compara las
+coordenadas con sus polígonos. También filtra las áreas que se pueden elegir en una franja del
+Plan de disponibilidad, para no asignar recursos de una red a otra. La vista de mapa del
+propio plan permite comprobar la red antes de usarla. Campos en
+:doc:`/17.0/annexes/A_08_planes-transporte`.
 
-El Plan de Transporte se vincula al Planning. Esta relación permite que una planificación tenga un ámbito territorial concreto y que, al resolver una dirección, el sistema busque únicamente dentro de las áreas de esa red.
-
-En tramos y paradas, la recalculación de zonas operativas toma el Planning, accede a su Plan de Transporte y compara las coordenadas del partner con los polígonos configurados.
-
-Si encuentra coincidencia, informa la zona operativa y propaga hub y agencia desde el área.
-
-Si el proyecto permite asignación por proximidad, puede seleccionar el área más cercana cuando la ubicación queda fuera de todos los polígonos.
-
-También se utiliza en planificación de recursos: al cambiar el Planning de un slot, las áreas seleccionables quedan filtradas por el Plan de Transporte del Planning. De esta forma se evita asignar recursos de una red territorial a otra.
-
-La vista de mapa y los endpoints internos devuelven nombre, coordenadas de agencia y geometría de las áreas, lo que facilita revisar visualmente si una red está correctamente parametrizada antes de usarla en operación.
-
-
-4.3.3 Áreas Geográficas
+4.3.3 Áreas geográficas
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 .. CAPTURA: 4_3_02 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_02_areas-geograficas.png
       :alt: Configuración de un Área Geográfica
 
-      Configuración de un Área Geográfica (``tms.area``).
+      Un Área Geográfica con su polígono dibujado sobre el mapa.
 
-Las Áreas Geográficas son polígonos o multipolígonos GeoJSON que representan territorios del sistema.
-
-Una misma entidad técnica se usa con distintos propósitos:
-
-- Áreas operativas de transporte
-- Zonas de tarifa
-- Áreas extra de precio
-- Elementos de operación
-- Zonas de bajas emisiones
-
-Su importancia es doble: permiten ubicar direcciones dentro de una red operativa y, al mismo tiempo, sirven como condición territorial para tarifas, reglas y diagnósticos económicos.
-
-**Campos principales**
+El :term:`Área geográfica` (``tms.area``) es un polígono con significado. La misma entidad
+sirve para cinco cosas, que distingue su tipo: área operativa de un plan de transporte, zona
+de tarifa, área extra de precio, elemento de operación y zona de bajas emisiones. Cómo se
+dibujan, se importan de OpenStreetMap y se comprueba la pertenencia de una coordenada está en
+:ref:`17.0/1_introduction/1_4_technological-architecture:Áreas geográficas`. Aquí, lo que se
+decide al configurarlas:
 
 .. list-table::
    :header-rows: 1
    :widths: 30 70
 
-   * - Campo
-     - Descripción
-   * - Nombre y descripción
-     - Identifican el área en listas, reglas y resultados geográficos.
+   * - Decisión
+     - Efecto
    * - Tipo
-     - Clasifica el uso del área.
-   * - Polígono GeoJSON
-     - Geometría almacenada en el campo de polígono.
-   * - Centro latitud/longitud
-     - Centro calculado a partir de la geometría.
+     - Para qué sirve el área. Un mismo territorio puede existir dos veces con dos tipos, una
+       para operar y otra para tarificar, y evolucionar por separado.
    * - Agencia y hub
-     - Valores operativos que pueden propagarse a tramos o paradas.
-   * - Planes de Transporte
-     - Relación con los planes donde actúa como territorio operativo.
-   * - Zonas de tarifa
-     - Relación con zonas donde actúa como territorio económico.
+     - Lo que heredan los tramos cuya dirección cae en el área.
    * - Días disponibles
-     - Calendario semanal admitido para áreas de transporte.
+     - Los días de la semana en que la zona operativa admite servicio. Una carga o descarga
+       fuera de ellos se avisa antes de planificar.
    * - Franjas horarias
-     - Ventanas asociadas al área como referencia de disponibilidad territorial.
-   * - Filtros include/exclude
-     - Dominios previstos para reglas avanzadas de inclusión o exclusión.
+     - Las ventanas válidas en el área, como referencia para el planificador.
 
-4.3.3.1 Uso dentro del sistema en Áreas Geográficas
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+En el flujo operativo, las áreas de tipo Plan de Transporte etiquetan cada carga y descarga
+con su zona operativa; el sistema no las recalcula en operaciones cerradas o facturadas. En el
+flujo económico, las de tipo Zona Tarifa deciden qué detalle de tarifa aplica, y las de tipo
+Tarifa Extra permiten suplementos por entrar en un territorio concreto. Campos en
+:doc:`/17.0/annexes/A_09_areas-geograficas`.
 
-En el flujo operativo, las áreas de tipo Plan de Transporte se usan para resolver zonas operativas de carga, descarga o parada.
-
-Cuando una dirección cae dentro de un polígono, la operación queda etiquetada con esa zona y puede heredar hub y agencia.
-
-El sistema evita recalcular zonas en estados cerrados, facturados o cancelados para reducir escrituras en cascada.
-
-En procesos masivos puede usar cachés de geometría y resolución, lo que reduce coste cuando muchas paradas comparten áreas o coordenadas.
-
-En el flujo económico, las áreas de tipo Zona de tarifa delimitan qué tarifa aplica a una operación. Las áreas extra permiten suplementos geográficos mediante reglas de precio de tipo geo.
-
-Los días disponibles del área se usan como control operativo. Si una carga o descarga se programa en un día no permitido por la zona operativa, el sistema puede avisar o bloquear para evitar planificaciones fuera de calendario.
-
-
-
-4.3.4 Franjas Horarias
+4.3.4 Franjas horarias
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Las Franjas Horarias normalizan ventanas de servicio reutilizables.
+.. CAPTURA: 4_3_05 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_05_franjas-horarias.png
+      :alt: Lista de Franjas Horarias
 
-Cada franja define una hora de inicio y fin en formato decimal de Odoo y genera un nombre legible de forma automática.
+      Franjas Horarias: ventanas de servicio reutilizables.
 
-Se utilizan para informar ventanas de carga y descarga sin introducir manualmente las horas en cada operación.
-
-**Campos principales**
+La :term:`Franja horaria` (``tms.time.zone``) es una ventana de servicio con nombre, de una
+hora de inicio a una de fin, que se elige en lugar de teclear las horas en cada operación. El
+nombre se compone solo, con el formato de las dos horas.
 
 .. list-table::
    :header-rows: 1
    :widths: 30 70
 
-   * - Campo
-     - Descripción
-   * - Nombre
-     - Campo calculado con formato ``HH:MM - HH:MM``.
-   * - Inicio
-     - Hora inicial de la ventana.
-   * - Fin
-     - Hora final de la ventana.
+   * - Decisión
+     - Efecto
+   * - Qué franjas existen
+     - Las ventanas estándar de la operativa (mañana, tarde, 8 a 14). Al elegir una en la
+       carga o la descarga de un Tramo, el sistema copia sus horas a la operación.
    * - Tipos de servicio
-     - Servicios a los que puede asociarse la franja.
-   * - Compañía
-     - Empresa propietaria de la franja.
+     - Con qué servicios se puede usar cada franja.
 
-4.3.4.1 Uso dentro del sistema
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Si en una operación se escribe una franja personalizada en vez de elegir una del catálogo, el
+sistema avisa de que puede tener coste adicional: así se separa la ventana estándar de la
+excepción. Cuando el Proyecto no recibe horarios informados, las horas salen del contacto o de
+las predeterminadas del proyecto, y la franja permite ajustarlas de forma controlada. Campos
+en :doc:`/17.0/annexes/A_10_franjas-horarias`.
 
-En tramos y asistentes de creación, las franjas pueden asignarse a la carga o descarga.
-
-Al seleccionarlas, el sistema copia inicio y fin a los campos horarios de la operación.
-
-Si se activa una franja personalizada en una operación nueva, el sistema advierte que puede implicar coste adicional. Esto separa la ventana estándar de la excepción operativa.
-
-Cuando el proyecto no recibe horarios informados, el sistema puede completar horarios desde el partner o desde los valores por defecto del proyecto.
-
-La franja horaria permite ajustar esos horarios de forma controlada en carga o descarga.
-
-La relación con áreas permite documentar qué ventanas son válidas para una zona territorial, aunque el dato que se aplica finalmente sobre el tramo es la franja seleccionada en carga o descarga.
-
-
-
-4.3.5 Tiempos de Servicio
+4.3.5 Tiempos de servicio
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. CAPTURA: 4_3_03 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_03_tiempos-servicio.png
       :alt: Configuración de Tiempos de Servicio
 
-      Configuración de Tiempos de Servicio (``tms.service.time``).
+      Un esquema de Tiempos de Servicio con sus líneas y su matriz.
 
-Los Tiempos de Servicio calculan la duración operativa que una parada requiere, más allá del tiempo de conducción.
-
-El modelo permite parametrizar tiempos fijos o variables según dificultad, pisos, ascensor, peso y tipo de operación.
-
-Esta configuración es crítica para que las rutas optimizadas tengan una duración realista y para que la ETA no dependa únicamente de kilómetros.
-
-**Campos principales**
+El :term:`Tiempo de servicio` (``tms.service.time``) calcula cuánto dura una parada más allá
+de la conducción: aparcar, bajar la mercancía, subirla a un piso, esperar en un muelle. Sin él,
+la duración de las rutas y las horas estimadas de llegada dependerían sólo de los kilómetros.
+Un esquema se compone de líneas, y cada línea de una operación y una matriz de detalles.
 
 .. list-table::
    :header-rows: 1
    :widths: 30 70
 
-   * - Campo
-     - Descripción
-   * - Nombre
-     - Identificador del esquema de tiempos de servicio.
-   * - Kg nivel 0
-     - Valor por defecto utilizado para detalles de nivel cero.
-   * - Kg nivel superior
-     - Valor por defecto utilizado para niveles superiores.
-   * - Por defecto
-     - Esquema usado como fallback.
-   * - Líneas
-     - Conjunto de operaciones que forman el cálculo del tiempo.
-   * - Operación
-     - Plantilla que determina tipo de cálculo, aplicación y factor.
-   * - Tipo de operación
-     - Dificultad, niveles o fijo.
-   * - Aplicar en
-     - Indica si la operación pertenece al tramo o a la parada.
-   * - Tipo de factor
-     - Define si el tiempo se calcula por operación o por kilos.
-   * - Detalles
-     - Matriz de dificultad, niveles, factor y segundos.
+   * - Decisión
+     - Efecto
+   * - Las operaciones del esquema
+     - Qué suma tiempo en una parada. Cada línea es de un tipo: **Dificultad** (según la
+       dificultad de aparcamiento del contacto), **Niveles** (según los pisos y si hay ascensor)
+       o **Fijo** (siempre el mismo tiempo).
+   * - Por tramo o por parada
+     - Si la operación se cuenta una vez por parada o una vez por cada tramo que se entrega en
+       ella. Descargar cuatro tramos en un mismo muelle suma cuatro veces el tiempo por tramo
+       y una sola vez el tiempo por parada.
+   * - Por operación o por kilos
+     - Si el tiempo es fijo por operación o proporcional al peso.
+   * - Los kilos por defecto
+     - El peso que se asume en planta baja y en pisos cuando la línea no trae peso.
 
-4.3.5.1 Uso dentro del sistema en Tiempos de Servicio
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+El Proyecto elige un esquema. Al calcular una parada, el sistema evalúa cada línea contra los
+datos del contacto (dificultad de aparcamiento, ascensor, pisos) y el peso de la parada, elige
+la celda de la matriz que corresponde y suma los segundos. El resultado se guarda en la parada
+y lo consumen el optimizador, la secuenciación, el cálculo de ruta y la ETA. Campos del esquema,
+las líneas, los detalles y las operaciones en :doc:`/17.0/annexes/A_11_tiempos-servicio`.
 
-El proyecto referencia un Tiempo de Servicio. Al calcular una parada, el sistema toma ese esquema y evalúa las líneas contra las características de la ubicación: dificultad de aparcamiento, existencia de ascensor, pisos y peso de la parada.
-
-Para operaciones de dificultad, se selecciona el detalle correspondiente a la dificultad del partner. Para niveles, se diferencia si hay ascensor y cuántos pisos deben subirse. Para operaciones fijas, se suma el tiempo configurado sin depender de la carga.
-
-El resultado se guarda en segundos y horas sobre la parada. Este dato alimenta la optimización PTV y los cálculos posteriores de tiempos de ruta, ETA y duración total.
-
-El onchange de operación reconstruye los detalles con comandos One2many en memoria, evitando crear registros intermedios mientras la línea no está guardada. Esto reduce errores en el cliente web y mantiene estable la edición de matrices.
-
-
-
-4.3.6 Horas de Conducción
+4.3.6 Horas de conducción
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Horas de Conducción almacena los presets de jornada y regulación que se envían a los motores PTV.
+.. CAPTURA: 4_3_06 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_06_horas-conduccion.png
+      :alt: Formulario de un preset de Horas de Conducción
 
-No calcula por sí mismo la ruta, sino que define qué restricción de tiempo de conducción debe aplicar el optimizador, el secuenciador o el routing.
+      Un preset de Horas de Conducción con sus ajustes para PTV.
 
-El dato puede venir de la categoría de vehículo o de la plantilla del slot de planificación, según el flujo utilizado.
-
-**Campos principales**
+Las Horas de conducción (``tms.driver.working.hours``) son los presets de jornada y regulación
+que se envían a PTV. No calculan nada por sí mismas: dicen qué restricción de tiempo de
+conducción debe respetar el optimizador, la secuenciación y el cálculo de ruta. El catálogo
+viene con el reglamento europeo 561/2006 configurado.
 
 .. list-table::
    :header-rows: 1
    :widths: 30 70
 
-   * - Campo
-     - Descripción
-   * - Nombre y descripción
-     - Identifican el preset de horas de conducción.
-   * - Preset de secuenciación
-     - Valor enviado a PTV en procesos de secuenciación.
-   * - Preset de optimización
-     - Valor enviado a PTV Route Optimization.
-   * - Por defecto
-     - Marca de referencia funcional.
-   * - Información
-     - Texto descriptivo para explicar cuándo debe utilizarse.
-   * - Secuencia, compañía y color
-     - Campos de ordenación, multi-compañía y clasificación visual.
+   * - Decisión
+     - Efecto
+   * - Ajuste de secuenciación y ajustes de optimización
+     - Los dos presets de PTV, uno por servicio: las regulaciones europea y americana en sus
+       variantes de un día, día largo o varios días.
+   * - Pausas de trabajo y de conducción
+     - Las pausas explícitas (cuánto se puede trabajar o conducir seguido y cuánto dura la
+       pausa), que usará el optimizador OptiFlow.
+   * - Duración máxima de ruta
+     - El tope de horas de una ruta bajo esta regla, si la categoría de vehículo no fija el suyo.
 
-4.3.6.1 Uso dentro del sistema en Horas de Conducción
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-La categoría de vehículo puede tener asignado un preset de Horas de Conducción. Cuando se optimiza una ruta sin slot concreto, el sistema puede tomar el preset desde el vehículo o su categoría.
-
-Cuando la optimización se ejecuta sobre slots de Planning, la plantilla del slot también puede aportar el preset. En ese caso, el optimizador recibe disponibilidad del slot y regulación asociada al conductor o recurso planificado.
-
-En la llamada a PTV se envía el valor técnico del preset como ``workingHoursPreset``.
-
-Esto permite aplicar restricciones estándar como regulaciones europeas o americanas sin reimplementar esa lógica dentro de Odoo.
-
-.. important::
-
-   Las Horas de Conducción deben mantenerse alineadas con la política operativa real del transportista.
-   Una configuración incorrecta puede producir rutas aparentemente válidas,
-   pero imposibles de ejecutar dentro de la jornada permitida.
+El preset llega a PTV desde la categoría de vehículo, cuando el viaje se optimiza sin franja,
+o desde la plantilla de la franja del :term:`Plan de disponibilidad de conductores`, cuando
+la hay. Una regulación mal elegida produce rutas válidas en el papel e imposibles dentro de la
+jornada permitida. Campos en :doc:`/17.0/annexes/A_12_horas-conduccion`.

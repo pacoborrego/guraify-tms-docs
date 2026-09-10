@@ -32,6 +32,10 @@ Tiene **cuatro públicos** y la portada los separa en cuatro recorridos (ver `PL
   referencia o en un anexo.
   La tabla de referencia se titula **"N.N.N Referencia técnica"** y va al final de la sección
   (patrón fijado en D6: 3.2.1.6, 3.2.2.5, 3.2.5.4; también 5.4.4 y 5.8.3).
+  Los **catálogos de campos completos** de los maestros van al **anexo A** (`source/17.0/annexes/`,
+  una página `A_NN_slug.rst` por maestro, títulos «A.N Nombre», tabla Campo / Tipo / Qué es con la
+  etiqueta de la interfaz en español). El cuerpo del cap. 4 sólo lleva la tabla corta
+  «Decisión / Efecto» y enlaza al anexo (patrón fijado en D7).
 - En la Guía del integrador sí caben campos, cabeceras y ejemplos de código.
 
 **Terminología**: manda el glosario, `source/17.0/glossary.rst` (tarea D3, 2026-09-08). Cada
@@ -126,7 +130,7 @@ tms-docs/
 
 Capítulos actuales en `source/17.0/`: `1_introduction`, `2_conceptual-model`,
 `3_functional-architecture`, `4_parametrization`, `5_operational-flows`,
-`7_edi-integrations`, `10_manual_app`. El cap. 10 es `:orphan:` a propósito: no cuelga del
+`7_edi-integrations`, `10_manual_app` y el anexo `annexes/`. El cap. 10 es `:orphan:` a propósito: no cuelga del
 toctree, se llega por la tarjeta de portada y `layout.html` le pone cabecera propia.
 
 ### Convenciones de RST
@@ -155,7 +159,8 @@ toctree, se llega por la tarjeta de portada y `layout.html` le pone cabecera pro
   de un `.. figure::` con `:alt:` y pie.
 - Cuando falta la imagen se deja el marcador `.. CAPTURA: <id>` con el `figure` comentado
   (indentado bajo el marcador) y una fila en `CAPTURAS_PENDIENTES.md`. El comando `/capturas`
-  activa los figures cuya imagen ya existe.
+  activa los figures cuya imagen ya existe. Un `figure` sin imagen rompe el build con `-W`, así
+  que nunca se deja activo (decisión de Paco, 2026-09-10).
 - **Requisitos de una captura válida** (guía completa en `CAPTURAS_PENDIENTES.md`): recortada
   a la ventana de Odoo o a la zona relevante (sin barra del Mac, dock ni pestañas), Odoo en
   **español**, **sin datos reales** de clientes ni personas, ancho 1400–1600 px, PNG,
@@ -193,5 +198,5 @@ confirma**.
 
 ---
 
-*Actualizado el 2026-09-08 (v3, D8). Si algo de aquí queda desactualizado, actualízalo en el
+*Actualizado el 2026-09-10 (v3, D7). Si algo de aquí queda desactualizado, actualízalo en el
 mismo cambio que lo desactualiza.*
