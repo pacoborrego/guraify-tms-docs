@@ -8,6 +8,26 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Cap. 8 Administración y Control Económico (tarea D10 del plan, 2026-09-10)
+- **Capítulo nuevo** del Manual de implantación (`source/17.0/8_economic-administration/`, 8
+  páginas), verificado en el código de `tms`, `tms_kpi` y `tms_dashboard`: 8.1 activo, pasivo y
+  margen en Orden, Tramo, Parada y Viaje, las marcas de facturable, el precio cerrado, la flota
+  propia y el viaje que factura al cliente; 8.2 división de ventas (modo del Proyecto y reparto
+  carga/descarga del tipo de orden); 8.3 división de costes (modo del Planning; paradas de hub y
+  cargas de reparto sin coste; directos a medias); 8.4 la orden de compra automática (cuándo
+  nace, la línea de sección, las líneas por parada, cómo se mantiene); 8.5 liquidación al
+  transportista; 8.6 reembolsos (siete estados, cuatro importes, dos saldos); 8.7 cuenta
+  analítica; 8.8 Transacciones, diagnósticos, el motor de indicadores con sus audiencias y los
+  tres tableros. Mermaid del circuito económico en el index.
+- **Glosario**: Activo y pasivo, División de ventas, División de costes, Diagnóstico de tarifa,
+  Indicador, Precio cerrado, Tablero.
+- **Anexo A.21** Campos económicos (Viaje, Parada, Tramo, Orden, líneas, orden de compra,
+  reembolso).
+- 3.2 y 3.4 enlazan al cap. 8. Portada actualizada. Cinco capturas registradas, figures
+  comentados.
+- Etiquetas de la interfaz que la doc cita tal cual y convendría revisar en `es.po`: «Recopilado»
+  por cobrado, «Forma de Pago» para los tipos de valor de caja, «Invoices List» sin traducir.
+
 ### Publicación (2026-09-10)
 - `deploy.sh` compila siempre completo (`-E -a`). La compilación incremental del servidor dejaba
   obsoleta la barra lateral de las páginas sin cambios al añadir un capítulo: tras publicar el

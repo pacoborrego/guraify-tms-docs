@@ -52,6 +52,7 @@ Y para todos, el :doc:`glosario <glossary>`: cada término del producto, con su 
    4_parametrization/index
    5_operational-flows/index
    6_resources/index
+   8_economic-administration/index
    annexes/index
 
 .. toctree::

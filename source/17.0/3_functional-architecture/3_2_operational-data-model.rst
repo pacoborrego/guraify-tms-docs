@@ -17,7 +17,8 @@ cuatro entidades estructurales y las dos de ingesta se detallan en las subseccio
 siguientes. Los Bultos se tratan donde se escanean, en la
 :doc:`ejecución con la app </17.0/5_operational-flows/5_4_app-execution>`, y las líneas
 económicas en la :doc:`liquidación </17.0/5_operational-flows/5_6_settlement>` y la
-:doc:`facturación </17.0/5_operational-flows/5_7_invoicing>`.
+:doc:`facturación </17.0/5_operational-flows/5_7_invoicing>`, y su modelo (activo, pasivo,
+margen y divisiones) en :doc:`/17.0/8_economic-administration/index`.
 
 .. toctree::
    :maxdepth: 1
