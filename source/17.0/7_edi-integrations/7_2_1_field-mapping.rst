@@ -10,8 +10,8 @@ y formatos dispares acaben encajando en la misma estructura interna.
 
    TMS › Configuración › EDI › Definición de Fichero
 
-Modelo de mapeo
----------------
+7.2.1.1 Modelo de mapeo
+-----------------------
 
 .. CAPTURA: 7_2_1_01 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/7_edi-integrations/7_2_1_field-mapping_01_lista-mapeos.png
@@ -26,8 +26,8 @@ de tipo aplicables tanto a la entrada como a la respuesta. Cada Definición de f
 intercambio reutiliza siempre la misma configuración de columnas (ver
 :doc:`7_2_file-import`).
 
-Campos destino disponibles
---------------------------
+7.2.1.2 Campos destino disponibles
+----------------------------------
 
 El campo de destino (``field``) no es texto libre: se elige de un catálogo cerrado de
 campos que el TMS sabe materializar. Ese catálogo está agrupado por la entidad de
@@ -44,293 +44,51 @@ importarse y bajo qué nombre.
 
       Catálogo de campos destino agrupado por entidad (selector *Tms Field*).
 
-Los grupos disponibles y sus campos son los siguientes:
+El catálogo completo, campo a campo, está en el
+:doc:`anexo A.22 </17.0/annexes/A_22_campos-mapeo>`. Estas son las entidades que cubre y
+algunos de sus campos, para hacerse una idea de qué puede traer un fichero:
 
-.. list-table:: Viaje (``tms.trip``)
+.. list-table::
    :header-rows: 1
-   :widths: 30 70
+   :widths: 34 12 54
 
-   * - Campo destino
-     - Significado
-   * - ``TripName``
-     - Nombre o identificador del viaje.
-   * - ``TripDate``
-     - Fecha del viaje.
-   * - ``TripPlanning``
-     - Planificación asociada al viaje.
-   * - ``TripHub``
-     - Hub o base logística del viaje.
-   * - ``Sequence``
-     - Orden de la parada dentro del viaje.
-   * - ``Carrier``
-     - Transportista asignado al viaje.
-   * - ``CarrierProject``
-     - Proyecto del transportista.
-   * - ``CPriceList``
-     - Tarifa de compra (transportista).
-   * - ``Driver``
-     - Conductor asignado.
-   * - ``Vehicle``
-     - Vehículo asignado.
-   * - ``Trailers``
-     - Semirremolque(s) asignado(s).
+   * - Entidad
+     - Campos
+     - Ejemplos
+   * - Viaje (``tms.trip``)
+     - 11
+     - ``TripName``, ``TripDate``, ``TripPlanning`` …
+   * - Orden (``sale.order``)
+     - 13
+     - ``Project``, ``Customer``, ``PriceList`` …
+   * - Tramos — carga y descarga (``tms.shipment.leg``)
+     - 22
+     - ``LoadAddressKey``, ``LoadName``, ``LoadAddress`` …
+   * - Líneas de mercancía (``tms.shipment.pack``)
+     - 9
+     - ``Packs``, ``Pallets``, ``Quantity`` …
+   * - Bultos / trazabilidad (``tms.shipment.pack.traceability``)
+     - 4
+     - ``Parcel_Barcode``, ``Parcel_Cube``, ``Parcel_GrossWeight`` …
+   * - Clientes (``res.partner``)
+     - 13
+     - ``CustomerId``, ``CustomerName``, ``CustomerShortName`` …
+   * - Transportistas (``res.partner``)
+     - 13
+     - ``CarrierId``, ``CarrierName``, ``CarrierShortName`` …
+   * - Conductores (``res.partner`` / ``hr.employee``)
+     - 12
+     - ``DriverId``, ``DriverName``, ``DriverShortName`` …
+   * - Vehículos (``fleet.vehicle``)
+     - 10
+     - ``VehicleId``, ``VehicleName``, ``VehicleLicensePl`` …
 
-.. list-table:: Orden (``sale.order``)
-   :header-rows: 1
-   :widths: 30 70
+El catálogo incluye además separadores no seleccionables (``<<<<TRIPS>>>>``,
+``<<<<SHIPMENTS>>>>``…) que sólo agrupan visualmente los campos en el desplegable; no son
+destinos de mapeo.
 
-   * - Campo destino
-     - Significado
-   * - ``Project``
-     - Proyecto al que pertenece la orden.
-   * - ``Customer``
-     - Cliente de la orden.
-   * - ``PriceList``
-     - Tarifa de venta aplicable.
-   * - ``ExternalRef``
-     - Referencia externa de la orden (clave de idempotencia).
-   * - ``ShipmentType``
-     - Tipo de Orden.
-   * - ``ServiceType``
-     - Tipo de servicio contratado.
-   * - ``CashValue``
-     - Importe del reembolso.
-   * - ``CashCurrency``
-     - Divisa del reembolso.
-   * - ``CashPaymentType``
-     - Forma de pago del reembolso.
-   * - ``CashNote``
-     - Nota asociada al reembolso.
-   * - ``Info``
-     - Información / observaciones de la orden.
-   * - ``State``
-     - Estado de la orden.
-   * - ``ClosedPrice``
-     - Precio cerrado de la orden.
-
-.. list-table:: Tramos — carga y descarga (``tms.shipment.leg``)
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Campo destino
-     - Significado
-   * - ``LoadAddressKey`` / ``UnLoadAddressKey``
-     - Clave de la dirección de carga / descarga (para reutilizar direcciones).
-   * - ``LoadName`` / ``UnLoadName``
-     - Nombre del punto de carga / descarga.
-   * - ``LoadAddress`` / ``UnLoadAddress``
-     - Dirección de carga / descarga.
-   * - ``LoadAddress2`` / ``UnLoadAddress2``
-     - Segunda línea de dirección.
-   * - ``LoadCity`` / ``UnLoadCity``
-     - Población.
-   * - ``LoadZip`` / ``UnLoadZip``
-     - Código postal.
-   * - ``LoadState`` / ``UnLoadState``
-     - Provincia / estado.
-   * - ``LoadCountry`` / ``UnLoadCountry``
-     - País.
-   * - ``LoadFullAddress`` / ``UnLoadFullAddress``
-     - Dirección completa en un solo campo.
-   * - ``LoadLatitude`` / ``UnLoadLatitude``
-     - Latitud (geolocalización).
-   * - ``LoadLongitude`` / ``UnLoadLongitude``
-     - Longitud (geolocalización).
-   * - ``LoadInfo`` / ``UnLoadInfo``
-     - Observaciones del punto.
-   * - ``LoadTel`` / ``UnLoadTel``
-     - Teléfono de contacto.
-   * - ``LoadTel2`` / ``UnLoadTel2``
-     - Teléfono secundario.
-   * - ``LoadEmail`` / ``UnLoadEmail``
-     - Correo de contacto.
-   * - ``LoadContact`` / ``UnLoadContact``
-     - Persona de contacto.
-   * - ``LoadDate`` / ``UnLoadDate``
-     - Fecha prevista de carga / descarga.
-   * - ``LoadStartTime`` / ``UnLoadStartTime``
-     - Inicio de la ventana horaria.
-   * - ``LoadEndTime`` / ``UnLoadEndTime``
-     - Fin de la ventana horaria.
-   * - ``LoadPriority`` / ``UnLoadPriority``
-     - Prioridad de la parada.
-   * - ``LoadElevator`` / ``UnLoadElevator``
-     - Disponibilidad de ascensor.
-   * - ``LoadLevels`` / ``UnLoadLevels``
-     - Número de plantas / niveles.
-
-.. list-table:: Líneas de mercancía (``tms.shipment.pack``)
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Campo destino
-     - Significado
-   * - ``Packs``
-     - Número de bultos.
-   * - ``Pallets``
-     - Número de palés.
-   * - ``Quantity``
-     - Cantidad.
-   * - ``Meters``
-     - Metros lineales.
-   * - ``Cube``
-     - Volumen (m³).
-   * - ``GrossWeight``
-     - Peso bruto.
-   * - ``PacksDescription``
-     - Descripción de los bultos.
-   * - ``PacksTypeID``
-     - Regla de precio de la línea.
-   * - ``PacksTemperature``
-     - Tipo de embalaje / temperatura.
-
-.. list-table:: Bultos / trazabilidad (``tms.shipment.pack.traceability``)
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Campo destino
-     - Significado
-   * - ``Parcel_Barcode``
-     - Código de barras del bulto.
-   * - ``Parcel_Cube``
-     - Volumen del bulto.
-   * - ``Parcel_GrossWeight``
-     - Peso bruto del bulto.
-   * - ``Parcel_Array``
-     - Conjunto de bultos (estructura agrupada).
-
-.. list-table:: Clientes (``res.partner``)
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Campo destino
-     - Significado
-   * - ``CustomerId``
-     - Identificador externo del cliente.
-   * - ``CustomerName``
-     - Nombre del cliente.
-   * - ``CustomerShortName``
-     - Nombre corto / abreviado.
-   * - ``CustomerAddress``
-     - Dirección.
-   * - ``CustomerZIP``
-     - Código postal.
-   * - ``CustomerCity``
-     - Población.
-   * - ``CustomerState``
-     - Provincia / estado.
-   * - ``CustomerCountry``
-     - País.
-   * - ``CustomerVat``
-     - NIF / VAT.
-   * - ``CustomerPaymentTerms``
-     - Condiciones de pago.
-   * - ``CustomerTelf``
-     - Teléfono.
-   * - ``CustomerEmail``
-     - Correo electrónico.
-   * - ``CustomerContact``
-     - Persona de contacto.
-
-.. list-table:: Transportistas (``res.partner``)
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Campo destino
-     - Significado
-   * - ``CarrierId``
-     - Identificador externo del transportista.
-   * - ``CarrierName``
-     - Nombre del transportista.
-   * - ``CarrierShortName``
-     - Nombre corto / abreviado.
-   * - ``CarrierAddress``
-     - Dirección.
-   * - ``CarrierZIP``
-     - Código postal.
-   * - ``CarrierCity``
-     - Población.
-   * - ``CarrierState``
-     - Provincia / estado.
-   * - ``CarrierCountry``
-     - País.
-   * - ``CarrierVat``
-     - NIF / VAT.
-   * - ``CarrierPaymentTerms``
-     - Condiciones de pago.
-   * - ``CarrierTelf``
-     - Teléfono.
-   * - ``CarrierEmail``
-     - Correo electrónico.
-   * - ``CarrierContact``
-     - Persona de contacto.
-
-.. list-table:: Conductores (``res.partner`` / ``hr.employee``)
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Campo destino
-     - Significado
-   * - ``DriverId``
-     - Identificador externo del conductor.
-   * - ``DriverName``
-     - Nombre del conductor.
-   * - ``DriverShortName``
-     - Nombre corto / abreviado.
-   * - ``DriverAddress``
-     - Dirección.
-   * - ``DriverZIP``
-     - Código postal.
-   * - ``DriverCity``
-     - Población.
-   * - ``DriverState``
-     - Provincia / estado.
-   * - ``DriverCountry``
-     - País.
-   * - ``DriverVat``
-     - NIF / VAT.
-   * - ``DriverTelf``
-     - Teléfono.
-   * - ``DriverEmail``
-     - Correo electrónico.
-   * - ``DriverParent``
-     - Empresa / transportista al que pertenece el conductor.
-
-.. list-table:: Vehículos (``fleet.vehicle``)
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Campo destino
-     - Significado
-   * - ``VehicleId``
-     - Identificador externo del vehículo.
-   * - ``VehicleName``
-     - Nombre del vehículo.
-   * - ``VehicleLicensePl``
-     - Matrícula.
-   * - ``VehicleBrand``
-     - Marca.
-   * - ``VehicleModel``
-     - Modelo.
-   * - ``VehicleCategory``
-     - Categoría.
-   * - ``VehicleType``
-     - Tipo de vehículo.
-   * - ``VehicleParent``
-     - Vehículo o flota a la que pertenece.
-   * - ``VehicleStartDate``
-     - Fecha de alta.
-   * - ``VehicleEndDate``
-     - Fecha de baja.
-
-.. note::
-
-   El catálogo incluye además separadores no seleccionables (``<<<<TRIPS>>>>``,
-   ``<<<<SHIPMENTS>>>>``, etc.) que solo sirven para agrupar visualmente los campos en
-   el desplegable; no representan destinos de mapeo.
-
-El campo especial ``Parcel_Array``
-----------------------------------
+7.2.1.3 El campo especial ``Parcel_Array``
+------------------------------------------
 
 Los campos ``Parcel_Barcode``, ``Parcel_Cube`` y ``Parcel_GrossWeight`` son escalares:
 cada uno toma el valor de una columna y describe **un** bulto. Funcionan bien cuando
@@ -342,8 +100,8 @@ etiquetas de origen siguen una regla de construcción conocida. En lugar de un v
 escalar, ``Parcel_Array`` espera la **lista completa de bultos** de la orden, que
 se genera por código a partir de los datos de la fila.
 
-Cómo funciona internamente
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+7.2.1.3.1 Cómo funciona internamente
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A diferencia del resto de campos de bulto, cuando la transformación escribe en
 ``Parcel_Array`` el importador **sustituye** la estructura de bultos completa por el
@@ -358,8 +116,8 @@ materializar:
 Esa lista se asigna directamente a los bultos (``Parcels``) de la línea de mercancía
 de la orden.
 
-Configuración del mapeo
-~~~~~~~~~~~~~~~~~~~~~~~
+7.2.1.3.2 Configuración del mapeo
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``Parcel_Array`` se configura como un **campo computado**, no como un mapeo de columna
 directo:
@@ -381,8 +139,8 @@ indexada por posición de columna), ``rows`` (todas las filas) y las librerías 
 ``re`` y ``datetime``; el resultado se deja en ``result``. Como el cálculo es a nivel de
 fila completa, la lógica lee los datos de ``row`` por índice de columna, no de ``value``.
 
-Ejemplo de uso
-~~~~~~~~~~~~~~
+7.2.1.3.3 Ejemplo de uso
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 Supongamos un cliente que envía una fila por orden con, entre otras, una columna de
 **referencia de orden**, una de **número de bultos** y una de **peso bruto total**.
@@ -427,24 +185,24 @@ proporcional del peso. El importador los materializa como la trazabilidad de bul
    de otras columnas) a lo que realmente venga impreso en la etiqueta de origen, y
    valida el resultado con la prueba inline del mapeo antes de pasar a producción.
 
-Transformación por campo
-------------------------
+7.2.1.4 Transformación por campo
+--------------------------------
 
 Cuando la correspondencia no es directa, cada mapeo puede aplicar una transformación:
 código Python a medida (``python_code``) o una función preestablecida del catálogo
 (``preset_function_id``). Las funciones preestablecidas cubren los casos habituales sin
 necesidad de escribir código y se documentan en :doc:`7_2_2_python-transformations`.
 
-Prueba previa
--------------
+7.2.1.5 Prueba previa
+---------------------
 
 Antes de aplicar un mapeo a datos reales, el sistema permite probarlo de forma
 interactiva: se introduce un valor de ejemplo y se comprueba el resultado de la
 transformación. Esta validación previa reduce el riesgo de propagar errores de mapeo a
 las Órdenes en producción.
 
-Entrada frente a salida
------------------------
+7.2.1.6 Entrada frente a salida
+-------------------------------
 
 Conviene distinguir el **mapeo de entrada** —``tms.edi.field.mapping``, que normaliza
 los datos que llegan al TMS— del **patrón de salida** —``tms_int.pattern.line``, que

@@ -5,15 +5,15 @@ Los webhooks permiten que sistemas externos notifiquen eventos al TMS de forma a
 sin que este tenga que consultarlos. Son el canal idóneo para actualizaciones de estado
 que se producen en origen y deben reflejarse en el TMS de inmediato.
 
-Ruta de recepción
------------------
+7.5.1 Dirección de recepción
+----------------------------
 
-Las notificaciones se reciben en la ruta pública ``/tms_int/webhook/<route_code>``, que
+Las notificaciones se reciben en la dirección pública ``/tms_int/webhook/<route_code>``, que
 acepta peticiones POST, GET, PUT y DELETE. El segmento ``route_code`` identifica el
 webhook concreto que debe atender la petición.
 
-Configuración
--------------
+7.5.2 Configuración
+-------------------
 
 .. admonition:: Ruta en Odoo
    :class: tip
@@ -28,11 +28,11 @@ Configuración
 
 Un webhook se configura sobre un Endpoint (``tms_int.api.endpoint``) marcado como tal.
 Tres campos lo definen: ``is_webhook``, que lo habilita; ``webhook_route``, el
-identificador único que aparece en la ruta; y ``webhook_secret``, el secreto compartido
+identificador único que aparece en la dirección; y ``webhook_secret``, el secreto compartido
 que autentica al emisor.
 
-Procesamiento
--------------
+7.5.3 Procesamiento
+-------------------
 
 Al recibir una petición, el sistema localiza el endpoint por su ``webhook_route`` y
 valida el secreto, que el emisor envía en la cabecera ``X-Webhook-Secret`` o como
@@ -44,11 +44,11 @@ casos, ejecuta ``response_mapper_code`` para crear o actualizar los registros
 correspondientes, con la misma mecánica de mapeo de respuesta empleada en los
 endpoints salientes (ver :doc:`7_4_endpoint-configuration`).
 
-Trazabilidad y códigos de respuesta
------------------------------------
+7.5.4 Trazabilidad y códigos de respuesta
+-----------------------------------------
 
 Cada recepción se registra en ``tms.api.log`` con ``api_type = in_api``, guardando las
 cabeceras, los *payloads*, el código HTTP devuelto y la IP de origen. El servicio
 responde con códigos HTTP estándar según el resultado: ``200`` cuando el procesamiento
-es correcto, ``401`` si el secreto no es válido, ``404`` si la ruta no existe o está
+es correcto, ``401`` si el secreto no es válido, ``404`` si la dirección no existe o está
 inactiva, ``400`` ante una petición mal formada y ``500`` ante un error interno.

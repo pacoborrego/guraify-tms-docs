@@ -6,8 +6,8 @@ programados y reglas que reaccionan a los cambios en los datos. Esta automatizac
 la que sostiene la operativa continua: los datos entran, se procesan y se notifican sin
 que nadie tenga que lanzar cada paso.
 
-Tareas programadas
-------------------
+7.6.1 Tareas programadas
+------------------------
 
 .. admonition:: Ruta en Odoo
    :class: tip
@@ -27,8 +27,8 @@ de importación (``tms_int.file.wizard``), el cómputo de las Órdenes de venta
 (``tms.trip``) y el cierre de los Manifiestos (``tms.edi.manifest``). Este escalonamiento
 permite que la ingesta (ver :doc:`7_2_file-import`) avance de forma diferida y ordenada.
 
-Reglas automáticas dinámicas
-----------------------------
+7.6.2 Reglas automáticas dinámicas
+----------------------------------
 
 Para los flujos de salida, las reglas automáticas (``base.automation``) con disparo
 ``on_write`` ejecutan un Endpoint saliente cuando cambia un registro. Estas reglas no se
@@ -36,8 +36,8 @@ configuran a mano: se generan desde la propia configuración del endpoint, de mo
 activar la notificación automática de un evento es una decisión que se toma en el mismo
 endpoint (ver :doc:`7_4_endpoint-configuration`).
 
-Programación de endpoints
--------------------------
+7.6.3 Programación de endpoints
+-------------------------------
 
 De forma complementaria, un endpoint puede programarse para ejecutarse periódicamente
 mediante tareas ``ir.cron`` generadas también desde su configuración. Así, el envío

@@ -17,8 +17,8 @@ misma estructura interna antes de materializarse en el modelo operativo.
 
    Menú de configuración EDI en Odoo.
 
-Canales de entrada
-------------------
+7.1.1 Canales de entrada
+------------------------
 
 El sistema admite cuatro vías de ingesta, todas ellas equivalentes en su destino final:
 
@@ -31,8 +31,8 @@ El sistema admite cuatro vías de ingesta, todas ellas equivalentes en su destin
 - **Alta manual**, creando la Orden (``sale.order``) directamente en Odoo, sin
   intermediación de ninguna integración.
 
-Dos caminos hacia el modelo operativo
--------------------------------------
+7.1.2 Dos caminos hacia el modelo operativo
+-------------------------------------------
 
 Dejando aparte el alta manual, los datos externos llegan por uno de **dos caminos**
 diferenciados, cada uno con su propia mecánica:
@@ -43,7 +43,7 @@ diferenciados, cada uno con su propia mecánica:
   (:doc:`7_2_file-import`).
 - El **camino de integración**, con dos variantes: **API REST**, donde el sistema
   externo llama a las APIs del TMS (o el TMS a las del sistema remoto), y **webhooks**,
-  donde el sistema externo notifica eventos a una ruta pública del TMS. La
+  donde el sistema externo notifica eventos a una dirección pública del TMS. La
   orquestación, el almacenamiento intermedio y la materialización de este camino se
   describen en :doc:`7_3_api-integrations`.
 

@@ -11,8 +11,14 @@ origen no dispone de API.
 
    TMS › Configuración › EDI › Definición de Fichero
 
-Asistente de importación
-------------------------
+.. toctree::
+   :maxdepth: 1
+
+   7_2_1_field-mapping
+   7_2_2_python-transformations
+
+7.2.3 Asistente de importación
+------------------------------
 
 .. CAPTURA: 7_2_01 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/7_edi-integrations/7_2_file-import_01_asistente.png
@@ -25,8 +31,8 @@ cubre la subida del fichero y el seguimiento de su tratamiento a través de una 
 de estados —borrador, procesando, validado e importado— y emite un reporte de
 validación con los errores y advertencias detectados antes de materializar nada.
 
-Formatos y normalización
-------------------------
+7.2.4 Formatos y normalización
+------------------------------
 
 Se admiten ficheros **XLSX/XLS y CSV** (en CSV, con delimitador de columna, fila de
 cabecera y fila de inicio configurables). Tras el parseo, el contenido se normaliza a
@@ -42,8 +48,8 @@ fichero de partida.
    webhooks, ver :doc:`7_3_api-integrations`); en la importación de ficheros el JSON es
    solo la forma normalizada interna tras el parseo.
 
-Del fichero a la Orden
-----------------------
+7.2.5 Del fichero a la Orden
+----------------------------
 
 El recorrido completo es: parseo a la representación interna, validación contra el
 esquema y los mapeos configurados, creación del Manifiesto (``tms.edi.manifest``) y de
@@ -52,8 +58,8 @@ sus *preview packs*, y materialización final de la Orden (``sale.order``) a tra
 como contenedor de los mapeos de columnas aplicables a cada tipo de fichero (ver
 :doc:`7_2_1_field-mapping`).
 
-Procesamiento diferido y errores
---------------------------------
+7.2.6 Procesamiento diferido y errores
+--------------------------------------
 
 Las filas pendientes no se procesan necesariamente en el momento de la subida: una
 tarea programada las recoge periódicamente y completa su tratamiento (ver
@@ -66,15 +72,9 @@ reporte de validación, sin interrumpir el procesamiento de las filas correctas.
 
    Reporte de validación del fichero importado.
 
-Configuración del mapeo
------------------------
+7.2.7 Configuración del mapeo
+-----------------------------
 
 La correspondencia entre las columnas del fichero y los campos de Odoo, y las
 transformaciones aplicables a cada campo, se detallan en las dos subsecciones
 siguientes:
-
-.. toctree::
-   :maxdepth: 1
-
-   7_2_1_field-mapping
-   7_2_2_python-transformations

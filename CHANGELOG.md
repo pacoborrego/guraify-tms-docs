@@ -8,6 +8,22 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Cap. 7 Guía del integrador (tarea D9 del plan, 2026-09-10)
+- **Index** reescrito para presentarlo como la Guía del integrador: a quién va dirigido, qué
+  necesitas saber antes (modelo conceptual, Manifiesto y Bandeja de entrada API, Proyecto) y el
+  aviso de que los contratos de la API viven en la pasarela (`/api/docs` de cada instalación).
+  Título del capítulo: «7 Guía del integrador: EDI e integraciones».
+- **Numeración jerárquica** en todos los títulos internos del capítulo. Las secciones propias de
+  7.2 se numeran 7.2.3 a 7.2.7 porque 7.2.1 (Mapeo de campos) y 7.2.2 (Transformaciones) son
+  páginas hijas ya numeradas; su toctree pasa al principio de 7.2.
+- **Anexo A.22 Catálogo de campos de mapeo**: las nueve tablas del catálogo (Viaje, Orden,
+  Tramos, Líneas, Bultos, Clientes, Transportistas, Conductores, Vehículos) salen de 7.2.1 al
+  anexo; en 7.2.1 queda una tabla con las entidades, el número de campos y tres ejemplos.
+- **7.2.2**: cada función preestablecida lleva su nombre en monoespaciado y una descripción en
+  español («``Extract First Hour`` · primera hora»).
+- **Glosario**: «ruta pública» y «ruta de recepción» (la URL del webhook) pasan a «dirección»,
+  para no chocar con Viaje/ruta.
+
 ### Cap. 8 Administración y Control Económico (tarea D10 del plan, 2026-09-10)
 - **Capítulo nuevo** del Manual de implantación (`source/17.0/8_economic-administration/`, 8
   páginas), verificado en el código de `tms`, `tms_kpi` y `tms_dashboard`: 8.1 activo, pasivo y

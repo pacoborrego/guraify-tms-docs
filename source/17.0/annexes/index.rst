@@ -34,3 +34,4 @@ se indica en la tabla y la corrección está anotada en la lista de correcciones
    A_19_odometro
    A_20_mantenimiento
    A_21_economico
+   A_22_campos-mapeo
