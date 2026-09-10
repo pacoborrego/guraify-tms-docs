@@ -18,8 +18,11 @@ cd "$REPO"
 echo "== git pull"
 git pull --ff-only
 
-echo "== sphinx build (los warnings son errores)"
-python3 -m sphinx -b html -W --keep-going source build/html
+echo "== sphinx build completo (los warnings son errores)"
+# -E -a: reconstruir TODO, no incremental. Una compilación incremental solo reescribe las
+# páginas cuyo fuente cambió, y deja obsoleta la barra lateral del resto cuando se añade un
+# capítulo (pasó el 2026-09-10 con el cap. 6: la portada lo tenía y el cap. 5 no).
+python3 -m sphinx -b html -W --keep-going -E -a source build/html
 
 echo "== rsync -> $WWW"
 rsync -a --delete build/html/ "$WWW"/
