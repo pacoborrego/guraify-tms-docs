@@ -27,6 +27,7 @@ language = 'es'
 locale_dirs = ["locale"]
 gettext_compact = False
 autosectionlabel_prefix_document = True
+master_doc = '17.0/index'
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -80,7 +81,9 @@ html_context = {
 # Static files
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
-html_extra_path = ["../versions.json"]
+# La raíz /docs/ redirige a la portada de la versión (source/_extra/index.html), decisión D15
+# (2026-09-11): el documento maestro es la portada con las cuatro tarjetas.
+html_extra_path = ["../versions.json", "_extra"]
 # language-switcher.js desactivado junto con el selector de idioma (2026-09-08).
 html_js_files = []
 

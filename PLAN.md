@@ -47,6 +47,8 @@ Estados: ⬜ pendiente · 🔶 en curso · ✅ hecha.
 | D13 | ⬜ | **Historial git** | Al final de todo: `git filter-repo` para borrar de todos los commits las imágenes con datos reales (`source/_static/images/`, capturas de la app antiguas). María vuelve a clonar. Decisión de Paco 2026-09-08 |
 | D14 | ✅ | **Cap. 6 Gestión de Recursos** | Capítulo nuevo del Manual de implantación para `tms_resources` y `tms_maintenance` (`source/17.0/6_resources/`, 8 páginas + index con mermaid): el área y su menú, el odómetro único (fuentes, anomalías, validación, resumen y estimación), el vehículo mantenible y la orden de trabajo, las reglas de preventivo y el control de service, los flujos del taller, las salidas de taller, los indicadores y la configuración. Verificado contra el código y los handoffs (M1 a M7). Siete términos nuevos en el glosario, anexos A.19 y A.20, trece capturas para María. Hecha el 2026-09-10 |
 
+| D15 | ✅ | **Navegación por recorridos** | `guraify.com/docs` abre directamente la portada de las cuatro tarjetas (la raíz redirige; el documento maestro es `17.0/index`). Cada tarjeta lleva al inicio de su recorrido y la barra lateral enseña solo ese recorrido: página raíz nueva `implementation-manual.rst` para el Manual de implantación; el glosario cuelga de Conocer; el manual del conductor deja de ser `:orphan:` y su cabecera lleva el logo para volver a la portada. Plantilla de barra lateral única con el nombre del recorrido enlazado. Decisión de Paco tras ver producción (2026-09-11). Hecha el 2026-09-11 |
+
 Orden: D3 y D4 primero (lo demás las usa). D5 a D11 y D14 en cualquier orden. D12 y D13 al final.
 Numeración cerrada el 2026-09-10: el cap. 6 es Gestión de Recursos (D14) y Administración y Control Económico será el cap. 8 (D10).
 D2 corre en paralelo todo el tiempo.
@@ -67,9 +69,9 @@ Portada con cuatro recorridos, cada uno una tarjeta y un `toctree` con `:caption
 | Recorrido | Público | Contenido |
 |---|---|---|
 | **Conocer Guraify TMS** | Cliente, distribuidor | `0_product-overview/` (D4) + glosario (D3) |
-| **Manual de implantación** | Consultor, cliente avanzado | Caps. 1 a 6 y 8 (Introducción, Modelo, Arquitectura, Parametrización, Flujos, Gestión de Recursos, Administración económica) + anexo A |
+| **Manual de implantación** | Consultor, cliente avanzado | Página raíz `implementation-manual` + caps. 1 a 6 y 8 (Introducción, Modelo, Arquitectura, Parametrización, Flujos, Gestión de Recursos, Administración económica) + anexo A |
 | **Guía del integrador** | Técnico de integración | Cap. 7 + anexos de catálogos de campos |
-| **Manual del conductor** | Conductor | Cap. 10 (ya aislado visualmente) |
+| **Manual del conductor** | Conductor | Cap. 10 (cabecera y barra lateral propias, con logo para volver a la portada) |
 
 ## Correcciones en Odoo y en la app derivadas del glosario
 

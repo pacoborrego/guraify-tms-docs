@@ -8,7 +8,20 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
-_Nada todavía._
+### Navegación por recorridos (tarea D15 del plan, 2026-09-11)
+- **`guraify.com/docs` abre la portada de las cuatro tarjetas.** La página raíz de la versión
+  (`17.0/index`) pasa a ser el documento maestro y `/docs/index.html` es una redirección
+  automática. El logo de la cabecera vuelve siempre a esa portada. Desaparece la página
+  intermedia «Guraify TMS Documentation».
+- **La barra lateral enseña solo el recorrido en el que estás.** Los cuatro recorridos son las
+  entradas de primer nivel de la portada, así que el tema muestra únicamente su subárbol. El
+  título de la barra es el nombre del recorrido y enlaza a su inicio. Página raíz nueva
+  «Manual de implantación» (`implementation-manual.rst`: para quién es y en qué orden leerlo)
+  que agrupa los caps. 1 a 6, 8 y el anexo A; el glosario cuelga de «Conocer Guraify TMS».
+- **Manual del conductor** integrado en la portada como los otros tres (deja de ser `:orphan:`
+  y de llevar la barra lateral escrita a mano); conserva su cabecera propia, ahora con el logo
+  de Guraify para volver a la portada.
+- Ninguna URL de contenido cambia.
 
 ## [260910_V07] — 2026-09-10
 

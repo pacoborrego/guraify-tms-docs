@@ -119,15 +119,16 @@ python -m sphinx -b html -W -E -a source build/html  # lo mismo que CI y servido
 tms-docs/
 ├── source/
 │   ├── conf.py            # idioma es, autosectionlabel con prefijo de documento
-│   ├── index.rst          # raíz → 17.0/index
+│   ├── _extra/index.html  # /docs/ redirige a 17.0/index (la raíz ya no es una página)
 │   ├── 17.0/              # el contenido
-│   │   ├── index.rst      # portada con tarjetas + toctrees
+│   │   ├── index.rst      # portada con las cuatro tarjetas: es el documento maestro (D15)
+│   │   ├── implementation-manual.rst  # raíz del recorrido Manual de implantación
 │   │   └── N_slug/        # un capítulo por carpeta, index.rst + N_M_slug.rst
 │   ├── _static/
 │   │   ├── custom.css     # marca Guraify (paleta, Mulish/Open Sans)
 │   │   ├── img/<slug-capítulo>/   # capturas, una carpeta por capítulo
 │   │   └── design/        # notas de diseño (no se referencian)
-│   ├── _templates/        # layout.html (cabecera; aísla el manual del conductor)
+│   ├── _templates/        # layout.html (cabecera del conductor con logo), sidebar-nav-bs.html (barra por recorrido)
 │   └── locale/            # .po en/it, vacíos, aparcados
 ├── .claude/commands/      # /estado, /d3…/d13, /capturas, /publicar, /cerrar-tarea
 ├── .github/workflows/     # CI de build
@@ -142,8 +143,15 @@ Capítulos actuales en `source/17.0/`: `0_product-overview` (Conocer, sin numera
 `3_functional-architecture`, `4_parametrization`, `5_operational-flows`,
 `6_resources`, `7_edi-integrations`, `8_economic-administration`, `10_manual_app` y el anexo `annexes/` (A.1 a A.28).
 El cap. 3 tiene la página `3_2_6_legs-and-stops.rst` (Tramos y Paradas) al final del toctree de 3.2 aunque
-el índice de 3.2 presente las entidades en orden lógico. El cap. 10 es `:orphan:` a propósito: no cuelga del
-toctree, se llega por la tarjeta de portada y `layout.html` le pone cabecera propia.
+el índice de 3.2 presente las entidades en orden lógico.
+
+**Navegación (D15, 2026-09-11)**: la portada `17.0/index` es el documento maestro y tiene un toctree oculto con
+las cuatro raíces de recorrido (`0_product-overview/index`, `implementation-manual`, `7_edi-integrations/index`,
+`10_manual_app/index`). El tema pydata pone en la barra lateral el subárbol de la raíz de primer nivel en la que
+está la página, así que cada recorrido ve solo lo suyo; `sidebar-nav-bs.html` solo añade el título del recorrido
+enlazado. El cap. 10 cuelga del toctree como los demás; `layout.html` le pone una cabecera propia con el logo
+(vuelta a la portada) y el nombre del manual. Sus imágenes conservan el prefijo `10_3_report_` aunque desde D11
+se usen en 10.3 a 10.7. `/docs/index.html` es una redirección estática en `source/_extra/`.
 
 ### Convenciones de RST
 
@@ -222,5 +230,5 @@ confirma**.
 
 ---
 
-*Actualizado el 2026-09-10 (v3, D12). Si algo de aquí queda desactualizado, actualízalo en el
+*Actualizado el 2026-09-11 (v3, D15). Si algo de aquí queda desactualizado, actualízalo en el
 mismo cambio que lo desactualiza.*

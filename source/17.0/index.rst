@@ -15,7 +15,7 @@ recorridos, uno por tipo de lector. Empiece por el suyo.
         Qué es, qué hace y para quién. Para clientes y distribuidores, sin tecnicismos.
 
     .. grid-item-card:: 🛠️ Manual de implantación
-        :link: 1_introduction/index
+        :link: implementation-manual
         :link-type: doc
 
         Cómo funciona por dentro y cómo se configura. Para consultores y clientes avanzados.
@@ -38,28 +38,8 @@ Y para todos, el :doc:`glosario <glossary>`: cada término del producto, con su 
 .. toctree::
    :maxdepth: 1
    :hidden:
-   :caption: Conocer Guraify TMS
 
    0_product-overview/index
-   glossary
-
-.. toctree::
-   :maxdepth: 2
-   :hidden:
-   :caption: Manual de implantación
-
-   1_introduction/index
-   2_conceptual-model/index
-   3_functional-architecture/index
-   4_parametrization/index
-   5_operational-flows/index
-   6_resources/index
-   8_economic-administration/index
-   annexes/index
-
-.. toctree::
-   :maxdepth: 2
-   :hidden:
-   :caption: Guía del integrador
-
+   implementation-manual
    7_edi-integrations/index
+   10_manual_app/index
