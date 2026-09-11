@@ -1,25 +1,25 @@
 4 Parametrización del Sistema
 =============================
 
-Este capítulo describe cómo se configura Guraify TMS para adaptarse a la operativa de una empresa de transporte. A diferencia de los capítulos anteriores —donde se ha explicado el modelo conceptual y la arquitectura funcional— aquí se documentan los elementos de parametrización que permiten que el sistema reproduzca el comportamiento real del negocio.
+Este capítulo describe cómo se configura Guraify TMS para que reproduzca la operativa real de
+una empresa de transporte. Los capítulos anteriores explican el modelo conceptual y la
+arquitectura funcional; aquí se documentan los maestros que hay que rellenar para que ese
+modelo funcione con los datos de la casa.
 
-La parametrización no consiste únicamente en introducir datos en tablas de configuración. Cada elemento definido en este capítulo influye directamente en el funcionamiento de los algoritmos de planificación, en el cálculo económico de los servicios y en la lógica de ejecución operativa.
+Parametrizar no es solo introducir datos en tablas. Cada maestro de este capítulo influye en
+los algoritmos de planificación, en el cálculo económico de los servicios o en la ejecución
+operativa, y una configuración incompleta aparece después como incidencia de importación, de
+planificación, de la app o de tarifa. Por eso la configuración se organiza en cinco bloques,
+que son las cinco páginas del capítulo: la **configuración operativa** (los catálogos que
+clasifican Órdenes, Paradas y participantes), la **logística** (la mercancía y los vehículos),
+la de **planificación** (el territorio, los horarios y los tiempos), la **económica** (las
+tarifas) y la de **Proyectos**.
 
-Por este motivo, la configuración se organiza en distintos bloques que reflejan las dimensiones fundamentales del sistema:
-
-- configuración operativa
-
-- configuración logística
-
-- configuración de planificación
-
-- configuración económica
-
-- configuración de proyectos
-
-Cada bloque agrupa registros maestros que definen reglas estructurales del sistema y que posteriormente serán utilizados por los procesos automáticos de generación de paradas, planificación de viajes, cálculo de tarifas y ejecución operativa.
-
-Es importante entender que estas configuraciones no actúan de forma aislada. La mayoría de ellas se vinculan posteriormente dentro del Proyecto, que actúa como contenedor de configuración para cada operativa o cliente.
+Estos maestros no actúan aislados. Casi todos se vinculan después en el :term:`Proyecto`, que
+es el contenedor de configuración de cada operativa o cliente y del que Órdenes, Tramos,
+Paradas y Viajes heredan su comportamiento. El orden de las páginas es el orden razonable de
+implantación: primero los catálogos, después la mercancía y la flota, luego el territorio y las
+tarifas, y al final el Proyecto que los reúne.
 
 .. toctree::
    :maxdepth: 1

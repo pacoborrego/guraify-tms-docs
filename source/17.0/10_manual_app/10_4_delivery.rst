@@ -55,8 +55,8 @@ Antes de bajar la mercancía, la app te ayuda a localizarla entre todo lo que ll
 
    La lista de bultos de la parada.
 
-Cada bulto es una tarjeta con su **referencia** (la que está en la etiqueta), el **cliente**, el
-**tipo** y la **descripción**, y el **destinatario** con su localidad. Sirve para reconocer
+Cada bulto es una tarjeta. Lleva su **referencia** (la que está en la etiqueta), el **cliente**,
+el **tipo** y la **descripción**, y el **destinatario** con su localidad. Sirve para reconocer
 físicamente cada caja.
 
 .. figure:: /_static/img/10_manual_app/10_3_report_09_bulto-card.png
@@ -69,7 +69,7 @@ físicamente cada caja.
 Tienes dos maneras de confirmar que has entregado cada bulto:
 
 - **Escaneando**: pulsa el icono del escáner, enfoca la etiqueta de cada bulto y la app lo marca
-  sola. Es la manera recomendada: no hay error posible.
+  sola. Es la manera recomendada: así no te equivocas de bulto.
 - **A mano**: pulsa la casilla de cada bulto.
 
 .. figure:: /_static/img/10_manual_app/10_3_report_10_bultos-lista-scan-on.png
@@ -92,9 +92,10 @@ Abajo hay un **contador**: bultos confirmados sobre el total. Cuando estén todo
 .. important::
 
    Tienes que confirmar **todos** los bultos antes de seguir. Si uno no está o viene mal, se
-   reporta desde su tarjeta con **Reportar Problema** (ver :doc:`10_7_incidents`).
+   reporta desde su tarjeta con **Reportar Problema** (ver :doc:`10_7_incidents`). Un bulto
+   reportado cuenta como comprobado: el contador lo suma y **Siguiente** aparece igual.
 
-Si escaneas una etiqueta que no es de esta parada, la app te lo dice al momento con un aviso de
+Si escaneas una etiqueta que no es de esta parada, la app te lo dice con un aviso de
 **Bulto no registrado**: ese bulto no se marca.
 
 10.4.4 La prueba de entrega
@@ -128,8 +129,8 @@ trabaje ese cliente; la app te muestra la que toca.
 
 #. Escribe el **nombre del destinatario** y su **DNI**.
 #. Comprueba el **resumen de entrega**: referencia, destinatario, dirección, fecha, hora y bultos.
-#. Dale el móvil para que **firme** en el recuadro. Si se equivoca, el botón de deshacer borra el
-   último trazo y el de borrar limpia la firma.
+#. Dale el móvil para que **firme** en el recuadro. Si se equivoca, encima del recuadro hay dos
+   iconos: la **flecha atrás** borra el último trazo y la **papelera** limpia toda la firma.
 #. Pulsa **Finalizar**.
 
 .. figure:: /_static/img/10_manual_app/10_3_report_24_parada-report-pre-sign-digital.png
@@ -149,5 +150,5 @@ trabaje ese cliente; la app te muestra la que toca.
 10.4.5 Listo
 ~~~~~~~~~~~~
 
-La parada queda **Hecha**, desaparece de tu ruta y la oficina la ve completada en el momento. Sigue
-con la siguiente.
+La parada queda hecha y desaparece de tu ruta. La oficina la ve al momento si tienes cobertura;
+si no, en cuanto vuelva. Sigue con la siguiente.

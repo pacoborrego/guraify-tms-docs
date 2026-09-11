@@ -9,15 +9,20 @@ camino de integración (API REST y webhooks) y la mecánica propia de las APIs.
 7.3.1 Orquestación
 ------------------
 
-Cada conexión con un sistema externo se define mediante la Integración
-(``tms_int.integration``) y sus líneas (``tms_int.integration.line``). Cada línea
-representa un canal concreto con sus credenciales y parámetros, y se asocia a uno o
-varios clientes y a un proyecto. Esta estructura permite que un mismo cliente disponga
-de varios canales activos y que la configuración de cada uno quede aislada del resto.
+Dos registros distintos organizan una integración, y conviene no confundirlos. La
+**Integración** (``tms_int.integration``) es la ficha de negocio: asocia uno o varios
+clientes y un Proyecto, agrupa sus canales en líneas (``tms_int.integration.line``, cada
+una de tipo API/webhook, importación de fichero o conexión a base de datos, con sus
+credenciales y sus Definiciones de fichero) y designa el patrón de salida. La
+**Integración API** (``tms_int.api.integration``) es la conexión HTTP concreta con un
+sistema remoto, con su URL base y su autenticación, y de ella cuelgan los Endpoints
+(:doc:`7_4_endpoint-configuration`). No están enlazadas por un campo: la primera dice
+*con quién* y *por qué canales* se intercambian datos; la segunda, *cómo* se llama a un
+sistema remoto.
 
 Para los flujos de salida, los patrones (``tms_int.pattern`` y sus líneas
 ``tms_int.pattern.line`` / ``tms_int.pattern.line.field``) describen cómo construir el
-*payload* que se remite a los sistemas remotos (ver :doc:`7_4_endpoint-configuration`).
+cuerpo que se remite a los sistemas remotos (ver :doc:`7_4_endpoint-configuration`).
 
 7.3.2 Configuración de la conexión
 ----------------------------------
@@ -32,13 +37,13 @@ Para los flujos de salida, los patrones (``tms_int.pattern`` y sus líneas
 
    Configuración de una integración API y su autenticación.
 
-La conexión HTTP se define en la Integración API (``tms_int.api.integration``), que
-declara la URL base y el método de autenticación. Se admiten cinco modalidades: sin
-autenticación (``none``), autenticación básica (``basic``), *bearer token* (``bearer``),
-clave de API (``api_key``) y JWT dinámico (``jwt_dynamic``). En esta última, el sistema
-solicita el *token* con usuario y contraseña, lo cachea y lo refresca automáticamente
-cuando expira, evitando renovaciones innecesarias. La configuración incluye además una
-prueba de credenciales para validar la conexión antes de ponerla en producción.
+La Integración API declara la URL base y el método de autenticación. Se admiten cinco
+modalidades: sin autenticación (``none``), autenticación básica (``basic``), *bearer
+token* (``bearer``), clave de API (``api_key``) y JWT dinámico (``jwt_dynamic``). En esta
+última, el sistema solicita el *token* con usuario y contraseña, lo guarda y lo refresca
+automáticamente cuando expira, evitando renovaciones innecesarias. La configuración
+incluye además una prueba de credenciales para validar la conexión antes de ponerla en
+producción.
 
 7.3.3 Almacenamiento intermedio y materialización
 -------------------------------------------------
@@ -54,37 +59,37 @@ prueba de credenciales para validar la conexión antes de ponerla en producción
 
       Bandeja de entrada API con los estados de las líneas.
 
-Los datos que llegan por API no se convierten directamente en registros operativos.
-Primero se depositan en la Bandeja de entrada API (``tms_int.api.inbox``) y sus líneas
-(``tms_int.api.inbox.line``), organizadas por proyecto. Cada línea atraviesa una
-secuencia de estados —recibido, inválido y vinculado— y se agrupa en un Manifiesto
-(``tms.edi.manifest``) junto con sus *preview packs*. Los datos maestros que acompañan
-a la recepción se gestionan mediante los lotes de bandeja (``tms_int.api.inbox.batch``).
+Los datos que llegan por API no se convierten directamente en registros operativos:
+primero se depositan en la Bandeja de entrada API, organizada por Proyecto, y solo tras
+la validación y el cierre del Manifiesto se materializan la Orden, el Tramo, la Parada y
+el Viaje. Los estados de las líneas y los lotes de datos maestros se describen en el
+Manual de implantación (:doc:`/17.0/3_functional-architecture/3_2_4_api-inbox`).
 
-Solo tras la validación y el cierre del Manifiesto se materializa la estructura
-operativa: la Orden (``sale.order``), el Tramo (``tms.shipment.leg``), la Parada
-(``tms.stop``) y el Viaje (``tms.trip``).
+Lo que interesa al integrador es lo que ese paso intermedio le da: cada línea de la
+bandeja conserva el mensaje recibido tal cual, se identifica por la referencia externa de
+la Orden (``ExternalRef``, única por Proyecto, de modo que un reenvío actualiza la línea
+en vez de duplicarla) y genera de inmediato los **bultos previos** (*preview packs*):
+registros de Bulto (``tms.shipment.pack``) creados en modo previo, antes de que exista la
+Orden, para que el cliente pueda disponer ya de sus etiquetas. Al cerrarse el Manifiesto
+esos bultos previos se promueven a los Bultos definitivos de la Orden, conservando su
+código de barras y su token de etiqueta.
 
 7.3.4 Ingesta de datos
 ----------------------
 
 La entrada de datos se canaliza a través de ``tms_int.api.post.import.data``, que crea
-las líneas de bandeja y los *preview packs* asociados a un *token* de etiqueta, **sin
-crear todavía la Orden**. La materialización en ``sale.order`` se produce en una fase
-posterior, una vez validados y agrupados los datos, manteniendo así separadas la
-recepción y la creación de registros operativos.
+las líneas de bandeja y sus bultos previos **sin crear todavía la Orden**. Cada bulto
+previo recibe un **token de etiqueta**: un identificador opaco (UUID) que el cliente
+recibe en la respuesta y con el que puede descargar la etiqueta de ese bulto desde la
+pasarela, tanto antes como después de que la Orden exista. La materialización en
+``sale.order`` se produce en una fase posterior, una vez validados y agrupados los datos,
+manteniendo así separadas la recepción y la creación de registros operativos.
 
 7.3.5 APIs de lectura
 ---------------------
 
 Además de la ingesta, la integración expone consultas de solo lectura: la API de
-seguimiento (``tms_int.api.get.tracking``), que devuelve el estado de las órdenes,
+seguimiento (``tms_int.api.get.tracking``), que devuelve el estado de las Órdenes,
 y la descarga de adjuntos (``tms_int.api.get.attachment``), que aplica control de acceso
-por proyecto para que cada cliente solo acceda a su propia documentación.
-
-.. admonition:: Contratos REST en el *gateway*
-   :class: important
-
-   La estructura concreta de las peticiones y respuestas REST (campos de cada
-   *payload*, ejemplos y códigos de error) se documenta en el *gateway* (``/api/docs``).
-   Aquí se describe únicamente el comportamiento funcional de la integración.
+por Proyecto para que cada cliente solo acceda a su propia documentación. Sus contratos
+están en la pasarela (ver el índice del capítulo).

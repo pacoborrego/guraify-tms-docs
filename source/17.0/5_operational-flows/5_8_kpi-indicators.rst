@@ -4,52 +4,55 @@
 .. admonition:: Ruta en Odoo
    :class: tip
 
-   Columna de KPI en las listas de TMS › Operaciones › Tráfico › Órdenes y de las Paradas
-   (TMS › Operaciones › Maestros operativos › Paradas).
+   Columna KPI en las listas de TMS › Operaciones › Tráfico › Órdenes y de TMS › Operaciones ›
+   Maestros › Paradas.
 
-Para que el departamento de tráfico pueda leer el estado de la operativa de un vistazo,
-las listas de Paradas y de Órdenes incluyen un **indicador KPI**: un pequeño gráfico que se
-**calcula automáticamente** a partir del estado de cada registro. No es un dato editable, sino un
-resumen visual que se regenera cuando cambian los estados subyacentes.
+Esta sección no es un paso del flujo: es una ayuda para leer los anteriores. Para que el
+departamento de tráfico pueda ver el estado de la operativa de un vistazo, las listas de
+Paradas y de Órdenes incluyen un :term:`indicador KPI <Indicador KPI>`: un pequeño gráfico que
+se calcula automáticamente a partir del estado de cada registro. No es un dato editable, sino
+un resumen visual que se regenera cuando cambian los estados subyacentes. No confundirlo con
+los :term:`indicadores configurables <Indicador configurable>` del motor de indicadores
+(:doc:`/17.0/8_economic-administration/8_8_control-reporting`).
 
 5.8.1 Indicador de Parada
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-El KPI de la Parada (``tms.stop``) condensa cuatro informaciones en un mismo gráfico:
+El indicador de la Parada (``tms.stop``) condensa cuatro informaciones en un mismo gráfico:
 
-- **Tipo de parada / flujo**: representado con triángulos según sea recogida, entrega,
-  paso por hub, recogida a domicilio o entrega/recogida directa.
-- **Estado operativo**: por el color del triángulo — gris para los estados en curso
-  (borrador, en proceso, procesada, cargada, en ruta), verde para *completada*, rojo para
-  *fallida*, *devuelta* o *cancelada*, y amarillo para *reservas* o *reprogramada*.
-- **Puntualidad**: una barra de color, verde si llega a tiempo, rojo si hay retraso y azul si
-  hay adelanto, con una etiqueta del desvío en minutos (menos de 15, de 30, de 60, más de
-  60, o los minutos con signo).
-- **Secuencia**: un chip con el número de orden de la parada dentro del Viaje.
+- **Tipo de Parada y flujo**: representado con triángulos según sea recogida, entrega, paso por
+  hub, recogida a domicilio o recogida o entrega directa.
+- **Estado de la Parada**: por el color del triángulo. Gris para los estados abiertos
+  (borrador, en proceso, procesada y los intermedios de la app); verde para **Completada**;
+  rojo para **Fallida**, **Devuelta** y **Cancelada**; amarillo para **Con reservas** y
+  **Reprogramada** (ver :term:`Estados de la Parada`).
+- **Puntualidad**: una barra de color que compara la hora real con la prevista: verde si la
+  Parada se ejecutó a tiempo, roja si con retraso y azul si con adelanto, con una etiqueta que
+  resume el desvío en minutos.
+- **Secuencia**: un número con la posición de la Parada dentro del Viaje.
 
-Las paradas sugeridas por el optimizador se muestran con un único icono de información
-("i"), ya que aún no son eventos ejecutables.
+Las Paradas de inicio y fin que genera el optimizador se muestran con un único icono de
+información («i»), porque no son eventos ejecutables.
 
 5.8.2 Indicador de Orden
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-El KPI de la Orden (``sale.order``) **se construye a partir del KPI de su parada activa** y
-le añade, a la derecha, iconos propios del nivel de Orden:
+El indicador de la Orden (``sale.order``) se construye a partir del de su Parada activa (ver
+:doc:`/17.0/3_functional-architecture/3_2_5_active-leg`) y le añade, a la derecha, iconos
+propios del nivel de Orden:
 
-- **Validación**: si la Orden no ha superado la validación, se muestra **solo** un aviso rojo de advertencia; el resto de iconos no aparecen hasta que
-  la orden es válida.
-- **Facturación y bloqueo**: si la Orden está **facturada**, un icono de **factura verde**.
-  Si no lo está, un **candado** cuyo color refleja el estado administrativo: verde y
-  cerrado si está confirmada o bloqueada, rojo si está cancelada, turquesa y abierto si está
-  en borrador, y amarillo y abierto en el caso especial de no tener importe activo pero sí
-  tramos facturables (atención).
-- **Reclamación de POD físico**: si procede reclamar la prueba de entrega física, un icono rojo de reclamación.
+- **Validación**: si la Orden no ha superado la validación, se muestra solo un aviso rojo; el
+  resto de iconos no aparece hasta que la Orden es válida.
+- **Facturación y bloqueo**: si la Orden está **facturada**, un icono de factura verde. Si no
+  lo está, un **candado** cuyo color refleja el estado administrativo: verde y cerrado si está
+  confirmada o bloqueada, rojo si está cancelada, turquesa y abierto si está en borrador, y
+  amarillo y abierto cuando no tiene importe de venta pero sí Tramos facturables, que es una
+  situación a revisar.
+- **Reclamación de POD físico**: si procede reclamar la :term:`prueba de entrega (POD) <POD>`
+  física, un icono rojo de reclamación.
 
-De este modo, el KPI de la Orden resume en una sola celda el estado operativo (heredado de
-la parada activa), la validación, la situación de facturación/bloqueo y la necesidad de
-reclamar POD. Los estados que el indicador refleja se describen en
-:doc:`/17.0/3_functional-architecture/3_2_1_orders` (Orden) y
-:doc:`/17.0/3_functional-architecture/3_2_2_trips` (Viaje).
+Los estados de la Orden que el indicador refleja se describen en
+:doc:`/17.0/3_functional-architecture/3_2_1_orders`.
 
 .. figure:: /_static/img/5_operational-flows/5_8_kpi-indicators_01_kpi-parada.png
    :alt: Indicador KPI en la lista de Paradas

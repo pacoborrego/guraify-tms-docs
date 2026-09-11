@@ -6,12 +6,12 @@
 
    Gestión de Recursos › Mantenimiento › Órdenes de trabajo, Calendario y Tablero del taller.
 
-El mantenimiento se apoya en el módulo nativo de Mantenimiento de Odoo, con una diferencia de
+El mantenimiento se apoya en el módulo nativo de Mantenimiento de Odoo con una diferencia de
 diseño: **el elemento que se mantiene es el vehículo**, directamente, sin crear un «equipo» de
-mantenimiento por cada vehículo. El vehículo de la Flota incorpora el comportamiento
-mantenible del módulo nativo, y con él llegan gratis el equipo de taller y el técnico
-responsables, los contadores de órdenes abiertas, las fechas del último fallo y los indicadores
-de fiabilidad (tiempo medio entre fallos y tiempo medio de reparación).
+mantenimiento por cada vehículo. El vehículo de la Flota incorpora el comportamiento mantenible
+del módulo nativo y, con él, el equipo de taller y el técnico responsables, los contadores de
+órdenes abiertas, las fechas del último fallo y los indicadores de fiabilidad (tiempo medio
+entre fallos y tiempo medio de reparación).
 
 6.3.1 La orden de trabajo
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -30,12 +30,12 @@ ha roto o hay que revisar, y **preventiva** cuando la genera una regla o una rec
 asunto se compone solo con el trabajo y la matrícula («Aceite de Motor — AA102SQ») y se puede
 sobrescribir; lo que teclee el usuario no se toca.
 
-La orden recorre cuatro etapas: **Pendiente** (abierta, sin empezar), **En taller**, **Realizada**
-(cerrada) y **Descartada** (cerrada sin hacerse). Las dos últimas cuentan como cerradas: la orden
-entra en el historial y alimenta el motor. Una orden anulada no es una etapa, es el archivo de
-Odoo. El calendario, el kanban por etapas y el tablero del taller son los nativos, con el
-kilometraje actual del vehículo añadido a las tarjetas y a la lista, y un filtro **Pendientes**
-que reúne lo que no está cerrado.
+La orden recorre cuatro etapas: **Pendiente** (abierta, sin empezar), **En taller**,
+**Realizada** (cerrada) y **Descartada** (cerrada sin hacerse). Las dos últimas cuentan como
+cerradas: la orden entra en el historial y alimenta el motor. Anular una orden no es una etapa:
+es archivarla, como cualquier registro de Odoo. El calendario, las tarjetas por etapas (kanban)
+y el tablero del taller son los nativos, con el kilometraje actual del vehículo añadido a las
+tarjetas y a la lista, y un filtro **Pendientes** que reúne lo que no está cerrado.
 
 .. important::
 
@@ -51,31 +51,37 @@ El **trabajo** es lo que se hace: cambio de aceite de motor, filtro de aire, fre
 inyectores. El catálogo es el de tipos de servicio de la Flota de Odoo (``fleet.service.type``),
 extendido con la tarea, el material y el intervalo por defecto de cada trabajo, y con la marca
 de si participa en el preventivo. El sistema viene con veintiún trabajos preventivos y los
-cuatro objetivos periódicos (lavado, engrase, calibración y relevamiento de cubiertas), y el
-cliente añade los suyos. Los nombres son únicos sin distinguir mayúsculas.
+cuatro **objetivos periódicos**, que son trabajos cuyo intervalo se mide en días desde la
+última vez: lavado y engrase cada 30 días, calibración de neumáticos y revisión de neumáticos
+cada 90 (en el catálogo de serie, «Lavado», «Engrase», «Calibración de cubiertas» y
+«Relevamiento de cubiertas»). El cliente añade los suyos. Los nombres son únicos sin distinguir
+mayúsculas. Los objetivos alimentan los rankings y la orden de trabajo impresa
+(:doc:`6_6_outputs`) y su intervalo se ajusta en el propio trabajo (:doc:`6_8_configuration`).
 
 La **tarea** (``tms.maintenance.task``) es la clasificación con la que el taller filtra su
-lista: Preventivo, Taller, Reparación, Repuesto, Gomería, Lavado, Engrase, Mejora, Auxilio,
-Multimedia, Mano de obra. Cada trabajo tiene una tarea por defecto y cada orden hereda la del
-trabajo o lleva la suya. Ambos catálogos se mantienen en :doc:`6_8_configuration`.
+lista: preventivo, taller, reparación, repuesto, neumáticos, lavado, engrase, mejora, asistencia
+en carretera, multimedia, mano de obra y labor (en el catálogo de serie, «M. Preventivo»,
+«Taller», «Reparación», «Repuesto», «Gomeria», «Lavado», «Engrase», «Mejora», «Auxilio»,
+«Multimedia», «MO» y «Labor»). Cada trabajo tiene una tarea por defecto y cada orden hereda la
+del trabajo o lleva la suya. Ambos catálogos se mantienen en :doc:`6_8_configuration`.
 
 6.3.3 La ficha del vehículo
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. CAPTURA: 6_3_02 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/6_resources/6_3_maintenance-model_02_pestana-mantenimiento.png
-      :alt: Pestaña Maintenance (TMS) del vehículo
+      :alt: Pestaña de mantenimiento del vehículo
 
-      La pestaña de mantenimiento del vehículo: control de service, fiabilidad, reglas y órdenes.
+      La pestaña de mantenimiento del vehículo: control de revisiones, fiabilidad, reglas y
+      órdenes.
 
-La ficha del vehículo reúne todo lo del taller en la pestaña **Maintenance (TMS)**: el control de
-service a dos niveles, los indicadores de fiabilidad que da el módulo nativo (tiempo medio
-entre fallos, tiempo medio de reparación, próximo fallo estimado, último fallo, equipo y
-técnico), la configuración de la unidad, las reglas de preventivo con su semáforo (de solo
-lectura: se editan en su pantalla) y el historial de órdenes. Un botón inteligente muestra las
-órdenes abiertas, y los botones de la pestaña lanzan la carga masiva de service, el texto para
-el taller y la orden de trabajo impresa (ver :doc:`6_5_workshop-flows` y :doc:`6_6_outputs`).
-
-Dar de baja una unidad es **archivarla**, como cualquier registro de Odoo: desaparece de las
-listas, los rankings y las alertas y conserva todo su historial. Campos en
+La ficha del vehículo reúne todo lo del taller en la pestaña de mantenimiento («Maintenance
+(TMS)»): el control de revisiones a dos niveles, los indicadores de fiabilidad que da el módulo
+nativo (tiempo medio entre fallos, tiempo medio de reparación, próximo fallo estimado, último
+fallo, equipo y técnico), la configuración del vehículo (ejes o carrocería, ver
+:doc:`6_8_configuration`), las reglas de preventivo con su semáforo (de solo lectura: se editan
+en su pantalla) y el historial de órdenes. Un botón inteligente muestra las órdenes abiertas, y
+los botones de la pestaña lanzan la carga masiva de revisiones, el texto para el taller y la
+orden de trabajo impresa (ver :doc:`6_5_workshop-flows` y :doc:`6_6_outputs`). El alta y la
+baja de vehículos se describen en :doc:`6_5_workshop-flows`. Campos en
 :doc:`/17.0/annexes/A_20_mantenimiento`.

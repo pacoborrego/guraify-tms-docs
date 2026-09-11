@@ -4,22 +4,19 @@ Preguntas frecuentes
 **¿Necesito Odoo para usar Guraify TMS?**
    Sí. Guraify TMS es un conjunto de módulos de Odoo 17 y trabaja sobre sus ventas, compras,
    contabilidad, contactos, flota y proyectos. Si su empresa ya usa Odoo 17, se instala encima.
-   Si no, la implantación incluye Odoo.
+   Si no, hay que instalarlo; cómo hacerlo se acuerda con Guraify o con su distribuidor.
 
 **¿Qué edición de Odoo, en la nube o en mi servidor, y con qué licencia?**
    Estos aspectos se tratan directamente con Guraify según cada proyecto. Consulte con Guraify
    o con su distribuidor.
 
 **¿Puedo usarlo sin el motor de PTV?**
-   Sí. Sin contrato PTV el sistema funciona con planificación manual y el mapa se muestra
-   sobre OpenStreetMap. Lo que requiere PTV es la optimización automática de rutas, la
-   secuenciación y el cálculo de distancias y horas estimadas de llegada con red viaria
-   profesional.
+   Sí: se planifica a mano y el mapa se muestra sobre OpenStreetMap. Lo que requiere PTV está
+   en :doc:`Qué incluye <0_4_what-it-includes>`.
 
 **¿Sirve para varias empresas a la vez?**
-   Sí. Odoo es multiempresa y el TMS respeta esa separación: cada compañía ve sus datos, y la
-   app del conductor y las comunicaciones llevan la marca de cada una. Un distribuidor puede
-   operar varios clientes en una misma instalación.
+   Sí. Odoo es multiempresa y el TMS respeta esa separación, con la marca de cada compañía en
+   la app y en las comunicaciones (ver :doc:`Qué incluye <0_4_what-it-includes>`).
 
 **¿En qué idiomas está?**
    La interfaz del TMS está en español (España y Argentina) e inglés, sobre un Odoo que se
@@ -27,30 +24,31 @@ Preguntas frecuentes
    Esta documentación está en español.
 
 **¿Qué necesitan los conductores?**
-   Un móvil Android o iPhone con la app instalada, un usuario y la dirección del servidor de
-   su empresa. No necesitan usuario de Odoo ni formación en Odoo.
+   Un móvil Android o iPhone con la app instalada, un usuario y el dominio de su empresa (la
+   dirección de su servidor). No necesitan entrar en Odoo ni saber usarlo.
 
 **¿Qué pasa si el conductor pierde la cobertura?**
-   La app guarda lo que hace y lo envía al recuperar la red. Lo que no consigue enviar queda
-   en una cola visible que el conductor puede reintentar.
+   La app guarda lo que hace y lo envía al recuperar la red; el detalle está en
+   :doc:`La app del conductor <0_5_driver-app>`.
 
-**¿Cómo empiezan a entrar las órdenes de mis clientes?**
+**¿Cómo empiezan a entrar las Órdenes de mis clientes?**
    Por el canal que ya usen: un fichero Excel o CSV con su formato, una integración por API o
-   webhooks desde su sistema, o el formulario de Odoo para lo puntual. Definir el formato de
-   un fichero de cliente es una tarea de configuración, no de programación.
+   por avisos automáticos (webhooks) desde su sistema, o el formulario de Odoo para lo puntual.
+   Definir el formato de un fichero de cliente es, en la mayoría de los casos, una tarea de
+   configuración, no de programación.
 
-**¿Mis clientes pueden ver el estado de sus envíos?**
-   Sí. Por integración, recibiendo los estados y la prueba de entrega en su sistema; por
-   consulta, preguntando por su referencia; o por el portal, entrando con su usuario.
+**¿Mis clientes pueden ver el estado de sus Órdenes?**
+   Sí. Por integración, recibiendo los estados y la prueba de entrega (POD) en su sistema, o
+   por consulta, preguntando por su referencia (ver :doc:`Integraciones <0_6_integrations>`).
 
 **¿Cómo se migra desde otro sistema?**
-   Los datos maestros (clientes, transportistas, conductores, vehículos, direcciones) y las
-   órdenes en curso se cargan con la misma importación de ficheros que se usa en el día a día.
-   El entorno de demostración sirve para ensayar la carga antes de hacerla en real.
+   Los datos maestros (clientes, transportistas, conductores, vehículos, direcciones) se
+   cargan al implantar, y la carga inicial de Órdenes se hace con la misma importación de
+   ficheros que se usa en el día a día, ensayada antes en un entorno de pruebas.
 
 **¿Se puede probar antes de decidir?**
-   Sí. Hay un entorno de demostración con configuración completa y datos inventados que se
-   instala en minutos. Consulte con Guraify o con su distribuidor.
+   Sí. Hay un entorno de demostración que se instala en minutos (ver :doc:`Qué incluye
+   <0_4_what-it-includes>`). Consulte con Guraify o con su distribuidor.
 
 **¿Quién da soporte y cómo se actualiza?**
    Se acuerda en cada proyecto. Consulte con Guraify o con su distribuidor.

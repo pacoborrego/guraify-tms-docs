@@ -2,10 +2,10 @@ Conocer Guraify TMS
 ===================
 
 Guraify TMS es un sistema de gestión del transporte construido dentro de Odoo. Recibe los
-encargos de los clientes, los convierte en paradas planificables, las agrupa en viajes, los
-ejecuta con una app en el móvil del conductor y cierra el ciclo con la liquidación al
-transportista y la factura al cliente. Todo en el mismo sistema en el que la empresa ya lleva
-su contabilidad, sus contactos y su flota.
+encargos de los clientes, los planifica, los ejecuta con una app en el móvil del conductor y
+cierra el ciclo con la liquidación al transportista y la factura al cliente, todo en el mismo
+sistema en el que la empresa ya lleva su contabilidad, sus contactos y su flota. Ese ciclo,
+paso a paso, está en :doc:`Cómo funciona <0_3_how-it-works>`.
 
 Estas páginas son para quien quiere entender **qué es y qué hace** el producto antes de entrar
 en detalle: clientes que lo están valorando, distribuidores que lo van a implantar y

@@ -4,9 +4,9 @@ Manual del conductor
 ====================
 
 Esta guía es para ti, que conduces y usas la app de Guraify TMS en el móvil. Te explica, paso a
-paso y con pantallas, lo que vas a hacer cada día: entrar en la app, ver tu ruta, ir parada a
-parada, cargar, entregar, cobrar un reembolso cuando toque, avisar cuando algo no va bien y
-cerrar la jornada. No hace falta saber nada del sistema de la oficina.
+paso y con pantallas, lo que vas a hacer cada día: entrar en la app, ver tu ruta e ir parada a
+parada. También cómo cargar, entregar, cobrar un reembolso cuando toque, avisar cuando algo no
+va bien y cerrar la jornada. No hace falta saber nada del sistema de la oficina.
 
 Antes de empezar, seis palabras que verás todo el rato:
 
@@ -22,7 +22,7 @@ Antes de empezar, seis palabras que verás todo el rato:
      - Cada sitio al que vas: una entrega, una recogida o el paso por la nave. Puede llevar una o
        varias órdenes.
    * - **Bulto**
-     - Cada caja, palé o paquete con su etiqueta. Es lo que escaneas.
+     - Cada caja o palé con su etiqueta. Es lo que escaneas.
    * - **POD**
      - La prueba de entrega. Puede ser **digital** (el destinatario firma en tu pantalla) o
        **física** (haces una foto del albarán firmado).

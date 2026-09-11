@@ -27,8 +27,9 @@ La cabecera resume tu jornada en tres líneas:
 #. La **duración** prevista, los **kilómetros**, la **carga** en kilos y el **volumen** en metros
    cúbicos.
 
-Arriba a la derecha está tu **avatar**. Si aparece un número encima, hay datos que la app todavía
-no ha podido enviar a la oficina; en :doc:`10_8_end-of-day` te contamos qué hacer.
+Arriba a la derecha está tu **avatar**, el círculo con tu foto o tu inicial. Si aparece un número
+encima, hay datos que la app todavía no ha podido enviar a la oficina; en :doc:`10_8_end-of-day`
+te contamos qué hacer.
 
 10.2.2 Las paradas
 ~~~~~~~~~~~~~~~~~~
@@ -45,8 +46,9 @@ hacerlas.
 
 En cada tarjeta ves:
 
-- A la izquierda, el **número de la parada** (la 0 es la primera). El color del círculo te dice
-  cómo vas de tiempo: **sin color**, en hora; **rojo**, con retraso; **verde**, con adelanto.
+- A la izquierda, el **número de la parada** (la numeración empieza en 0, así que la 0 es la
+  primera). El color del círculo te dice cómo vas de tiempo: **sin color**, en hora; **rojo**, con
+  retraso; **verde**, con adelanto.
 - Arriba, el **tipo de parada** (icono), el **nombre del sitio**, el **código postal y la
   localidad**, y cuántas **órdenes** lleva.
 - En el centro, la **franja horaria** acordada y la **hora estimada de llegada**, con el retraso o
@@ -59,7 +61,7 @@ En cada tarjeta ves:
    calculan con ese orden, y la oficina y los destinatarios las ven. Si necesitas cambiarlo,
    llama a la oficina antes.
 
-Cuando terminas una parada, desaparece de la lista: siempre ves sólo lo que te queda. Para
+Cuando terminas una parada, desaparece de la lista: siempre ves solo lo que te queda. Para
 entrar en una parada, **pulsa su tarjeta**.
 
 10.2.3 Las pestañas de abajo
@@ -79,5 +81,7 @@ En la parte de abajo hay cinco pestañas:
 - **Mapas**: el mapa con el recorrido de tu ruta y tus paradas numeradas.
 - **Escanear**: buscar bultos con la cámara (ver :doc:`10_4_delivery`).
 - **Chat**: mensajes con la oficina, cuando tu empresa lo tenga activado.
-- **Perfil**: tu cuenta, la sincronización con la oficina y cerrar sesión (ver
-  :doc:`10_8_end-of-day`).
+- **Perfil**: abre la pantalla **Cuenta**, con tu usuario, la **sincronización** y el botón de
+  cerrar sesión. Sincronizar es enviar a la oficina lo que has hecho en la app y recibir los
+  cambios que ella haya hecho en tu ruta; la app lo hace sola, y en :doc:`10_8_end-of-day` te
+  contamos cuándo forzarlo.

@@ -1,8 +1,9 @@
 Documentación de Guraify TMS
 ============================
 
-Guraify TMS es el sistema de gestión del transporte construido dentro de Odoo 17. Esta
-documentación tiene cuatro recorridos, uno por tipo de lector. Empiece por el suyo.
+Guraify TMS gestiona el transporte desde dentro de Odoo 17: del encargo del cliente a la
+factura, pasando por la planificación y la app del conductor. Esta documentación tiene cuatro
+recorridos, uno por tipo de lector. Empiece por el suyo.
 
 .. grid:: 1 2 2 2
     :gutter: 3
@@ -23,7 +24,8 @@ documentación tiene cuatro recorridos, uno por tipo de lector. Empiece por el s
         :link: 7_edi-integrations/index
         :link-type: doc
 
-        Cómo entran y salen los datos: ficheros, API y webhooks. Para técnicos de integración.
+        Cómo entran y salen los datos: ficheros, API y avisos automáticos (webhooks). Para técnicos
+        de integración.
 
     .. grid-item-card:: 📱 Manual del conductor
         :link: 10_manual_app/index

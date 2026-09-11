@@ -51,6 +51,14 @@ decisiones que más se incumplen:
 | Manifiesto / Definición de fichero | Fichero EDI (son dos cosas distintas) |
 | Bandeja de entrada API | API Inbox, Inbox, Bandeja de Entrada |
 | Planning (sin traducir) | Planificación, cuando es la entidad `tms.planning` |
+| Prueba de entrega (POD) en la primera mención, luego POD | *proof of delivery* suelto |
+| Indicador visual (KPI) para los semáforos de las listas (5.8) / Indicador configurable para el motor `tms.kpi` (8.8) | «Indicador» a secas |
+| Modo por franja / modo por categoría de vehículo (Optimizador) | Por turno, por turnos del Planning |
+| Secuenciar Viaje (interruptor y botón) / secuenciación (servicio) / Enrutar Viaje (botón del cálculo de ruta) | Autosecuenciación, enrutar |
+| Perfil de jornada | Preset |
+| Pasarela de API, punto de conexión, aviso automático entre sistemas (webhook) | Gateway, endpoint (salvo la entidad Endpoint del cap. 7), backoffice |
+| «solo» sin tilde; comillas latinas « » en prosa; entidades del glosario con mayúscula inicial | «sólo», comillas rectas |
+| Español de España en la prosa (neumáticos, revisión, vehículo, conductor); las etiquetas de la interfaz o los datos de serie que digan otra cosa se citan una vez entre comillas | gomería, service, unidad, chofer, cubiertas |
 | Regla de tarifa (qué se mide) / Línea de tarifa (el precio) | "Reglas de tarifa" para las dos |
 | Área geográfica / Zona de tarifa | Zona geográfica, Zona tarifaria |
 | Cálculo de ruta / Secuenciación / Optimización completa | Routing (salvo como nombre del servicio de PTV en tablas), Sequence |
@@ -130,9 +138,11 @@ tms-docs/
 └── versions.json          # aparcado (una sola versión)
 ```
 
-Capítulos actuales en `source/17.0/`: `1_introduction`, `2_conceptual-model`,
+Capítulos actuales en `source/17.0/`: `0_product-overview` (Conocer, sin numerar), `1_introduction`, `2_conceptual-model` (cuatro páginas desde D12),
 `3_functional-architecture`, `4_parametrization`, `5_operational-flows`,
-`6_resources`, `7_edi-integrations`, `8_economic-administration`, `10_manual_app` y el anexo `annexes/`. El cap. 10 es `:orphan:` a propósito: no cuelga del
+`6_resources`, `7_edi-integrations`, `8_economic-administration`, `10_manual_app` y el anexo `annexes/` (A.1 a A.28).
+El cap. 3 tiene la página `3_2_6_legs-and-stops.rst` (Tramos y Paradas) al final del toctree de 3.2 aunque
+el índice de 3.2 presente las entidades en orden lógico. El cap. 10 es `:orphan:` a propósito: no cuelga del
 toctree, se llega por la tarjeta de portada y `layout.html` le pone cabecera propia.
 
 ### Convenciones de RST
@@ -153,6 +163,18 @@ toctree, se llega por la tarjeta de portada y `layout.html` le pone cabecera pro
 - **Nada de notas de desarrollador** ("conviene revisar", "el onchange reconstruye…"). Si algo
   del código parece un bug, se anota en `CHANGELOG.md` o se le dice a Paco, no al lector.
 - Prosa redactada, no apuntes: párrafos completos, nada de listas de una palabra.
+- **Cada cosa se explica una vez** y el resto enlaza (decisión del cierre editorial D12, 2026-09-10). Dónde vive
+  cada copia única: ciclo y tríada Orden/Viaje/margen en 0.3 (Conocer) y 2.1 (implantación, detalle en 8.1);
+  tres niveles de PTV en 1.4.2; normalización de direcciones en la tabla de 3.2.3; Bloquear/Desbloquear en
+  3.2.1; Tramos, Paradas y sus estados en 3.2.6; Bandeja de entrada API en 3.2.4; flota propia sin orden de
+  compra en 8.1; nacimiento de la orden de compra en 8.4; tarea programada de tarificación y motivos del
+  diagnóstico en 5.6; factura agrupada en 5.7; motor de indicadores en 8.8; frontera con la pasarela en el
+  index del 7, registro de llamadas en 7.7.1, disparadores en 7.4.2; en el manual del conductor, bulto con
+  problema en 10.7.2 y botones de Resultado en 10.7.1.
+- **Las etiquetas de la interfaz que contradicen al glosario se corrigen en Odoo** (`es.po` de `tms`,
+  `tms_int`, `tms_app`; lista en `PLAN.md`) y la doc usa la etiqueta corregida. Solo se cita entre comillas la
+  etiqueta vieja cuando no hay traducción posible todavía (`tms_resources` y `tms_maintenance` no tienen
+  `es.po`).
 
 ### Capturas
 
@@ -200,5 +222,5 @@ confirma**.
 
 ---
 
-*Actualizado el 2026-09-10 (v3, D11). Si algo de aquí queda desactualizado, actualízalo en el
+*Actualizado el 2026-09-10 (v3, D12). Si algo de aquí queda desactualizado, actualízalo en el
 mismo cambio que lo desactualiza.*

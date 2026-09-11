@@ -6,10 +6,10 @@ mantenimiento de los vehículos. Es el área que usa el taller, no el departamen
 por eso vive en su propio menú raíz.
 
 La tesis del área es la misma que la del resto del sistema: usar lo que Odoo ya tiene y
-construir sólo lo que no existe. El vehículo de la Flota de Odoo es el elemento mantenible; las
-órdenes de trabajo, las etapas, el calendario, el tablero y la recurrencia por tiempo son las
-del módulo nativo de Mantenimiento. Lo que Odoo no sabe hacer en ningún módulo, y aquí se
-construye, son dos cosas: un **odómetro único** con control de calidad, en el que confluyen
+construir solo lo que no existe. El vehículo de la Flota de Odoo es el elemento mantenible; las
+órdenes de trabajo, las etapas, el calendario, el tablero del taller y la recurrencia por tiempo
+son las del módulo nativo de Mantenimiento. Lo que Odoo no sabe hacer en ningún módulo, y aquí
+se construye, son dos cosas: un **odómetro único** con control de calidad, en el que confluyen
 todas las lecturas de kilometraje, y el **disparo del mantenimiento preventivo por kilómetros**.
 
 .. mermaid::
@@ -20,7 +20,7 @@ todas las lecturas de kilometraje, y el **disparo del mantenimiento preventivo p
        R -->|umbral cruzado| P["Orden de trabajo<br/>pendiente"]
        P --> C["Cierre con km"]
        C --> O
-       O --> S["Control de service<br/>dos niveles"]
+       O --> S["Control de revisiones<br/>dos niveles"]
        R --> W["Salidas de taller<br/>orden impresa · WhatsApp · rankings"]
        R --> K["Indicadores"]
 

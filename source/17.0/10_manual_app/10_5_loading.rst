@@ -31,36 +31,11 @@ recogida a domicilio. Los tres pasos son los mismos que en una entrega; cambia l
 10.5.3 Un bulto con problema
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Si un bulto viene dañado o no debería cargarse:
-
-#. Pulsa su tarjeta y luego **Reportar Problema**.
-#. La app te pregunta **¿SE ENTREGA EL BULTO?**:
-
-   - **SE ENTREGA**: el bulto va, pero con una incidencia (embalaje roto, golpe visible). Elige el
-     motivo y haz la **foto** que te pide. Queda como *con reservas*.
-   - **NO SE ENTREGA**: el bulto **no se carga** (daño grave, producto equivocado). Elige el
-     motivo. Queda como *fallido* y no sube al vehículo.
-
-.. figure:: /_static/img/10_manual_app/10_3_report_14_reporte-carga-1.png
-   :width: 300px
-   :align: center
-   :alt: Tarjeta de un bulto en la carga
-
-   Pulsa la tarjeta del bulto.
-
-.. figure:: /_static/img/10_manual_app/10_3_report_15_reporte-carga-2.png
-   :width: 300px
-   :align: center
-   :alt: Botón Reportar Problema
-
-   El botón Reportar Problema.
-
-.. figure:: /_static/img/10_manual_app/10_3_report_16_reporte-carga-3.png
-   :width: 300px
-   :align: center
-   :alt: Pregunta ¿Se entrega el bulto? con las dos opciones
-
-   ¿Se entrega el bulto?
+Un bulto dañado o que no debería cargarse se reporta igual que en una entrega, desde su tarjeta
+con **Reportar Problema**; los pasos, con sus pantallas, están en :doc:`10_7_incidents`. La única
+diferencia está en la pregunta **¿SE ENTREGA EL BULTO?**: en una carga, «entrega» quiere decir
+«se carga». **SE ENTREGA** es que el bulto sube al vehículo, con su incidencia y su foto;
+**NO SE ENTREGA** es que se queda en tierra.
 
 .. important::
 
@@ -75,5 +50,5 @@ Si un bulto viene dañado o no debería cargarse:
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 Cuando has comprobado todos los bultos, pulsa **Siguiente**. En una carga no hay prueba de entrega
-que pedir: la parada queda **Hecha**, sale de la lista y los bultos que has cargado ya viajan
-contigo en la app. Lo que has reportado con problema se ve en la oficina al momento.
+que pedir: la parada queda hecha, sale de la lista y los bultos que has cargado ya viajan contigo
+en la app. Lo que has reportado con problema lo ve la oficina.

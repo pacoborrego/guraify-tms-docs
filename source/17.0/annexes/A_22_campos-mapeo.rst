@@ -1,12 +1,22 @@
 A.22 Catálogo de campos de mapeo
 ================================
 
-Los campos de destino que admite una :term:`Definición de fichero` al mapear las columnas de un
-fichero o los campos de un mensaje de API, agrupados por la entidad que alimentan. Es el
-catálogo cerrado que el TMS sabe materializar: una columna sólo puede apuntar a uno de ellos. Cómo
-se configura el mapeo y cómo se transforman los valores está en
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   TMS › Configuración › EDI › Definición de Fichero › pestaña de mapeo de columnas
+
+Modelo Odoo: ``tms.edi.field.mapping``. Los campos de destino que admite una :term:`Definición de
+fichero` al mapear las columnas de un fichero o los campos de un mensaje de API, agrupados por la
+entidad que alimentan. Es el catálogo cerrado que el TMS sabe materializar: una columna solo puede
+apuntar a uno de ellos, y los mensajes que llegan por la Bandeja de entrada API usan las mismas
+claves. Cómo se configura el mapeo y cómo se transforman los valores está en
 :doc:`/17.0/7_edi-integrations/7_2_1_field-mapping` y
 :doc:`/17.0/7_edi-integrations/7_2_2_python-transformations`.
+
+Este anexo no sigue el formato Campo / Tipo / Qué es de los demás: aquí no hay campos de un
+formulario sino claves de un catálogo, y lo que importa de cada una es a qué dato del TMS
+corresponde.
 
 .. list-table:: Viaje (``tms.trip``)
    :header-rows: 1
@@ -15,17 +25,17 @@ se configura el mapeo y cómo se transforman los valores está en
    * - Campo destino
      - Significado
    * - ``TripName``
-     - Nombre o identificador del viaje.
+     - Nombre o identificador del Viaje.
    * - ``TripDate``
-     - Fecha del viaje.
+     - Fecha del Viaje.
    * - ``TripPlanning``
-     - Planificación asociada al viaje.
+     - Planning del Viaje.
    * - ``TripHub``
-     - Hub o base logística del viaje.
+     - Hub o base logística del Viaje.
    * - ``Sequence``
-     - Orden de la parada dentro del viaje.
+     - Posición de la Parada dentro del Viaje.
    * - ``Carrier``
-     - Transportista asignado al viaje.
+     - Transportista asignado al Viaje.
    * - ``CarrierProject``
      - Proyecto del transportista.
    * - ``CPriceList``
@@ -44,31 +54,33 @@ se configura el mapeo y cómo se transforman los valores está en
    * - Campo destino
      - Significado
    * - ``Project``
-     - Proyecto al que pertenece la orden.
+     - Proyecto al que pertenece la Orden.
    * - ``Customer``
-     - Cliente de la orden.
+     - Cliente de la Orden.
    * - ``PriceList``
      - Tarifa de venta aplicable.
    * - ``ExternalRef``
-     - Referencia externa de la orden (clave de idempotencia).
+     - Referencia externa de la Orden. Volver a recibir la misma referencia actualiza la Orden en
+       vez de duplicarla.
    * - ``ShipmentType``
      - Tipo de Orden.
    * - ``ServiceType``
-     - Tipo de servicio contratado.
+     - Tipo de Servicio contratado.
    * - ``CashValue``
-     - Importe del reembolso.
+     - Importe del Reembolso.
    * - ``CashCurrency``
-     - Divisa del reembolso.
+     - Divisa del Reembolso.
    * - ``CashPaymentType``
-     - Forma de pago del reembolso.
+     - Forma de pago del Reembolso.
    * - ``CashNote``
-     - Nota asociada al reembolso.
+     - Nota asociada al Reembolso.
    * - ``Info``
-     - Información / observaciones de la orden.
+     - Información / observaciones de la Orden.
    * - ``State``
-     - Estado de la orden.
+     - Estado de la Orden.
    * - ``ClosedPrice``
-     - Precio cerrado de la orden.
+     - Importe fijo de la Orden, para Proyectos sin Tarifa: la Orden se tarifica con ese importe en
+       lugar de con Líneas de tarifa. Si el Proyecto tiene Tarifa, se ignora.
 
 .. list-table:: Tramos — carga y descarga (``tms.shipment.leg``)
    :header-rows: 1
@@ -111,11 +123,11 @@ se configura el mapeo y cómo se transforman los valores está en
    * - ``LoadDate`` / ``UnLoadDate``
      - Fecha prevista de carga / descarga.
    * - ``LoadStartTime`` / ``UnLoadStartTime``
-     - Inicio de la ventana horaria.
+     - Inicio de la franja horaria.
    * - ``LoadEndTime`` / ``UnLoadEndTime``
-     - Fin de la ventana horaria.
+     - Fin de la franja horaria.
    * - ``LoadPriority`` / ``UnLoadPriority``
-     - Prioridad de la parada.
+     - Prioridad de la Parada.
    * - ``LoadElevator`` / ``UnLoadElevator``
      - Disponibilidad de ascensor.
    * - ``LoadLevels`` / ``UnLoadLevels``
@@ -128,7 +140,7 @@ se configura el mapeo y cómo se transforman los valores está en
    * - Campo destino
      - Significado
    * - ``Packs``
-     - Número de bultos.
+     - Número de Bultos.
    * - ``Pallets``
      - Número de palés.
    * - ``Quantity``
@@ -140,11 +152,11 @@ se configura el mapeo y cómo se transforman los valores está en
    * - ``GrossWeight``
      - Peso bruto.
    * - ``PacksDescription``
-     - Descripción de los bultos.
+     - Descripción de los Bultos.
    * - ``PacksTypeID``
-     - Regla de precio de la línea.
+     - Regla de tarifa de la línea: cómo se mide la mercancía (bultos, palés, cantidad, metros).
    * - ``PacksTemperature``
-     - Tipo de embalaje / temperatura.
+     - Tipo de bulto (seco, refrigerado, congelado...).
 
 .. list-table:: Bultos / trazabilidad (``tms.shipment.pack.traceability``)
    :header-rows: 1
@@ -153,13 +165,13 @@ se configura el mapeo y cómo se transforman los valores está en
    * - Campo destino
      - Significado
    * - ``Parcel_Barcode``
-     - Código de barras del bulto.
+     - Código de barras del Bulto.
    * - ``Parcel_Cube``
-     - Volumen del bulto.
+     - Volumen del Bulto.
    * - ``Parcel_GrossWeight``
-     - Peso bruto del bulto.
+     - Peso bruto del Bulto.
    * - ``Parcel_Array``
-     - Conjunto de bultos (estructura agrupada).
+     - Conjunto de Bultos (estructura agrupada).
 
 .. list-table:: Clientes (``res.partner``)
    :header-rows: 1
@@ -227,7 +239,7 @@ se configura el mapeo y cómo se transforman los valores está en
    * - ``CarrierContact``
      - Persona de contacto.
 
-.. list-table:: Conductores (``res.partner`` / ``hr.employee``)
+.. list-table:: Conductores (``res.partner`` marcado como conductor)
    :header-rows: 1
    :widths: 30 70
 
@@ -256,7 +268,7 @@ se configura el mapeo y cómo se transforman los valores está en
    * - ``DriverEmail``
      - Correo electrónico.
    * - ``DriverParent``
-     - Empresa / transportista al que pertenece el conductor.
+     - Transportista al que pertenece el conductor.
 
 .. list-table:: Vehículos (``fleet.vehicle``)
    :header-rows: 1
@@ -290,3 +302,5 @@ se configura el mapeo y cómo se transforman los valores está en
    El catálogo incluye además separadores no seleccionables (``<<<<TRIPS>>>>``,
    ``<<<<SHIPMENTS>>>>``, etc.) que solo sirven para agrupar visualmente los campos en
    el desplegable; no representan destinos de mapeo.
+
+Cómo se usa: :doc:`/17.0/7_edi-integrations/7_2_1_field-mapping`.

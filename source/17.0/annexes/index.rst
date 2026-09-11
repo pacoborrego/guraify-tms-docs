@@ -2,13 +2,15 @@ Anexo A · Catálogo de campos de los maestros
 ============================================
 
 Este anexo recoge, maestro a maestro, los campos que el consultor encuentra en cada pantalla
-de configuración del capítulo 4, con la etiqueta que muestra la interfaz en español, el tipo
-de dato y qué significa cada uno. El capítulo 4 explica para qué sirve cada maestro y qué
-decide el cliente al configurarlo; aquí está la referencia completa para cuando se rellena.
+de configuración, con la etiqueta que muestra la interfaz en español, el tipo de dato y qué
+significa cada uno. Cubre los maestros de la parametrización (capítulo 4), los de la gestión
+de recursos (capítulo 6), el catálogo de campos de mapeo de las integraciones (capítulo 7) y
+los registros del control económico (capítulo 8). Cada capítulo explica para qué sirve cada
+maestro y qué decide el cliente al configurarlo; aquí está la referencia completa para cuando
+se rellena.
 
-Las etiquetas se toman de la interfaz tal y como está traducida hoy. Donde la traducción es
-mejorable (por ejemplo, «Zona Horaria» para una franja, o «Planificación» para el Planning)
-se indica en la tabla y la corrección está anotada en la lista de correcciones de Odoo.
+Las etiquetas son las de la interfaz en español. Donde la traducción es todavía mejorable (por
+ejemplo, «Id» para el nombre de un tipo) se indica en la tabla.
 
 .. toctree::
    :maxdepth: 1
@@ -35,3 +37,9 @@ se indica en la tabla y la corrección está anotada en la lista de correcciones
    A_20_mantenimiento
    A_21_economico
    A_22_campos-mapeo
+   A_23_tipos-servicio
+   A_24_tipos-orden
+   A_25_tipos-parada
+   A_26_tipos-destinatario
+   A_27_tipos-transportista
+   A_28_tipos-reembolso

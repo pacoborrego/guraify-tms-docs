@@ -8,6 +8,126 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+_Nada todavía._
+
+## [260910_V07] — 2026-09-10
+
+Primera release completa de la documentación tras el plan de cierre (tareas D1 a D12 y D14). Reúne
+todo lo que estaba en «Sin publicar» desde junio más el cierre editorial de hoy.
+
+### Cierre editorial (tarea D12 del plan, 2026-09-10)
+
+Lectura completa de la documentación por cinco lectores independientes (distribuidor, tres
+consultores, integrador y conductor): unos 350 hallazgos con fichero y línea, corregidos por
+bloques y verificados en el código de `tms_suite` y de la app. Decisiones de Paco: fundir el cap. 2,
+mover P3 a 1.4.2, español de España en la prosa, «solo» sin tilde, tabla de módulos fuera de
+Conocer, 4.1 al patrón D7, mantener «Indicadores visuales (KPI)», «5.6 Tarificación y liquidación»,
+y quitar el portal del cliente (hoy sin acceso).
+
+- **Cada cosa se explica una vez.** La tríada Orden = ingreso / Viaje = coste / margen se contaba
+  ocho veces entre 1.5 y el cap. 2 y cuatro en Conocer; los tres niveles de PTV en 1.4, 3.2.2, 3.3 y
+  5.2; la normalización de direcciones en cuatro sitios; la flota propia sin orden de compra en
+  seis; el diagnóstico de tarifa en cuatro; el cap. 8 casi literal con 5.6 y 5.7; en el cap. 7 la
+  frontera con la pasarela, el registro de llamadas y los disparadores tres veces cada uno; en el
+  manual del conductor el bulto con problema dos veces. Queda una copia de cada cosa y el resto
+  enlaza (mapa en `CLAUDE.md`).
+- **Terminología alineada con el glosario** en toda la doc: «ruta» por Viaje (dieciséis páginas),
+  «envío», «pedido», «expedición», «cargador», «colaborador», «proveedor», «chofer», «contra
+  reembolso», «API Inbox», «KPI» en prosa, «ventana horaria», backoffice, preset, tenant,
+  endpoints, gateway; cuatro nombres para el modo del Optimizador («modo por franja» y «por
+  categoría de vehículo»); «Secuenciar Viaje» / «secuenciación» / «Enrutar Viaje»; entidades del
+  glosario con mayúscula inicial; «solo» sin tilde; comillas latinas; «Prueba de entrega (POD)» en
+  la primera mención. Español de España en el cap. 6 (neumáticos, revisión, vehículo, conductor,
+  asistencia en carretera); las etiquetas y datos de serie que conservan la palabra original se
+  citan una vez entre comillas.
+- **Fuera las notas de versión, de desarrollador y de cliente**: glosario, 4.3, 4.5, 6.1, 6.4, 6.8
+  («el cliente de referencia», «la hoja de cálculo del cliente», «umbrales del prototipo»), A.4,
+  A.5, A.12, A.17, A.19, A.20, 1.4 («reintenta hasta dos veces», «calidad alta»), 2.x, 5.x, 8.8.
+- **Veinte contradicciones internas resueltas con el código**: la magnitud que se cobra la fija la
+  Tarifa base y no la Regla de tarifa (5.6.2, glosario, 4.4); criterio real de consolidación de
+  Tramos en una Parada (2.1, 3.2.6, 5.1, 0.3: tipo de evento, contacto, franja, Planning, Proyecto y
+  nombre de viaje, solape mínimo de una hora); qué botón salta la cola del Manifiesto («Importar
+  Fichero Ahora» y «Cerrar Manifiesto Ahora», no «Validar e importar»); la confirmación de la
+  Orden la hace la tarea programada de cinco minutos; el estado de la Orden es el de su tramo
+  activo; el Viaje tiene cinco estados propios; estados de la orden de compra con las etiquetas
+  de Odoo 17; siete estados del Reembolso; los dos porcentajes de división del Tramo (8.2 y A.21);
+  perfil de jornada de la franja o de la categoría de vehículo; Tramos decididos por el Tipo de
+  Orden; estado inicial del Viaje según la vía; contrato de PTV por vehículo (no por llamada);
+  cambiar el modo de división no recalcula solo; el portal del cliente no existe como producto.
+- **Conocer Guraify TMS**: 0.3 es la única explicación del ciclo y de la tríada; PTV y webhook
+  explicados la primera vez; afirmaciones comerciales verificadas o redactadas con prudencia
+  (sin cifras de entregas, «desde la propia lista» en vez de «con un clic», tableros descritos con
+  lo que contienen); portal reducido a una frase y su captura retirada; tabla de módulos movida a
+  1.4.1.
+- **Cap. 1**: 1.1 incluye los caps. 6 y 8. 1.4 recortada y verificada (botones «Enrutar Viaje» y
+  «Secuenciar Viaje», perfil de jornada, 1.4.3 numerada, 1.4.4 en un párrafo). **Nueva 1.4.2.1 «El
+  ETA durante la ejecución»** con su referencia técnica: recálculo en dos niveles, política
+  operativa por compañía y Proyecto, ETA prometido e historial, fallo de PTV sin pérdida de datos,
+  peajes, CO₂ y consumo repartidos a las Órdenes (antes en 1.4.6 como «previsto»). 1.4.6 queda con
+  telemática y avisos al Destinatario («hecho en el código, pendiente de despliegue») y OptiFlow.
+- **Cap. 2 fundido en cuatro páginas**: 2.1 Lógica estructural (2.1.1 a 2.1.5), 2.2 Modelo de
+  trazabilidad, 2.3 Modelo económico (activo/pasivo/margen y enlaces al cap. 8) y 2.4 Modelo
+  relacional (un solo diagrama, cierre de la antigua conclusión). Eliminadas 2.2 Relaciones, 2.5
+  Diagrama oficial y 2.7 Conclusión. Fuera el formato Word.
+- **Cap. 3**: **nueva 3.2.6 Tramos y Paradas**, el hueco mayor del Manual de implantación (tipos de
+  Tramo, la Parada y sus seis Tipos de Parada, consolidación, tabla de los once estados con
+  etiqueta de pantalla, referencia técnica); el índice de 3.2 presenta las cuatro entidades en
+  orden lógico. 3.1 con las etiquetas reales del menú (los dos submenús Maestros, Tableros, Ajustes,
+  App, EDI completo, Métricas). 3.2.1 a 3.2.5 con subrayados unificados, tabla de estados en orden
+  lógico, lotes de la Bandeja de entrada API, quién marca el tramo activo. 3.3 sin repetir PTV;
+  3.4 sin `tms.rule` (es una regla de asignación, no de tarifa); 3.5 sin repetir 1.4.4.
+- **Cap. 4**: **4.1 reescrito al patrón D7** («Decisión / Efecto» por maestro) con las seis tablas de
+  campos en los **anexos nuevos A.23 a A.28**; el Tipo de Parada son seis papeles fijos. 4.4 con el
+  contraste Regla de tarifa / Tarifa base / Aplicación del precio, la Tarifa y sus versiones antes
+  que las Líneas, y la regla real del versionado (consecutivas, sin solapes ni huecos, una activa).
+  4.5: Perfil de la app documentado, tres modos de escaneo, 4.5.9 reducido.
+- **Cap. 5**: «5.6 Tarificación y liquidación»; 5.4 explica los dos campos de estado de la Parada
+  y tiene marcador de captura propio; 5.8 presentada como ayuda transversal con los estados del
+  glosario; un solo mermaid completo (en el index), alta en 5.1 y cierre en 5.5.
+- **Cap. 6**: verificado el catálogo de serie (21 trabajos, 4 objetivos, 12 tareas, 4 etapas), el
+  proceso diario, los umbrales 85 % / 100 % y 2.000 km, el parámetro del indicador «sin lectura
+  reciente» y que la carga del histórico es un script de consola. Módulos y estados de la regla a
+  tablas «Referencia técnica».
+- **Cap. 8** es el dueño del modelo económico y 5.6/5.7 del flujo; referencias «(8.N)» convertidas
+  en enlaces; «Lista de facturas» y «Diagnóstico de tarifa» según `es.po`; audiencias sin portal.
+- **Anexo A** con formato único en A.1 a A.28 (aviso «Ruta en Odoo», línea «Modelo Odoo»,
+  subsecciones numeradas, fuente a 100 columnas); A.22 con `PacksTypeID` = Regla de tarifa,
+  `PacksTemperature` = Tipo de bulto y conductores como `res.partner`; intro del anexo cubre los
+  caps. 4, 6, 7 y 8.
+- **Cap. 7**: una sola copia de la frontera con la pasarela, del registro de llamadas y de los
+  disparadores; 7.1.1 y 7.1.2 fundidas; 7.2.7 eliminada; verificado en `tms_int`: XLSX/XLS/CSV, 22
+  pares de campos de Tramo, `Parcels` clave interna, «bultos previos» y su token de etiqueta,
+  relación Integración / Integración API, las cuatro tareas programadas reales; títulos en
+  minúsculas.
+- **Cap. 10**: bulto con problema solo en 10.7.2 y botones de Resultado solo en 10.7.1; sin
+  estados de oficina; «avatar», «sincronizar» y «Cuenta» explicados; un bulto reportado cuenta
+  como comprobado; 10.7.3 describe lo que hace hoy la app tras «No Cobrado»; frases largas partidas.
+- **Glosario**: 24 términos nuevos (PTV, Webhook, Secuenciación, Optimización completa, Perfil de
+  jornada, Equipamiento, Categoría de carga, Tipo de bulto, Peso tasable, Tramo activo, Versión de
+  tarifa, Hora de convocatoria, Política operativa, ETA, Perímetro de mantenimiento, Anomalía de
+  odómetro, Bulto previo, Integración / Integración API, Endpoint, Registro de actividad de las
+  APIs, Lote de la Bandeja de entrada API, Regla de asignación, Perfil de la app, Prueba de
+  entrega como sinónimo de POD); «Indicador» desdoblado en visual (KPI) y configurable; «Control de
+  service» pasa a «Control de revisiones»; Regla de tarifa, Tarifa base, Reembolso (siete estados),
+  Tramo, Tipos, Diagnóstico, Manifiesto (frente al informe «Manifiesto de transporte») y Tablero
+  corregidos; sin la nota de versión de Línea de tarifa.
+- **Capturas**: retirada `0_6_01` (portal); nuevas `3_2_6_01` (Parada) y `5_4_01` (Paradas con
+  estado de la app); `3_2_3_02` renombrada a `botones-inteligentes`; pies actualizados sin modelos
+  ni etiquetas viejas; aviso en el cap. 6 de que la interfaz de Recursos y Mantenimiento está en
+  inglés hasta que tengan `es.po`; límite de 500 KB por imagen (18 capturas antiguas lo superan,
+  todas en el lote que María rehace).
+- **Correcciones en Odoo y en la app**, aplicadas en el código el mismo día (pendientes de commit
+  y despliegue por Paco; lista completa en `PLAN.md`): `tms/i18n/es.po` (Planning, estados de la
+  Parada, Línea de tarifa, Áreas Geográficas, Importar fichero, Tipos de Orden / Destinatario /
+  Reembolso, Franja horaria, Portes, Diagnóstico, Cobrado, Palés, Lista de facturas, kanban de
+  proyectos, pestaña «ETA y ruta», Política operativa, Ajustes, Optimizar, Por franja, Compañía…),
+  `tms_int/i18n/es.po` (Definición de fichero, Endpoints, Ficheros), `tms_app/i18n/es.po` (Perfiles
+  y Roles de la app, motivos) y la app del conductor (Fallido, tuempresa.com, Mapa, Bultos, ELIGE
+  UNA OPCIÓN, Encontrar bultos, «No tienes ninguna ruta asignada», confirmaciones en español).
+- **Pendiente anotado en `PLAN.md`**: `es.po` para `tms_resources` y `tms_maintenance` (toda su
+  interfaz está en inglés) y datos de serie en español; menú Patrones comentado; posible fallo de
+  la app con «Hecho» + «No Cobrado»; aviso al destinatario cuando se termine la torre de control.
+
 ### Manual del conductor (tarea D11 del plan, 2026-09-10)
 - **Reescrito entero** para el conductor: tono de tú, frases cortas, pasos numerados, sin
   tecnicismos. Un glosario de seis palabras en el index (Ruta, Parada, Bulto, POD, Con Reservas,
