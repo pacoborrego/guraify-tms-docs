@@ -1,5 +1,3 @@
-:orphan:
-
 Manual del conductor
 ====================
 

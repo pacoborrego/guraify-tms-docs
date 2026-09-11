@@ -27,3 +27,4 @@ toda la documentación está en el :doc:`glosario </17.0/glossary>`.
    0_6_integrations
    0_7_use-cases
    0_8_faq
+   ../glossary

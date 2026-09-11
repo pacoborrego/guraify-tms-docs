@@ -1,41 +1,20 @@
-{% if pagename.startswith('17.0/10_manual_app') %}
-<nav class="bd-docs-nav bd-links guraify-driver-nav" aria-label="Manual del conductor">
-  <p class="bd-links__title" role="heading" aria-level="1">Manual del conductor</p>
-  <div class="bd-toc-item navbar-nav">
-    <ul class="nav bd-sidenav">
-      <li class="toctree-l1{% if pagename == '17.0/10_manual_app/index' %} current active{% endif %}">
-        <a class="reference internal" href="{{ pathto('17.0/10_manual_app/index') }}">Inicio</a>
-      </li>
-      <li class="toctree-l1{% if pagename == '17.0/10_manual_app/10_1_application-access' %} current active{% endif %}">
-        <a class="reference internal" href="{{ pathto('17.0/10_manual_app/10_1_application-access') }}">Entrar en la app</a>
-      </li>
-      <li class="toctree-l1{% if pagename == '17.0/10_manual_app/10_2_route' %} current active{% endif %}">
-        <a class="reference internal" href="{{ pathto('17.0/10_manual_app/10_2_route') }}">Tu ruta</a>
-      </li>
-      <li class="toctree-l1{% if pagename == '17.0/10_manual_app/10_3_stop' %} current active{% endif %}">
-        <a class="reference internal" href="{{ pathto('17.0/10_manual_app/10_3_stop') }}">La parada</a>
-      </li>
-      <li class="toctree-l1{% if pagename == '17.0/10_manual_app/10_4_delivery' %} current active{% endif %}">
-        <a class="reference internal" href="{{ pathto('17.0/10_manual_app/10_4_delivery') }}">Entregar</a>
-      </li>
-      <li class="toctree-l1{% if pagename == '17.0/10_manual_app/10_5_loading' %} current active{% endif %}">
-        <a class="reference internal" href="{{ pathto('17.0/10_manual_app/10_5_loading') }}">Cargar</a>
-      </li>
-      <li class="toctree-l1{% if pagename == '17.0/10_manual_app/10_6_refunds' %} current active{% endif %}">
-        <a class="reference internal" href="{{ pathto('17.0/10_manual_app/10_6_refunds') }}">Cobrar un reembolso</a>
-      </li>
-      <li class="toctree-l1{% if pagename == '17.0/10_manual_app/10_7_incidents' %} current active{% endif %}">
-        <a class="reference internal" href="{{ pathto('17.0/10_manual_app/10_7_incidents') }}">Cuando algo no va bien</a>
-      </li>
-      <li class="toctree-l1{% if pagename == '17.0/10_manual_app/10_8_end-of-day' %} current active{% endif %}">
-        <a class="reference internal" href="{{ pathto('17.0/10_manual_app/10_8_end-of-day') }}">Fin de la jornada y sin cobertura</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-{% else %}
-<nav class="bd-docs-nav bd-links" aria-label="{{ _('Section Navigation') }}">
-  <p class="bd-links__title" role="heading" aria-level="1">{{ _("Section Navigation") }}</p>
+{#- Barra lateral por recorrido (D15, 2026-09-11). El tema muestra el subárbol del apartado de
+    primer nivel en el que está la página; los cuatro recorridos son las entradas de primer nivel
+    de la portada, así que cada barra enseña solo su recorrido. El título enlaza al inicio del
+    recorrido. -#}
+{%- if pagename.startswith('17.0/0_product-overview') or pagename == '17.0/glossary' -%}
+  {%- set recorrido_title = 'Conocer Guraify TMS' -%}{%- set recorrido_doc = '17.0/0_product-overview/index' -%}
+{%- elif pagename.startswith('17.0/7_edi-integrations') -%}
+  {%- set recorrido_title = 'Guía del integrador' -%}{%- set recorrido_doc = '17.0/7_edi-integrations/index' -%}
+{%- elif pagename.startswith('17.0/10_manual_app') -%}
+  {%- set recorrido_title = 'Manual del conductor' -%}{%- set recorrido_doc = '17.0/10_manual_app/index' -%}
+{%- else -%}
+  {%- set recorrido_title = 'Manual de implantación' -%}{%- set recorrido_doc = '17.0/implementation-manual' -%}
+{%- endif -%}
+<nav class="bd-docs-nav bd-links{% if pagename.startswith('17.0/10_manual_app') %} guraify-driver-nav{% endif %}" aria-label="{{ recorrido_title }}">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    <a class="reference internal" href="{{ pathto(recorrido_doc) }}">{{ recorrido_title }}</a>
+  </p>
   <div class="bd-toc-item navbar-nav">
     {{- generate_toctree_html(
       "sidebar",
@@ -48,4 +27,3 @@
     -}}
   </div>
 </nav>
-{% endif %}
