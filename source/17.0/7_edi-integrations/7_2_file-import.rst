@@ -1,4 +1,4 @@
-7.2 Importación de Ficheros
+7.2 Importación de ficheros
 ===========================
 
 La importación de ficheros es el canal de ingesta empleado para cargas manuales o
@@ -28,18 +28,19 @@ origen no dispone de API.
 
 El proceso se gobierna desde el asistente de importación (``tms_int.file.wizard``), que
 cubre la subida del fichero y el seguimiento de su tratamiento a través de una secuencia
-de estados —borrador, procesando, validado e importado— y emite un reporte de
+de estados (borrador, procesando, validado e importado) y emite un informe de
 validación con los errores y advertencias detectados antes de materializar nada.
 
 7.2.4 Formatos y normalización
 ------------------------------
 
-Se admiten ficheros **XLSX/XLS y CSV** (en CSV, con delimitador de columna, fila de
-cabecera y fila de inicio configurables). Tras el parseo, el contenido se normaliza a
-una representación JSON **interna** que preserva la estructura del intercambio
-(Órdenes, clientes, transportistas, conductores, vehículos y viajes). Esa
-representación es la que alimenta el resto del flujo, de modo que el mapeo y la
-validación operan siempre sobre la misma estructura con independencia del formato del
+Se admiten ficheros **XLSX, XLS y CSV**. El formato se declara en la Definición de fichero
+y el asistente comprueba que la extensión del fichero subido coincide con él; en CSV, el
+delimitador de columna, la fila de cabecera y la fila de inicio son configurables. Tras el
+parseo, el contenido se normaliza a una representación JSON **interna** que preserva la
+estructura del intercambio (Órdenes, clientes, transportistas, conductores, vehículos y
+Viajes). Esa representación es la que alimenta el resto del flujo, de modo que el mapeo y
+la validación operan siempre sobre la misma estructura con independencia del formato del
 fichero de partida.
 
 .. note::
@@ -52,29 +53,24 @@ fichero de partida.
 ----------------------------
 
 El recorrido completo es: parseo a la representación interna, validación contra el
-esquema y los mapeos configurados, creación del Manifiesto (``tms.edi.manifest``) y de
-sus *preview packs*, y materialización final de la Orden (``sale.order``) a través de
-``tms_int.sale.order.import``. La Definición de fichero (``tms.edi.file``) actúa
-como contenedor de los mapeos de columnas aplicables a cada tipo de fichero (ver
-:doc:`7_2_1_field-mapping`).
+esquema y los mapeos configurados, creación del Manifiesto (``tms.edi.manifest``) y
+materialización final de la Orden (``sale.order``) a través de
+``tms_int.sale.order.import``. La Definición de fichero (``tms.edi.file``) actúa como
+contenedor de los mapeos de columnas aplicables a cada tipo de fichero. La
+correspondencia entre las columnas del fichero y los campos del TMS se explica en
+:doc:`7_2_1_field-mapping`, y las transformaciones que puede aplicar cada mapeo, en
+:doc:`7_2_2_python-transformations`.
 
 7.2.6 Procesamiento diferido y errores
 --------------------------------------
 
 Las filas pendientes no se procesan necesariamente en el momento de la subida: una
 tarea programada las recoge periódicamente y completa su tratamiento (ver
-:doc:`7_6_automated-actions`). Los tipos de dato no admitidos —como los valores de
-fecha y hora sin un formato reconocible— y el resto de incidencias se recogen en el
-reporte de validación, sin interrumpir el procesamiento de las filas correctas.
+:doc:`7_6_automated-actions`). Las incidencias de validación, por ejemplo un valor de
+fecha y hora sin un formato reconocible, se recogen en el informe de validación sin
+interrumpir el procesamiento de las filas correctas.
 
 .. figure:: /_static/img/7_edi-integrations/7_2_file-import_02_validacion.png
-   :alt: Reporte de validación del fichero importado
+   :alt: Informe de validación del fichero importado
 
-   Reporte de validación del fichero importado.
-
-7.2.7 Configuración del mapeo
------------------------------
-
-La correspondencia entre las columnas del fichero y los campos de Odoo, y las
-transformaciones aplicables a cada campo, se detallan en las dos subsecciones
-siguientes:
+   Informe de validación del fichero importado.

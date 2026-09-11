@@ -1,4 +1,4 @@
-7.2.1 Mapeo de Campos
+7.2.1 Mapeo de campos
 =====================
 
 El mapeo de campos establece la correspondencia entre los campos del sistema externo y
@@ -35,7 +35,7 @@ negocio a la que pertenece cada campo, de modo que un mismo fichero puede alimen
 vez los datos del Viaje, de la Orden, de los Tramos, de las líneas y de los datos
 maestros (clientes, transportistas, conductores y vehículos). La función de este
 catálogo es doble: garantiza que la columna del fichero externo apunta a un destino
-válido del modelo y sirve de referencia al consultor para saber qué información puede
+válido del modelo y sirve de referencia al integrador para saber qué información puede
 importarse y bajo qué nombre.
 
 .. CAPTURA: 7_2_1_02 — descomentar el figure cuando esté la imagen
@@ -44,9 +44,10 @@ importarse y bajo qué nombre.
 
       Catálogo de campos destino agrupado por entidad (selector *Tms Field*).
 
-El catálogo completo, campo a campo, está en el
-:doc:`anexo A.22 </17.0/annexes/A_22_campos-mapeo>`. Estas son las entidades que cubre y
-algunos de sus campos, para hacerse una idea de qué puede traer un fichero:
+El catálogo completo, campo a campo, incluidos los separadores que agrupan visualmente el
+desplegable, está en el :doc:`anexo A.22 </17.0/annexes/A_22_campos-mapeo>`. Estas son las
+entidades que cubre y algunos de sus campos, para hacerse una idea de qué puede traer un
+fichero:
 
 .. list-table::
    :header-rows: 1
@@ -61,9 +62,9 @@ algunos de sus campos, para hacerse una idea de qué puede traer un fichero:
    * - Orden (``sale.order``)
      - 13
      - ``Project``, ``Customer``, ``PriceList`` …
-   * - Tramos — carga y descarga (``tms.shipment.leg``)
-     - 22
-     - ``LoadAddressKey``, ``LoadName``, ``LoadAddress`` …
+   * - Tramos (``tms.shipment.leg``)
+     - 22 pares (carga y descarga)
+     - ``LoadAddressKey`` / ``UnLoadAddressKey``, ``LoadName`` / ``UnLoadName`` …
    * - Líneas de mercancía (``tms.shipment.pack``)
      - 9
      - ``Packs``, ``Pallets``, ``Quantity`` …
@@ -83,9 +84,9 @@ algunos de sus campos, para hacerse una idea de qué puede traer un fichero:
      - 10
      - ``VehicleId``, ``VehicleName``, ``VehicleLicensePl`` …
 
-El catálogo incluye además separadores no seleccionables (``<<<<TRIPS>>>>``,
-``<<<<SHIPMENTS>>>>``…) que sólo agrupan visualmente los campos en el desplegable; no son
-destinos de mapeo.
+Cada Tramo tiene un juego de campos para la carga (prefijo ``Load``) y otro idéntico para
+la descarga (prefijo ``UnLoad``): dirección, contacto, teléfonos, fecha, franja horaria,
+prioridad, ascensor y plantas, entre otros. Son 44 campos en total, 22 por lado.
 
 7.2.1.3 El campo especial ``Parcel_Array``
 ------------------------------------------
@@ -95,9 +96,9 @@ cada uno toma el valor de una columna y describe **un** bulto. Funcionan bien cu
 el fichero trae **una fila por bulto**.
 
 ``Parcel_Array`` resuelve el caso contrario: clientes que envían **un único registro por
-orden** (sin detalle de bultos), pero cuyos códigos de barras impresos en las
+Orden** (sin detalle de bultos), pero cuyos códigos de barras impresos en las
 etiquetas de origen siguen una regla de construcción conocida. En lugar de un valor
-escalar, ``Parcel_Array`` espera la **lista completa de bultos** de la orden, que
+escalar, ``Parcel_Array`` espera la **lista completa de bultos** de la Orden, que
 se genera por código a partir de los datos de la fila.
 
 7.2.1.3.1 Cómo funciona internamente
@@ -109,12 +110,13 @@ valor devuelto (no asigna un atributo suelto). Por eso la función debe devolver
 **lista de diccionarios**, uno por bulto, con las claves que el importador sabe
 materializar:
 
-- ``Parcel_Barcode`` — código de barras de la etiqueta de origen.
-- ``Parcel_GrossWeight`` — peso bruto del bulto.
-- ``Parcel_Cube`` — volumen del bulto.
+- ``Parcel_Barcode``: código de barras de la etiqueta de origen.
+- ``Parcel_GrossWeight``: peso bruto del bulto.
+- ``Parcel_Cube``: volumen del bulto.
 
-Esa lista se asigna directamente a los bultos (``Parcels``) de la línea de mercancía
-de la orden.
+Esa lista pasa a ser la lista de bultos de la línea de mercancía en la representación
+interna (la clave ``Parcels`` de cada línea, que es una clave de esa representación y
+no un campo mapeable).
 
 7.2.1.3.2 Configuración del mapeo
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -142,8 +144,8 @@ fila completa, la lógica lee los datos de ``row`` por índice de columna, no de
 7.2.1.3.3 Ejemplo de uso
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Supongamos un cliente que envía una fila por orden con, entre otras, una columna de
-**referencia de orden**, una de **número de bultos** y una de **peso bruto total**.
+Supongamos un cliente que envía una fila por Orden con, entre otras, una columna de
+**referencia de Orden**, una de **número de bultos** y una de **peso bruto total**.
 Las etiquetas de origen imprimen un código de barras con la regla
 ``<Referencia><NN>``, donde ``NN`` es el número de bulto correlativo con dos dígitos
 (``01``, ``02``, …). La función ``Parcel_Array`` reconstruye la lista de bultos y
@@ -176,14 +178,14 @@ reparte el peso a partes iguales:
 Con una fila de referencia ``ALB12345`` y 3 bultos, la función genera tres bultos con
 códigos ``ALB1234501``, ``ALB1234502`` y ``ALB1234503``, cada uno con su parte
 proporcional del peso. El importador los materializa como la trazabilidad de bultos
-(``tms.shipment.pack.traceability``) de la línea de la orden.
+(``tms.shipment.pack.traceability``) de la línea de la Orden.
 
 .. tip::
 
    La regla de construcción del código de barras es específica de cada cliente. Ajusta
    el patrón (prefijos fijos, dígitos de control, relleno de ceros, segmentos derivados
    de otras columnas) a lo que realmente venga impreso en la etiqueta de origen, y
-   valida el resultado con la prueba inline del mapeo antes de pasar a producción.
+   valida el resultado con la prueba en el propio mapeo antes de pasar a producción.
 
 7.2.1.4 Transformación por campo
 --------------------------------
@@ -193,19 +195,18 @@ código Python a medida (``python_code``) o una función preestablecida del cat�
 (``preset_function_id``). Las funciones preestablecidas cubren los casos habituales sin
 necesidad de escribir código y se documentan en :doc:`7_2_2_python-transformations`.
 
-7.2.1.5 Prueba previa
----------------------
+7.2.1.5 Prueba en el propio mapeo
+---------------------------------
 
 Antes de aplicar un mapeo a datos reales, el sistema permite probarlo de forma
-interactiva: se introduce un valor de ejemplo y se comprueba el resultado de la
-transformación. Esta validación previa reduce el riesgo de propagar errores de mapeo a
-las Órdenes en producción.
+interactiva desde el mismo mapeo: se introduce un valor de ejemplo y se comprueba el
+resultado de la transformación. Esta validación previa reduce el riesgo de propagar
+errores de mapeo a las Órdenes en producción.
 
 7.2.1.6 Entrada frente a salida
 -------------------------------
 
-Conviene distinguir el **mapeo de entrada** —``tms.edi.field.mapping``, que normaliza
-los datos que llegan al TMS— del **patrón de salida** —``tms_int.pattern.line``, que
-construye el *payload* enviado a sistemas remotos (ver :doc:`7_4_endpoint-configuration`).
-Ambos comparten la lógica de transformación por campo, pero operan en sentidos opuestos
-del intercambio.
+El mapeo de entrada (``tms.edi.field.mapping``) normaliza los datos que llegan al TMS. Su
+contrapartida en la salida es el patrón (``tms_int.pattern`` y sus líneas), que construye
+el cuerpo de las llamadas a sistemas remotos con la misma lógica de transformación por
+campo, pero en sentido opuesto (ver :doc:`7_4_endpoint-configuration`).

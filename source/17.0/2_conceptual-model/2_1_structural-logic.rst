@@ -4,126 +4,131 @@
 .. admonition:: Ruta en Odoo
    :class: tip
 
-   Las cuatro entidades del modelo se consultan en TMS › Operaciones › Tráfico:
-   **Órdenes** (la Orden), **Viajes** (el Viaje), **Manifiestos** y **Trazabilidad**.
+   TMS › Operaciones › Tráfico › **Órdenes** y **Viajes** para las dos entidades con menú propio.
+   Los Tramos y las Paradas se consultan dentro de la Orden y del Viaje, y también en
+   TMS › Operaciones › Maestros › **Tramos** y **Paradas**.
 
-La lógica estructural de Guraify TMS se fundamenta en una decisión arquitectónica deliberada: separar de forma explícita el encargo comercial del cliente de su ejecución operativa y de su impacto económico. Esta separación no es únicamente conceptual, sino que determina la estructura del modelo de datos, la organización funcional del sistema y la propia metodología de implantación.
+La lógica estructural de Guraify TMS parte de una decisión de diseño: separar el encargo comercial
+del Cliente de su ejecución operativa y de su resultado económico. Esa separación no es solo
+conceptual. Determina el modelo de datos, la organización de los menús y el propio orden de una
+implantación, que empieza siempre por entender estas cuatro entidades antes de entrar en la
+parametrización.
 
-Desde el punto de vista del negocio, todo comienza con la necesidad de representar digitalmente un servicio solicitado por un cliente. Esa representación es la Orden (``sale.order``). La Orden formaliza el compromiso contractual: define qué servicio debe prestarse y bajo qué condiciones se facturará. En ella nace el ingreso y desde ella se articula el resto de la estructura operativa.
+El encargo se representa con la Orden (``sale.order``), que formaliza el compromiso con el Cliente:
+qué servicio se presta y en qué condiciones se factura. La Orden no describe la ejecución física;
+para eso se descompone en Tramos (``tms.shipment.leg``), cada uno un movimiento entre un punto de
+carga y otro de descarga. Al validar la Orden, el sistema traduce sus Tramos en Paradas
+(``tms.stop``), los eventos físicos sobre los que se planifica. Y las Paradas se agrupan en Viajes
+(``tms.trip``), que asignan la ejecución a un conductor y un vehículo.
 
-Sin embargo, una Orden no describe la ejecución física del transporte. Para ello se introduce el Tramo (``tms.shipment.leg``), que permite descomponer el compromiso comercial en movimientos logísticos concretos entre un origen y un destino. Esta descomposición es lo que permite modelar tanto un servicio simple puerta a puerta como operativas complejas con múltiples fases, arrastres entre hubs o escenarios de reagenda, sin romper la coherencia administrativa.
+En corto: la Orden es el origen del ingreso y el Viaje el del coste, y la diferencia entre ambos es
+el margen. El capítulo 8 desarrolla esa dimensión económica
+(:doc:`/17.0/8_economic-administration/8_1_active-passive-margin`); aquí basta con retener que una
+misma Orden puede ejecutarse en varios Viajes y que un Viaje puede llevar Paradas de muchas
+Órdenes. Ese desacoplamiento es el que permite soportar grupaje, distribución multicliente y
+última milla sin cambiar la lógica base del sistema.
 
-Cuando una Orden se valida, el sistema traduce su estructura lógica en eventos físicos reales mediante la generación automática de Paradas. La Parada (``tms.stop``) representa el punto operativo trazable: recogida, entrega, entrada en hub o cualquier evento intermedio necesario. Desde el punto de vista de planificación, la Parada es la unidad mínima operativa, ya que es sobre ella donde trabajan los algoritmos de optimización y las herramientas de planificación.
-
-Finalmente, las Paradas se agrupan en Viajes (``tms.trip``), que representan la ejecución real asignada a un recurso. El Viaje consolida paradas en una ruta ejecutable, genera la orden de compra correspondiente al transportista y materializa el coste de la operación.
-
-.. important::
-
-   La Orden representa el ingreso.
-
-   El Viaje representa el coste.
-
-Esta separación estructural es el principio clave que permite analizar la rentabilidad en múltiples dimensiones sin mezclar ejecución y facturación.
-
-Gracias a este diseño, una misma Orden puede ejecutarse en varios Viajes y un mismo Viaje puede contener paradas procedentes de distintas Órdenes. Este desacoplamiento es el que permite soportar operativas de grupaje, distribución multicliente y modelos de última milla sin alterar la lógica base del sistema.
-
-El flujo estructural puede entenderse como una progresión lógica: se crea la Orden, se descompone en Tramos, se generan Paradas al validar y posteriormente estas se agrupan en Viajes. No obstante, lo verdaderamente relevante no es la secuencia, sino la independencia entre las capas comercial, operativa y económica, que permite reorganizar la ejecución sin modificar el compromiso contractual original.
-
-Esta lógica conceptual no es abstracta ni teórica. Se refleja directamente en la estructura funcional del sistema, organizada en los bloques de Operaciones, Administración, Maestros y Configuración , donde cada sección materializa una dimensión distinta del modelo. Del mismo modo, el propio programa de implantación parte de la comprensión de esta estructura base —Orden, Tramo, Parada y Viaje— como primer paso antes de entrar en parametrización avanzada , lo que confirma que el modelo conceptual es la base real sobre la que se construye cualquier proyecto.
-
-En consecuencia, la lógica estructural de Guraify TMS no consiste únicamente en definir entidades relacionadas, sino en establecer una arquitectura desacoplada que permita escalabilidad, optimización avanzada, integración masiva y análisis económico granular. Sobre este principio se construye toda la arquitectura funcional y técnica del sistema.
-
-
-La Orden
-~~~~~~~~
+2.1.1 La Orden
+~~~~~~~~~~~~~~
 
 .. figure:: /_static/img/2_conceptual-model/2_1_structural-logic_01_orden.png
    :alt: Formulario de una Orden en Odoo
 
-   Formulario de una Orden (``sale.order``) en Odoo.
+   Formulario de una Orden en Odoo.
 
-La Orden es la entidad que representa digitalmente el encargo del cliente dentro de Guraify TMS. Constituye el punto de partida estructural del sistema y el eje sobre el que se articula toda la operativa posterior. Desde una perspectiva conceptual, la Orden responde a una pregunta sencilla pero fundamental: qué servicio debemos ejecutar y posteriormente facturar.
+La Orden representa el encargo del Cliente y responde a una pregunta sencilla: qué servicio hay
+que ejecutar y facturar. Contiene la información administrativa y comercial que define el
+servicio y el marco económico en el que se desarrollará. No describe cómo se ejecuta el
+transporte, sino el acuerdo que le da origen.
 
-En términos funcionales, la Orden formaliza el compromiso contractual con el cliente. Contiene la información administrativa y comercial necesaria para definir el servicio, determina la lógica de facturación y establece el marco económico bajo el cual se desarrollará la operación. No describe la ejecución física del transporte, sino el acuerdo que da origen a dicha ejecución.
+Toda Orden pertenece a un Cliente y a un Proyecto. El Proyecto actúa como contenedor de
+configuración: de él hereda la Orden la Tarifa aplicable, el modo de división de ventas, el
+Planning, los Tipos de Servicio permitidos y el resto de parámetros operativos. Esa herencia
+mantiene coherentes la configuración y el trabajo diario, y evita repetir ajustes a mano en cada
+encargo.
 
-Cada Orden está obligatoriamente vinculada a un cliente y a un proyecto. El proyecto actúa como contenedor de configuración y permite que la Orden herede automáticamente parámetros críticos como la tarifa aplicable, el modo de división de ventas, el planning asociado, los tipos de servicio permitidos y otras restricciones operativas. Esta herencia garantiza coherencia entre configuración estratégica y ejecución diaria, evitando configuraciones manuales repetitivas y reduciendo riesgos de error.
+Una Orden puede tener uno o varios Tramos y, por compleja que sea su ejecución, conserva siempre su
+unidad económica y administrativa: en ella se generan las líneas de venta y se aplica la
+tarificación. La ejecución puede reorganizarse en distintos Viajes o recursos sin alterar el
+compromiso contractual ni su facturación. La Orden no es una planificación física; es un
+compromiso de servicio con impacto económico.
 
-Desde el punto de vista del modelo de datos, la Orden puede contener uno o varios Tramos. Esta capacidad de descomposición permite representar desde un servicio simple de origen a destino hasta estructuras más complejas en las que una misma relación contractual se materializa en múltiples fases logísticas. A pesar de esta posible complejidad operativa, la Orden mantiene siempre su unidad económica y administrativa.
+2.1.2 El Tramo
+~~~~~~~~~~~~~~
 
-La Orden es también el origen del ingreso. En ella se generan las líneas de venta y se activan las reglas de tasación configuradas en el sistema. El cálculo económico no se realiza de forma externa ni posterior, sino que forma parte del propio diseño estructural del modelo.
+El Tramo es la unidad operativa contenida en la Orden. Si la Orden dice qué servicio se presta, el
+Tramo dice desde dónde hasta dónde: un movimiento concreto entre un punto de carga y un punto de
+descarga, con sus localizaciones, su mercancía, sus fechas y franjas horarias y, cuando la
+operativa lo pide, su propia valoración económica. El ingreso de la Orden puede así repartirse
+entre sus Tramos (:doc:`/17.0/8_economic-administration/8_2_sales-split`).
 
-.. important::
+Su función es permitir que una Orden se descomponga en movimientos independientes sin perder la
+unidad contractual. Un servicio puerta a puerta es un Tramo; un servicio con paso por Hub son dos
+o más Tramos dentro de la misma Orden; y una reprogramación o una devolución se resuelven
+añadiendo Tramos, no creando Órdenes nuevas. El Tramo es la pieza que traduce el compromiso
+comercial en movimientos concretos y la que da origen a las Paradas: sin Tramo no hay evento
+físico que planificar.
 
-   Una Orden no es una ruta ni una planificación física.
+2.1.3 La Parada
+~~~~~~~~~~~~~~~
 
-   Es un compromiso de servicio con impacto económico.
+La Parada es el evento físico: el punto donde ocurre una acción trazable, sea una carga, una
+descarga o un paso por Hub, con coordenadas, franja horaria y tiempo de servicio. En condiciones
+normales no se crea a mano. Al validar la Orden, o al cerrar el Manifiesto que la trae, el sistema
+recorre sus Tramos y genera las Paradas necesarias, vinculadas a los Tramos que las originan.
 
-Esta diferenciación es clave para entender la arquitectura completa del sistema. Gracias a ella, la ejecución puede reorganizarse —mediante distintos Viajes o recursos— sin alterar la naturaleza contractual del servicio ni su lógica de facturación.
+Varios Tramos pueden compartir una misma Parada. Al generarlas, el sistema agrupa los Tramos que
+coinciden en el tipo de evento (carga o descarga, según el tipo de Tramo), en el contacto de la
+dirección, en el Planning y el Proyecto y, si viene informado, en el nombre de Viaje del fichero,
+y cuyas franjas horarias se solapan al menos una hora; la Parada resultante toma la franja común.
+Los Tramos directos solo se consolidan dentro de su propia Orden; los demás pueden hacerlo entre
+Órdenes distintas cuando llegan juntas en un Manifiesto. Si ya existe una Parada compatible, del
+mismo tipo, en el mismo contacto, el mismo día y el mismo nombre de Viaje, cuya franja contiene la
+del Tramo, este se añade a ella en lugar de crear otra. Esta consolidación evita Paradas duplicadas
+en operativas densas, como la última milla o el grupaje urbano, y es la razón de que un Viaje
+tenga menos Paradas que Tramos.
 
-En definitiva, la Orden debe entenderse como la unidad contractual y económica del TMS. Es el objeto que conecta cliente, proyecto, tarificación y estructura operativa, y sobre ella se construye todo el desarrollo logístico posterior.
+La Parada es la unidad mínima de planificación: el Optimizador de Paradas y las herramientas
+manuales trabajan sobre Paradas, no sobre Órdenes ni Tramos. Por eso las Órdenes pueden
+reorganizarse, agruparse o dividirse sin tocar su dimensión contractual: la planificación solo ve
+eventos físicos con coordenadas, franjas horarias y tiempos de servicio. La Parada es donde la
+operación deja de ser un compromiso abstracto y se convierte en un evento planificable, trazable y
+medible.
 
-El Tramo
-~~~~~~~~
-
-El Tramo es la unidad operativa contenida dentro de una Orden. Si la Orden define el compromiso comercial —qué servicio se debe prestar—, el Tramo concreta cómo se materializa ese compromiso desde el punto de vista logístico. En términos simples, el Tramo responde a la pregunta: desde dónde hasta dónde se presta el servicio.
-
-Cada tramo define un movimiento específico entre un punto de carga y un punto de descarga. En él se registran los datos esenciales que permiten ejecutar y valorar ese desplazamiento: localizaciones, información de mercancía, parámetros temporales y las reglas de tasación que puedan aplicarse a esa fase concreta del servicio. Esto significa que la dimensión económica no se calcula únicamente a nivel global de la Orden, sino que puede vincularse a cada tramo cuando la operativa lo requiere.
-
-La función principal del Tramo es permitir la descomposición controlada de una Orden en operaciones logísticas independientes sin perder la unidad contractual. Gracias a esta estructura, el sistema puede modelar con coherencia escenarios muy distintos: un servicio puerta a puerta se representará mediante un único tramo, mientras que un arrastre entre hubs podrá estructurarse en dos o más tramos dentro de la misma Orden. Del mismo modo, en operativas de última milla masiva o en casos de reagenda, basta con añadir tramos adicionales sin necesidad de crear nuevas órdenes ni alterar la lógica administrativa original.
-
-Esta capacidad de segmentación aporta flexibilidad sin introducir fragmentación económica. La Orden sigue siendo el marco contractual, pero el Tramo permite adaptar la ejecución a la realidad operativa.
-
-.. important::
-
-   El Tramo es la entidad que da origen a las Paradas.
-
-   Sin tramo no existe evento físico planificable.
-
-Desde el punto de vista estructural, el Tramo actúa como puente entre la dimensión comercial (Orden) y la dimensión física (Paradas). Es la pieza que traduce el compromiso contractual en movimientos logísticos concretos sobre los que posteriormente se construirá la planificación y la ejecución real.
-
-La Parada
-~~~~~~~~~
-
-La Parada representa el evento físico real dentro de la operativa del transporte. Si el Tramo define un movimiento lógico entre un origen y un destino, la Parada es el punto concreto donde ocurre una acción trazable: una recogida, una entrega, una entrada o salida de hub, una parada técnica o cualquier otro evento que deba registrarse en el flujo operativo.
-
-Desde el punto de vista del sistema, la Parada no se introduce manualmente en condiciones normales. Su generación forma parte del comportamiento estructural del modelo. Cuando una Orden se valida, el sistema analiza los tramos que la componen y genera automáticamente todas las paradas necesarias, vinculándolas al tramo correspondiente y conservando la coherencia jerárquica entre entidades. Este mecanismo garantiza que la representación física de la operación sea siempre consistente con la estructura contractual definida previamente.
-
-En escenarios de importación masiva, el comportamiento es aún más sofisticado. El sistema es capaz de consolidar en una única parada aquellos tramos que comparten cliente, localización y una ventana horaria compatible. Esta lógica reduce la fragmentación innecesaria y prepara la información de forma óptima para la fase de planificación, especialmente en operativas de alta densidad como la última milla o el grupaje urbano.
-
-La relevancia de la Parada no es únicamente operativa, sino también estratégica dentro del modelo de planificación.
-
-.. important::
-
-   La Parada es la unidad mínima de planificación.
-
-   El optimizador no trabaja sobre Órdenes ni sobre Tramos, sino sobre Paradas.
-
-Esta decisión arquitectónica permite que la planificación sea completamente flexible. Las órdenes pueden reorganizarse, agruparse o dividirse sin alterar su dimensión contractual, porque la lógica de optimización se basa exclusivamente en eventos físicos con coordenadas, ventanas horarias y tiempos de servicio asociados.
-
-En consecuencia, la Parada actúa como el punto de convergencia entre estructura lógica y ejecución real. Es donde la operación deja de ser un compromiso abstracto y se convierte en un evento planificable, trazable y medible dentro del sistema.
-
-El Viaje
-~~~~~~~~
+2.1.4 El Viaje
+~~~~~~~~~~~~~~
 
 .. figure:: /_static/img/2_conceptual-model/2_1_structural-logic_02_viaje.png
    :alt: Formulario de un Viaje en Odoo
 
-   Formulario de un Viaje (``tms.trip``) en Odoo.
+   Formulario de un Viaje en Odoo.
 
-El Viaje es la entidad que representa la ejecución real del transporte. Si la Orden formaliza el compromiso con el cliente y el Tramo estructura el movimiento logístico, el Viaje responde a una pregunta operativa concreta: qué conjunto de paradas ejecuta un recurso en una ruta real.
+El Viaje es la ejecución: el conjunto de Paradas que un recurso, conductor y vehículo, realiza en
+una salida, en una secuencia ejecutable y con los tiempos y distancias previstos. Se crea a mano,
+filtrando y agrupando Paradas por los criterios que convengan, o con el Optimizador de Paradas
+apoyado en PTV, que tiene en cuenta franjas horarias, tiempos de servicio, capacidades del
+vehículo y jornada del conductor (:doc:`/17.0/1_introduction/1_4_technological-architecture`). En
+ambos casos el resultado es el mismo: eventos físicos individuales convertidos en una secuencia
+operativa ejecutable.
 
-Desde el punto de vista funcional, el Viaje agrupa paradas para construir una ruta ejecutable. En él se asigna el recurso —propio o externo— que realizará el servicio, se consolidan los tiempos y distancias previstos y se genera la correspondiente orden de compra cuando interviene un transportista colaborador. Por tanto, el Viaje no es solo una estructura de planificación, sino también la unidad que activa la liquidación económica del servicio hacia el proveedor.
+El Viaje introduce el coste en el modelo. Cuando lo ejecuta un Transportista, genera la Orden de
+compra de la que saldrá su factura y activa la liquidación
+(:doc:`/17.0/8_economic-administration/8_4_purchase-orders`). Es la unidad de ejecución y de coste
+del sistema, y cierra el ciclo que abrió la Orden.
 
-Su creación puede realizarse de forma manual, utilizando herramientas de filtrado y agrupación que permiten seleccionar paradas según múltiples criterios operativos, o de forma automática mediante el optimizador integrado con PTV, que construye rutas considerando restricciones horarias, tiempos de servicio, capacidades del vehículo, normativas de conducción y otros parámetros configurados en el sistema. En ambos casos, el resultado es una estructura coherente que traduce eventos físicos individuales en una secuencia operativa ejecutable.
+2.1.5 Relaciones entre entidades
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Desde el punto de vista arquitectónico, el Viaje introduce la dimensión del coste dentro del modelo. Mientras que la Orden mantiene la unidad contractual y el ingreso asociado al cliente, el Viaje materializa el gasto derivado de la ejecución.
+El flujo es una progresión: se crea la Orden, se descompone en Tramos, al validarla se generan las
+Paradas y estas se agrupan en Viajes, a mano o con el optimizador; el Viaje se asigna a un recurso,
+se ejecuta y, al cerrarse, dispara la liquidación y la facturación. Pero lo relevante no es la
+secuencia, sino que cada entidad ocupa una capa distinta. La Orden es el compromiso comercial y el
+ingreso; el Tramo estructura la operación y aporta trazabilidad dentro del servicio; la Parada
+materializa el evento físico y es la base de la planificación; el Viaje agrupa Paradas y genera el
+coste.
 
-.. important::
-
-   La Orden representa el ingreso.
-   El Viaje representa el coste.
-
-Esta separación estructural permite que una misma Orden pueda ejecutarse en varios Viajes distintos o que un Viaje agrupe paradas procedentes de múltiples Órdenes, algo habitual en operativas de grupaje y distribución multicliente. Gracias a este desacoplamiento, el sistema puede reorganizar la ejecución sin alterar la lógica comercial, manteniendo trazabilidad completa y control económico en todas las dimensiones.
-
-El Viaje, por tanto, es la unidad de ejecución y coste del sistema, y cierra el ciclo iniciado por la Orden dentro del modelo estructural del TMS.
-
+El modelo no funde ingreso y ejecución en una sola entidad. Gracias a eso se puede reorganizar la
+ejecución sin tocar la facturación, agrupar Órdenes de varios Clientes en un Viaje, repartir una
+Orden entre varios recursos y analizar márgenes por cualquier dimensión sin conciliaciones
+posteriores. Las cardinalidades exactas y la naturaleza de cada dependencia se formalizan en
+:doc:`2_4_relational-model`.

@@ -10,7 +10,7 @@
 
 La configuración logística describe la mercancía y los vehículos: qué se transporta, cómo se
 mide, qué necesita el vehículo para llevarlo y cuánto cabe en cada tipo de vehículo. Son cinco
-maestros pequeños, pero de ellos dependen tres cosas grandes: que el optimizador sólo proponga
+maestros pequeños, pero de ellos dependen tres cosas grandes: que el optimizador solo proponga
 vehículos capaces de llevar la carga, que las líneas de mercancía se midan igual en toda la
 casa, y que las capacidades con las que se planifica sean las reales.
 
@@ -32,7 +32,7 @@ no dice qué vehículos lo tienen; eso se marca en cada categoría de vehículo 
 en el vehículo concreto. Lo que hace es dar nombre a la capacidad para que la mercancía pueda
 exigirla y el optimizador pueda comprobarla.
 
-El cliente decide poco al crearlos, pero conviene hacerlo con criterio:
+El cliente decide poco al crearlos:
 
 .. list-table::
    :header-rows: 1
@@ -41,7 +41,7 @@ El cliente decide poco al crearlos, pero conviene hacerlo con criterio:
    * - Decisión
      - Efecto
    * - Qué equipamientos existen
-     - Sólo se pueden exigir capacidades que estén en el catálogo. Conviene crear los que de
+     - Solo se pueden exigir capacidades que estén en el catálogo. Conviene crear los que de
        verdad condicionan la asignación, no un inventario exhaustivo del vehículo.
    * - El código
      - Es la clave con la que el optimizador empareja lo que exige la carga con lo que tiene el
@@ -78,8 +78,7 @@ tratarla y con qué puede viajar.
 
 Las categorías se asignan en el Proyecto, como lo que la operativa mueve, y en la categoría de
 vehículo, como lo que el vehículo admite. Con las dos, el optimizador sabe qué vehículos
-pueden cargar qué tramos y qué tramos no pueden compartir vehículo. También pueden entrar
-como condición en las reglas de negocio. Campos en
+pueden cargar qué Tramos y qué Tramos no pueden compartir vehículo. Campos en
 :doc:`/17.0/annexes/A_02_categorias-carga`.
 
 4.2.3 Reglas de tarifa: la unidad de medida
@@ -93,9 +92,10 @@ como condición en las reglas de negocio. Campos en
 
 La :term:`Regla de tarifa` (``tms.pricelist.rule``) define **cómo se mide** una línea de
 mercancía dentro de una Orden: por bultos, por palés, por cantidad o por metros lineales. A
-pesar del nombre, este maestro **no lleva precios**; el precio lo fijan las
-:term:`líneas de tarifa <Línea de tarifa>` del capítulo económico, que eligen qué magnitud
-cobrar. Aquí se decide qué magnitudes existen y qué implica cada una.
+pesar del nombre, este maestro **no lleva precios**: qué magnitud se cobra lo dice la
+:term:`Tarifa base` y cuánto vale, las :term:`Líneas de tarifa <Línea de tarifa>`; la
+diferencia entre las tres se explica al inicio de :doc:`4_4_economic-configuration`. Aquí se
+decide qué magnitudes existen y qué implica cada una.
 
 .. list-table::
    :header-rows: 1
@@ -108,7 +108,8 @@ cobrar. Aquí se decide qué magnitudes existen y qué implica cada una.
        escanea y se traza. Una regla no física (cantidad, metros) es un dato de la línea: no hay
        bultos que escanear.
    * - Qué magnitudes pide
-     - Bultos, Cantidad, Metros o Pallets, solas o combinadas. Una regla de palés que también
+     - Bultos, Cantidad, Metros o Palés, solas o combinadas. Una
+       regla de palés que también
        pide bultos permite declarar «3 palés con 40 bultos».
    * - Dimensiones y peso por defecto
      - Cuando la línea no trae medidas, el sistema calcula el volumen y el peso con estos
@@ -118,7 +119,7 @@ cobrar. Aquí se decide qué magnitudes existen y qué implica cada una.
 
 Las reglas más habituales son cuatro. **Bultos**: la unidad es el bulto individual; el sistema
 pide el número de unidades, calcula el volumen, genera un registro por bulto y permite el
-escaneo. **Pallets**: igual, con el palé como unidad. **Cantidad**: unidades que no se trazan
+escaneo. **Palés**: igual, con el palé como unidad. **Cantidad**: unidades que no se trazan
 una a una; no hay bultos ni códigos. **Metros**: metros lineales de ocupación.
 
 Cada línea de mercancía lleva una regla de tarifa y un tipo de bulto, y los dos son
@@ -136,8 +137,7 @@ defecto fijan la regla con la que se crean las líneas cuando el fichero no las 
       Tipos de Bulto: qué mercancía se transporta.
 
 El Tipo de Bulto (``tms.temperature``) responde a **qué mercancía** se transporta: seco,
-refrigerado, congelado, frágil, textil, alimentación. El modelo se llama «temperatura» porque
-nació para las clases de temperatura y se generalizó; en la interfaz aparece siempre como
+refrigerado, congelado, frágil, textil, alimentación. En la interfaz aparece siempre como
 Tipos de Bulto.
 
 .. list-table::
@@ -170,8 +170,8 @@ y por API, y el Proyecto activa cuáles admite y cuál propone por defecto. Camp
 La Flota de Odoo organiza los vehículos en marcas, modelos y categorías de modelo. El TMS
 planifica con la **categoría** (``fleet.vehicle.model.category``): tráiler, camión de 12
 toneladas, furgoneta. El **modelo** (``fleet.vehicle.model``) aporta los datos técnicos del
-vehículo concreto, y el TMS lo extiende con lo que PTV necesita para calcular rutas, peajes y
-emisiones.
+vehículo concreto, y el TMS lo extiende con lo que PTV necesita para el cálculo de ruta, los
+peajes y las emisiones.
 
 Lo que el cliente decide en la categoría es lo que el optimizador va a respetar:
 
@@ -182,7 +182,8 @@ Lo que el cliente decide en la categoría es lo que el optimizador va a respetar
    * - Decisión
      - Efecto
    * - Perfil Vehículo
-     - El perfil de red viaria de PTV (tráiler, camión de 40 t, de 12 t, de 7,5 t, furgoneta).
+     - El perfil de red viaria de PTV (tráiler, camión pesado, camión ligero, furgoneta; los
+       perfiles exactos están en el anexo).
        Determina por dónde puede circular el vehículo y a qué velocidad: es el dato que más
        cambia distancias y tiempos.
    * - Las seis capacidades
@@ -191,17 +192,18 @@ Lo que el cliente decide en la categoría es lo que el optimizador va a respetar
    * - Equipamientos y categorías de carga
      - Lo que llevan y lo que admiten los vehículos de la categoría. Es la otra mitad de la
        compatibilidad con la mercancía.
-   * - Inicio, fin y límites de ruta
-     - Dónde arranca y termina la ruta (la base, el hub), en qué ventana horaria, y los
-       kilómetros y paradas máximos por ruta.
+   * - Inicio, fin y límites del Viaje
+     - Dónde arranca y termina el Viaje (la base, el hub), en qué franja horaria, y los
+       kilómetros y las Paradas máximos por Viaje.
    * - Horas de conducción
-     - El preset de jornada que se envía a PTV cuando el viaje no viene de una franja del Plan
-       de disponibilidad (ver :doc:`4_3_planning-configuration`).
+     - El :term:`perfil de jornada <Perfil de jornada>` que se envía a PTV cuando el Viaje no
+       viene de una franja del Plan de disponibilidad (ver
+       :ref:`17.0/4_parametrization/4_3_planning-configuration:4.3.6 Horas de conducción`).
 
 En el modelo, los datos que importan son los físicos y ambientales: pesos autorizados y en
 vacío, ejes y neumáticos, dimensiones exteriores e interiores, tipo de motor, combustible y
 consumos, clase Euro y distintivos de bajas emisiones. Con ellos PTV aplica las restricciones
-viarias y calcula los peajes y las emisiones de cada viaje.
+viarias y calcula los peajes y las emisiones de cada Viaje.
 
 La categoría es el criterio de asignación por excelencia: el Optimizador de Paradas en modo
 por categoría pregunta cuántos vehículos de cada una hay disponibles, el Proyecto activa las

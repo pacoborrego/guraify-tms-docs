@@ -4,11 +4,16 @@ A.7 Planning
 .. admonition:: Ruta en Odoo
    :class: tip
 
-   TMS › Configuración › Ajustes › Datos auxiliares › Planificaciones
+   TMS › Configuración › Ajustes › Datos auxiliares › Plannings
 
-Modelo Odoo: ``tms.planning``. La segmentación operativa: última milla, recogidas, distribución urbana, larga distancia. Se escribe siempre «Planning», sin traducir.
+Modelo Odoo: ``tms.planning``. La segmentación operativa: última milla, recogidas, distribución
+urbana, larga distancia. Se escribe siempre «Planning», sin traducir, también en el menú de la
+interfaz.
 
-Además de los campos de la tabla, el maestro lleva los cuatro campos comunes a todos los catálogos del TMS: **Secuencia** (orden en las listas), **Color** (etiqueta visual), **Compañía** (a qué compañía pertenece; vacío es compartido) y **Defecto** (el registro que el sistema propone cuando hay que elegir uno y nadie ha elegido).
+Además de los campos de la tabla, el maestro lleva los cuatro campos comunes a todos los catálogos
+del TMS: **Secuencia** (orden en las listas), **Color** (etiqueta visual), **Compañía** (a qué
+compañía pertenece; vacío es compartido) y **Defecto** (el registro que el sistema propone cuando
+hay que elegir uno y nadie ha elegido).
 
 .. list-table::
    :header-rows: 1
@@ -28,13 +33,17 @@ Además de los campos de la tabla, el maestro lleva los cuatro campos comunes a 
      - Notas internas.
    * - Plan de Transporte
      - Relación con Plan de transporte
-     - La red territorial sobre la que opera este Planning. Obligatorio: sin él no se resuelven las zonas operativas.
+     - La red territorial sobre la que opera este Planning. Obligatorio: sin él no se resuelven las
+       zonas operativas.
    * - Tiempo Recogida (seg) / Tiempo de Servicio (seg)
      - Número
-     - Segundos que se añaden a cada recogida y a cada entrega cuando se envía el Planning al optimizador, además del tiempo de servicio propio de la parada.
+     - Segundos que se añaden a cada recogida y a cada entrega cuando se envía el Planning al
+       optimizador, además del tiempo de servicio propio de la Parada.
    * - Modo División Viaje
      - Selección
-     - Cómo se reparten los importes de un Viaje entre sus paradas: Volumen, Lineal, Metros, Bulto, Pallets, Cantidad, Peso, o cualquiera de ellos combinado con los kilómetros (Km y Peso, Km y Bulto...).
+     - Cómo se reparten los importes de un Viaje entre sus Paradas: Volumen, Lineal, Metros, Bulto,
+       Pallets, Cantidad, Peso, o cualquiera de ellos combinado con los kilómetros (Km y Peso, Km y
+       Bulto...). Ver :doc:`/17.0/8_economic-administration/8_3_cost-split`.
    * - Remitente
      - Relación con Contacto
      - Remitente asociado al Planning, cuando toda la operativa es de un mismo origen.

@@ -1,4 +1,4 @@
-7.6 Acciones Automáticas
+7.6 Acciones automáticas
 ========================
 
 Buena parte de la integración funciona sin intervención manual, mediante procesos
@@ -20,28 +20,41 @@ que nadie tenga que lanzar cada paso.
 
       Tareas programadas que orquestan las integraciones.
 
-Varias tareas programadas (``ir.cron``) orquestan el flujo a intervalos de pocos
-minutos. Entre ellas, el procesamiento de los ficheros en cola pendientes del asistente
-de importación (``tms_int.file.wizard``), el cómputo de las Órdenes de venta
-(``sale.order``) asociadas a las órdenes, el cálculo de la tarifa de los Viajes
-(``tms.trip``) y el cierre de los Manifiestos (``tms.edi.manifest``). Este escalonamiento
-permite que la ingesta (ver :doc:`7_2_file-import`) avance de forma diferida y ordenada.
+El módulo de integraciones instala cuatro tareas programadas (``ir.cron``), todas con
+cadencia de cinco minutos, que encadenan la entrada de datos con su tratamiento
+económico. En el orden en que actúan sobre un intercambio:
 
-7.6.2 Reglas automáticas dinámicas
-----------------------------------
+.. list-table::
+   :header-rows: 1
+   :widths: 34 66
 
-Para los flujos de salida, las reglas automáticas (``base.automation``) con disparo
-``on_write`` ejecutan un Endpoint saliente cuando cambia un registro. Estas reglas no se
-configuran a mano: se generan desde la propia configuración del endpoint, de modo que
-activar la notificación automática de un evento es una decisión que se toma en el mismo
-endpoint (ver :doc:`7_4_endpoint-configuration`).
+   * - Tarea
+     - Qué hace
+   * - ``Compute File Imports in Queue``
+     - Recoge los ficheros que el asistente de importación (``tms_int.file.wizard``) dejó
+       en cola, los valida contra su Definición de fichero y devuelve su Manifiesto al
+       estado abierto para que pueda revisarse y cerrarse (ver :doc:`7_2_file-import`).
+   * - ``Compute Close Manifest``
+     - Procesa los Manifiestos (``tms.edi.manifest``) marcados para cerrar: los pasa a
+       *procesando*, materializa sus Órdenes, Tramos y Paradas y los deja *cerrados*.
+   * - ``Compute Sale Orders for TMS Shipments``
+     - Tarifica y confirma las Órdenes (``sale.order``) marcadas para recalcular su
+       tarifa o pendientes de confirmación tras el cierre desde la app, en lotes acotados
+       por tiempo y por tamaño para no bloquear el servidor.
+   * - ``Compute Tariff for TMS Trips``
+     - Tarifica los Viajes (``tms.trip``) marcados para recalcular su coste, con los mismos
+       topes de lote y de tiempo.
 
-7.6.3 Programación de endpoints
--------------------------------
+Las dos últimas son la tarea de tarificación que el Manual de implantación describe en
+:doc:`/17.0/5_operational-flows/5_6_settlement`; aquí interesa saber que existen porque
+explican por qué una Orden recién importada tarda unos minutos en aparecer tarificada.
 
-De forma complementaria, un endpoint puede programarse para ejecutarse periódicamente
-mediante tareas ``ir.cron`` generadas también desde su configuración. Así, el envío
-saliente puede responder tanto a eventos (``on_write``) como a una cadencia temporal,
-según convenga a cada integración. El conjunto de tareas y reglas se encadena con la
-importación de ficheros y el despacho por proyecto para cubrir el ciclo completo de
-entrada y salida de datos.
+7.6.2 Reglas y programación de los endpoints
+--------------------------------------------
+
+Los flujos de salida se automatizan desde el propio endpoint, que genera sus reglas
+automáticas (``base.automation`` con disparo ``on_write``) y sus tareas programadas
+(``ir.cron``) sin que haya que crearlas a mano. Los dos disparadores y su filtro se
+describen en :doc:`7_4_endpoint-configuration`. El conjunto de tareas y reglas se
+encadena con la importación de ficheros y el despacho por Proyecto para cubrir el ciclo
+completo de entrada y salida de datos.

@@ -28,15 +28,14 @@ integración. Al seleccionar una función en un mapeo (campo ``preset_function_i
 código de ejemplo se copia automáticamente al campo ``python_code`` del mapeo, donde
 puede ajustarse a la necesidad concreta. Las funciones que requieren parámetros
 (índices de columna, diccionarios de correspondencia, valores por defecto) los declaran
-al inicio del código mediante marcadores que el consultor sustituye.
+al inicio del código mediante marcadores que el integrador sustituye.
 
 .. figure:: /_static/img/7_edi-integrations/7_2_2_python-transformations_01_lista-funciones.png
    :alt: Catálogo de funciones preestablecidas
 
    Catálogo de funciones preestablecidas.
 
-Las funciones cargadas por defecto (fichero ``tms_int/data/tms_int_preset_function.xml``)
-son las siguientes:
+Las funciones cargadas de serie son las siguientes:
 
 7.2.2.2.1 ``Extract First Hour`` · primera hora
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -125,7 +124,7 @@ identificadores insensibles a mayúsculas.
 Elimina los espacios en blanco al inicio y al final del valor. Recomendable de forma
 sistemática en ficheros generados a mano o exportados de hojas de cálculo.
 
-7.2.2.2.13 ``Extract Digits`` · sólo dígitos
+7.2.2.2.13 ``Extract Digits`` · solo dígitos
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Extrae todos los dígitos numéricos del valor y los concatena (p. ej. de ``"Order1234"``
@@ -173,7 +172,7 @@ cualquier mapeo, como las de serie.
 En ambos casos el código debe respetar el contrato del contexto de ejecución: leer el
 dato de entrada de ``value`` (y, si procede, de ``row`` o ``rows``), usar únicamente
 las librerías disponibles (``json``, ``re``, ``datetime``) y depositar el resultado en
-la variable ``result`` — por ejemplo, ``result = str(value).upper()``. Los parámetros
+la variable ``result``; por ejemplo, ``result = str(value).upper()``. Los parámetros
 configurables se declaran como variables al inicio del código, siguiendo la convención
 de los marcadores ``<INTEGER>`` o similares que usan las funciones de serie.
 
@@ -182,9 +181,9 @@ de los marcadores ``<INTEGER>`` o similares que usan las funciones de serie.
 
 El asistente de prueba (``tms_int.preset.function.test.wizard``) permite ejecutar una
 función con un valor de ejemplo y comprobar su salida antes de incorporarla a un mapeo
-de producción. Para los mapeos, existe además la prueba inline descrita en
-:doc:`7_2_1_field-mapping`. Es muy recomendable validar así cualquier función nueva o
-modificada antes de aplicarla a datos reales.
+de producción. Una vez incorporada, el mapeo tiene su propia prueba en el propio mapeo
+(ver :doc:`7_2_1_field-mapping`). Es muy recomendable validar así cualquier función nueva
+o modificada antes de aplicarla a datos reales.
 
 7.2.2.5 Seguridad
 -----------------

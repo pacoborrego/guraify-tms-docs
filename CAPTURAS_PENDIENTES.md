@@ -19,8 +19,10 @@ público. Decisión de Paco, 2026-09-08.
    (pero el difuminado a mano se nota y deja rastros, mejor evitarlo). Las capturas de la app
    se hacen con una ruta de prueba, nunca con una ruta real.
 4. **Tamaño**: ancho entre 1400 y 1600 px para pantallas de Odoo; para la app, la captura
-   nativa del teléfono. Formato PNG. Idealmente por debajo de 400 KB (si pesa más, pasarla por
-   https://tinypng.com o similar).
+   nativa del teléfono. Formato PNG. Idealmente por debajo de 400 KB y **nunca por encima de
+   500 KB** (si pesa más, pasarla por https://tinypng.com o similar). El cierre editorial (D12,
+   2026-09-10) contó 18 capturas antiguas por encima de ese límite, todas del lote 🔁: al
+   rehacerlas recortadas quedarán por debajo.
 5. **Nombre de fichero**: exactamente el de la columna "Fichero" de las tablas de abajo, en la
    carpeta indicada. Si el nombre no coincide, la imagen no se muestra.
 
@@ -44,7 +46,6 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 | Estado | Sección (.rst) | Fichero | Qué se ve (pie de figura) | Ruta en Odoo |
 |---|---|---|---|---|
 | ⬜ | `0_4_what-it-includes.rst` | `0_4_what-it-includes_01_tablero.png` | Tablero de operaciones: volumen, puntualidad y estado de las paradas del día. | TMS › Operaciones › Tableros (tablero de operaciones, con datos de demo) |
-| ⬜ | `0_6_integrations.rst` | `0_6_integrations_01_portal.png` | El portal del cliente: envíos recibidos, rechazados y su manifiesto. | Portal del cliente, entrando con un usuario de portal: Mi cuenta › Bandejas API |
 
 ## Capítulo 2 — Modelo conceptual
 
@@ -52,9 +53,9 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 
 | Estado | Sección (.rst) | Fichero | Qué se ve (pie de figura) | Ruta en Odoo |
 |---|---|---|---|---|
-| 🔁 | `2_1_structural-logic.rst` | `2_1_structural-logic_01_orden.png` | Formulario de una Orden (sale.order) en Odoo. | Las cuatro entidades del modelo se consultan en TMS › Operaciones › Tráfico: |
-| 🔁 | `2_1_structural-logic.rst` | `2_1_structural-logic_02_viaje.png` | Formulario de un Viaje (tms.trip) en Odoo. | Las cuatro entidades del modelo se consultan en TMS › Operaciones › Tráfico: |
-| 🔁 | `2_3_traceability-model.rst` | `2_3_traceability-model_01_trazabilidad.png` | Vista de Trazabilidad (tms.traceability) en Odoo. | TMS › Operaciones › Tráfico › Trazabilidad |
+| 🔁 | `2_1_structural-logic.rst` | `2_1_structural-logic_01_orden.png` | Formulario de una Orden en Odoo. | TMS › Operaciones › Tráfico › Órdenes |
+| 🔁 | `2_1_structural-logic.rst` | `2_1_structural-logic_02_viaje.png` | Formulario de un Viaje en Odoo. | TMS › Operaciones › Tráfico › Viajes |
+| 🔁 | `2_2_traceability-model.rst` | `2_3_traceability-model_01_trazabilidad.png` | Vista de Trazabilidad en Odoo. | TMS › Operaciones › Tráfico › Trazabilidad |
 
 ## Capítulo 3 — Arquitectura funcional
 
@@ -66,8 +67,9 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 | 🔁 | `3_2_1_orders.rst` | `3_2_1_orders_01_orden.png` | Formulario de una Orden (sale.order) con su estado operativo. | TMS › Operaciones › Tráfico › Órdenes |
 | 🔁 | `3_2_1_orders.rst` | `3_2_1_orders_02_orden-bloqueada.png` | Orden bloqueada: candado cerrado tras confirmarse la ejecución. | TMS › Operaciones › Tráfico › Órdenes |
 | 🔁 | `3_2_2_trips.rst` | `3_2_2_trips_01_viaje.png` | Formulario de un Viaje (tms.trip) con sus estados operativo, de compra y de facturación. | TMS › Operaciones › Tráfico › Viajes |
-| 🔁 | `3_2_3_manifests.rst` | `3_2_3_manifests_01_manifiesto.png` | Formulario de un Manifiesto EDI (tms.edi.manifest) con sus estados y botones. | TMS › Operaciones › Tráfico › Manifiestos |
-| ⬜ | `3_2_3_manifests.rst` | `3_2_3_manifests_02_botones-magicos.png` | Botones mágicos del Manifiesto: **Stops** y **Normalizar** (contactos pendientes). | TMS › Operaciones › Tráfico › Manifiestos |
+| 🔁 | `3_2_3_manifests.rst` | `3_2_3_manifests_01_manifiesto.png` | Formulario de un Manifiesto con sus estados y botones. | TMS › Operaciones › Tráfico › Manifiestos |
+| ⬜ | `3_2_3_manifests.rst` | `3_2_3_manifests_02_botones-inteligentes.png` | Botones inteligentes del Manifiesto: **Paradas**, **Normalizar** (contactos pendientes) y **Ficheros**. | TMS › Operaciones › Tráfico › Manifiestos |
+| ⬜ | `3_2_6_legs-and-stops.rst` | `3_2_6_legs-and-stops_01_parada.png` | Formulario de una Parada con su Tipo de Parada, sus Tramos agrupados y su estado. | TMS › Operaciones › Maestros › Paradas |
 | 🔁 | `3_2_4_api-inbox.rst` | `3_2_4_api-inbox_01_inbox.png` | Bandeja de entrada API (tms_int.api.inbox) con sus líneas y estados. | TMS › Operaciones › Tráfico › Bandeja de entrada API |
 | 🔁 | `3_2_5_active-leg.rst` | `3_2_5_active-leg_01_tramo-activo.png` | Cabecera de una Orden multitramo mostrando los datos del tramo activo. | TMS › Operaciones › Tráfico › Órdenes (la cabecera de la Orden muestra los datos del |
 | ⬜ | `3_3_planning-model.rst` | `3_3_planning-model_02_plan-disponibilidad.png` | Plan de Disponibilidad de Conductores: vista Gantt de *slots* (planning.slot). | TMS › Operaciones › Planificación (Plan Disponibilidad Conductores, Optimizador de Paradas) |
@@ -80,14 +82,14 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 
 | Estado | Sección (.rst) | Fichero | Qué se ve (pie de figura) | Ruta en Odoo |
 |---|---|---|---|---|
-| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_01_datos-auxiliares.png` | Panel "Datos auxiliares" en TMS › Configuración › Ajustes. | TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los |
-| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_02_tipos-servicio-lista.png` | Lista de Tipos de Servicio (tms.service.type). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los |
-| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_03_tipos-servicio-form.png` | Formulario de un Tipo de Servicio con sus variables logísticas. | TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los |
-| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_04_tipos-orden.png` | Lista de Tipos de Orden (tms.shipment.type). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los |
-| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_05_tipos-parada.png` | Lista de Tipos de Parada (tms.stop.type). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los |
-| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_06_tipos-destinatario.png` | Lista de Tipos de Destinatario (tms.receiper.type). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los |
-| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_07_tipos-transportista.png` | Lista de Tipos de Transportista (tms.carrier.type). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los |
-| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_08_tipos-reembolso.png` | Lista de Tipos de Reembolso (tms.cashvalue.type). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los |
+| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_01_datos-auxiliares.png` | El bloque «Datos auxiliares» de TMS › Configuración › Ajustes, punto de entrada a los seis catálogos. | TMS › Configuración › Ajustes › Datos auxiliares |
+| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_02_tipos-servicio-lista.png` | Lista de Tipos de Servicio: productos, Tipos de Orden compatibles y variables logísticas de cada uno. | TMS › Configuración › Ajustes › Datos auxiliares |
+| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_03_tipos-servicio-form.png` | Formulario de un Tipo de Servicio con sus variables logísticas. | TMS › Configuración › Ajustes › Datos auxiliares |
+| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_04_tipos-orden.png` | Lista de Tipos de Orden: las cuatro marcas de comportamiento y los porcentajes de carga y descarga. | TMS › Configuración › Ajustes › Datos auxiliares |
+| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_05_tipos-parada.png` | Lista de Tipos de Parada: seis registros, cada uno con una única marca activa. | TMS › Configuración › Ajustes › Datos auxiliares |
+| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_06_tipos-destinatario.png` | Lista de Tipos de Destinatario. | TMS › Configuración › Ajustes › Datos auxiliares |
+| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_07_tipos-transportista.png` | Lista de Tipos de Transportista. | TMS › Configuración › Ajustes › Datos auxiliares |
+| 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_08_tipos-reembolso.png` | Lista de Tipos de Reembolso. | TMS › Configuración › Ajustes › Datos auxiliares |
 | ⬜ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_01_equipamientos.png` | Configuración de Equipamientos (tms.equipment). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*): Equipamientos |
 | ⬜ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_02_vehiculos.png` | Modelos y Categorías de Vehículo (fleet.vehicle.model / fleet.vehicle.model.category). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*): Equipamientos |
 | ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_01_planes-transporte.png` | Configuración de un Plan de Transporte (tms.transport.plan). | TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas |
@@ -96,12 +98,12 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 | ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_01_zonas-tarifarias.png` | Configuración de una Zona de tarifa (tms.pricelist.zone). | TMS › Configuración › Tarifas: Zonas de tarifa (``tms.pricelist.zone``), Tarifas Base |
 | ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_02_tarifa.png` | Configuración de una Tarifa (tms.pricelist) y sus versiones. | TMS › Configuración › Tarifas: Zonas de tarifa (``tms.pricelist.zone``), Tarifas Base |
 | ⬜ | `4_5_project-configuration.rst` | `4_5_project-configuration_01_proyecto.png` | Formulario de configuración de un Proyecto (project.project). | TMS › Configuración › Proyectos (el Proyecto, ``project.project``, extendido por el |
-| ⬜ | `4_5_project-configuration.rst` | `4_5_project-configuration_02_kanban-proyectos.png` | Vista Kanban de Proyectos con sus KPIs e indicadores de configuración. | TMS › Configuración › Proyectos (el Proyecto, ``project.project``, extendido por el |
+| ⬜ | `4_5_project-configuration.rst` | `4_5_project-configuration_02_kanban-proyectos.png` | La kanban de Proyectos: cada tarjeta resume un contrato. | TMS › Configuración › Proyectos (el Proyecto, ``project.project``, extendido por el |
 | ⬜ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_03_reglas-tarifa.png` | Formulario de una Regla de tarifa (unidad de medida): casillas Bultos/Cantidad/Metros/Pallets, Físico y dimensiones por defecto. | TMS › Configuración › Ajustes › Datos auxiliares › Regla de tarifa |
 | ⬜ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_04_tipos-bulto.png` | Lista de Tipos de Bulto. | TMS › Configuración › Ajustes › Datos auxiliares › Tipos de Bulto |
 | ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_04_planning.png` | Formulario de un Planning: plan de transporte, tiempos de recogida/entrega y modo de división. | TMS › Configuración › Ajustes › Datos auxiliares › Planificaciones |
 | ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_05_franjas-horarias.png` | Lista de Franjas Horarias. | TMS › Configuración › Ajustes › Datos auxiliares › Franjas Horarias |
-| ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_06_horas-conduccion.png` | Formulario de un preset de Horas de Conducción (ajustes de secuenciación y optimización, pausas). | TMS › Configuración › Ajustes › Optimización de ruta › Horas de Conducción |
+| ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_06_horas-conduccion.png` | Un perfil de jornada (Horas de Conducción) con sus ajustes para PTV. | TMS › Configuración › Ajustes › Optimización de ruta › Horas de Conducción |
 | ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_03_tarifa-base.png` | Lista de Tarifas Base con su tipo de cálculo. | TMS › Administración › Opciones de Tarifa › Tarifa Base |
 | ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_04_linea-tarifa.png` | Una Línea de tarifa dentro de una versión, con sus condiciones arriba y la lista de detalles (zonas, rango, precio) debajo. | TMS › Administración › Opciones de Tarifa › Tarifa › pestaña Reglas Tarifa |
 | ⬜ | `4_5_project-configuration.rst` | `4_5_project-configuration_03_otros-parametros.png` | Grupo Otros parámetros del Proyecto con los interruptores de automatización. | TMS › Configuración › Proyectos › pestaña TMS › Otros parámetros |
@@ -115,11 +117,12 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 |---|---|---|---|---|
 | ⬜ | `5_1_order-creation.rst` | `5_1_order-creation_01_orden-nueva.png` | Formulario de creación de una Orden (sale.order). | TMS › Operaciones › Tráfico › Órdenes (la Orden, ``sale.order``). |
 | ⬜ | `5_1_order-creation.rst` | `5_1_order-creation_02_validar.png` | Botón **Validar** de la orden: valida y genera las Paradas. | TMS › Operaciones › Tráfico › Órdenes (la Orden, ``sale.order``). |
-| ⬜ | `5_2_trip-generation.rst` | `5_2_trip-generation_01_generacion-viajes.png` | Generación de Viajes (tms.trip): asistente manual u optimizador PTV. | TMS › Operaciones › Planificación (Optimizador de Paradas) y TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
+| ⬜ | `5_2_trip-generation.rst` | `5_2_trip-generation_01_generacion-viajes.png` | Generación de Viajes: asistente manual u Optimizador de Paradas. | TMS › Operaciones › Planning › Optimizador de Paradas y TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
 | ⬜ | `5_3_resource-assignment.rst` | `5_3_resource-assignment_01_recursos.png` | Viaje (tms.trip) con conductor, vehículo y transportista asignados. | TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
 | ⬜ | `5_5_trip-closing.rst` | `5_5_trip-closing_01_cierre.png` | Viaje cerrado tras completarse sus paradas. | TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
-| ⬜ | `5_6_settlement.rst` | `5_6_settlement_01_liquidacion.png` | Liquidación económica de venta (cliente) y de compra (transportista). | TMS › Administración (liquidación de venta y de compra). |
-| ⬜ | `5_7_invoicing.rst` | `5_7_invoicing_01_factura.png` | Generación de la factura de cliente / proveedor (account.move). | TMS › Administración (facturación de cliente y de proveedor). |
+| ⬜ | `5_4_app-execution.rst` | `5_4_app-execution_01_paradas-estado-app.png` | Las Paradas en Odoo con el estado que llega desde la app (columna de estado de la app). | TMS › Operaciones › Maestros › Paradas |
+| ⬜ | `5_6_settlement.rst` | `5_6_settlement_01_liquidacion.png` | Tarificación de venta (cliente) y de compra (transportista). | Botón Tarificar en la Orden y en el Viaje. |
+| ⬜ | `5_7_invoicing.rst` | `5_7_invoicing_01_factura.png` | Generación de la factura al cliente y de la factura del transportista. | TMS › Administración (facturación de cliente y de proveedor). |
 | 🔁 | `5_8_kpi-indicators.rst` | `5_8_kpi-indicators_01_kpi-parada.png` | Indicador KPI en la lista de Paradas (triángulos de estado, barra de puntualidad y secuencia). | Columna de KPI en las listas de TMS › Operaciones › Tráfico › Órdenes y de las Paradas |
 | 🔁 | `5_8_kpi-indicators.rst` | `5_8_kpi-indicators_02_kpi-orden.png` | Indicador KPI en la lista de Órdenes (parada activa + validación, factura/candado y POD). | Columna de KPI en las listas de TMS › Operaciones › Tráfico › Órdenes y de las Paradas |
 
@@ -147,6 +150,11 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 ## Gestión de Recursos (cap. 6)
 
 > Carpeta: `source/_static/img/6_resources/`
+>
+> **Aviso (D12, 2026-09-10)**: los módulos `tms_resources` y `tms_maintenance` no tienen traducción
+> al español todavía, así que sus pestañas, botones y filtros salen en inglés («Odometer (TMS)»,
+> «Maintenance (TMS)», «Bulk Preventive Service»…). Mejor hacer estas capturas cuando exista el
+> `es.po` de los dos módulos (tarea anotada en `PLAN.md`); si urge, se aceptan en inglés.
 >
 > Odoo en español, unidades de prueba (matrículas inventadas), sin datos reales del cliente.
 

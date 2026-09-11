@@ -1,86 +1,70 @@
-4.1 Configuración Operativa Inicial
------------------------------------
+4.1 Configuración operativa
+---------------------------
 
 .. admonition:: Ruta en Odoo
    :class: tip
 
-   TMS › Configuración › Ajustes (bloque *Datos auxiliares*), donde se gestionan los
-   Tipos de Servicio (``tms.service.type``), Tipos de Orden (``tms.shipment.type``),
-   Tipos de Parada (``tms.stop.type``), Tipos de Destinatario (``tms.receiper.type``),
-   Tipos de Transportista (``tms.carrier.type``) y Tipos de Reembolso
-   (``tms.cashvalue.type``).
+   TMS › Configuración › Ajustes, bloque **Datos auxiliares**: «Tipos de servicios», Tipos de
+   Orden, «Tipos de parada», Tipos de Destinatario, «Tipos de transportista» y Tipos de
+   Reembolso. Cada enlace del bloque abre la lista del catálogo, desde la que se crean, se
+   modifican y se archivan los registros.
 
-La configuración operativa inicial define las tipologías básicas que estructuran la actividad del sistema. Estas tipologías permiten clasificar los distintos tipos de servicios, órdenes, paradas y participantes que intervienen en la operativa logística.
-
-Aunque conceptualmente son simples catálogos, su impacto es significativo porque muchos procesos automáticos del sistema utilizan estas clasificaciones como criterios de filtrado, segmentación o aplicación de reglas.
-
-Las tipologías definidas en esta sección se utilizan posteriormente en:
-
-• Líneas de tarifa
-
-• filtros de planificación
-
-• segmentación operativa
-
-• validaciones de compatibilidad
-
-• lógica de creación de órdenes
-
-Dentro de este bloque se configuran los siguientes elementos.
-
-Todos estos catálogos son accesibles desde el panel **Configuración → Ajustes**, sección "Datos auxiliares", que actúa como punto de entrada único a las tablas de configuración operativa.
+La configuración operativa son seis catálogos pequeños que clasifican lo que se mueve por el
+sistema: el servicio que se vende, la Orden, la Parada, el Destinatario, el Transportista y la
+forma de cobrar un Reembolso. Ninguno lleva precios ni horarios, pero casi todos los procesos
+los usan como criterio: el Tipo de Orden decide qué lado de un Tramo es el hub y cuál el
+cliente; el Tipo de Parada, qué Paradas se pueden planificar; los tipos de servicio, de
+destinatario y de transportista son condiciones de las Líneas de tarifa y filtros del
+Proyecto. Por eso se configuran antes que el resto del capítulo y se cambian poco después.
 
 .. figure:: /_static/img/4_parametrization/4_1_operational-configuration_01_datos-auxiliares.png
    :align: center
    :alt: Panel de Datos auxiliares en Ajustes
 
-   Panel "Datos auxiliares" en TMS › Configuración › Ajustes.
+   El bloque «Datos auxiliares» de TMS › Configuración › Ajustes, punto de entrada a los seis
+   catálogos.
 
-.. note::
-
-   Cada enlace de la sección "Datos auxiliares" abre la lista del catálogo correspondiente. Desde la lista pueden crearse, modificarse y eliminarse registros, así como inspeccionar el detalle de cada tipo.
+Cada maestro se describe aquí por lo que decide el cliente y por dónde se nota después. La
+lista completa de campos de cada pantalla está en el :doc:`anexo A </17.0/annexes/index>`.
 
 4.1.1 Tipos de Servicio
 ~~~~~~~~~~~~~~~~~~~~~~~
-
-Los Tipos de Servicio constituyen uno de los primeros elementos de configuración operativa del sistema.
-
-Su objetivo es clasificar la naturaleza de los servicios de transporte gestionados dentro del TMS y establecer la relación entre la operativa logística y los conceptos económicos que se utilizarán posteriormente en la facturación.
-
-En la práctica, el tipo de servicio permite identificar el modelo de transporte aplicado a una orden.
-
-Esta clasificación facilita la gestión de diferentes operativas dentro de una misma organización, como por ejemplo:
-
-- Carga completa
-- Grupaje
-- Distribución urbana
-- Same day
-- Entregas con compromiso horario
-
-La vista de lista permite revisar de un vistazo todos los tipos de servicio configurados, junto con los productos asociados, los tipos de orden compatibles y las variables logísticas activas para cada uno.
 
 .. figure:: /_static/img/4_parametrization/4_1_operational-configuration_02_tipos-servicio-lista.png
    :align: center
    :alt: Lista de Tipos de Servicio
 
-   Lista de Tipos de Servicio (``tms.service.type``).
+   Lista de Tipos de Servicio: productos, Tipos de Orden compatibles y variables logísticas de
+   cada uno.
 
-La selección del tipo de servicio durante la creación de una orden no solo cumple una función descriptiva.
+El Tipo de Servicio (``tms.service.type``) clasifica el servicio de transporte que se vende:
+carga completa, grupaje, distribución urbana, entrega con compromiso horario, larga distancia,
+movimiento interno. Es la dimensión comercial de la Orden y el puente entre lo que se hace y
+lo que se factura: cada Orden, cada Tramo y cada Viaje llevan un tipo de servicio, y las
+Líneas de tarifa lo usan para dar precios distintos a servicios distintos.
 
-También determina qué productos del catálogo de Odoo se utilizarán posteriormente para registrar los ingresos asociados a la operación.
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-De este modo, el tipo de servicio actúa como un elemento de conexión entre:
-
-- La estructura operativa de la orden
-- Las variables logísticas que intervienen en el transporte
-- La generación automática de conceptos económicos
-
-Gracias a esta relación, el sistema puede traducir la información operativa del transporte en registros económicos sin necesidad de introducir datos adicionales durante el proceso de facturación.
-
-4.1.1.1 Campos principales de Tipos de Servicio
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-La vista de formulario de un Tipo de Servicio agrupa todos sus campos en una única pantalla, incluyendo los switches que controlan qué variables logísticas (bultos, cantidad, metros, pallets) intervienen en el cálculo económico.
+   * - Decisión
+     - Efecto
+   * - Qué servicios existen
+     - Una operativa con precios, plazos o exigencias distintas merece un tipo propio; dos
+       servicios que se cobran y se planifican igual no. Cada tipo es un criterio más que la
+       tarifa y el Proyecto tendrán que contemplar.
+   * - Productos
+     - Los productos TMS con los que se relaciona el servicio. Es obligatorio informar al
+       menos uno y solo se admiten productos marcados como Producto TMS (ver
+       :doc:`4_4_economic-configuration`). El producto que finalmente lleva cada línea
+       económica lo fija la Línea de tarifa.
+   * - Tipos de Orden compatibles
+     - Con qué Tipos de Orden se puede combinar el servicio. Sirve de referencia al
+       configurar el Proyecto y las tarifas.
+   * - Variables logísticas
+     - Las casillas Bultos, Cantidad, Metros y Palés dicen qué magnitudes intervienen en
+       el servicio. Al añadir mercancía a un Tramo, el sistema solo ofrece las Reglas de tarifa
+       que miden alguna de las magnitudes marcadas (ver :doc:`4_2_logistic-configuration`).
 
 .. figure:: /_static/img/4_parametrization/4_1_operational-configuration_03_tipos-servicio-form.png
    :align: center
@@ -88,436 +72,191 @@ La vista de formulario de un Tipo de Servicio agrupa todos sus campos en una ún
 
    Formulario de un Tipo de Servicio con sus variables logísticas.
 
-El modelo de Tipos de Servicio incluye los siguientes campos funcionales.
-
-.. list-table::
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Campo
-     - Descripción
-   * - Nombre
-     - Identificador del tipo de servicio dentro del sistema. Permite reconocer la naturaleza operativa del transporte.
-   * - Secuencia
-     - Orden de visualización utilizado para organizar los servicios en las interfaces del sistema.
-   * - Descripción económica
-     - Texto utilizado como concepto económico cuando el servicio genera líneas de facturación.
-   * - Productos asociados
-     - Productos del catálogo de Odoo que se utilizarán para registrar los ingresos generados por el servicio.
-   * - Tipos de Orden
-     - Define qué tipos de orden pueden utilizar este servicio.
-   * - Bultos
-     - Indica si el número de bultos puede intervenir en el cálculo económico del servicio.
-   * - Cantidad
-     - Permite utilizar la cantidad de unidades como variable logística relevante.
-   * - Metros
-     - Indica si los metros lineales deben considerarse en la valoración del servicio.
-   * - Pallets
-     - Permite utilizar el número de pallets como dimensión logística.
-   * - Información adicional
-     - Campo descriptivo utilizado para documentar características del servicio.
-   * - Compañía
-     - Permite definir configuraciones específicas en entornos multiempresa.
-   * - Color
-     - Identificador visual utilizado en algunas interfaces de planificación.
-
-
-4.1.1.2 Contexto operativo del servicio
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Los tipos de servicio intervienen en diferentes procesos del TMS.
-
-Durante la creación de órdenes, el tipo de servicio define la naturaleza operativa de la orden y determina qué variables logísticas pueden utilizarse posteriormente en las reglas de cálculo económico.
-
-Durante el proceso de tarificación, el servicio actúa como uno de los criterios utilizados para seleccionar las Líneas de tarifa aplicables.
-
-Finalmente, en el proceso de facturación, los productos asociados al servicio permiten generar automáticamente las líneas económicas correspondientes dentro del sistema ERP.
-
-Este diseño permite mantener alineadas las tres dimensiones principales del sistema:
-
-- operativa logística
-
-- planificación de transporte
-
-- gestión económica
-
-.. note::
-
-   La correcta definición de los tipos de servicio es fundamental para garantizar que el cálculo de tarifas y la generación de ingresos reflejen correctamente la operativa real del transporte.
-
+El tipo de servicio aparece después en tres sitios. En el **Proyecto**, la lista de servicios
+activados limita los que se pueden elegir en sus Órdenes, uno de ellos se propone por
+defecto, y un servicio aparte tarifica la recogida a domicilio (ver
+:doc:`4_5_project-configuration`). En las **Líneas de tarifa**, el servicio es una de las
+condiciones que deciden si la línea aplica (ver :doc:`4_4_economic-configuration`). Y en las
+**Franjas horarias**, cada franja puede limitarse a unos servicios (ver
+:doc:`4_3_planning-configuration`). Campos en :doc:`/17.0/annexes/A_23_tipos-servicio`.
 
 4.1.2 Tipos de Orden
 ~~~~~~~~~~~~~~~~~~~~
-
-Los Tipos de Orden definen la naturaleza operativa de una orden dentro del sistema.
-
-Mientras que los Tipos de Servicio clasifican la dimensión comercial del transporte, los Tipos de Orden describen el comportamiento logístico que tendrá la orden dentro del flujo operativo del TMS.
-
-En otras palabras, el tipo de orden determina cómo se comporta una orden dentro de la red logística.
-
-Esta clasificación permite diferenciar distintos escenarios operativos, como por ejemplo:
-
-- Recogidas en origen
-- Entregas a destinatario
-- Operaciones entre hubs
-- Servicios directos
-- Movimientos internos dentro de la red
-
-La vista de lista resume el conjunto de tipos disponibles. Las columnas booleanas (Entrega, Recogida, Directo, Hub, Punto de Recogida Habitual) y los porcentajes de carga/descarga muestran de forma compacta el comportamiento logístico de cada tipo.
 
 .. figure:: /_static/img/4_parametrization/4_1_operational-configuration_04_tipos-orden.png
    :align: center
    :alt: Lista de Tipos de Orden
 
-   Lista de Tipos de Orden (``tms.shipment.type``).
+   Lista de Tipos de Orden: las cuatro marcas de comportamiento y los porcentajes de carga y
+   descarga.
 
-La definición del tipo de orden influye directamente en la forma en que el sistema genera la estructura logística de la orden, especialmente en lo relativo a la creación de tramos y paradas.
-
-Por este motivo, los Tipos de Orden forman parte de los elementos estructurales del modelo operativo del TMS.
-
-4.1.2.1 Campos principales de Tipos de Orden
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-El modelo de Tipos de Orden incluye los siguientes campos funcionales.
+El Tipo de Orden (``tms.shipment.type``) define el comportamiento logístico de la Orden dentro
+de la red: si es una entrega desde el hub, una recogida hacia el hub, un servicio directo
+entre dos puntos del cliente o una operación de hub. Mientras el Tipo de Servicio dice qué se
+vende, el Tipo de Orden dice cómo circula la mercancía.
 
 .. list-table::
    :header-rows: 1
    :widths: 30 70
 
-   * - Campo
-     - Descripción
-   * - Nombre
-     - Identificador del tipo de orden dentro del sistema.
-   * - Secuencia
-     - Orden de visualización utilizado para organizar los tipos de orden.
-   * - Descripción
-     - Texto descriptivo del comportamiento funcional.
-   * - Compañía
-     - Configuración específica en entornos multiempresa.
-   * - Color
-     - Identificador visual para facilitar su reconocimiento.
+   * - Decisión
+     - Efecto
+   * - La marca de comportamiento
+     - Cada tipo lleva una de las cuatro marcas: **Entrega**, **Recogida**, **Directo** o
+       **Hub**. Al crear un Tramo con ese tipo, el sistema propone qué lado es el del cliente
+       y cuál el del hub o la agencia del Proyecto (en una entrega se carga en el hub; en una
+       recogida se descarga en él; en un directo los dos lados son del cliente; en una
+       operación de hub los dos lados son el hub). Al validar la Orden, esa misma marca decide
+       qué Tipo de Parada recibe cada lado y con qué otros Tramos puede compartir Parada (ver
+       :doc:`/17.0/3_functional-architecture/3_2_6_legs-and-stops`).
+   * - Activo Carga % y Activo Descarga %
+     - Cómo se reparte el ingreso de un Tramo entre su Parada de carga y su Parada de
+       descarga. Los dos porcentajes deben sumar el 100 %; el sistema no guarda el registro si
+       no lo hacen. Es la segunda mitad de la :term:`División de ventas` (ver
+       :doc:`/17.0/8_economic-administration/8_2_sales-split`).
+   * - Punto de Recogida Habitual
+     - Marca el tipo con el que el sistema crea la Orden de recogida a domicilio cuando el
+       Proyecto trabaja con punto de recogida en casa del cliente. Tiene que existir uno, o el
+       cierre del Manifiesto se detiene.
+   * - Imagen y color
+     - El icono que acompaña a la Orden y al Tramo en las listas, para reconocer el tipo de un
+       vistazo.
 
-4.1.2.2 Papel dentro del modelo operativo
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Los Tipos de Orden intervienen principalmente durante el proceso de creación y estructuración de una orden de transporte.
-
-Cuando se registra una nueva orden, el tipo de orden seleccionado indica al sistema qué lógica operativa debe aplicarse para generar la estructura logística correspondiente.
-
-Esta lógica puede afectar a:
-
-- La creación automática de tramos
-- La generación de paradas de recogida y entrega
-- La clasificación de la operación dentro de la red logística
-
-Gracias a esta configuración, el sistema puede adaptar su comportamiento a distintos modelos operativos sin modificar la lógica interna del módulo.
-
-Por ejemplo, una empresa puede gestionar simultáneamente:
-
-- Servicios directos entre origen y destino
-- Operativas hub-and-spoke
-- Redes de distribución urbana
-
-4.1.2.3 Relación con otros elementos del sistema
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Los Tipos de Orden interactúan con varios componentes clave del modelo operativo del TMS.
-
-Se utilizan durante la creación de órdenes de transporte, donde determinan el comportamiento logístico de la orden.
-
-Posteriormente, esta información se utiliza durante la generación de tramos y paradas, que constituyen la estructura operativa utilizada por planificación.
-
-Además, el tipo de orden puede utilizarse como criterio en:
-
-- Reglas de planificación
-- Líneas de tarifa
-- Validaciones operativas
-
-.. note::
-
-   El tipo de orden determina cómo se estructura una orden
-   en términos de tramos y paradas.
-   Una configuración incorrecta impactará directamente
-   en la representación logística del flujo operativo.
-
-
+El Tipo de Orden no crea los Tramos: los crea el usuario, o el fichero, o la integración. Lo
+que hace es decidir cómo se interpretan. Después aparece como condición en las Líneas de
+tarifa y en sus detalles, y en el Proyecto como lista de tipos admitidos y tipo por defecto.
+El Manifiesto cuenta sus Órdenes por tipo (entregas, recogidas, directos y operaciones de hub).
+Campos en :doc:`/17.0/annexes/A_24_tipos-orden`.
 
 4.1.3 Tipos de Parada
 ~~~~~~~~~~~~~~~~~~~~~
-
-4.1.3.1 Contexto funcional de Tipos de Parada
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Los Tipos de Parada constituyen uno de los pilares de la modelización operativa dentro de Guraify TMS.
-
-Mientras que el tipo de orden define la naturaleza del encargo, el tipo de parada determina cómo se materializa dicho encargo en el plano físico y planificable.
-
-En el modelo del sistema, la parada es la unidad mínima sobre la que operan planificación, ejecución y trazabilidad.
-
-Una parada puede representar:
-
-- Una recogida
-- Una entrega
-- Una operación de hub
-- Una parada de ruta
-- Una recogida directa
-- Una entrega directa
-- Un evento generado por el optimizador
-
-La configuración estándar del sistema incluye seis tipos de parada, cada uno con una única marca booleana activa que define su papel dentro del flujo operativo.
 
 .. figure:: /_static/img/4_parametrization/4_1_operational-configuration_05_tipos-parada.png
    :align: center
    :alt: Lista de Tipos de Parada
 
-   Lista de Tipos de Parada (``tms.stop.type``).
+   Lista de Tipos de Parada: seis registros, cada uno con una única marca activa.
 
-Esta clasificación condiciona:
-
-- La generación automática de paradas
-- La planificación de rutas
-- Las validaciones operativas
-- El comportamiento de la app del conductor
-- La trazabilidad del servicio
-
-4.1.3.2 Campos principales de Tipos de Parada
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+El Tipo de Parada (``tms.stop.type``) dice qué papel juega una Parada en la operativa. A
+diferencia de los otros catálogos, aquí el cliente no decide cuántos registros hay: el modelo
+define **seis papeles**, cada registro lleva exactamente uno y no puede haber dos registros de
+la misma compañía con el mismo papel. Los seis papeles son **Operaciones de Hub** (la entrada o
+la salida de mercancía en un hub), **Punto de Recogida** (la carga de una recogida a
+domicilio), **Parada de Ruta** (la parada en casa del cliente, la que se planifica y se
+reparte), **Recogida Directo** y **Entrega Directo** (los dos lados de un servicio directo) y
+**Paradas Optimizador** (las paradas de inicio y fin que genera el optimizador; no son eventos
+ejecutables).
 
 .. list-table::
    :header-rows: 1
-   :widths: 35 65
+   :widths: 30 70
 
-   * - Campo
-     - Descripción
-   * - Nombre
-     - Identificador funcional del tipo de parada.
-   * - Secuencia
-     - Orden de visualización.
-   * - Descripción
-     - Definición funcional.
-   * - Compañía
-     - Configuración multiempresa.
-   * - Color
-     - Identificador visual.
-   * - Imagen
-     - Icono asociado.
-   * - Es operación de hub
-     - Marca operaciones de centro logístico.
-   * - Es recogida a domicilio
-     - Define home collection.
-   * - Es parada de ruta
-     - Marca paradas planificables.
-   * - Es recogida directa
-     - Flujo directo de recogida.
-   * - Es entrega directa
-     - Flujo directo de entrega.
-   * - Es parada de optimizador
-     - Eventos generados automáticamente.
+   * - Decisión
+     - Efecto
+   * - Nombre, descripción e imagen de cada papel
+     - Es lo único que el cliente adapta: cómo se llama cada tipo en su casa y con qué icono
+       lo ven el planificador en las listas y el conductor en la app. El papel no se cambia:
+       al marcar una casilla se desmarcan las demás.
+   * - Que existan los seis
+     - El sistema busca cada papel por su marca cuando lo necesita: al validar una Orden
+       asigna Parada de Ruta, Operaciones de Hub, Punto de Recogida o los dos directos según el
+       Tramo; al optimizar crea las paradas de inicio y fin con el papel de optimizador. Si
+       falta el registro de un papel, el flujo que lo busca no encuentra tipo.
 
-4.1.3.3 Comportamiento operativo de Tipos de Parada
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Los tipos de parada intervienen directamente en la construcción de la estructura operativa de una orden.
-
-El sistema decide:
-
-- Qué paradas son planificables
-- Qué pertenecen a operaciones de hub
-- Qué movimientos deben tratarse como directos
-
-También se utilizan en:
-
-- Acciones masivas
-- Filtros de planificación
-- Validaciones previas
-- Comunicación con la app
-
-.. note::
-
-   La marca "Es parada de ruta" es crítica.
-   Una clasificación incorrecta puede dejar una parada
-   fuera de planificación, secuenciación u optimización.
-
-
+El papel condiciona lo que se puede hacer con la Parada. Solo las Paradas de Ruta y las
+directas se asignan a un Viaje, se envían a una agencia o se reprograman; las de hub las crea
+y las quita el propio Viaje, y las de optimizador quedan fuera de la secuenciación y de los
+documentos de carga. Cómo se asigna el tipo al validar y qué estados recorre después la
+Parada está en :doc:`/17.0/3_functional-architecture/3_2_6_legs-and-stops`. Campos en
+:doc:`/17.0/annexes/A_25_tipos-parada`.
 
 4.1.4 Tipos de Destinatario
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-4.1.4.1 Contexto funcional de Tipos de Destinatario
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Los Tipos de Destinatario permiten segmentar el perfil del receptor final de la mercancía.
-
-Ejemplos habituales:
-
-- B2B
-- B2C
-- Retail
-- Horeca
-- Gran superficie
-- Punto de conveniencia
-
-La lista de tipos configurados muestra los segmentos disponibles en el sistema, junto con la marca de valor por defecto y el color asociado a cada uno.
 
 .. figure:: /_static/img/4_parametrization/4_1_operational-configuration_06_tipos-destinatario.png
    :align: center
    :alt: Lista de Tipos de Destinatario
 
-   Lista de Tipos de Destinatario (``tms.receiper.type``).
+   Lista de Tipos de Destinatario.
 
-4.1.4.2 Campos principales de Tipos de Destinatario
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+El Tipo de Destinatario (``tms.receiper.type``) segmenta a quién se entrega: empresa o
+particular, comercio, hostelería, gran superficie, punto de conveniencia. Es un catálogo
+libre, sin comportamiento propio, cuyo valor está en lo que permite condicionar.
 
 .. list-table::
    :header-rows: 1
    :widths: 30 70
 
-   * - Campo
-     - Descripción
-   * - Nombre
-     - Código identificador.
-   * - Secuencia
-     - Orden de visualización.
-   * - Descripción
-     - Definición funcional.
-   * - Compañía
-     - Configuración multiempresa.
-   * - Valor por defecto
-     - Clasificación estándar.
-   * - Información adicional
-     - Notas internas.
+   * - Decisión
+     - Efecto
+   * - Qué segmentos existen
+     - Solo merecen un tipo los segmentos que cambian el precio o la operativa (una entrega a
+       particular con franja estrecha frente a una entrega a un almacén). Cada segmento es una
+       condición más que las tarifas pueden usar.
 
-4.1.4.3 Aplicación operativa de Tipos de Destinatario
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Se vinculan con:
-
-- Proyectos
-- Órdenes
-- Reglas tarifarias
-- Filtros de planificación
-
-Permiten:
-
-- Limitar destinatarios válidos
-- Aplicar reglas específicas
-- Diferenciar operativas de última milla
-
-
+El tipo se informa en la Orden y lo heredan sus Tramos y su Viaje. El Proyecto lista los
+tipos que admite y propone uno por defecto; las Líneas de tarifa lo usan como condición para
+que el mismo servicio tenga precios distintos según a quién se entregue (ver
+:doc:`4_4_economic-configuration` y :doc:`4_5_project-configuration`). Campos en
+:doc:`/17.0/annexes/A_26_tipos-destinatario`.
 
 4.1.5 Tipos de Transportista
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-4.1.5.1 Contexto funcional de Tipos de Transportista
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Los Tipos de Transportista permiten clasificar los recursos que ejecutan el transporte.
-
-Esta clasificación permite distinguir, por ejemplo, entre transporte con medios propios, colaboradores regulares con contrato estable o proveedores puntuales para picos de demanda.
 
 .. figure:: /_static/img/4_parametrization/4_1_operational-configuration_07_tipos-transportista.png
    :align: center
    :alt: Lista de Tipos de Transportista
 
-   Lista de Tipos de Transportista (``tms.carrier.type``).
+   Lista de Tipos de Transportista.
 
-4.1.5.2 Campos principales de Tipos de Transportista
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+El Tipo de Transportista (``tms.carrier.type``) clasifica a quien ejecuta el transporte:
+flota propia, transportista con contrato estable, transportista para picos de demanda,
+agencia. Como el anterior, es un catálogo libre que sirve de condición.
 
 .. list-table::
    :header-rows: 1
    :widths: 30 70
 
-   * - Campo
-     - Descripción
-   * - Nombre
-     - Identificador funcional.
-   * - Secuencia
-     - Orden de visualización.
-   * - Descripción
-     - Definición funcional.
-   * - Compañía
-     - Configuración multiempresa.
-   * - Valor por defecto
-     - Clasificación estándar.
-   * - Información adicional
-     - Notas internas.
-   * - Color
-     - Identificador visual.
+   * - Decisión
+     - Efecto
+   * - Qué clases de transportista existen
+     - Las que se pagan o se asignan de forma distinta. El tipo no sustituye a la marca de
+       flota propia del contacto, que es la que decide si el Viaje genera Orden de compra (ver
+       :doc:`/17.0/8_economic-administration/8_1_active-passive-margin`).
 
-4.1.5.3 Aplicación operativa de Tipos de Transportista
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Se utilizan en:
-
-- Configuración de proyectos
-- Asignación de viajes
-- Reglas económicas
-
-Permiten:
-
-- Definir transportistas admisibles
-- Condicionar tarifas de compra
-- Analizar rentabilidad por Transportista
-
-
+El tipo se informa en la Orden, en el Tramo y en el Viaje, y el asistente **Asignar a viaje**
+permite fijarlo al crear el Viaje. El Proyecto lista los tipos que admite y propone uno por
+defecto; las Líneas de tarifa lo usan como condición, de modo que un mismo recorrido puede
+costar distinto según la clase de transportista que lo haga (ver
+:doc:`4_4_economic-configuration` y :doc:`/17.0/5_operational-flows/5_2_trip-generation`).
+Campos en :doc:`/17.0/annexes/A_27_tipos-transportista`.
 
 4.1.6 Tipos de Reembolso
 ~~~~~~~~~~~~~~~~~~~~~~~~
-
-4.1.6.1 Contexto funcional de Tipos de Reembolso
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Los Tipos de Reembolso definen modalidades de cobro o devolución asociadas a una orden.
-
-Ejemplos:
-
-- Contra reembolso
-- Cobro en entrega
-- Gestión de efectivo
-
-La configuración del sistema contempla las modalidades habituales: cobro en metálico, mediante TPV propio o del cliente, y cheque bancario.
 
 .. figure:: /_static/img/4_parametrization/4_1_operational-configuration_08_tipos-reembolso.png
    :align: center
    :alt: Lista de Tipos de Reembolso
 
-   Lista de Tipos de Reembolso (``tms.cashvalue.type``).
+   Lista de Tipos de Reembolso.
 
-4.1.6.2 Campos principales de Tipos de Reembolso
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+El Tipo de Reembolso (``tms.cashvalue.type``) es la forma de cobro de un :term:`Reembolso`:
+en metálico, con TPV propio o del cliente, con cheque bancario. No es el importe ni el estado
+del cobro; es la modalidad con la que el conductor debe cobrarlo.
 
 .. list-table::
    :header-rows: 1
    :widths: 30 70
 
-   * - Campo
-     - Descripción
-   * - Nombre
-     - Identificador funcional.
-   * - Secuencia
-     - Orden de visualización.
-   * - Descripción
-     - Definición funcional.
-   * - Compañía
-     - Configuración multiempresa.
-   * - Valor por defecto
-     - Clasificación estándar.
-   * - Información adicional
-     - Notas internas.
-   * - Color
-     - Identificador visual.
+   * - Decisión
+     - Efecto
+   * - Qué formas de cobro existen
+     - Las que la empresa acepta en la entrega. Cada Reembolso de un Tramo lleva una, y el
+       conductor la ve en la app junto al importe, así que el nombre debe entenderse en la
+       calle («Efectivo», «TPV», «Cheque»).
 
-4.1.6.3 Aplicación operativa de Tipos de Reembolso
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Permiten:
-
-- Clasificar importes asociados
-- Relacionar cobros con trazabilidad
-- Integrar información con liquidación económica
-
-Especialmente relevantes cuando:
-
-- El conductor reporta importes desde la app
-- Se requiere control financiero detallado
+El tipo se elige al dar de alta el Reembolso en el Tramo, viaja con él a la app y queda en el
+registro del cobro, con lo que la administración puede agrupar lo cobrado por modalidad. El
+ciclo completo del Reembolso está en :doc:`/17.0/8_economic-administration/8_6_refunds` y el
+cobro en la calle, en el :doc:`Manual del conductor </17.0/10_manual_app/index>`. Campos en
+:doc:`/17.0/annexes/A_28_tipos-reembolso`.

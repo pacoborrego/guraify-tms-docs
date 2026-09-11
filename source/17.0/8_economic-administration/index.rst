@@ -4,8 +4,8 @@
 Este capítulo explica el **modelo económico** del TMS: cómo cada operación tiene un importe que
 se cobra, un coste que se paga y un margen, en qué nivel viven esas tres cifras, cómo se
 reparten hacia abajo (de la Orden a sus Tramos, del Viaje a sus Paradas) y con qué herramientas
-se controlan. El capítulo 2 dio el principio (:doc:`la Orden es el ingreso y el Viaje el coste
-</17.0/2_conceptual-model/2_5_official-model-diagram>`); el capítulo 5 cuenta cuándo se tarifica,
+se controlan. El capítulo 2 da el principio (:doc:`la Orden es el ingreso y el Viaje el coste
+</17.0/2_conceptual-model/2_3_economic-model>`); el capítulo 5 cuenta cuándo se tarifica,
 se liquida y se factura (:doc:`5.6 </17.0/5_operational-flows/5_6_settlement>` y
 :doc:`5.7 </17.0/5_operational-flows/5_7_invoicing>`). Aquí está lo que hay entre medias: el
 modelo con el que un consultor configura la economía de una operativa y un responsable de

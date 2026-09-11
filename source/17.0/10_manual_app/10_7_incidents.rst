@@ -15,11 +15,12 @@ Al pulsar **Resultado** tienes tres botones:
 - **Con Reservas** (amarillo): la has hecho, pero no del todo como estaba previsto. Por ejemplo,
   has dejado la mercancía al vecino o en portería, falta un bulto, o uno viene dañado.
 - **Cancelado** (rojo): no has podido hacer la parada. Por ejemplo, el destinatario no está, la
-  dirección no existe, o el cliente rechaza la mercancía. En el sistema queda como parada
-  **fallida**.
+  dirección no existe, o el cliente rechaza la mercancía.
 
-En los dos casos la app te pide un **motivo** de la lista que ha preparado tu empresa. Algunos
-motivos piden además una **foto** (dónde has dejado la mercancía, el daño) o un **comentario**.
+Según lo que elijas, la app te pedirá lo que haga falta: comprobar los bultos, el motivo, una
+foto, el cobro, la firma. En los dos últimos casos siempre te pide un **motivo** de la lista que ha
+preparado tu empresa. Algunos motivos piden además una **foto** (dónde has dejado la mercancía, el
+daño) o un **comentario**.
 
 .. figure:: /_static/img/10_manual_app/10_3_report_17_reporte-entrega.png
    :width: 300px
@@ -31,7 +32,7 @@ motivos piden además una **foto** (dónde has dejado la mercancía, el daño) o
 .. figure:: /_static/img/10_manual_app/10_3_report_18_reporte-entrega-4.png
    :width: 300px
    :align: center
-   :alt: Lista de motivos para una entrega fallida
+   :alt: Lista de motivos para una entrega cancelada
 
    Los motivos de una parada cancelada.
 
@@ -44,7 +45,7 @@ motivos piden además una **foto** (dónde has dejado la mercancía, el daño) o
       Cuando el motivo pide foto.
 
 Después de **Con Reservas** la app sigue como en una entrega normal: comprobar bultos y prueba de
-entrega. Después de **Cancelado** la parada se cierra y vuelves a tu ruta; la mercancía sigue en
+entrega. Después de **Cancelado** la parada se cierra y vuelves a tu ruta. La mercancía sigue en
 el vehículo y la oficina decide qué hacer con ella.
 
 10.7.2 Un bulto con problema
@@ -61,11 +62,33 @@ comprobar bultos:
    - **NO SE ENTREGA**: ese bulto no se entrega (no lo encuentras en el vehículo, el cliente lo
      rechaza). Elige el motivo.
 
-#. Sigue confirmando el resto de bultos con normalidad.
+#. Sigue confirmando el resto de bultos con normalidad. El bulto reportado cuenta como
+   comprobado.
 
-Los demás bultos se entregan igual, y la parada queda **Con Reservas** por los que tenían
-problema. En la carga funciona exactamente igual, con la diferencia de que un bulto **NO SE
-ENTREGA** no se carga (ver :doc:`10_5_loading`).
+.. figure:: /_static/img/10_manual_app/10_3_report_14_reporte-carga-1.png
+   :width: 300px
+   :align: center
+   :alt: Tarjeta de un bulto seleccionada
+
+   Pulsa la tarjeta del bulto.
+
+.. figure:: /_static/img/10_manual_app/10_3_report_15_reporte-carga-2.png
+   :width: 300px
+   :align: center
+   :alt: Botón Reportar Problema
+
+   El botón Reportar Problema.
+
+.. figure:: /_static/img/10_manual_app/10_3_report_16_reporte-carga-3.png
+   :width: 300px
+   :align: center
+   :alt: Pregunta ¿Se entrega el bulto? con las dos opciones
+
+   ¿Se entrega el bulto?
+
+Los demás bultos se entregan igual, y la app cierra la parada como **Con Reservas** por los que
+tenían problema. En una carga se reporta exactamente igual, con una diferencia que te contamos en
+:doc:`10_5_loading`: allí **NO SE ENTREGA** significa que el bulto no sube al vehículo.
 
 .. important::
 
@@ -78,9 +101,11 @@ ENTREGA** no se carga (ver :doc:`10_5_loading`).
 En la pantalla del reembolso, si el destinatario no paga lo que toca:
 
 - **Cobrado en parte**: paga menos del importe. Escribe la **cantidad que te ha dado** y elige el
-  motivo. La entrega sigue adelante y queda con reservas.
-- **No Cobrado**: no paga nada. Elige el motivo (rechaza el pago, no tiene dinero). En ese caso
-  **no se entrega**: la parada queda cancelada y vuelves a tu ruta con la mercancía.
+  motivo. La entrega sigue adelante y la app la cierra como **Con Reservas**.
+- **No Cobrado**: no paga nada. Elige el motivo (rechaza el pago, no tiene dinero). No entregues
+  la mercancía: la app vuelve a tu ruta y la orden sigue abierta en la parada. Entra otra vez en
+  la parada y ciérrala con **Resultado** y **Cancelado**, con su motivo, para que la oficina sepa
+  que la mercancía vuelve contigo.
 
 .. figure:: /_static/img/10_manual_app/10_3_report_26_img-1021.png
    :width: 300px
