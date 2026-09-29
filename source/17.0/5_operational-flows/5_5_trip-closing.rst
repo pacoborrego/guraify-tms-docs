@@ -6,11 +6,10 @@
 
    TMS › Operaciones › Tráfico › Viajes · TMS › Operaciones › Tráfico › Órdenes
 
-.. CAPTURA: 5_5_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_5_trip-closing_01_cierre.png
-      :alt: Cierre de un viaje
+.. figure:: /_static/img/5_operational-flows/5_5_trip-closing_01_cierre.png
+   :alt: Cierre de un viaje
 
-      Viaje cerrado tras completarse sus paradas.
+   Viaje cerrado tras completarse sus paradas.
 
 Nadie cierra un Viaje (``tms.trip``) a mano. El cierre es la consecuencia de que su última
 Parada haya terminado, y arrastra en cadena al Viaje, a su :term:`Orden de compra` (OC) y a las

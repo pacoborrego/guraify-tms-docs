@@ -13,11 +13,10 @@ y formatos dispares acaben encajando en la misma estructura interna.
 7.2.1.1 Modelo de mapeo
 -----------------------
 
-.. CAPTURA: 7_2_1_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/7_edi-integrations/7_2_1_field-mapping_01_lista-mapeos.png
-      :alt: Mapeos de columnas de una Definición de fichero
+.. figure:: /_static/img/7_edi-integrations/7_2_1_field-mapping_01_lista-mapeos.png
+   :alt: Mapeos de columnas de una Definición de fichero
 
-      Mapeos de columnas de una Definición de fichero.
+   Mapeos de columnas de una Definición de fichero.
 
 El mapeo de entrada se define en ``tms.edi.field.mapping``, que asocia una columna de
 origen (``column_name``) con un campo de destino (``field``) y declara las conversiones

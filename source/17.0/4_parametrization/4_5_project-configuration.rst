@@ -6,11 +6,10 @@
 
    TMS › Configuración › Proyectos
 
-.. CAPTURA: 4_5_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_5_project-configuration_01_proyecto.png
-      :alt: Formulario de configuración de un Proyecto
+.. figure:: /_static/img/4_parametrization/4_5_project-configuration_01_proyecto.png
+   :alt: Formulario de configuración de un Proyecto
 
-      El formulario del Proyecto: la pestaña TMS con sus cinco grupos.
+   El formulario del Proyecto: la pestaña TMS con sus cinco grupos.
 
 El :term:`Proyecto` (``project.project``) es la unidad de parametrización del TMS. Reúne, para
 un cliente o para un transportista, la tarifa, el Planning, la red territorial, los catálogos
@@ -111,11 +110,10 @@ otro:
 4.5.4 Otros parámetros y automatismos
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 4_5_03 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_5_project-configuration_03_otros-parametros.png
-      :alt: Grupo Otros parámetros del Proyecto
+.. figure:: /_static/img/4_parametrization/4_5_project-configuration_03_otros-parametros.png
+   :alt: Grupo Otros parámetros del Proyecto
 
-      Otros parámetros: los interruptores que automatizan el Proyecto.
+   Otros parámetros: los interruptores que automatizan el Proyecto.
 
 El grupo **Otros parámetros** reúne los interruptores que adaptan el mismo motor a una
 operativa manual, importada o integrada. Cada uno cambia un paso del flujo del
@@ -247,11 +245,10 @@ los contratos está en la :doc:`Guía del integrador </17.0/7_edi-integrations/i
 4.5.9 La vista kanban de Proyectos
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 4_5_02 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_5_project-configuration_02_kanban-proyectos.png
-      :alt: Vista kanban de Proyectos
+.. figure:: /_static/img/4_parametrization/4_5_project-configuration_02_kanban-proyectos.png
+   :alt: Vista kanban de Proyectos
 
-      La kanban de Proyectos: cada tarjeta resume un contrato.
+   La kanban de Proyectos: cada tarjeta resume un contrato.
 
 El menú de Proyectos abre una vista kanban que resume cada Proyecto en una tarjeta, para leer
 el estado de un contrato sin abrir el formulario. Las tarjetas se agrupan en dos columnas según

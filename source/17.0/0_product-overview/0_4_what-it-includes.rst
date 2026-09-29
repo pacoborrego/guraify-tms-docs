@@ -66,11 +66,10 @@ Hub) y facturación pendiente, con filtros de periodo y, en los dos primeros, de
 cliente y transportista. Además, indicadores configurables desde el propio Odoo, sin
 desarrollar pantallas nuevas.
 
-.. CAPTURA: 0_4_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/0_product-overview/0_4_what-it-includes_01_tablero.png
-      :alt: Tablero de operaciones de Guraify TMS
+.. figure:: /_static/img/0_product-overview/0_4_what-it-includes_01_tablero.png
+   :alt: Tablero de operaciones de Guraify TMS
 
-      Tablero de operaciones: volumen, puntualidad y estado de las Paradas del día.
+   Tablero de operaciones: volumen, puntualidad y estado de las Paradas del día.
 
 Gestión de recursos
 ~~~~~~~~~~~~~~~~~~~

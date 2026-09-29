@@ -9,15 +9,20 @@ público. Decisión de Paco, 2026-09-08.
 
 1. **Recorte**: solo la ventana de Odoo (o la zona relevante: un formulario, una lista, un
    menú). Sin barra de menús del Mac, sin dock, sin hora, sin pestañas ni barra de direcciones
-   del navegador. En Chrome, `Cmd+Shift+4` y arrastrar sobre la zona, o usar el modo
-   "Capturar área" de las herramientas de desarrollador.
-2. **Odoo en español**: la interfaz debe estar en español (Preferencias del usuario › Idioma),
-   porque el texto de la doc da las rutas de menú en español (TMS › Operaciones › Tráfico…).
+   del navegador. En Windows, `Win+Shift+S` y arrastrar sobre la zona; en Mac, `Cmd+Shift+4`.
+   El lote del 15/09 llegó a pantalla completa (pestañas, barra de direcciones y barra de
+   tareas) y se recortó a mano; mejor recortar al capturar.
+2. **Idioma de Odoo**: las capturas de Odoo se hacen con la interfaz **en inglés**, como se
+   acordó el 12 de junio de 2026 (un mismo material para todos los mercados). El texto de la
+   doc da las rutas de menú en español; la imagen las enseña en inglés y eso se asume. Las de
+   la app del conductor van en español, que es como la usa el conductor.
 3. **Sin datos reales**: ningún nombre de cliente, destinatario, conductor, teléfono,
    dirección, matrícula ni email real. Opciones, en este orden: usar una base de datos de
    demo; crear registros de prueba con nombres inventados; como último recurso, difuminar
    (pero el difuminado a mano se nota y deja rastros, mejor evitarlo). Las capturas de la app
    se hacen con una ruta de prueba, nunca con una ruta real.
+   Difuminar con la herramienta acordada (nombres, referencias, direcciones, usuario de la
+   esquina) vale: es lo que se ha hecho en el lote del 15/09 y ha quedado bien.
 4. **Tamaño**: ancho entre 1400 y 1600 px para pantallas de Odoo; para la app, la captura
    nativa del teléfono. Formato PNG. Idealmente por debajo de 400 KB y **nunca por encima de
    500 KB** (si pesa más, pasarla por https://tinypng.com o similar). El cierre editorial (D12,
@@ -35,6 +40,10 @@ público. Decisión de Paco, 2026-09-08.
 
 Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y validada.
 
+**Lote del 15/09/2026** (revisado el 29/09): 28 imágenes entregadas; 17 validadas y activadas
+(ocho de ellas renombradas porque el fichero llevaba el nombre de otra captura) y 11 que hay que
+repetir, marcadas **Repetir (15/09)** con el motivo en su fila.
+
 
 ## Conocer Guraify TMS (capa de producto)
 
@@ -45,7 +54,7 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 
 | Estado | Sección (.rst) | Fichero | Qué se ve (pie de figura) | Ruta en Odoo |
 |---|---|---|---|---|
-| ⬜ | `0_4_what-it-includes.rst` | `0_4_what-it-includes_01_tablero.png` | Tablero de operaciones: volumen, puntualidad y estado de las paradas del día. | TMS › Operaciones › Tableros (tablero de operaciones, con datos de demo) |
+| ✅ | `0_4_what-it-includes.rst` | `0_4_what-it-includes_01_tablero.png` | Tablero de operaciones: volumen, puntualidad y estado de las paradas del día. | TMS › Operaciones › Tableros (tablero de operaciones, con datos de demo) |
 
 ## Capítulo 2 — Modelo conceptual
 
@@ -68,7 +77,7 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 | 🔁 | `3_2_1_orders.rst` | `3_2_1_orders_02_orden-bloqueada.png` | Orden bloqueada: candado cerrado tras confirmarse la ejecución. | TMS › Operaciones › Tráfico › Órdenes |
 | 🔁 | `3_2_2_trips.rst` | `3_2_2_trips_01_viaje.png` | Formulario de un Viaje (tms.trip) con sus estados operativo, de compra y de facturación. | TMS › Operaciones › Tráfico › Viajes |
 | 🔁 | `3_2_3_manifests.rst` | `3_2_3_manifests_01_manifiesto.png` | Formulario de un Manifiesto con sus estados y botones. | TMS › Operaciones › Tráfico › Manifiestos |
-| ⬜ | `3_2_3_manifests.rst` | `3_2_3_manifests_02_botones-inteligentes.png` | Botones inteligentes del Manifiesto: **Paradas**, **Normalizar** (contactos pendientes) y **Ficheros**. | TMS › Operaciones › Tráfico › Manifiestos |
+| ⬜ | `3_2_3_manifests.rst` | `3_2_3_manifests_02_botones-inteligentes.png` | **Repetir (15/09):** la entregada era la lista de Manifiestos, no los botones de la ficha de un Manifiesto. Botones inteligentes del Manifiesto: **Paradas**, **Normalizar** (contactos pendientes) y **Ficheros**. | TMS › Operaciones › Tráfico › Manifiestos |
 | ⬜ | `3_2_6_legs-and-stops.rst` | `3_2_6_legs-and-stops_01_parada.png` | Formulario de una Parada con su Tipo de Parada, sus Tramos agrupados y su estado. | TMS › Operaciones › Maestros › Paradas |
 | 🔁 | `3_2_4_api-inbox.rst` | `3_2_4_api-inbox_01_inbox.png` | Bandeja de entrada API (tms_int.api.inbox) con sus líneas y estados. | TMS › Operaciones › Tráfico › Bandeja de entrada API |
 | 🔁 | `3_2_5_active-leg.rst` | `3_2_5_active-leg_01_tramo-activo.png` | Cabecera de una Orden multitramo mostrando los datos del tramo activo. | TMS › Operaciones › Tráfico › Órdenes (la cabecera de la Orden muestra los datos del |
@@ -91,23 +100,23 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 | 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_07_tipos-transportista.png` | Lista de Tipos de Transportista. | TMS › Configuración › Ajustes › Datos auxiliares |
 | 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_08_tipos-reembolso.png` | Lista de Tipos de Reembolso. | TMS › Configuración › Ajustes › Datos auxiliares |
 | ⬜ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_01_equipamientos.png` | Configuración de Equipamientos (tms.equipment). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*): Equipamientos |
-| ⬜ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_02_vehiculos.png` | Modelos y Categorías de Vehículo (fleet.vehicle.model / fleet.vehicle.model.category). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*): Equipamientos |
-| ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_01_planes-transporte.png` | Configuración de un Plan de Transporte (tms.transport.plan). | TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas |
-| ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_02_areas-geograficas.png` | Configuración de un Área Geográfica (tms.area). | TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas |
-| ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_03_tiempos-servicio.png` | Configuración de Tiempos de Servicio (tms.service.time). | TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas |
-| ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_01_zonas-tarifarias.png` | Configuración de una Zona de tarifa (tms.pricelist.zone). | TMS › Configuración › Tarifas: Zonas de tarifa (``tms.pricelist.zone``), Tarifas Base |
-| ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_02_tarifa.png` | Configuración de una Tarifa (tms.pricelist) y sus versiones. | TMS › Configuración › Tarifas: Zonas de tarifa (``tms.pricelist.zone``), Tarifas Base |
-| ⬜ | `4_5_project-configuration.rst` | `4_5_project-configuration_01_proyecto.png` | Formulario de configuración de un Proyecto (project.project). | TMS › Configuración › Proyectos (el Proyecto, ``project.project``, extendido por el |
-| ⬜ | `4_5_project-configuration.rst` | `4_5_project-configuration_02_kanban-proyectos.png` | La kanban de Proyectos: cada tarjeta resume un contrato. | TMS › Configuración › Proyectos (el Proyecto, ``project.project``, extendido por el |
-| ⬜ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_03_reglas-tarifa.png` | Formulario de una Regla de tarifa (unidad de medida): casillas Bultos/Cantidad/Metros/Pallets, Físico y dimensiones por defecto. | TMS › Configuración › Ajustes › Datos auxiliares › Regla de tarifa |
-| ⬜ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_04_tipos-bulto.png` | Lista de Tipos de Bulto. | TMS › Configuración › Ajustes › Datos auxiliares › Tipos de Bulto |
-| ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_04_planning.png` | Formulario de un Planning: plan de transporte, tiempos de recogida/entrega y modo de división. | TMS › Configuración › Ajustes › Datos auxiliares › Planificaciones |
-| ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_05_franjas-horarias.png` | Lista de Franjas Horarias. | TMS › Configuración › Ajustes › Datos auxiliares › Franjas Horarias |
-| ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_06_horas-conduccion.png` | Un perfil de jornada (Horas de Conducción) con sus ajustes para PTV. | TMS › Configuración › Ajustes › Optimización de ruta › Horas de Conducción |
-| ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_03_tarifa-base.png` | Lista de Tarifas Base con su tipo de cálculo. | TMS › Administración › Opciones de Tarifa › Tarifa Base |
-| ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_04_linea-tarifa.png` | Una Línea de tarifa dentro de una versión, con sus condiciones arriba y la lista de detalles (zonas, rango, precio) debajo. | TMS › Administración › Opciones de Tarifa › Tarifa › pestaña Reglas Tarifa |
-| ⬜ | `4_5_project-configuration.rst` | `4_5_project-configuration_03_otros-parametros.png` | Grupo Otros parámetros del Proyecto con los interruptores de automatización. | TMS › Configuración › Proyectos › pestaña TMS › Otros parámetros |
-| ⬜ | `4_5_project-configuration.rst` | `4_5_project-configuration_04_app.png` | Grupo Aplicación móvil del Proyecto (perfil, POD digital, POD físico, escaneos). | TMS › Configuración › Proyectos › pestaña TMS › Aplicación móvil |
+| ⬜ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_02_vehiculos.png` | **Repetir (15/09):** la entregada era una lista de modelos con una sola fila difuminada: no enseña nada; hace falta la ficha de una categoría o de un modelo con sus capacidades. Modelos y Categorías de Vehículo (fleet.vehicle.model / fleet.vehicle.model.category). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*): Equipamientos |
+| ✅ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_01_planes-transporte.png` | Configuración de un Plan de Transporte (tms.transport.plan). | TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas |
+| ✅ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_02_areas-geograficas.png` | Configuración de un Área Geográfica (tms.area). | TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas |
+| ✅ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_03_tiempos-servicio.png` | Configuración de Tiempos de Servicio (tms.service.time). | TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas |
+| ✅ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_01_zonas-tarifarias.png` | Configuración de una Zona de tarifa (tms.pricelist.zone). | TMS › Configuración › Tarifas: Zonas de tarifa (``tms.pricelist.zone``), Tarifas Base |
+| ✅ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_02_tarifa.png` | Configuración de una Tarifa (tms.pricelist) y sus versiones. | TMS › Configuración › Tarifas: Zonas de tarifa (``tms.pricelist.zone``), Tarifas Base |
+| ✅ | `4_5_project-configuration.rst` | `4_5_project-configuration_01_proyecto.png` | Formulario de configuración de un Proyecto (project.project). | TMS › Configuración › Proyectos (el Proyecto, ``project.project``, extendido por el |
+| ✅ | `4_5_project-configuration.rst` | `4_5_project-configuration_02_kanban-proyectos.png` | La kanban de Proyectos: cada tarjeta resume un contrato. | TMS › Configuración › Proyectos (el Proyecto, ``project.project``, extendido por el |
+| ✅ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_03_reglas-tarifa.png` | Formulario de una Regla de tarifa (unidad de medida): casillas Bultos/Cantidad/Metros/Pallets, Físico y dimensiones por defecto. | TMS › Configuración › Ajustes › Datos auxiliares › Regla de tarifa |
+| ⬜ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_04_tipos-bulto.png` | **Repetir (15/09):** la entregada era la lista de Tipos de Destinatario. Lista de Tipos de Bulto. | TMS › Configuración › Ajustes › Datos auxiliares › Tipos de Bulto |
+| ✅ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_04_planning.png` | Formulario de un Planning: plan de transporte, tiempos de recogida/entrega y modo de división. | TMS › Configuración › Ajustes › Datos auxiliares › Planificaciones |
+| ✅ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_05_franjas-horarias.png` | Lista de Franjas Horarias. | TMS › Configuración › Ajustes › Datos auxiliares › Franjas Horarias |
+| ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_06_horas-conduccion.png` | **Repetir (15/09):** la entregada era el catálogo de operaciones de tiempos de servicio; hace falta la ficha de un perfil de Horas de Conducción. Un perfil de jornada (Horas de Conducción) con sus ajustes para PTV. | TMS › Configuración › Ajustes › Optimización de ruta › Horas de Conducción |
+| ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_03_tarifa-base.png` | **Repetir (15/09):** la entregada era la lista de Tarifas (repetida); hace falta la lista de Tarifas Base. Lista de Tarifas Base con su tipo de cálculo. | TMS › Administración › Opciones de Tarifa › Tarifa Base |
+| ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_04_linea-tarifa.png` | **Repetir (15/09):** la entregada era la lista de Zonas de tarifa (se ha usado como 4_4_01); hace falta una Línea de tarifa abierta dentro de una versión, con sus detalles. Una Línea de tarifa dentro de una versión, con sus condiciones arriba y la lista de detalles (zonas, rango, precio) debajo. | TMS › Administración › Opciones de Tarifa › Tarifa › pestaña Reglas Tarifa |
+| ✅ | `4_5_project-configuration.rst` | `4_5_project-configuration_03_otros-parametros.png` | Grupo Otros parámetros del Proyecto con los interruptores de automatización. | TMS › Configuración › Proyectos › pestaña TMS › Otros parámetros |
+| ⬜ | `4_5_project-configuration.rst` | `4_5_project-configuration_04_app.png` | **Repetir (15/09):** la entregada era la lista de Roles de la app; hace falta el grupo Aplicación móvil de la ficha del Proyecto. Grupo Aplicación móvil del Proyecto (perfil, POD digital, POD físico, escaneos). | TMS › Configuración › Proyectos › pestaña TMS › Aplicación móvil |
 
 ## Capítulo 5 — Flujos operativos
 
@@ -115,14 +124,14 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 
 | Estado | Sección (.rst) | Fichero | Qué se ve (pie de figura) | Ruta en Odoo |
 |---|---|---|---|---|
-| ⬜ | `5_1_order-creation.rst` | `5_1_order-creation_01_orden-nueva.png` | Formulario de creación de una Orden (sale.order). | TMS › Operaciones › Tráfico › Órdenes (la Orden, ``sale.order``). |
-| ⬜ | `5_1_order-creation.rst` | `5_1_order-creation_02_validar.png` | Botón **Validar** de la orden: valida y genera las Paradas. | TMS › Operaciones › Tráfico › Órdenes (la Orden, ``sale.order``). |
-| ⬜ | `5_2_trip-generation.rst` | `5_2_trip-generation_01_generacion-viajes.png` | Generación de Viajes: asistente manual u Optimizador de Paradas. | TMS › Operaciones › Planning › Optimizador de Paradas y TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
-| ⬜ | `5_3_resource-assignment.rst` | `5_3_resource-assignment_01_recursos.png` | Viaje (tms.trip) con conductor, vehículo y transportista asignados. | TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
-| ⬜ | `5_5_trip-closing.rst` | `5_5_trip-closing_01_cierre.png` | Viaje cerrado tras completarse sus paradas. | TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
-| ⬜ | `5_4_app-execution.rst` | `5_4_app-execution_01_paradas-estado-app.png` | Las Paradas en Odoo con el estado que llega desde la app (columna de estado de la app). | TMS › Operaciones › Maestros › Paradas |
+| ✅ | `5_1_order-creation.rst` | `5_1_order-creation_01_orden-nueva.png` | Formulario de creación de una Orden (sale.order). | TMS › Operaciones › Tráfico › Órdenes (la Orden, ``sale.order``). |
+| ⬜ | `5_1_order-creation.rst` | `5_1_order-creation_02_validar.png` | **Repetir (15/09):** la entregada era la ficha de una Orden en borrador (se ha usado como 5_1_01); hace falta la Orden con el botón Validar a la vista. Botón **Validar** de la orden: valida y genera las Paradas. | TMS › Operaciones › Tráfico › Órdenes (la Orden, ``sale.order``). |
+| ✅ | `5_2_trip-generation.rst` | `5_2_trip-generation_01_generacion-viajes.png` | Generación de Viajes: asistente manual u Optimizador de Paradas. | TMS › Operaciones › Planning › Optimizador de Paradas y TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
+| ⬜ | `5_3_resource-assignment.rst` | `5_3_resource-assignment_01_recursos.png` | **Repetir (15/09):** la entregada era el Optimizador de Paradas; hace falta la ficha de un Viaje con conductor, vehículo y transportista rellenos. Viaje (tms.trip) con conductor, vehículo y transportista asignados. | TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
+| ✅ | `5_5_trip-closing.rst` | `5_5_trip-closing_01_cierre.png` | Viaje cerrado tras completarse sus paradas. | TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
+| ✅ | `5_4_app-execution.rst` | `5_4_app-execution_01_paradas-estado-app.png` | Las Paradas en Odoo con el estado que llega desde la app (columna de estado de la app). | TMS › Operaciones › Maestros › Paradas |
 | ⬜ | `5_6_settlement.rst` | `5_6_settlement_01_liquidacion.png` | Tarificación de venta (cliente) y de compra (transportista). | Botón Tarificar en la Orden y en el Viaje. |
-| ⬜ | `5_7_invoicing.rst` | `5_7_invoicing_01_factura.png` | Generación de la factura al cliente y de la factura del transportista. | TMS › Administración (facturación de cliente y de proveedor). |
+| ⬜ | `5_7_invoicing.rst` | `5_7_invoicing_01_factura.png` | **Repetir (15/09):** la entregada era la Lista de facturas casi vacía (una fila); hace falta la pantalla de crear la factura desde la Orden o el Viaje. Generación de la factura al cliente y de la factura del transportista. | TMS › Administración (facturación de cliente y de proveedor). |
 | 🔁 | `5_8_kpi-indicators.rst` | `5_8_kpi-indicators_01_kpi-parada.png` | Indicador KPI en la lista de Paradas (triángulos de estado, barra de puntualidad y secuencia). | Columna de KPI en las listas de TMS › Operaciones › Tráfico › Órdenes y de las Paradas |
 | 🔁 | `5_8_kpi-indicators.rst` | `5_8_kpi-indicators_02_kpi-orden.png` | Indicador KPI en la lista de Órdenes (parada activa + validación, factura/candado y POD). | Columna de KPI en las listas de TMS › Operaciones › Tráfico › Órdenes y de las Paradas |
 
@@ -133,8 +142,8 @@ Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y vali
 | Estado | Sección (.rst) | Fichero | Qué se ve (pie de figura) | Ruta en Odoo |
 |---|---|---|---|---|
 | 🔁 | `7_1_integration-strategy.rst` | `7_1_integration-strategy_01_menu-edi.png` | Menú de configuración EDI en Odoo. | TMS › Configuración › EDI |
-| ⬜ | `7_2_1_field-mapping.rst` | `7_2_1_field-mapping_01_lista-mapeos.png` | Mapeos de columnas de un fichero EDI. | TMS › Configuración › EDI › Definición de Fichero |
-| ⬜ | `7_2_1_field-mapping.rst` | `7_2_1_field-mapping_02_selector-campo.png` | Catálogo de campos destino agrupado por entidad (selector *Tms Field*). | TMS › Configuración › EDI › Definición de Fichero |
+| ✅ | `7_2_1_field-mapping.rst` | `7_2_1_field-mapping_01_lista-mapeos.png` | Mapeos de columnas de un fichero EDI. | TMS › Configuración › EDI › Definición de Fichero |
+| ⬜ | `7_2_1_field-mapping.rst` | `7_2_1_field-mapping_02_selector-campo.png` | **Repetir (15/09):** la entregada era la lista de Definiciones de fichero, y además se veían nombres de clientes reales en las definiciones (no publicable); hace falta el desplegable del campo destino (Tms Field) abierto. Catálogo de campos destino agrupado por entidad (selector *Tms Field*). | TMS › Configuración › EDI › Definición de Fichero |
 | 🔁 | `7_2_1_field-mapping.rst` | `7_2_1_field-mapping_03_parcel-array.png` | Configuración del campo computado Parcel_Array (*Computed* + *Apply Code?*). | TMS › Configuración › EDI › Definición de Fichero |
 | 🔁 | `7_2_2_python-transformations.rst` | `7_2_2_python-transformations_01_lista-funciones.png` | Catálogo de funciones preestablecidas. | TMS › Configuración › EDI › Funciones preestablecidas |
 | ⬜ | `7_2_2_python-transformations.rst` | `7_2_2_python-transformations_02_funcion-detalle.png` | Detalle de una función preestablecida (descripción y código de ejemplo). | TMS › Configuración › EDI › Funciones preestablecidas |

@@ -22,11 +22,10 @@ desde una integración API.
        API["Integración API"] --> MF
        MF -->|cerrar| ORD
 
-.. CAPTURA: 5_1_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_1_order-creation_01_orden-nueva.png
-      :alt: Creación de una Orden
+.. figure:: /_static/img/5_operational-flows/5_1_order-creation_01_orden-nueva.png
+   :alt: Creación de una Orden
 
-      Formulario de creación de una Orden.
+   Formulario de creación de una Orden.
 
 5.1.1 Alta manual
 ~~~~~~~~~~~~~~~~~

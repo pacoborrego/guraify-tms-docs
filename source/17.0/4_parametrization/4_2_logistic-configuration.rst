@@ -84,11 +84,11 @@ pueden cargar qué Tramos y qué Tramos no pueden compartir vehículo. Campos en
 4.2.3 Reglas de tarifa: la unidad de medida
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 4_2_03 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_2_logistic-configuration_03_reglas-tarifa.png
-      :alt: Formulario de una Regla de tarifa
+.. figure:: /_static/img/4_parametrization/4_2_logistic-configuration_03_reglas-tarifa.png
+   :alt: Lista de Reglas de tarifa
 
-      Una Regla de tarifa: qué se mide en la línea de mercancía y con qué dimensiones por defecto.
+   Las Reglas de tarifa: qué se mide en cada una (bultos, cantidad, metros, palés) y sus medidas
+   por defecto..
 
 La :term:`Regla de tarifa` (``tms.pricelist.rule``) define **cómo se mide** una línea de
 mercancía dentro de una Orden: por bultos, por palés, por cantidad o por metros lineales. A
