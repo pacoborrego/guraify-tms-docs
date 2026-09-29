@@ -8,6 +8,19 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Capturas del lote de María del 15/09 (revisión del 2026-09-29)
+- **17 capturas nuevas activadas** en Conocer (tablero de operaciones), cap. 4 (Regla de tarifa,
+  Planes de transporte, Áreas geográficas, Tiempos de servicio, Planning, Franjas horarias, Zonas
+  de tarifa, Tarifa, ficha y kanban de Proyectos, Otros parámetros), cap. 5 (Orden nueva,
+  Optimizador de Paradas, Paradas con estado, Viaje cerrado) y cap. 7 (mapeo de campos). Ocho
+  llegaron con el nombre de otra captura y se han renombrado al contenido que muestran.
+- Todas recortadas al área de Odoo (llegaron a pantalla completa) y reducidas a 1600 px. Interfaz
+  en inglés, como se acordó el 12 de junio; el texto sigue dando las rutas en español.
+- **11 devueltas** con motivo en `CAPTURAS_PENDIENTES.md`: no muestran lo que dice su nombre
+  (listas en vez de fichas, duplicados, pantallas de otro maestro) y una dejaba ver nombres de
+  clientes reales. Los ficheros se han retirado del repo.
+- Guía de capturas actualizada: idioma inglés para Odoo, difuminado aceptado, recorte al capturar.
+
 ### Navegación por recorridos (tarea D15 del plan, 2026-09-11)
 - **`guraify.com/docs` abre la portada de las cuatro tarjetas.** La página raíz de la versión
   (`17.0/index`) pasa a ser el documento maestro y `/docs/index.html` es una redirección

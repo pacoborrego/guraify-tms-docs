@@ -64,11 +64,10 @@ Si el mismo evento llega dos veces (la app reintenta cuando no tiene cobertura),
 una sola. Si Odoo rechaza un evento por una regla de negocio, la app se lo dice al conductor
 en el momento.
 
-.. CAPTURA: 5_4_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_4_app-execution_01_paradas-estado-app.png
-      :alt: Lista de Paradas con el estado que envía la app
+.. figure:: /_static/img/5_operational-flows/5_4_app-execution_01_paradas-estado-app.png
+   :alt: Lista de Paradas con su estado
 
-      Las Paradas, en el backend de Odoo, con el estado que llega desde la app.
+   Las Paradas en Odoo con su estado (borrador, completada) según lo que reporta la app.
 
 5.4.4 Referencia técnica
 ~~~~~~~~~~~~~~~~~~~~~~~~

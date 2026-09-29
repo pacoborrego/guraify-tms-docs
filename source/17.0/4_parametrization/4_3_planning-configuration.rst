@@ -17,11 +17,10 @@ completa de campos de cada uno está en el :doc:`anexo A </17.0/annexes/index>`.
 4.3.1 Planning
 ~~~~~~~~~~~~~~
 
-.. CAPTURA: 4_3_04 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_04_planning.png
-      :alt: Formulario de un Planning
+.. figure:: /_static/img/4_parametrization/4_3_planning-configuration_04_planning.png
+   :alt: Lista de Plannings
 
-      Un Planning: su plan de transporte, sus tiempos de servicio y su modo de división.
+   Los Plannings, cada uno con su plan de transporte y su modo de división.
 
 El :term:`Planning` (``tms.planning``) es la segmentación operativa del sistema: agrupa las
 Órdenes que comparten una misma lógica de transporte, como última milla, recogidas,
@@ -63,11 +62,10 @@ puede traer el Planning de cada Viaje. Campos en :doc:`/17.0/annexes/A_07_planni
 4.3.2 Planes de transporte
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 4_3_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_01_planes-transporte.png
-      :alt: Configuración de un Plan de Transporte
+.. figure:: /_static/img/4_parametrization/4_3_planning-configuration_01_planes-transporte.png
+   :alt: Lista de Planes de Transporte
 
-      Un Plan de Transporte con su agencia y sus áreas sobre el mapa.
+   Los Planes de Transporte, cada uno con su agencia.
 
 El :term:`Plan de transporte` (``tms.transport.plan``) es la red territorial de una operativa:
 el conjunto de áreas geográficas por las que circula, y la agencia responsable. No es un Viaje
@@ -97,11 +95,11 @@ propio plan permite comprobar la red antes de usarla. Campos en
 4.3.3 Áreas geográficas
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 4_3_02 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_02_areas-geograficas.png
-      :alt: Configuración de un Área Geográfica
+.. figure:: /_static/img/4_parametrization/4_3_planning-configuration_02_areas-geograficas.png
+   :alt: Lista de Áreas Geográficas
 
-      Un Área Geográfica con su polígono dibujado sobre el mapa.
+   Las Áreas Geográficas: su tipo (plan de transporte, zona de tarifa, extra), su agencia, su hub
+   y sus franjas.
 
 El :term:`Área geográfica` (``tms.area``) es un polígono, o un multipolígono, dibujado sobre el
 mapa con un uso asignado. La misma entidad sirve para cinco cosas, que distingue su tipo:
@@ -137,11 +135,10 @@ flujo económico, las de tipo «Zona Tarifa» deciden qué detalle de tarifa apl
 4.3.4 Franjas horarias
 ~~~~~~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 4_3_05 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_05_franjas-horarias.png
-      :alt: Lista de Franjas Horarias
+.. figure:: /_static/img/4_parametrization/4_3_planning-configuration_05_franjas-horarias.png
+   :alt: Lista de Franjas Horarias
 
-      Franjas Horarias: ventanas de servicio reutilizables.
+   Franjas Horarias: ventanas de servicio reutilizables.
 
 La :term:`Franja horaria` (``tms.time.zone``) es una ventana de servicio con nombre, de una
 hora de inicio a una de fin, que se elige en lugar de teclear las horas en cada operación. El
@@ -167,11 +164,10 @@ excepción. Qué horas se aplican cuando la Orden no trae horario lo decide el P
 4.3.5 Tiempos de servicio
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 4_3_03 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_03_tiempos-servicio.png
-      :alt: Configuración de Tiempos de Servicio
+.. figure:: /_static/img/4_parametrization/4_3_planning-configuration_03_tiempos-servicio.png
+   :alt: Lista de esquemas de Tiempos de Servicio
 
-      Un esquema de Tiempos de Servicio con sus líneas y su matriz.
+   Los esquemas de Tiempos de Servicio con sus kilos por defecto.
 
 El :term:`Tiempo de servicio` (``tms.service.time``) calcula cuánto dura una Parada más allá
 de la conducción: aparcar, bajar la mercancía, subirla a un piso, esperar en un muelle. Sin él,

@@ -34,11 +34,10 @@ capítulo 4.1 como condiciones. Cuándo se lanza y qué pasa cuando no encuentra
 4.4.1 Zonas de tarifa
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 4_4_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_4_economic-configuration_01_zonas-tarifarias.png
-      :alt: Configuración de una Zona de tarifa
+.. figure:: /_static/img/4_parametrization/4_4_economic-configuration_01_zonas-tarifarias.png
+   :alt: Lista de Zonas de tarifa
 
-      Una Zona de tarifa con sus áreas sobre el mapa.
+   Las Zonas de tarifa, cada una con su agencia.
 
 La :term:`Zona de tarifa` (``tms.pricelist.zone``) agrupa áreas geográficas a efectos de
 precio. Es independiente de los planes de transporte: el plan organiza la operación y la zona
@@ -98,11 +97,10 @@ Campos en :doc:`/17.0/annexes/A_14_tarifas-base`.
 4.4.3 Tarifas y versiones
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 4_4_02 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_4_economic-configuration_02_tarifa.png
-      :alt: Configuración de una Tarifa
+.. figure:: /_static/img/4_parametrization/4_4_economic-configuration_02_tarifa.png
+   :alt: Lista de Tarifas
 
-      Una Tarifa con sus versiones y las líneas de la versión actual.
+   Las Tarifas: activa o no, zonas disponibles, moneda y vigencia.
 
 La :term:`Tarifa` (``tms.pricelist``) es el contenedor de precios de un cliente o de un
 transportista: su moneda, su zona de tarifa, sus contactos y sus versiones, cada una con sus

@@ -8,11 +8,10 @@
    Paradas · botones **Asignar** y **Optimiza** (así se llama en la interfaz) en la lista de
    Órdenes
 
-.. CAPTURA: 5_2_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_01_generacion-viajes.png
-      :alt: Generación de viajes
+.. figure:: /_static/img/5_operational-flows/5_2_trip-generation_01_generacion-viajes.png
+   :alt: Optimizador de Paradas
 
-      Generación de Viajes: asistente manual u Optimizador de Paradas.
+   El Optimizador de Paradas: Viajes propuestos, mapa y Paradas pendientes.
 
 Con las Órdenes validadas, sus Paradas están pendientes de planificar. Generar un Viaje
 (``tms.trip``) es agrupar esas Paradas en una salida que ejecutará un conductor con un vehículo
