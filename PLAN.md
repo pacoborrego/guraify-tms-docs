@@ -49,6 +49,8 @@ Estados: ⬜ pendiente · 🔶 en curso · ✅ hecha.
 
 | D15 | ✅ | **Navegación por recorridos** | `guraify.com/docs` abre directamente la portada de las cuatro tarjetas (la raíz redirige; el documento maestro es `17.0/index`). Cada tarjeta lleva al inicio de su recorrido y la barra lateral enseña solo ese recorrido: página raíz nueva `implementation-manual.rst` para el Manual de implantación; el glosario cuelga de Conocer; el manual del conductor deja de ser `:orphan:` y su cabecera lleva el logo para volver a la portada. Plantilla de barra lateral única con el nombre del recorrido enlazado. Decisión de Paco tras ver producción (2026-09-11). Hecha el 2026-09-11 |
 
+| D16 | ✅ | **Visor de imágenes** | Toda figura se abre a tamaño completo al pulsarla, con tamaño real a un segundo clic (`_static/lightbox.js`, sin librerías). Decisión de Paco. Hecha el 2026-09-29 |
+
 Orden: D3 y D4 primero (lo demás las usa). D5 a D11 y D14 en cualquier orden. D12 y D13 al final.
 Numeración cerrada el 2026-09-10: el cap. 6 es Gestión de Recursos (D14) y Administración y Control Económico será el cap. 8 (D10).
 D2 corre en paralelo todo el tiempo.

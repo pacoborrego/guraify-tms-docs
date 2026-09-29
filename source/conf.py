@@ -85,7 +85,8 @@ html_css_files = ["custom.css"]
 # (2026-09-11): el documento maestro es la portada con las cuatro tarjetas.
 html_extra_path = ["../versions.json", "_extra"]
 # language-switcher.js desactivado junto con el selector de idioma (2026-09-08).
-html_js_files = []
+# lightbox.js: visor de imágenes al pulsar cualquier figura (D16, 2026-09-29).
+html_js_files = ["lightbox.js"]
 
 # Logo / favicon
 html_logo = "_static/logo.svg"
