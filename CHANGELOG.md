@@ -8,6 +8,13 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Visor de imágenes (tarea D16, 2026-09-29)
+- **Toda figura se abre a tamaño completo al pulsarla**, en todos los recorridos y también en el
+  manual del conductor: un visor propio (`_static/lightbox.js` + estilos en `custom.css`), sin
+  librerías externas. Esc, el aspa o un clic fuera cierran; un clic sobre la imagen ampliada
+  alterna entre ajustar a la ventana y tamaño real, para leer el detalle de una pantalla. Accesible
+  por teclado (las imágenes son botones, Enter o espacio abren). Decisión de Paco.
+
 ### Capturas del lote de María del 15/09 (revisión del 2026-09-29)
 - **17 capturas nuevas activadas** en Conocer (tablero de operaciones), cap. 4 (Regla de tarifa,
   Planes de transporte, Áreas geográficas, Tiempos de servicio, Planning, Franjas horarias, Zonas

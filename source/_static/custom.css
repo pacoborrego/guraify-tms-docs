@@ -676,3 +676,104 @@ body.guraify-version-landing .primary-toggle {
 body.guraify-version-landing .bd-main {
     max-width: 100%;
 }
+
+/* --- VISOR DE IMÁGENES (lightbox.js) --- */
+
+article img.gf-zoomable {
+    cursor: zoom-in;
+}
+
+article img.gf-zoomable:focus-visible {
+    outline: 3px solid var(--pst-color-primary);
+    outline-offset: 2px;
+}
+
+body.gf-lightbox-open {
+    overflow: hidden;
+}
+
+.gf-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(20, 12, 28, 0.92);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 1rem 1rem;
+    cursor: zoom-out;
+}
+
+.gf-lightbox[hidden] {
+    display: none;
+}
+
+.gf-lightbox__figure {
+    margin: 0;
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    overflow: auto;
+}
+
+.gf-lightbox__figure img {
+    max-width: 96vw;
+    max-height: 84vh;
+    width: auto;
+    height: auto;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    cursor: zoom-in;
+}
+
+.gf-lightbox.is-real-size .gf-lightbox__figure {
+    max-height: 90vh;
+    max-width: 96vw;
+}
+
+.gf-lightbox.is-real-size .gf-lightbox__figure img {
+    max-width: none;
+    max-height: none;
+    cursor: zoom-out;
+}
+
+.gf-lightbox__figure figcaption {
+    color: #f3eef7;
+    font-size: 0.95rem;
+    text-align: center;
+    max-width: 70ch;
+}
+
+.gf-lightbox__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+}
+
+.gf-lightbox__close:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.gf-lightbox__hint {
+    color: rgba(243, 238, 247, 0.7);
+    font-size: 0.8rem;
+    margin: 0.75rem 0 0;
+}
+
+@media (max-width: 640px) {
+    .gf-lightbox__hint { display: none; }
+    .gf-lightbox { padding: 2.5rem 0.25rem 0.5rem; }
+}

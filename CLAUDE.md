@@ -126,6 +126,7 @@ tms-docs/
 │   │   └── N_slug/        # un capítulo por carpeta, index.rst + N_M_slug.rst
 │   ├── _static/
 │   │   ├── custom.css     # marca Guraify (paleta, Mulish/Open Sans)
+│   │   ├── lightbox.js    # visor de imágenes: toda figura se abre al pulsarla (D16)
 │   │   ├── img/<slug-capítulo>/   # capturas, una carpeta por capítulo
 │   │   └── design/        # notas de diseño (no se referencian)
 │   ├── _templates/        # layout.html (cabecera del conductor con logo), sidebar-nav-bs.html (barra por recorrido)
@@ -230,5 +231,5 @@ confirma**.
 
 ---
 
-*Actualizado el 2026-09-11 (v3, D15). Si algo de aquí queda desactualizado, actualízalo en el
+*Actualizado el 2026-09-29 (v3, D16). Si algo de aquí queda desactualizado, actualízalo en el
 mismo cambio que lo desactualiza.*
