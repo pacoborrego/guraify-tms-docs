@@ -20,11 +20,10 @@ origen no dispone de API.
 7.2.3 Asistente de importación
 ------------------------------
 
-.. CAPTURA: 7_2_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/7_edi-integrations/7_2_file-import_01_asistente.png
-      :alt: Asistente de importación de fichero
+.. figure:: /_static/img/7_edi-integrations/7_2_file-import_01_asistente.png
+   :alt: Asistente de importación de fichero
 
-      Asistente de importación de fichero.
+   Asistente de importación de fichero.
 
 El proceso se gobierna desde el asistente de importación (``tms_int.file.wizard``), que
 cubre la subida del fichero y el seguimiento de su tratamiento a través de una secuencia

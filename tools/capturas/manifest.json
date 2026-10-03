@@ -1,0 +1,985 @@
+{
+ "_comentario": "Una entrada por captura. action: xmlid de la acción de ventana; model+view+domain: registro a abrir (form: el primero que cumpla domain, orden id desc); steps: tab/button/smart/click/hover/scroll/fill/wait; clip=modal recorta el diálogo; map=true espera a las teselas; deferred=true son las antiguas aplazadas; manual: aviso para revisar el resultado.",
+ "default_instance": "etransport",
+ "capturas": [
+  {
+   "id": "3_2_3_02",
+   "file": "3_2_3_manifests_02_botones-inteligentes.png",
+   "folder": "3_functional-architecture",
+   "instance": "etransport",
+   "action": "tms.edi_manifest_action",
+   "model": "tms.edi.manifest",
+   "view": "form",
+   "domain": [
+    [
+     "state",
+     "=",
+     "closed"
+    ]
+   ],
+   "note": "Ficha de un Manifiesto cerrado: arriba los botones inteligentes Paradas, Normalizar y Ficheros"
+  },
+  {
+   "id": "3_2_6_01",
+   "file": "3_2_6_legs-and-stops_01_parada.png",
+   "folder": "3_functional-architecture",
+   "instance": "etransport",
+   "action": "tms.stop_action",
+   "model": "tms.stop",
+   "view": "form",
+   "domain": [
+    [
+     "state",
+     "=",
+     "completed"
+    ],
+    [
+     "legs_ids",
+     "!=",
+     false
+    ]
+   ],
+   "note": "Ficha de una Parada completada con sus Tramos",
+   "map": true
+  },
+  {
+   "id": "3_3_02",
+   "file": "3_3_planning-model_02_plan-disponibilidad.png",
+   "folder": "3_functional-architecture",
+   "instance": "etransport",
+   "action": "tms.tms_planning_slot_action",
+   "view": "gantt",
+   "note": "Gantt del Plan de disponibilidad",
+   "manual": "si la vista por defecto no es gantt, cambiarla a mano"
+  },
+  {
+   "id": "4_2_01",
+   "file": "4_2_logistic-configuration_01_equipamientos.png",
+   "folder": "4_parametrization",
+   "instance": "etransport",
+   "action": "tms.equipment_action",
+   "view": "list"
+  },
+  {
+   "id": "4_2_02",
+   "file": "4_2_logistic-configuration_02_vehiculos.png",
+   "folder": "4_parametrization",
+   "instance": "etransport",
+   "model": "fleet.vehicle.model.category",
+   "view": "form",
+   "domain": [
+    [
+     "max_gross_weight",
+     ">",
+     0
+    ]
+   ],
+   "note": "Ficha de una categoría de vehículo con sus capacidades",
+   "manual": "si el dominio no encaja, quitarlo"
+  },
+  {
+   "id": "4_2_04",
+   "file": "4_2_logistic-configuration_04_tipos-bulto.png",
+   "folder": "4_parametrization",
+   "instance": "etransport",
+   "action": "tms.temperature_action",
+   "view": "list"
+  },
+  {
+   "id": "4_3_06",
+   "file": "4_3_planning-configuration_06_horas-conduccion.png",
+   "folder": "4_parametrization",
+   "instance": "etransport",
+   "action": "tms.driver_working_hours_action",
+   "model": "tms.driver.working.hours",
+   "view": "form",
+   "note": "Ficha de un perfil de jornada"
+  },
+  {
+   "id": "4_4_03",
+   "file": "4_4_economic-configuration_03_tarifa-base.png",
+   "folder": "4_parametrization",
+   "instance": "etransport",
+   "action": "tms.pricelist_base_action",
+   "view": "list"
+  },
+  {
+   "id": "4_4_04",
+   "file": "4_4_economic-configuration_04_linea-tarifa.png",
+   "folder": "4_parametrization",
+   "instance": "etransport",
+   "action": "tms.pricelist_item_zone_action",
+   "model": "tms.pricelist.item.zone",
+   "view": "form",
+   "order": "id desc",
+   "note": "Una Línea de tarifa con sus detalles"
+  },
+  {
+   "id": "4_5_04",
+   "file": "4_5_project-configuration_04_app.png",
+   "folder": "4_parametrization",
+   "instance": "etransport",
+   "model": "project.project",
+   "view": "form",
+   "domain": [
+    [
+     "is_tms_project",
+     "=",
+     true
+    ],
+    [
+     "tms_project_type",
+     "=",
+     "sale"
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "TMS"
+    },
+    {
+     "wait": 1000
+    },
+    {
+     "scroll": ".o_horizontal_separator:has-text('Mobile App')"
+    }
+   ],
+   "note": "Grupo Aplicación móvil de la pestaña TMS del Proyecto",
+   "manual": "comprobar que el grupo queda a la vista"
+  },
+  {
+   "id": "5_1_02",
+   "file": "5_1_order-creation_02_validar.png",
+   "folder": "5_operational-flows",
+   "instance": "etransport",
+   "action": "tms.shipment_action",
+   "model": "sale.order",
+   "view": "form",
+   "domain": [
+    [
+     "tms_status",
+     "=",
+     "draft"
+    ]
+   ],
+   "note": "Orden en borrador sin Paradas: el botón Validate en la cabecera",
+   "manual": "hace falta una Orden sin validar; en la demo no la hay: crear una de prueba o capturar en producción"
+  },
+  {
+   "id": "5_3_01",
+   "file": "5_3_resource-assignment_01_recursos.png",
+   "folder": "5_operational-flows",
+   "instance": "etransport",
+   "action": "tms.tms_trip_action",
+   "model": "tms.trip",
+   "view": "form",
+   "domain": [
+    [
+     "driver_id",
+     "!=",
+     false
+    ],
+    [
+     "vehicle_id",
+     "!=",
+     false
+    ],
+    [
+     "carrier_id",
+     "!=",
+     false
+    ]
+   ],
+   "note": "Ficha de un Viaje con conductor, vehículo y transportista"
+  },
+  {
+   "id": "5_6_01",
+   "file": "5_6_settlement_01_liquidacion.png",
+   "folder": "5_operational-flows",
+   "instance": "etransport",
+   "action": "tms.tms_trip_action",
+   "model": "tms.trip",
+   "view": "form",
+   "domain": [
+    [
+     "state",
+     "in",
+     [
+      "processed",
+      "completed"
+     ]
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "Tariff Diagnosis"
+    }
+   ],
+   "note": "Viaje completado: pestaña Diagnóstico de tarifa con activo y pasivo"
+  },
+  {
+   "id": "5_7_01",
+   "file": "5_7_invoicing_01_factura.png",
+   "folder": "5_operational-flows",
+   "instance": "etransport",
+   "action": "tms.tms_trip_action",
+   "model": "tms.trip",
+   "view": "form",
+   "domain": [
+    [
+     "state",
+     "in",
+     [
+      "processed",
+      "completed"
+     ]
+    ]
+   ],
+   "steps": [
+    {
+     "button": "Create Invoice"
+    }
+   ],
+   "clip": "modal",
+   "note": "Asistente de crear factura desde un Viaje",
+   "manual": "solo en producción: en la demo los Viajes son de flota propia y no tienen orden de compra, así que no sale el botón Create Invoice"
+  },
+  {
+   "id": "7_2_01",
+   "file": "7_2_file-import_01_asistente.png",
+   "folder": "7_edi-integrations",
+   "instance": "etransport",
+   "action": "tms_int.action_edi_file_form",
+   "model": "tms.edi.file",
+   "view": "form",
+   "steps": [
+    {
+     "button": "Import File"
+    }
+   ],
+   "clip": "modal",
+   "note": "Asistente de importación de fichero"
+  },
+  {
+   "id": "7_2_1_02",
+   "file": "7_2_1_field-mapping_02_selector-campo.png",
+   "folder": "7_edi-integrations",
+   "instance": "etransport",
+   "action": "tms_int.action_edi_file_form",
+   "model": "tms.edi.file",
+   "view": "form",
+   "steps": [
+    {
+     "tab": "Fields Mapping"
+    },
+    {
+     "click": ".o_field_x2many .o_data_row td.o_data_cell >> nth=2"
+    },
+    {
+     "wait": 600
+    },
+    {
+     "click": ".o_field_x2many .o_selected_row .o_field_many2one input"
+    },
+    {
+     "wait": 900
+    }
+   ],
+   "note": "Desplegable del campo destino (Tms Field) abierto en una fila del mapeo",
+   "manual": "la tabla de mapeo no se pone editable con un clic guionizado: abrir la fila a mano y desplegar Tms Field"
+  },
+  {
+   "id": "7_2_2_02",
+   "file": "7_2_2_python-transformations_02_funcion-detalle.png",
+   "folder": "7_edi-integrations",
+   "instance": "etransport",
+   "action": "tms_int.tms_int_preset_function_action",
+   "model": "tms_int.preset.function",
+   "view": "form",
+   "note": "Ficha de una función preestablecida"
+  },
+  {
+   "id": "7_3_02",
+   "file": "7_3_api-integrations_02_inbox.png",
+   "folder": "7_edi-integrations",
+   "instance": "etransport",
+   "action": "tms_int.action_tms_int_api_inbox",
+   "view": "list"
+  },
+  {
+   "id": "7_5_01",
+   "file": "7_5_webhooks_01_endpoint-webhook.png",
+   "folder": "7_edi-integrations",
+   "instance": "etransport",
+   "action": "tms_int.tms_int_api_endpoints_action",
+   "model": "tms_int.api.endpoint",
+   "view": "form",
+   "domain": [
+    [
+     "webhook_route",
+     "!=",
+     false
+    ]
+   ],
+   "note": "Endpoint configurado como webhook",
+   "manual": "en la demo no hay endpoints de tipo webhook: capturar en producción o crear uno de prueba"
+  },
+  {
+   "id": "7_6_01",
+   "file": "7_6_automated-actions_01_crons.png",
+   "folder": "7_edi-integrations",
+   "instance": "etransport",
+   "action": "base.ir_cron_act",
+   "view": "list",
+   "steps": [
+    {
+     "fill": [
+      ".o_searchview_input",
+      "TMS"
+     ]
+    },
+    {
+     "key": "Enter"
+    },
+    {
+     "wait": 1200
+    }
+   ],
+   "note": "Acciones planificadas filtradas por TMS",
+   "manual": "el filtro por texto puede necesitar Enter: comprobar"
+  },
+  {
+   "id": "7_7_01",
+   "file": "7_7_integration-best-practices_01_api-log.png",
+   "folder": "7_edi-integrations",
+   "instance": "etransport",
+   "action": "tms.action_tms_api_log",
+   "view": "list"
+  },
+  {
+   "id": "6_1_01",
+   "file": "6_1_area_01_menu.png",
+   "folder": "6_resources",
+   "instance": "ludamany",
+   "model": "fleet.vehicle",
+   "view": "list",
+   "steps": [
+    {
+     "click": ".o_navbar_apps_menu button"
+    },
+    {
+     "wait": 600
+    },
+    {
+     "click": ".o_navbar_apps_menu .dropdown-item:has-text('Recursos')"
+    },
+    {
+     "wait": 1500
+    },
+    {
+     "click": ".o_menu_sections .dropdown-toggle >> nth=1"
+    },
+    {
+     "wait": 500
+    }
+   ],
+   "note": "Menú Gestión de Recursos con un bloque desplegado",
+   "manual": "los selectores del menú son frágiles: comprobar",
+   "domain": [
+    [
+     "tms_odometer_last",
+     ">",
+     0
+    ]
+   ]
+  },
+  {
+   "id": "6_2_01",
+   "file": "6_2_odometer_01_pestana-vehiculo.png",
+   "folder": "6_resources",
+   "instance": "ludamany",
+   "model": "fleet.vehicle",
+   "view": "form",
+   "domain": [
+    [
+     "tms_odometer_last",
+     ">",
+     0
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "Odometer"
+    }
+   ],
+   "note": "Pestaña Odometer (TMS) de un vehículo"
+  },
+  {
+   "id": "6_2_02",
+   "file": "6_2_odometer_02_anomalias.png",
+   "folder": "6_resources",
+   "instance": "ludamany",
+   "action": "tms_resources.action_odometer_anomalies",
+   "view": "list"
+  },
+  {
+   "id": "6_3_01",
+   "file": "6_3_maintenance-model_01_orden-trabajo.png",
+   "folder": "6_resources",
+   "instance": "ludamany",
+   "model": "maintenance.request",
+   "view": "form",
+   "domain": [
+    [
+     "vehicle_id",
+     "!=",
+     false
+    ]
+   ],
+   "note": "Orden de trabajo de un vehículo"
+  },
+  {
+   "id": "6_3_02",
+   "file": "6_3_maintenance-model_02_pestana-mantenimiento.png",
+   "folder": "6_resources",
+   "instance": "ludamany",
+   "model": "fleet.vehicle",
+   "view": "form",
+   "domain": [
+    [
+     "tms_odometer_last",
+     ">",
+     0
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "Maintenance"
+    }
+   ],
+   "note": "Pestaña Maintenance (TMS) del vehículo"
+  },
+  {
+   "id": "6_4_01",
+   "file": "6_4_preventive-rules_01_reglas.png",
+   "folder": "6_resources",
+   "instance": "ludamany",
+   "action": "tms_maintenance.tms_maintenance_rule_action",
+   "view": "list"
+  },
+  {
+   "id": "6_4_02",
+   "file": "6_4_preventive-rules_02_control-service.png",
+   "folder": "6_resources",
+   "instance": "ludamany",
+   "action": "tms_maintenance.fleet_vehicle_service_control_action",
+   "view": "list"
+  },
+  {
+   "id": "6_5_01",
+   "file": "6_5_workshop-flows_01_cerrar-orden.png",
+   "folder": "6_resources",
+   "instance": "ludamany",
+   "model": "maintenance.request",
+   "view": "form",
+   "domain": [
+    [
+     "vehicle_id",
+     "!=",
+     false
+    ],
+    [
+     "stage_id.done",
+     "=",
+     false
+    ]
+   ],
+   "steps": [
+    {
+     "button": "Close Order"
+    }
+   ],
+   "clip": "modal",
+   "note": "Asistente de cerrar orden con fecha y kilometraje"
+  },
+  {
+   "id": "6_5_02",
+   "file": "6_5_workshop-flows_02_carga-masiva.png",
+   "folder": "6_resources",
+   "instance": "ludamany",
+   "model": "fleet.vehicle",
+   "view": "form",
+   "domain": [
+    [
+     "tms_odometer_last",
+     ">",
+     0
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "Maintenance"
+    },
+    {
+     "button": "Bulk Preventive Service"
+    }
+   ],
+   "clip": "modal",
+   "note": "Asistente de carga masiva de revisiones"
+  },
+  {
+   "id": "6_6_02",
+   "file": "6_6_outputs_02_copiar-estado.png",
+   "folder": "6_resources",
+   "instance": "ludamany",
+   "model": "fleet.vehicle",
+   "view": "form",
+   "domain": [
+    [
+     "tms_odometer_last",
+     ">",
+     0
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "Maintenance"
+    },
+    {
+     "button": "Copy Workshop Status"
+    }
+   ],
+   "clip": "modal",
+   "note": "Ventana de copiar el estado para el taller"
+  },
+  {
+   "id": "6_6_03",
+   "file": "6_6_outputs_03_rankings.png",
+   "folder": "6_resources",
+   "instance": "ludamany",
+   "action": "tms_maintenance.tms_maintenance_ranking_wizard_action",
+   "view": "form",
+   "record": 0,
+   "clip": "modal",
+   "note": "Asistente de rankings de objetivos",
+   "manual": "la acción abre el asistente en ventana; si no, abrirlo desde el menú"
+  },
+  {
+   "id": "6_7_01",
+   "file": "6_7_kpis_01_indicadores.png",
+   "folder": "6_resources",
+   "instance": "ludamany",
+   "action": "tms_maintenance.action_tms_kpi_maintenance",
+   "view": "list"
+  },
+  {
+   "id": "8_1_01",
+   "file": "8_1_active-passive-margin_01_viaje.png",
+   "folder": "8_economic-administration",
+   "instance": "etransport",
+   "action": "tms.tms_trip_action",
+   "view": "list",
+   "note": "Lista de Viajes con Activo, Pasivo, Beneficio y Margen"
+  },
+  {
+   "id": "8_4_01",
+   "file": "8_4_purchase-orders_01_oc.png",
+   "folder": "8_economic-administration",
+   "instance": "etransport",
+   "model": "purchase.order",
+   "view": "form",
+   "domain": [
+    [
+     "trip_id",
+     "!=",
+     false
+    ]
+   ],
+   "note": "Orden de compra de un Viaje: línea de sección y líneas por parada",
+   "manual": "en la demo no hay órdenes de compra ligadas a un Viaje (flota propia): capturar en producción o asignar un transportista externo a un viaje de prueba"
+  },
+  {
+   "id": "8_6_01",
+   "file": "8_6_refunds_01_lista.png",
+   "folder": "8_economic-administration",
+   "instance": "etransport",
+   "action": "tms.tms_shipment_refund_action",
+   "view": "list"
+  },
+  {
+   "id": "8_8_01",
+   "file": "8_8_control-reporting_01_kpis.png",
+   "folder": "8_economic-administration",
+   "instance": "etransport",
+   "action": "tms_kpi.action_tms_kpi",
+   "view": "list"
+  },
+  {
+   "id": "8_8_02",
+   "file": "8_8_control-reporting_02_tablero.png",
+   "folder": "8_economic-administration",
+   "instance": "etransport",
+   "action": "tms_dashboard_filters.action_tms_dashboards",
+   "view": "list",
+   "steps": [
+    {
+     "click": "text=Pending Invoicing"
+    },
+    {
+     "wait": 2500
+    }
+   ],
+   "note": "Tablero Pending Invoicing",
+   "manual": "la acción es de cliente: si la URL no abre, entrar por TMS › Operaciones › Tableros",
+   "map": true
+  },
+  {
+   "id": "2_1_01",
+   "file": "2_1_structural-logic_01_orden.png",
+   "folder": "2_conceptual-model",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.shipment_action",
+   "model": "sale.order",
+   "view": "form",
+   "domain": [
+    [
+     "tms_status",
+     "=",
+     "completed"
+    ]
+   ]
+  },
+  {
+   "id": "2_1_02",
+   "file": "2_1_structural-logic_02_viaje.png",
+   "folder": "2_conceptual-model",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.tms_trip_action",
+   "model": "tms.trip",
+   "view": "form",
+   "domain": [
+    [
+     "state",
+     "=",
+     "completed"
+    ]
+   ]
+  },
+  {
+   "id": "2_3_01",
+   "file": "2_3_traceability-model_01_trazabilidad.png",
+   "folder": "2_conceptual-model",
+   "instance": "etransport",
+   "deferred": true,
+   "model": "tms.traceability",
+   "view": "list"
+  },
+  {
+   "id": "3_1_01",
+   "file": "3_1_functional-organization_01_menu-raiz.png",
+   "folder": "3_functional-architecture",
+   "instance": "etransport",
+   "deferred": true,
+   "model": "tms.trip",
+   "view": "list",
+   "steps": [
+    {
+     "click": ".o_navbar_apps_menu button"
+    },
+    {
+     "wait": 600
+    }
+   ]
+  },
+  {
+   "id": "3_2_1_01",
+   "file": "3_2_1_orders_01_orden.png",
+   "folder": "3_functional-architecture",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.shipment_action",
+   "model": "sale.order",
+   "view": "form",
+   "domain": [
+    [
+     "tms_status",
+     "=",
+     "completed"
+    ]
+   ]
+  },
+  {
+   "id": "3_2_1_02",
+   "file": "3_2_1_orders_02_orden-bloqueada.png",
+   "folder": "3_functional-architecture",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.shipment_action",
+   "model": "sale.order",
+   "view": "form",
+   "domain": [
+    [
+     "locked",
+     "=",
+     true
+    ]
+   ]
+  },
+  {
+   "id": "3_2_2_01",
+   "file": "3_2_2_trips_01_viaje.png",
+   "folder": "3_functional-architecture",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.tms_trip_action",
+   "model": "tms.trip",
+   "view": "form",
+   "domain": [
+    [
+     "state",
+     "=",
+     "completed"
+    ],
+    [
+     "purchase_order_id",
+     "!=",
+     false
+    ]
+   ]
+  },
+  {
+   "id": "3_2_3_01",
+   "file": "3_2_3_manifests_01_manifiesto.png",
+   "folder": "3_functional-architecture",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.edi_manifest_action",
+   "model": "tms.edi.manifest",
+   "view": "form",
+   "domain": [
+    [
+     "state",
+     "=",
+     "closed"
+    ]
+   ]
+  },
+  {
+   "id": "3_2_4_01",
+   "file": "3_2_4_api-inbox_01_inbox.png",
+   "folder": "3_functional-architecture",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms_int.action_tms_int_api_inbox",
+   "view": "list"
+  },
+  {
+   "id": "3_2_5_01",
+   "file": "3_2_5_active-leg_01_tramo-activo.png",
+   "folder": "3_functional-architecture",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.shipment_action",
+   "model": "sale.order",
+   "view": "form",
+   "domain": [
+    [
+     "leg_count",
+     ">",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "3_3_01",
+   "file": "3_3_planning-model_01_optimizador.png",
+   "folder": "3_functional-architecture",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.stop_optimization",
+   "view": "list",
+   "map": true
+  },
+  {
+   "id": "3_4_01",
+   "file": "3_4_pricing-model_01_tarifa.png",
+   "folder": "3_functional-architecture",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.tms_pricelist_action",
+   "model": "tms.pricelist",
+   "view": "form",
+   "domain": [
+    [
+     "active",
+     "=",
+     true
+    ]
+   ]
+  },
+  {
+   "id": "4_1_01",
+   "file": "4_1_operational-configuration_01_datos-auxiliares.png",
+   "folder": "4_parametrization",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.res_config_settings_view_form_TMS_action",
+   "view": "form",
+   "record": 0
+  },
+  {
+   "id": "4_1_02",
+   "file": "4_1_operational-configuration_02_tipos-servicio-lista.png",
+   "folder": "4_parametrization",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.service_type_action",
+   "view": "list"
+  },
+  {
+   "id": "4_1_03",
+   "file": "4_1_operational-configuration_03_tipos-servicio-form.png",
+   "folder": "4_parametrization",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.service_type_action",
+   "model": "tms.service.type",
+   "view": "form"
+  },
+  {
+   "id": "4_1_04",
+   "file": "4_1_operational-configuration_04_tipos-orden.png",
+   "folder": "4_parametrization",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.shipment_type_action",
+   "view": "list"
+  },
+  {
+   "id": "4_1_05",
+   "file": "4_1_operational-configuration_05_tipos-parada.png",
+   "folder": "4_parametrization",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.stop_type_action",
+   "view": "list"
+  },
+  {
+   "id": "4_1_06",
+   "file": "4_1_operational-configuration_06_tipos-destinatario.png",
+   "folder": "4_parametrization",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.receiper_type_action",
+   "view": "list"
+  },
+  {
+   "id": "4_1_07",
+   "file": "4_1_operational-configuration_07_tipos-transportista.png",
+   "folder": "4_parametrization",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.carrier_type_action",
+   "view": "list"
+  },
+  {
+   "id": "4_1_08",
+   "file": "4_1_operational-configuration_08_tipos-reembolso.png",
+   "folder": "4_parametrization",
+   "instance": "etransport",
+   "deferred": true,
+   "model": "tms.cashvalue.type",
+   "view": "list"
+  },
+  {
+   "id": "5_8_01",
+   "file": "5_8_kpi-indicators_01_kpi-parada.png",
+   "folder": "5_operational-flows",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.stop_action",
+   "view": "list"
+  },
+  {
+   "id": "5_8_02",
+   "file": "5_8_kpi-indicators_02_kpi-orden.png",
+   "folder": "5_operational-flows",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms.shipment_action",
+   "view": "list"
+  },
+  {
+   "id": "7_1_01",
+   "file": "7_1_integration-strategy_01_menu-edi.png",
+   "folder": "7_edi-integrations",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms_int.action_edi_file_form",
+   "view": "list",
+   "steps": [
+    {
+     "click": ".o_menu_sections .dropdown-toggle:has-text('EDI')"
+    },
+    {
+     "wait": 500
+    }
+   ],
+   "manual": "menú desplegado: selector frágil"
+  },
+  {
+   "id": "7_2_1_03",
+   "file": "7_2_1_field-mapping_03_parcel-array.png",
+   "folder": "7_edi-integrations",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms_int.action_edi_file_form",
+   "model": "tms.edi.file",
+   "view": "form",
+   "steps": [
+    {
+     "tab": "Fields Mapping"
+    }
+   ],
+   "manual": "elegir una definición que tenga Parcel_Array (el script abre la más reciente)"
+  },
+  {
+   "id": "7_2_2_01",
+   "file": "7_2_2_python-transformations_01_lista-funciones.png",
+   "folder": "7_edi-integrations",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms_int.tms_int_preset_function_action",
+   "view": "list"
+  },
+  {
+   "id": "7_3_01",
+   "file": "7_3_api-integrations_01_integracion.png",
+   "folder": "7_edi-integrations",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms_int.tms_int_api_integration_action",
+   "model": "tms_int.api.integration",
+   "view": "form"
+  },
+  {
+   "id": "7_4_01",
+   "file": "7_4_endpoint-configuration_01_endpoint.png",
+   "folder": "7_edi-integrations",
+   "instance": "etransport",
+   "deferred": true,
+   "action": "tms_int.tms_int_api_endpoints_action",
+   "model": "tms_int.api.endpoint",
+   "view": "form",
+   "domain": [
+    [
+     "webhook_route",
+     "=",
+     false
+    ]
+   ]
+  }
+ ]
+}

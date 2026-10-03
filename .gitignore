@@ -11,3 +11,9 @@ __pycache__/
 
 # Sistema
 .DS_Store
+
+# Capturas automáticas (tools/capturas): la sesión, las direcciones internas y las capturas
+# con datos reales sin anonimizar no se suben nunca
+tools/capturas/.auth/
+tools/capturas/instances.json
+tools/capturas/raw/

@@ -34,11 +34,10 @@ geográficas que se pueden elegir en una franja, para no asignar recursos de una
 franjas son, además, lo que consume el Optimizador en su **modo por franja** (ver
 :ref:`optimizador-paradas`).
 
-.. CAPTURA: 3_3_02 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/3_functional-architecture/3_3_planning-model_02_plan-disponibilidad.png
-      :alt: Plan de disponibilidad de conductores (Gantt de franjas)
+.. figure:: /_static/img/3_functional-architecture/3_3_planning-model_02_plan-disponibilidad.png
+   :alt: Plan de disponibilidad de conductores (Gantt de franjas)
 
-      Plan de disponibilidad de conductores: vista Gantt de franjas.
+   Plan de disponibilidad de conductores: vista Gantt de franjas.
 
 .. _optimizador-paradas:
 

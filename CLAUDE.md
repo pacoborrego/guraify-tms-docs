@@ -133,6 +133,7 @@ tms-docs/
 │   └── locale/            # .po en/it, vacíos, aparcados
 ├── .claude/commands/      # /estado, /d3…/d13, /capturas, /publicar, /cerrar-tarea
 ├── .github/workflows/     # CI de build
+├── tools/capturas/        # capturas automáticas de Odoo con Playwright (manifest.json + capturas.py); raw/ y .auth/ no se suben
 ├── deploy.sh              # publicación (se ejecuta en el servidor)
 ├── PLAN.md                # tareas y estado
 ├── CAPTURAS_PENDIENTES.md # lista de trabajo de María
@@ -190,6 +191,8 @@ se usen en 10.3 a 10.7. `/docs/index.html` es una redirección estática en `sou
 - Ruta: `source/_static/img/<slug-capítulo>/<sección>_<slug>_<NN>_<slug-captura>.png`, en
   minúsculas, sin espacios ni acentos. En el `.rst`, ruta absoluta `/_static/img/...` dentro
   de un `.. figure::` con `:alt:` y pie.
+- Las capturas de Odoo se generan con `tools/capturas/capturas.py` (ver su README) y María las anonimiza antes de
+  entregarlas; las de la app se hacen en el teléfono. Odoo en inglés (decisión del 12-jun-2026).
 - Cuando falta la imagen se deja el marcador `.. CAPTURA: <id>` con el `figure` comentado
   (indentado bajo el marcador) y una fila en `CAPTURAS_PENDIENTES.md`. El comando `/capturas`
   activa los figures cuya imagen ya existe. Un `figure` sin imagen rompe el build con `-W`, así
@@ -231,5 +234,5 @@ confirma**.
 
 ---
 
-*Actualizado el 2026-09-29 (v3, D16). Si algo de aquí queda desactualizado, actualízalo en el
+*Actualizado el 2026-09-29 (v3, D17). Si algo de aquí queda desactualizado, actualízalo en el
 mismo cambio que lo desactualiza.*

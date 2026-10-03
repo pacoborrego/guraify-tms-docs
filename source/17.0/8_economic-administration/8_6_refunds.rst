@@ -15,11 +15,10 @@ cuánto ingresó en la empresa y cuánto se ha devuelto al cliente, y dónde est
 La forma de cobro (efectivo, tarjeta, cheque...) se elige de un catálogo propio, los **Tipos de
 Reembolso** de los datos auxiliares.
 
-.. CAPTURA: 8_6_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/8_economic-administration/8_6_refunds_01_lista.png
-      :alt: Lista de Reembolsos con estados y saldos
+.. figure:: /_static/img/8_economic-administration/8_6_refunds_01_lista.png
+   :alt: Lista de Reembolsos con estados y saldos
 
-      Reembolsos: importe, cobrado, ingresado, pagado y los dos saldos.
+   Reembolsos: importe, cobrado, ingresado, pagado y los dos saldos.
 
 .. list-table::
    :header-rows: 1

@@ -1,0 +1,10 @@
+{
+ "etransport": {
+  "url": "https://ODOO-DE-E-TRANSPORT",
+  "nota": "producción de e-transport, usuario con interfaz en inglés"
+ },
+ "ludamany": {
+  "url": "http://localhost:8017",
+  "nota": "copia local ludamany_260904 (o la producción de Ludamany) para el cap. 6"
+ }
+}

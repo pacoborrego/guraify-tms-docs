@@ -18,11 +18,10 @@ consulta de seguimiento deja aquí su traza. Revisar este registro
 de forma periódica permite detectar patrones de error y, ante llamadas fallidas,
 reintentarlas sin perder la trazabilidad de los intentos previos.
 
-.. CAPTURA: 7_7_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/7_edi-integrations/7_7_integration-best-practices_01_api-log.png
-      :alt: Registro de actividad de las APIs
+.. figure:: /_static/img/7_edi-integrations/7_7_integration-best-practices_01_api-log.png
+   :alt: Registro de actividad de las APIs
 
-      Registro de actividad de las APIs (``tms.api.log``).
+   Registro de actividad de las APIs (``tms.api.log``).
 
 7.7.2 EDI: Definiciones de fichero y Manifiestos
 ------------------------------------------------

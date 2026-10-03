@@ -8,6 +8,22 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Primeras 17 capturas automáticas (2026-10-02)
+- Generadas con `tools/capturas` contra la demo (`tmsdemo.guraify.com`, datos inventados, sin
+  anonimizar) y activadas: botones inteligentes del Manifiesto, Plan de disponibilidad,
+  Equipamientos, categoría de vehículo, Tipos de bulto, perfil de jornada, Tarifas base, Línea de
+  tarifa, Viaje con recursos, asistente de importación, función preestablecida, Bandeja de entrada
+  API, tareas programadas, registro de llamadas, lista de Viajes con margen, Reembolsos e
+  indicadores configurables. Quedan 28 pendientes, 4 de ellas solo posibles en producción.
+
+### Capturas automáticas de Odoo (tarea D17, 2026-09-29)
+- Nuevo `tools/capturas/`: un script de Playwright y un manifiesto con 65 capturas (las 38 de Odoo
+  pendientes y las 27 antiguas aplazadas) que abre cada pantalla en el Chrome del equipo con la
+  sesión guardada, elige el registro por dominio, ejecuta los clics necesarios (pestañas, botones,
+  asistentes) y guarda el PNG recortado a 1600 px con el nombre exacto de la guía. Las capturas
+  salen de producción, así que van a `raw/` (fuera del repo) y María las anonimiza antes de dejarlas
+  en `source/_static/img/`. Instrucciones en `tools/capturas/README.md`.
+
 ### Visor de imágenes (tarea D16, 2026-09-29)
 - **Toda figura se abre a tamaño completo al pulsarla**, en todos los recorridos y también en el
   manual del conductor: un visor propio (`_static/lightbox.js` + estilos en `custom.css`), sin
