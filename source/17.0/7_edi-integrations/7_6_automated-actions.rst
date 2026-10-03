@@ -14,11 +14,10 @@ que nadie tenga que lanzar cada paso.
 
    Ajustes › Técnico › Automatización › Acciones planificadas
 
-.. CAPTURA: 7_6_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/7_edi-integrations/7_6_automated-actions_01_crons.png
-      :alt: Tareas programadas que orquestan las integraciones
+.. figure:: /_static/img/7_edi-integrations/7_6_automated-actions_01_crons.png
+   :alt: Tareas programadas que orquestan las integraciones
 
-      Tareas programadas que orquestan las integraciones.
+   Tareas programadas que orquestan las integraciones.
 
 El módulo de integraciones instala cuatro tareas programadas (``ir.cron``), todas con
 cadencia de cinco minutos, que encadenan la entrada de datos con su tratamiento

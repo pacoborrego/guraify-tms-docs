@@ -203,11 +203,10 @@ las líneas, los detalles y las operaciones en :doc:`/17.0/annexes/A_11_tiempos-
 4.3.6 Horas de conducción
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 4_3_06 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_06_horas-conduccion.png
-      :alt: Formulario de un perfil de jornada (Horas de Conducción)
+.. figure:: /_static/img/4_parametrization/4_3_planning-configuration_06_horas-conduccion.png
+   :alt: Formulario de un perfil de jornada (Horas de Conducción)
 
-      Un perfil de jornada con sus ajustes para PTV.
+   Un perfil de jornada con sus ajustes para PTV.
 
 Las Horas de conducción (``tms.driver.working.hours``) son los :term:`perfiles de jornada
 <Perfil de jornada>` que se envían a PTV. No calculan nada por sí mismas: dicen qué regulación

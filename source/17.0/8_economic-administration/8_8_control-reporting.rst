@@ -34,11 +34,10 @@ sin coste.
 8.8.3 Indicadores
 ~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 8_8_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/8_economic-administration/8_8_control-reporting_01_kpis.png
-      :alt: Lista de indicadores configurables del motor de indicadores
+.. figure:: /_static/img/8_economic-administration/8_8_control-reporting_01_kpis.png
+   :alt: Lista de indicadores configurables del motor de indicadores
 
-      El motor de indicadores: cada indicador con su sección, formato, audiencia y objetivo.
+   El motor de indicadores: cada indicador con su sección, formato, audiencia y objetivo.
 
 El TMS tiene un **motor de indicadores** (``tms.kpi``) compartido por todos los módulos. Cada
 **indicador configurable** es un registro con su cálculo, su formato (número, porcentaje,
@@ -55,11 +54,10 @@ se describen en :doc:`/17.0/6_resources/6_7_kpis`. Se administran en TMS › Mé
 8.8.4 Tableros
 ~~~~~~~~~~~~~~
 
-.. CAPTURA: 8_8_02 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/8_economic-administration/8_8_control-reporting_02_tablero.png
-      :alt: Tablero de facturación pendiente
+.. figure:: /_static/img/8_economic-administration/8_8_control-reporting_02_tablero.png
+   :alt: Tablero de facturación pendiente
 
-      El tablero de facturación pendiente.
+   El tablero de facturación pendiente.
 
 Los **tableros** son hojas de cálculo de Odoo con tablas dinámicas sobre los datos vivos,
 agrupadas en TMS › Operaciones › Tableros. Vienen tres con el módulo, cuyos nombres en la

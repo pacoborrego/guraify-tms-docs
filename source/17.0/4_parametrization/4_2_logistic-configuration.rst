@@ -20,11 +20,10 @@ cada pantalla está en el :doc:`anexo A </17.0/annexes/index>`.
 4.2.1 Equipamientos
 ~~~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 4_2_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_2_logistic-configuration_01_equipamientos.png
-      :alt: Lista de Equipamientos
+.. figure:: /_static/img/4_parametrization/4_2_logistic-configuration_01_equipamientos.png
+   :alt: Lista de Equipamientos
 
-      Equipamientos: lo que un vehículo lleva instalado.
+   Equipamientos: lo que un vehículo lleva instalado.
 
 Un Equipamiento (``tms.equipment``) es algo que un vehículo lleva o puede ofrecer: plataforma
 elevadora, equipo de frío, homologación ADR, jaula, transpaleta, doble tripulación. El maestro
@@ -130,11 +129,10 @@ defecto fijan la regla con la que se crean las líneas cuando el fichero no las 
 4.2.4 Tipos de bulto
 ~~~~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 4_2_04 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_2_logistic-configuration_04_tipos-bulto.png
-      :alt: Lista de Tipos de Bulto
+.. figure:: /_static/img/4_parametrization/4_2_logistic-configuration_04_tipos-bulto.png
+   :alt: Lista de Tipos de Bulto
 
-      Tipos de Bulto: qué mercancía se transporta.
+   Tipos de Bulto: qué mercancía se transporta.
 
 El Tipo de Bulto (``tms.temperature``) responde a **qué mercancía** se transporta: seco,
 refrigerado, congelado, frágil, textil, alimentación. En la interfaz aparece siempre como
@@ -161,11 +159,10 @@ y por API, y el Proyecto activa cuáles admite y cuál propone por defecto. Camp
 4.2.5 Categorías y modelos de vehículo
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 4_2_02 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_2_logistic-configuration_02_vehiculos.png
-      :alt: Categoría de vehículo con sus capacidades
+.. figure:: /_static/img/4_parametrization/4_2_logistic-configuration_02_vehiculos.png
+   :alt: Categoría de vehículo con sus capacidades
 
-      Una categoría de vehículo: perfil de PTV, capacidades y equipamientos.
+   Una categoría de vehículo: perfil de PTV, capacidades y equipamientos.
 
 La Flota de Odoo organiza los vehículos en marcas, modelos y categorías de modelo. El TMS
 planifica con la **categoría** (``fleet.vehicle.model.category``): tráiler, camión de 12

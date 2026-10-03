@@ -7,11 +7,11 @@
    Botón **Tarificar** en la Orden y en el Viaje · TMS › Administración › Opciones de Tarifa ›
    Diagnóstico de tarifa de órdenes / Diagnóstico de tarifa de viajes
 
-.. CAPTURA: 5_6_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_6_settlement_01_liquidacion.png
-      :alt: Tarificación de venta y de compra
+.. figure:: /_static/img/5_operational-flows/5_6_settlement_01_liquidacion.png
+   :alt: Pestaña de diagnóstico de tarifa de un Viaje
 
-      Tarificación de venta (cliente) y de compra (transportista).
+   El diagnóstico de tarifa del Viaje: venta a la izquierda, compra a la derecha y, cuando no se
+   ha podido tarificar, el motivo y qué hacer.
 
 Tarificar es poner precio a lo ejecutado, en los dos lados a la vez: lo que se **cobra al
 cliente** por cada Orden (``sale.order``) y lo que se **paga al transportista** por cada Viaje,

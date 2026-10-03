@@ -53,11 +53,10 @@ producción.
 
    TMS › Operaciones › Tráfico › Bandeja de entrada API
 
-.. CAPTURA: 7_3_02 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/7_edi-integrations/7_3_api-integrations_02_inbox.png
-      :alt: Bandeja de entrada API con los estados de las líneas
+.. figure:: /_static/img/7_edi-integrations/7_3_api-integrations_02_inbox.png
+   :alt: Bandeja de entrada API con los estados de las líneas
 
-      Bandeja de entrada API con los estados de las líneas.
+   Bandeja de entrada API con los estados de las líneas.
 
 Los datos que llegan por API no se convierten directamente en registros operativos:
 primero se depositan en la Bandeja de entrada API, organizada por Proyecto, y solo tras

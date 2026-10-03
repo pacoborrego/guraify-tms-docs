@@ -163,11 +163,10 @@ nombre, su descripción (qué hace, qué parámetros usa y un ejemplo de entrada
 su código de ejemplo. A partir de ese momento aparece en el desplegable de funciones de
 cualquier mapeo, como las de serie.
 
-.. CAPTURA: 7_2_2_02 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/7_edi-integrations/7_2_2_python-transformations_02_funcion-detalle.png
-      :alt: Detalle de una función preestablecida
+.. figure:: /_static/img/7_edi-integrations/7_2_2_python-transformations_02_funcion-detalle.png
+   :alt: Detalle de una función preestablecida
 
-      Detalle de una función preestablecida (descripción y código de ejemplo).
+   Detalle de una función preestablecida (descripción y código de ejemplo).
 
 En ambos casos el código debe respetar el contrato del contexto de ejecución: leer el
 dato de entrada de ``value`` (y, si procede, de ``row`` o ``rows``), usar únicamente

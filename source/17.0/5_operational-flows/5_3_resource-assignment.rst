@@ -6,11 +6,10 @@
 
    TMS › Operaciones › Tráfico › Viajes (cabecera del formulario del Viaje)
 
-.. CAPTURA: 5_3_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_3_resource-assignment_01_recursos.png
-      :alt: Asignación de recursos a un viaje
+.. figure:: /_static/img/5_operational-flows/5_3_resource-assignment_01_recursos.png
+   :alt: Asignación de recursos a un viaje
 
-      Viaje con conductor, vehículo y transportista asignados.
+   Viaje con conductor, vehículo y transportista asignados.
 
 Un Viaje (``tms.trip``) está listo para ejecutarse cuando tiene quién lo hace y cuánto cuesta:
 el **transportista**, el **conductor**, el **vehículo** (y su remolque, si lo hay) y la **tarifa

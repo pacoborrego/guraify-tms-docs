@@ -7,11 +7,10 @@
    Campos **Activo**, **Pasivo**, **Beneficio** y **Margen %** en las listas y formularios de
    Viajes, Paradas y Tramos (TMS › Operaciones).
 
-.. CAPTURA: 8_1_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/8_economic-administration/8_1_active-passive-margin_01_viaje.png
-      :alt: Lista de Viajes con activo, pasivo y margen
+.. figure:: /_static/img/8_economic-administration/8_1_active-passive-margin_01_viaje.png
+   :alt: Lista de Viajes con activo, pasivo y margen
 
-      Los Viajes con sus columnas Activo, Pasivo, Beneficio y Margen %.
+   Los Viajes con sus columnas Activo, Pasivo, Beneficio y Margen %.
 
 El TMS llama **activo** a lo que se cobra al cliente y **pasivo** a lo que se paga al
 transportista. Son los términos del sector para el ingreso y el coste de una operación, y

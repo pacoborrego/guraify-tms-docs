@@ -66,11 +66,10 @@ más cercana y anota los kilómetros extra (ver :doc:`4_5_project-configuration`
 4.4.2 Tarifas base
 ~~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 4_4_03 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_4_economic-configuration_03_tarifa-base.png
-      :alt: Lista de Tarifas Base
+.. figure:: /_static/img/4_parametrization/4_4_economic-configuration_03_tarifa-base.png
+   :alt: Lista de Tarifas Base
 
-      Tarifas Base: qué magnitud se mide para aplicar un precio.
+   Tarifas Base: qué magnitud se mide para aplicar un precio.
 
 La :term:`Tarifa base` (``tms.pricelist.base``) define **qué magnitud se cobra**: peso,
 volumen, bultos, palés, metros, cantidad, distancia, tiempo u otras. No contiene precios; es el
@@ -139,11 +138,10 @@ y una Tarifa caducada se puede ocultar sin perder el histórico. Campos en
 4.4.4 Líneas de tarifa y sus detalles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 4_4_04 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_4_economic-configuration_04_linea-tarifa.png
-      :alt: Línea de tarifa con sus detalles
+.. figure:: /_static/img/4_parametrization/4_4_economic-configuration_04_linea-tarifa.png
+   :alt: Línea de tarifa con sus detalles
 
-      Una Línea de tarifa: las condiciones arriba, los detalles con los importes debajo.
+   Una Línea de tarifa: las condiciones arriba, los detalles con los importes debajo.
 
 La :term:`Línea de tarifa` (``tms.pricelist.item.zone``) tiene dos niveles: la línea dice
 **cuándo** aplica un precio (sobre qué ámbito y con qué condiciones) y sus detalles dicen

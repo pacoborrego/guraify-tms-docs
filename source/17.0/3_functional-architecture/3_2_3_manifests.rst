@@ -116,9 +116,8 @@ corregidos (coordenadas válidas y, en su caso, horarios), el Manifiesto ya pued
 
    Formulario de un Manifiesto con sus estados y botones.
 
-.. CAPTURA: 3_2_3_02 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/3_functional-architecture/3_2_3_manifests_02_botones-inteligentes.png
-      :alt: Botones inteligentes del Manifiesto (Paradas, Normalizar y Ficheros)
+.. figure:: /_static/img/3_functional-architecture/3_2_3_manifests_02_botones-inteligentes.png
+   :alt: Botones inteligentes del Manifiesto (Paradas, Normalizar y Ficheros)
 
-      Botones inteligentes del Manifiesto: **Paradas**, **Normalizar** (contactos pendientes) y
-      **Ficheros** (ficheros importados).
+   Botones inteligentes del Manifiesto: **Paradas**, **Normalizar** (contactos pendientes) y
+   **Ficheros** (ficheros importados).

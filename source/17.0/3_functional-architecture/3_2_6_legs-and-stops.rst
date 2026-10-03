@@ -209,11 +209,10 @@ cuando todos los Tramos de una Orden están cerrados, la Orden queda pendiente d
 (:doc:`3_2_1_orders`). El detalle de ese cierre está en
 :doc:`/17.0/5_operational-flows/5_5_trip-closing`.
 
-.. CAPTURA: 3_2_6_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/3_functional-architecture/3_2_6_legs-and-stops_01_parada.png
-      :alt: Formulario de una Parada con su Tipo de Parada, sus Tramos y su estado
+.. figure:: /_static/img/3_functional-architecture/3_2_6_legs-and-stops_01_parada.png
+   :alt: Formulario de una Parada con su Tipo de Parada, sus Tramos y su estado
 
-      Formulario de una Parada: Tipo de Parada, Tramos agrupados y estado.
+   Formulario de una Parada: Tipo de Parada, Tramos agrupados y estado.
 
 3.2.6.4 Referencia técnica
 ~~~~~~~~~~~~~~~~~~~~~~~~~~

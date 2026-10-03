@@ -31,6 +31,14 @@ público. Decisión de Paco, 2026-09-08.
 5. **Nombre de fichero**: exactamente el de la columna "Fichero" de las tablas de abajo, en la
    carpeta indicada. Si el nombre no coincide, la imagen no se muestra.
 
+## Capturas automáticas (desde el 29/09/2026)
+
+Las de Odoo se generan con `tools/capturas/capturas.py` (Playwright): abre cada pantalla de
+`tools/capturas/manifest.json`, la recorta a la ventana de Odoo a 1600 px y la guarda con el nombre
+exacto en `tools/capturas/raw/` (no se sube al repo: llevan datos reales). María solo tiene que
+**anonimizar** las de `raw/` y dejarlas en `source/_static/img/<carpeta>/`. Cómo se usa, en
+`tools/capturas/README.md`. Las 6 de la app se siguen haciendo en el teléfono.
+
 ## Cómo entregar
 
 1. Guardar el PNG en `source/_static/img/<carpeta>/` con el nombre exacto.
@@ -39,6 +47,12 @@ público. Decisión de Paco, 2026-09-08.
    requisitos y actualiza esta lista. No hace falta tocar los `.rst`.
 
 Estados: 🔁 existe pero hay que rehacerla · ⬜ no existe · ✅ hecha y validada.
+
+**Decisión de Paco (29/09/2026):** las 61 antiguas marcadas 🔁 **quedan aplazadas**: no se rehacen
+ahora, para poder cerrar. María hace solo las ⬜ (45, incluidas las 11 devueltas).
+
+**Capturas automáticas sobre la demo (02/10/2026):** 20 generadas con `tools/capturas` contra
+`tmsdemo.guraify.com` (datos inventados, sin anonimizar) y activadas.
 
 **Lote del 15/09/2026** (revisado el 29/09): 28 imágenes entregadas; 17 validadas y activadas
 (ocho de ellas renombradas porque el fichero llevaba el nombre de otra captura) y 11 que hay que
@@ -77,11 +91,11 @@ repetir, marcadas **Repetir (15/09)** con el motivo en su fila.
 | 🔁 | `3_2_1_orders.rst` | `3_2_1_orders_02_orden-bloqueada.png` | Orden bloqueada: candado cerrado tras confirmarse la ejecución. | TMS › Operaciones › Tráfico › Órdenes |
 | 🔁 | `3_2_2_trips.rst` | `3_2_2_trips_01_viaje.png` | Formulario de un Viaje (tms.trip) con sus estados operativo, de compra y de facturación. | TMS › Operaciones › Tráfico › Viajes |
 | 🔁 | `3_2_3_manifests.rst` | `3_2_3_manifests_01_manifiesto.png` | Formulario de un Manifiesto con sus estados y botones. | TMS › Operaciones › Tráfico › Manifiestos |
-| ⬜ | `3_2_3_manifests.rst` | `3_2_3_manifests_02_botones-inteligentes.png` | **Repetir (15/09):** la entregada era la lista de Manifiestos, no los botones de la ficha de un Manifiesto. Botones inteligentes del Manifiesto: **Paradas**, **Normalizar** (contactos pendientes) y **Ficheros**. | TMS › Operaciones › Tráfico › Manifiestos |
-| ⬜ | `3_2_6_legs-and-stops.rst` | `3_2_6_legs-and-stops_01_parada.png` | Formulario de una Parada con su Tipo de Parada, sus Tramos agrupados y su estado. | TMS › Operaciones › Maestros › Paradas |
+| ✅ | `3_2_3_manifests.rst` | `3_2_3_manifests_02_botones-inteligentes.png` | Botones inteligentes del Manifiesto: **Paradas**, **Normalizar** (contactos pendientes) y **Ficheros**. | TMS › Operaciones › Tráfico › Manifiestos |
+| ✅ | `3_2_6_legs-and-stops.rst` | `3_2_6_legs-and-stops_01_parada.png` | Formulario de una Parada con su Tipo de Parada, sus Tramos agrupados y su estado. | TMS › Operaciones › Maestros › Paradas |
 | 🔁 | `3_2_4_api-inbox.rst` | `3_2_4_api-inbox_01_inbox.png` | Bandeja de entrada API (tms_int.api.inbox) con sus líneas y estados. | TMS › Operaciones › Tráfico › Bandeja de entrada API |
 | 🔁 | `3_2_5_active-leg.rst` | `3_2_5_active-leg_01_tramo-activo.png` | Cabecera de una Orden multitramo mostrando los datos del tramo activo. | TMS › Operaciones › Tráfico › Órdenes (la cabecera de la Orden muestra los datos del |
-| ⬜ | `3_3_planning-model.rst` | `3_3_planning-model_02_plan-disponibilidad.png` | Plan de Disponibilidad de Conductores: vista Gantt de *slots* (planning.slot). | TMS › Operaciones › Planificación (Plan Disponibilidad Conductores, Optimizador de Paradas) |
+| ✅ | `3_3_planning-model.rst` | `3_3_planning-model_02_plan-disponibilidad.png` | Plan de Disponibilidad de Conductores: vista Gantt de *slots* (planning.slot). | TMS › Operaciones › Planificación (Plan Disponibilidad Conductores, Optimizador de Paradas) |
 | 🔁 | `3_3_planning-model.rst` | `3_3_planning-model_01_optimizador.png` | Optimizador de Paradas (tms.optimizator) en Odoo. | TMS › Operaciones › Planificación (Plan Disponibilidad Conductores, Optimizador de Paradas) |
 | 🔁 | `3_4_pricing-model.rst` | `3_4_pricing-model_01_tarifa.png` | Configuración de una Tarifa (tms.pricelist) en Odoo. | TMS › Configuración (Tarifas, Reglas, Productos) |
 
@@ -99,8 +113,8 @@ repetir, marcadas **Repetir (15/09)** con el motivo en su fila.
 | 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_06_tipos-destinatario.png` | Lista de Tipos de Destinatario. | TMS › Configuración › Ajustes › Datos auxiliares |
 | 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_07_tipos-transportista.png` | Lista de Tipos de Transportista. | TMS › Configuración › Ajustes › Datos auxiliares |
 | 🔁 | `4_1_operational-configuration.rst` | `4_1_operational-configuration_08_tipos-reembolso.png` | Lista de Tipos de Reembolso. | TMS › Configuración › Ajustes › Datos auxiliares |
-| ⬜ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_01_equipamientos.png` | Configuración de Equipamientos (tms.equipment). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*): Equipamientos |
-| ⬜ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_02_vehiculos.png` | **Repetir (15/09):** la entregada era una lista de modelos con una sola fila difuminada: no enseña nada; hace falta la ficha de una categoría o de un modelo con sus capacidades. Modelos y Categorías de Vehículo (fleet.vehicle.model / fleet.vehicle.model.category). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*): Equipamientos |
+| ✅ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_01_equipamientos.png` | Configuración de Equipamientos (tms.equipment). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*): Equipamientos |
+| ✅ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_02_vehiculos.png` | Modelos y Categorías de Vehículo (fleet.vehicle.model / fleet.vehicle.model.category). | TMS › Configuración › Ajustes (bloque *Datos auxiliares*): Equipamientos |
 | ✅ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_01_planes-transporte.png` | Configuración de un Plan de Transporte (tms.transport.plan). | TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas |
 | ✅ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_02_areas-geograficas.png` | Configuración de un Área Geográfica (tms.area). | TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas |
 | ✅ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_03_tiempos-servicio.png` | Configuración de Tiempos de Servicio (tms.service.time). | TMS › Configuración: Planes de Transporte (``tms.transport.plan``), Zonas Geográficas |
@@ -109,12 +123,12 @@ repetir, marcadas **Repetir (15/09)** con el motivo en su fila.
 | ✅ | `4_5_project-configuration.rst` | `4_5_project-configuration_01_proyecto.png` | Formulario de configuración de un Proyecto (project.project). | TMS › Configuración › Proyectos (el Proyecto, ``project.project``, extendido por el |
 | ✅ | `4_5_project-configuration.rst` | `4_5_project-configuration_02_kanban-proyectos.png` | La kanban de Proyectos: cada tarjeta resume un contrato. | TMS › Configuración › Proyectos (el Proyecto, ``project.project``, extendido por el |
 | ✅ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_03_reglas-tarifa.png` | Formulario de una Regla de tarifa (unidad de medida): casillas Bultos/Cantidad/Metros/Pallets, Físico y dimensiones por defecto. | TMS › Configuración › Ajustes › Datos auxiliares › Regla de tarifa |
-| ⬜ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_04_tipos-bulto.png` | **Repetir (15/09):** la entregada era la lista de Tipos de Destinatario. Lista de Tipos de Bulto. | TMS › Configuración › Ajustes › Datos auxiliares › Tipos de Bulto |
+| ✅ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_04_tipos-bulto.png` | Lista de Tipos de Bulto. | TMS › Configuración › Ajustes › Datos auxiliares › Tipos de Bulto |
 | ✅ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_04_planning.png` | Formulario de un Planning: plan de transporte, tiempos de recogida/entrega y modo de división. | TMS › Configuración › Ajustes › Datos auxiliares › Planificaciones |
 | ✅ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_05_franjas-horarias.png` | Lista de Franjas Horarias. | TMS › Configuración › Ajustes › Datos auxiliares › Franjas Horarias |
-| ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_06_horas-conduccion.png` | **Repetir (15/09):** la entregada era el catálogo de operaciones de tiempos de servicio; hace falta la ficha de un perfil de Horas de Conducción. Un perfil de jornada (Horas de Conducción) con sus ajustes para PTV. | TMS › Configuración › Ajustes › Optimización de ruta › Horas de Conducción |
-| ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_03_tarifa-base.png` | **Repetir (15/09):** la entregada era la lista de Tarifas (repetida); hace falta la lista de Tarifas Base. Lista de Tarifas Base con su tipo de cálculo. | TMS › Administración › Opciones de Tarifa › Tarifa Base |
-| ⬜ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_04_linea-tarifa.png` | **Repetir (15/09):** la entregada era la lista de Zonas de tarifa (se ha usado como 4_4_01); hace falta una Línea de tarifa abierta dentro de una versión, con sus detalles. Una Línea de tarifa dentro de una versión, con sus condiciones arriba y la lista de detalles (zonas, rango, precio) debajo. | TMS › Administración › Opciones de Tarifa › Tarifa › pestaña Reglas Tarifa |
+| ✅ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_06_horas-conduccion.png` | Un perfil de jornada (Horas de Conducción) con sus ajustes para PTV. | TMS › Configuración › Ajustes › Optimización de ruta › Horas de Conducción |
+| ✅ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_03_tarifa-base.png` | Lista de Tarifas Base con su tipo de cálculo. | TMS › Administración › Opciones de Tarifa › Tarifa Base |
+| ✅ | `4_4_economic-configuration.rst` | `4_4_economic-configuration_04_linea-tarifa.png` | Una Línea de tarifa dentro de una versión, con sus condiciones arriba y la lista de detalles (zonas, rango, precio) debajo. | TMS › Administración › Opciones de Tarifa › Tarifa › pestaña Reglas Tarifa |
 | ✅ | `4_5_project-configuration.rst` | `4_5_project-configuration_03_otros-parametros.png` | Grupo Otros parámetros del Proyecto con los interruptores de automatización. | TMS › Configuración › Proyectos › pestaña TMS › Otros parámetros |
 | ⬜ | `4_5_project-configuration.rst` | `4_5_project-configuration_04_app.png` | **Repetir (15/09):** la entregada era la lista de Roles de la app; hace falta el grupo Aplicación móvil de la ficha del Proyecto. Grupo Aplicación móvil del Proyecto (perfil, POD digital, POD físico, escaneos). | TMS › Configuración › Proyectos › pestaña TMS › Aplicación móvil |
 
@@ -127,10 +141,10 @@ repetir, marcadas **Repetir (15/09)** con el motivo en su fila.
 | ✅ | `5_1_order-creation.rst` | `5_1_order-creation_01_orden-nueva.png` | Formulario de creación de una Orden (sale.order). | TMS › Operaciones › Tráfico › Órdenes (la Orden, ``sale.order``). |
 | ⬜ | `5_1_order-creation.rst` | `5_1_order-creation_02_validar.png` | **Repetir (15/09):** la entregada era la ficha de una Orden en borrador (se ha usado como 5_1_01); hace falta la Orden con el botón Validar a la vista. Botón **Validar** de la orden: valida y genera las Paradas. | TMS › Operaciones › Tráfico › Órdenes (la Orden, ``sale.order``). |
 | ✅ | `5_2_trip-generation.rst` | `5_2_trip-generation_01_generacion-viajes.png` | Generación de Viajes: asistente manual u Optimizador de Paradas. | TMS › Operaciones › Planning › Optimizador de Paradas y TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
-| ⬜ | `5_3_resource-assignment.rst` | `5_3_resource-assignment_01_recursos.png` | **Repetir (15/09):** la entregada era el Optimizador de Paradas; hace falta la ficha de un Viaje con conductor, vehículo y transportista rellenos. Viaje (tms.trip) con conductor, vehículo y transportista asignados. | TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
+| ✅ | `5_3_resource-assignment.rst` | `5_3_resource-assignment_01_recursos.png` | Viaje (tms.trip) con conductor, vehículo y transportista asignados. | TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
 | ✅ | `5_5_trip-closing.rst` | `5_5_trip-closing_01_cierre.png` | Viaje cerrado tras completarse sus paradas. | TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
 | ✅ | `5_4_app-execution.rst` | `5_4_app-execution_01_paradas-estado-app.png` | Las Paradas en Odoo con el estado que llega desde la app (columna de estado de la app). | TMS › Operaciones › Maestros › Paradas |
-| ⬜ | `5_6_settlement.rst` | `5_6_settlement_01_liquidacion.png` | Tarificación de venta (cliente) y de compra (transportista). | Botón Tarificar en la Orden y en el Viaje. |
+| ✅ | `5_6_settlement.rst` | `5_6_settlement_01_liquidacion.png` | Tarificación de venta (cliente) y de compra (transportista). | Botón Tarificar en la Orden y en el Viaje. |
 | ⬜ | `5_7_invoicing.rst` | `5_7_invoicing_01_factura.png` | **Repetir (15/09):** la entregada era la Lista de facturas casi vacía (una fila); hace falta la pantalla de crear la factura desde la Orden o el Viaje. Generación de la factura al cliente y de la factura del transportista. | TMS › Administración (facturación de cliente y de proveedor). |
 | 🔁 | `5_8_kpi-indicators.rst` | `5_8_kpi-indicators_01_kpi-parada.png` | Indicador KPI en la lista de Paradas (triángulos de estado, barra de puntualidad y secuencia). | Columna de KPI en las listas de TMS › Operaciones › Tráfico › Órdenes y de las Paradas |
 | 🔁 | `5_8_kpi-indicators.rst` | `5_8_kpi-indicators_02_kpi-orden.png` | Indicador KPI en la lista de Órdenes (parada activa + validación, factura/candado y POD). | Columna de KPI en las listas de TMS › Operaciones › Tráfico › Órdenes y de las Paradas |
@@ -146,15 +160,15 @@ repetir, marcadas **Repetir (15/09)** con el motivo en su fila.
 | ⬜ | `7_2_1_field-mapping.rst` | `7_2_1_field-mapping_02_selector-campo.png` | **Repetir (15/09):** la entregada era la lista de Definiciones de fichero, y además se veían nombres de clientes reales en las definiciones (no publicable); hace falta el desplegable del campo destino (Tms Field) abierto. Catálogo de campos destino agrupado por entidad (selector *Tms Field*). | TMS › Configuración › EDI › Definición de Fichero |
 | 🔁 | `7_2_1_field-mapping.rst` | `7_2_1_field-mapping_03_parcel-array.png` | Configuración del campo computado Parcel_Array (*Computed* + *Apply Code?*). | TMS › Configuración › EDI › Definición de Fichero |
 | 🔁 | `7_2_2_python-transformations.rst` | `7_2_2_python-transformations_01_lista-funciones.png` | Catálogo de funciones preestablecidas. | TMS › Configuración › EDI › Funciones preestablecidas |
-| ⬜ | `7_2_2_python-transformations.rst` | `7_2_2_python-transformations_02_funcion-detalle.png` | Detalle de una función preestablecida (descripción y código de ejemplo). | TMS › Configuración › EDI › Funciones preestablecidas |
-| ⬜ | `7_2_file-import.rst` | `7_2_file-import_01_asistente.png` | Asistente de importación de fichero. | TMS › Configuración › EDI › Definición de Fichero |
+| ✅ | `7_2_2_python-transformations.rst` | `7_2_2_python-transformations_02_funcion-detalle.png` | Detalle de una función preestablecida (descripción y código de ejemplo). | TMS › Configuración › EDI › Funciones preestablecidas |
+| ✅ | `7_2_file-import.rst` | `7_2_file-import_01_asistente.png` | Asistente de importación de fichero. | TMS › Configuración › EDI › Definición de Fichero |
 | 🔁 | `7_2_file-import.rst` | `7_2_file-import_02_validacion.png` | Reporte de validación del fichero importado. | TMS › Configuración › EDI › Definición de Fichero |
 | 🔁 | `7_3_api-integrations.rst` | `7_3_api-integrations_01_integracion.png` | Configuración de una integración API y su autenticación. | TMS › Configuración › EDI › Integraciones API |
-| ⬜ | `7_3_api-integrations.rst` | `7_3_api-integrations_02_inbox.png` | Bandeja de entrada API con los estados de las líneas. | TMS › Configuración › EDI › Integraciones API |
+| ✅ | `7_3_api-integrations.rst` | `7_3_api-integrations_02_inbox.png` | Bandeja de entrada API con los estados de las líneas. | TMS › Configuración › EDI › Integraciones API |
 | 🔁 | `7_4_endpoint-configuration.rst` | `7_4_endpoint-configuration_01_endpoint.png` | Configuración de un endpoint saliente. | TMS › Configuración › EDI › Endpoints API |
 | ⬜ | `7_5_webhooks.rst` | `7_5_webhooks_01_endpoint-webhook.png` | Endpoint configurado como webhook. | TMS › Configuración › EDI › Endpoints API |
-| ⬜ | `7_6_automated-actions.rst` | `7_6_automated-actions_01_crons.png` | Tareas programadas que orquestan las integraciones. | Ajustes › Técnico › Automatización › Acciones planificadas |
-| ⬜ | `7_7_integration-best-practices.rst` | `7_7_integration-best-practices_01_api-log.png` | Registro de actividad de las APIs (tms.api.log). |  |
+| ✅ | `7_6_automated-actions.rst` | `7_6_automated-actions_01_crons.png` | Tareas programadas que orquestan las integraciones. | Ajustes › Técnico › Automatización › Acciones planificadas |
+| ✅ | `7_7_integration-best-practices.rst` | `7_7_integration-best-practices_01_api-log.png` | Registro de actividad de las APIs (tms.api.log). |  |
 
 ## Gestión de Recursos (cap. 6)
 
@@ -191,11 +205,11 @@ repetir, marcadas **Repetir (15/09)** con el motivo en su fila.
 
 | Estado | Fichero .rst | Fichero | Qué muestra | Dónde |
 |---|---|---|---|---|
-| ⬜ | `8_1_active-passive-margin.rst` | `8_1_active-passive-margin_01_viaje.png` | Lista de Viajes con las columnas Activo, Pasivo, Beneficio y Margen %. | TMS › Operaciones › Tráfico › Viajes |
+| ✅ | `8_1_active-passive-margin.rst` | `8_1_active-passive-margin_01_viaje.png` | Lista de Viajes con las columnas Activo, Pasivo, Beneficio y Margen %. | TMS › Operaciones › Tráfico › Viajes |
 | ⬜ | `8_4_purchase-orders.rst` | `8_4_purchase-orders_01_oc.png` | Orden de compra de un Viaje: línea de sección con la ruta y líneas por parada. | Viaje › botón inteligente de la orden de compra |
-| ⬜ | `8_6_refunds.rst` | `8_6_refunds_01_lista.png` | Lista de Reembolsos con importe, cobrado, ingresado, pagado, saldos y estado. | TMS › Administración › Reembolsos |
-| ⬜ | `8_8_control-reporting.rst` | `8_8_control-reporting_01_kpis.png` | Lista de KPIs del motor de indicadores con sección, formato y audiencias. | TMS › Métricas › KPIs |
-| ⬜ | `8_8_control-reporting.rst` | `8_8_control-reporting_02_tablero.png` | Tablero Pending Invoicing. | TMS › Operaciones › Tableros › Pending Invoicing |
+| ✅ | `8_6_refunds.rst` | `8_6_refunds_01_lista.png` | Lista de Reembolsos con importe, cobrado, ingresado, pagado, saldos y estado. | TMS › Administración › Reembolsos |
+| ✅ | `8_8_control-reporting.rst` | `8_8_control-reporting_01_kpis.png` | Lista de KPIs del motor de indicadores con sección, formato y audiencias. | TMS › Métricas › KPIs |
+| ✅ | `8_8_control-reporting.rst` | `8_8_control-reporting_02_tablero.png` | Tablero Pending Invoicing. | TMS › Operaciones › Tableros › Pending Invoicing |
 
 ## Manual del conductor (cap. 10) — app móvil
 
