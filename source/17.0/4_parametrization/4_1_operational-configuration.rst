@@ -66,11 +66,12 @@ Líneas de tarifa lo usan para dar precios distintos a servicios distintos.
        el servicio. Al añadir mercancía a un Tramo, el sistema solo ofrece las Reglas de tarifa
        que miden alguna de las magnitudes marcadas (ver :doc:`4_2_logistic-configuration`).
 
-.. figure:: /_static/img/4_parametrization/4_1_operational-configuration_03_tipos-servicio-form.png
-   :align: center
-   :alt: Formulario de un Tipo de Servicio
+.. CAPTURA: 4_1_03 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_1_operational-configuration_03_tipos-servicio-form.png
+      :align: center
+      :alt: Formulario de un Tipo de Servicio
 
-   Formulario de un Tipo de Servicio con sus variables logísticas.
+      Formulario de un Tipo de Servicio con sus variables logísticas.
 
 El tipo de servicio aparece después en tres sitios. En el **Proyecto**, la lista de servicios
 activados limita los que se pueden elegir en sus Órdenes, uno de ellos se propone por
