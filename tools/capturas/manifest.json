@@ -130,7 +130,7 @@
     [
      "tms_project_type",
      "=",
-     "sale"
+     "sale_order"
     ]
    ],
    "steps": [
@@ -151,7 +151,7 @@
    "id": "5_1_02",
    "file": "5_1_order-creation_02_validar.png",
    "folder": "5_operational-flows",
-   "instance": "etransport",
+   "instance": "produccion",
    "action": "tms.shipment_action",
    "model": "sale.order",
    "view": "form",
@@ -221,7 +221,7 @@
    "id": "5_7_01",
    "file": "5_7_invoicing_01_factura.png",
    "folder": "5_operational-flows",
-   "instance": "etransport",
+   "instance": "produccion",
    "action": "tms.tms_trip_action",
    "model": "tms.trip",
    "view": "form",
@@ -310,7 +310,7 @@
    "id": "7_5_01",
    "file": "7_5_webhooks_01_endpoint-webhook.png",
    "folder": "7_edi-integrations",
-   "instance": "etransport",
+   "instance": "produccion",
    "action": "tms_int.tms_int_api_endpoints_action",
    "model": "tms_int.api.endpoint",
    "view": "form",
@@ -585,7 +585,7 @@
    "id": "8_4_01",
    "file": "8_4_purchase-orders_01_oc.png",
    "folder": "8_economic-administration",
-   "instance": "etransport",
+   "instance": "produccion",
    "model": "purchase.order",
    "view": "form",
    "domain": [

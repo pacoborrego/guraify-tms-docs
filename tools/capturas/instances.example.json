@@ -1,10 +1,14 @@
 {
  "etransport": {
-  "url": "https://ODOO-DE-E-TRANSPORT",
-  "nota": "producción de e-transport, usuario con interfaz en inglés"
+  "url": "https://tmsdemo.guraify.com/",
+  "nota": "demo de Guraify (datos inventados)"
  },
  "ludamany": {
   "url": "http://localhost:8017",
   "nota": "copia local ludamany_260904 (o la producción de Ludamany) para el cap. 6"
+ },
+ "produccion": {
+  "url": "https://ODOO-DE-E-TRANSPORT",
+  "nota": "producción de e-transport (datos reales: anonimizar)"
  }
 }
