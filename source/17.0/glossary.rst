@@ -89,9 +89,24 @@ para quien lo necesite.
       Resultado de la ejecución de una Parada: **Completada** (todo conforme), **Con reservas**
       (ejecutada con incidencias), **Fallida** (no ejecutada), **Reprogramada** (se volverá a
       intentar), **Devuelta** (mercancía devuelta) y **Cancelada**. Son los estados que cierran la
-      Parada. Antes de cerrarse pasa por estados abiertos (borrador, en proceso, en camino, en
-      curso, cargada…), que se detallan en el capítulo 3.2.6 y, para los eventos de la app, en la
-      tabla de 5.4.4. (No se dice *Hecho*, *KO* ni *OK*.) Campo ``state`` de ``tms.stop``.
+      Parada. Antes de cerrarse pasa por estados abiertos (sin planificar, planificada,
+      despachada, en curso, cargada…), que se detallan en el capítulo 3.2.6; cómo encajan con los
+      del Tramo, la Orden y el Viaje, en el 3.2.7, y los eventos de la app, en la tabla de 5.4.4.
+      (No se dice *Hecho*, *KO* ni *OK*, ni *en proceso* o *procesada* para los estados abiertos.)
+      Campo ``state`` de ``tms.stop``.
+
+   Despacho
+      Envío de las instrucciones de un Viaje a quien lo va a ejecutar: la app del conductor, la
+      agencia por API o el sistema de seguimiento externo. Es el único paso que deja Viaje,
+      Paradas, Tramos y Órdenes en **Despachado**; antes del despacho el Viaje está
+      *planificado* y después, cuando el conductor actúa, *en curso*. Botones **Despachar** y
+      **Reenviar** del Viaje; capítulo 5.4.1. (No se dice *enviar a la app* ni *procesar*.)
+
+   Validación del Viaje
+      Revisión de un Viaje cerrado antes de facturar, que un Proyecto puede exigir. El Viaje
+      espera en **Por validar** hasta que un **Validador de viajes** lo valida (y entonces cierra
+      con su orden de compra) o lo rechaza con un motivo. Capítulo 5.5. No confundir con validar
+      una Orden, que es generar sus Paradas (capítulo 5.1.3).
 
    Franja horaria
       Ventana de servicio reutilizable (por ejemplo, «mañanas, de 9 a 14») que se asigna a

@@ -8,6 +8,30 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Estados y despacho, P8 (tarea D18, 2026-10-09)
+- **Vocabulario de estados nuevo en toda la documentación**: planificar mueve solo la Parada (Sin
+  planificar ↔ Planificada); la Orden y el Tramo quedan en **Validado** al validar o cerrar el
+  Manifiesto; **Despachado** solo lo escribe el despacho, en los cuatro niveles; el Viaje gana **En
+  curso** y **Por validar**. Página nueva **3.2.7 El ciclo de estados en todos los niveles** (la
+  matriz momento × nivel del diagrama de Paco, actualizada, la escalera del Viaje con sus vueltas
+  atrás y la tabla código × etiqueta), enlazada desde 3.2.1, 3.2.2, 3.2.6 y el glosario.
+- **5.4.1 pasa a «Despachar el Viaje»**: Despachar / Reenviar, destino por tipo de Viaje (app,
+  agencia por API, manual), fecha, canal y error del despacho, recursos bloqueados, despacho
+  automático al asignar a una agencia, hoja de ruta.
+- **3.2.2.4 pasa a «Despacho, validación y reversiones»**: Por validar, Validar, Rechazar, Revertir
+  validación, Revertir despacho, Cancelar viaje, Cerrar viaje repartido, permiso Validador de
+  viajes, menú Viajes por validar, pestaña Revisión. Fuera Bloquear / Desbloquear / Pasar a
+  borrador del Viaje. 5.5 reescrita con la revisión previa a facturar, el dinero diferido al cron y
+  el Viaje repartido; 3.2.1.3 y 3.2.1.5 con *Presupuesto enviado* al validar y la confirmación
+  solo con desenlace en el tramo actual; 4.5.4 y A.18 con los dos interruptores de validación;
+  3.1.1.1, 8.4, 8.5, 8.8, 5.2, 5.3, 5.8, 3.2.5 y el glosario (*Despacho*, *Validación del Viaje*)
+  alineados.
+- Mermaids nuevos a partir de los diagramas de Paco (`TMS - Odoo Flujos.pdf`): propagación del
+  resultado (5.4.3), jerarquía por lugar y decisión del Tipo de Parada (3.2.6.2.1), ingreso y
+  coste (2.3).
+- Discrepancia anotada: *Devuelto* es solo un estado de cierre; el flujo de devolución al cliente
+  (tramo y parada de vuelta) no existe en el código (tablero del hub, DEV-01).
+
 ### Primeras 17 capturas automáticas (2026-10-02)
 - Generadas con `tools/capturas` contra la demo (`tmsdemo.guraify.com`, datos inventados, sin
   anonimizar) y activadas: botones inteligentes del Manifiesto, Plan de disponibilidad,

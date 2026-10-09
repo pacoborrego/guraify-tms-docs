@@ -31,7 +31,8 @@ Orden multitramo, se explica en :doc:`3_2_5_active-leg`.
 La Orden lleva un **Estado operativo** propio que no se fija a mano: **es el estado de su tramo
 activo**, y el Tramo, a su vez, toma el suyo de su última anotación de Trazabilidad. Cuando la
 ejecución avanza y cambia el tramo activo, el estado de la Orden cambia con él. Los valores son
-los mismos que los de la Parada y se ordenan así:
+los mismos que los del Tramo (ver :ref:`estados-parada`) y se ordenan así; cómo encajan con los
+de la Parada, el Viaje y el pedido de venta está en :ref:`ciclo-estados`:
 
 .. list-table::
    :header-rows: 1
@@ -41,13 +42,14 @@ los mismos que los de la Parada y se ordenan así:
      - Significado
      - Tipo
    * - Borrador
-     - Orden validada, con su tramo activo aún sin Viaje.
+     - Orden creada y aún sin validar: no tiene Paradas.
      - Abierto
-   * - En proceso
-     - El tramo activo está asignado a un Viaje.
+   * - Validada
+     - Orden validada (a mano o al cerrar el Manifiesto): sus Paradas existen y se pueden
+       planificar. Planificarlas no cambia este estado.
      - Abierto
-   * - Procesada
-     - El Viaje del tramo activo ya está en ejecución (en la app o traspasado a una agencia).
+   * - Despachada
+     - El Viaje del tramo activo se ha despachado al conductor o a la agencia.
      - Abierto
    * - En curso
      - El conductor tiene activa en la app la parada del tramo activo.
@@ -93,18 +95,22 @@ que gobierna su ciclo comercial y contable:
    * - Estado
      - Significado
    * - Presupuesto
-     - Pedido en borrador, editable; aún no compromete.
+     - Orden sin validar. Editable; aún no compromete.
    * - Presupuesto enviado
-     - Presupuesto remitido al cliente.
+     - Orden validada. Lo pone el sistema al validar la Orden o cerrar el Manifiesto, y
+       también al desbloquearla; no envía ningún correo al cliente, es solo el estado. Sigue
+       siendo editable. Reabrir el Manifiesto la devuelve a *Presupuesto*.
    * - Pedido de venta
-     - Pedido confirmado: queda fijada la base contractual y económica.
+     - Ejecución terminada y confirmada: queda fijada la base contractual y económica.
    * - Cancelado
      - Pedido anulado.
 
 El estado operativo y el del pedido no son redundantes: el operativo refleja **qué está pasando
 en la calle** (paradas, ejecución) y el del pedido refleja **en qué punto del ciclo comercial y
-contable** está el documento. En la práctica, cuando la ejecución se completa, el TMS confirma
-el pedido por sí solo; ver :ref:`orden-bloqueo`.
+contable** está el documento. El TMS mueve el segundo por sí solo: a *Presupuesto enviado* al
+validar y a *Pedido de venta* cuando la ejecución termina (ver :ref:`orden-bloqueo`). Si el
+Proyecto exige validar el Viaje antes de facturar, la confirmación espera a esa validación
+(:doc:`3_2_2_trips`).
 
 3.2.1.4 Estado de facturación
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -144,20 +150,24 @@ candado del pedido de venta de Odoo con el ciclo operativo del TMS:
 - **Bloquear** confirma el pedido (lo pasa a *Pedido de venta*) y, si la política de la
   compañía «bloquear pedidos confirmados» está activa, lo deja además bloqueado frente a
   ediciones, fijando la operación.
-- **Desbloquear** libera el candado y devuelve la Orden a *Presupuesto* para poder reeditarla.
+- **Desbloquear** libera el candado y devuelve la Orden a *Presupuesto enviado* para poder
+  reeditarla: sigue validada.
 
 El sistema aplica los dos gestos por sí solo siguiendo el estado de los Tramos:
 
 - **Bloqueo automático al completar.** Cuando **todos** los Tramos de la Orden (sin contar los
-  de transferencia) alcanzan un estado de cierre, la Orden queda marcada como **pendiente de
-  confirmar**. La tarea programada de tarificación, que corre cada cinco minutos, la recoge,
-  calcula sus líneas de venta si hacía falta y la confirma. El desfase de unos minutos entre el
-  cierre de la última parada y la confirmación es deliberado: confirmar en lote evita cargar el
-  servidor cuando cierran muchas paradas a la vez (ver
+  de transferencia) alcanzan un estado de cierre **y el tramo actual ha terminado en Completada,
+  Con reservas o Fallida**, la Orden queda marcada como **pendiente de confirmar**. Un tramo
+  actual Reprogramado o Cancelado no cuenta como desenlace: la Orden espera al siguiente
+  intento. La tarea programada de tarificación, que corre cada cinco minutos, la recoge,
+  vuelve a comprobar la regla (la app levanta la marca al cerrar un solo Tramo, con los demás
+  aún abiertos), calcula sus líneas de venta si hacía falta y la confirma. El desfase de unos
+  minutos entre el cierre de la última parada y la confirmación es deliberado: confirmar en
+  lote evita cargar el servidor cuando cierran muchas paradas a la vez (ver
   :doc:`/17.0/5_operational-flows/5_6_settlement`).
 - **Desbloqueo automático al reabrir.** Si una Orden ya confirmada deja de tener todos sus
-  Tramos cerrados (se reabre una parada, se añade otra), vuelve a *Presupuesto* para seguir
-  evolucionando.
+  Tramos cerrados (se reabre una parada, se añade otra), vuelve a *Presupuesto enviado* para
+  seguir evolucionando.
 - **Protección por facturación.** Una Orden **facturada** no puede desbloquearse ni reabrirse
   automáticamente; el sistema la trata como definitiva.
 
@@ -201,7 +211,8 @@ lo descrito en esta sección:
    * - Pendiente de confirmar por la tarea programada
      - ``app_confirm_pending``
    * - Estado del pedido de venta
-     - ``state`` (``draft``, ``sent``, ``sale``, ``cancel``)
+     - ``state`` (``draft`` Presupuesto, ``sent`` Presupuesto enviado, ``sale`` Pedido de
+       venta, ``cancel``)
    * - Estado de facturación
      - ``invoice_status`` (``no``, ``to invoice``, ``invoiced``, ``upselling``)
    * - Bloqueo

@@ -67,7 +67,7 @@ el detalle, que permanece accesible tramo a tramo.
 Supongamos una Orden con un único Tramo **directo** (recogida en origen y entrega en destino,
 sin paso por hub):
 
-#. Al crearse, la Parada de **carga** está abierta (borrador o en proceso). El tramo activo
+#. Al crearse, la Parada de **carga** está abierta (sin planificar o planificada). El tramo activo
    apunta a ella, así que la Orden muestra el **lugar y la franja de carga** y el estado de esa
    parada.
 #. El conductor ejecuta la carga y la Parada de carga pasa a un estado de cierre. En ese

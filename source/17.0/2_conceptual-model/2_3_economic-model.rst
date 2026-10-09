@@ -15,6 +15,19 @@ Paradas con la división de costes, según criterios configurables (peso, volume
 kilómetros o una distribución lineal). Así el margen se puede leer por Orden, Viaje, Tramo o
 Parada y, agregando, por Cliente, Proyecto, Planning, Zona de tarifa o Tipo de Servicio.
 
+.. mermaid::
+
+   flowchart TB
+       O["Orden<br/><b>ingreso</b>"] -->|"1:N"| L["Tramo"]
+       L -->|"1:N"| S["Parada"]
+       S -->|"N:1"| T["Viaje<br/><b>coste</b>"]
+       O -. "el ingreso baja<br/>por la división de ventas" .-> S
+       T -. "el coste sube<br/>por la división de costes" .-> S
+
+El ingreso entra por arriba y baja; el coste entra por abajo y sube. Se encuentran en la Parada,
+el único nivel que tiene a la vez una parte del ingreso de su Orden y una parte del coste de su
+Viaje, y por eso es donde el margen se lee con más detalle.
+
 El detalle está en el capítulo :doc:`8 Administración y Control Económico
 </17.0/8_economic-administration/index>`: :doc:`8.1
 </17.0/8_economic-administration/8_1_active-passive-margin>` para activo, pasivo y margen,

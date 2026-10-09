@@ -34,10 +34,10 @@ importe pactado.
 
 **Cómo se mantiene.** Cada nueva tarificación del Viaje rehace las líneas de compra mientras la
 orden de compra esté en borrador. Si el Viaje pierde el transportista o la tarifa, las líneas se
-eliminan. Al cerrar el Viaje, la orden de compra se confirma y se fijan las cantidades
-recibidas y a facturar; reabrirlo la devuelve a borrador y las pone a cero. Los botones
-**Bloquear** y **Desbloquear** del Viaje hacen lo mismo a mano (ver
-:doc:`/17.0/3_functional-architecture/3_2_1_orders`). Una orden de compra facturada, hecha o
+eliminan. Al cerrar el Viaje (o al validarlo, en un Proyecto con revisión), la orden de compra
+se confirma y se fijan las cantidades recibidas y a facturar; reabrirlo la devuelve a borrador
+y las pone a cero. Los botones **Validar** y **Revertir validación** del Viaje hacen lo mismo a
+mano (ver :doc:`/17.0/3_functional-architecture/3_2_2_trips`). Una orden de compra facturada, hecha o
 cancelada ya no se toca: el diagnóstico de tarifa lo indica como «orden de compra bloqueada».
 
 La lista **Líneas de Orden de Compra** de Administración muestra todas las líneas de coste de

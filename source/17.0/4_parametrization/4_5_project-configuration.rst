@@ -146,8 +146,22 @@ operativa manual, importada o integrada. Cada uno cambia un paso del flujo del
      - Al asignar paradas a una agencia, divide los Tramos y crea la parada intermedia en el
        hub.
    * - Procesar viaje de agencia automáticamente
-     - El Viaje que nace al enviar Paradas a una agencia se crea ya en **Procesado**, listo
-       para la app, en vez de en borrador.
+     - Para una agencia **sin API**: el Viaje que nace al enviarle Paradas con el asistente
+       queda **despachado** en el acto (canal manual: las instrucciones viajan fuera de Odoo).
+       Si la agencia recibe las instrucciones por API, el Viaje se despacha cuando la agencia
+       las acepta, con o sin este interruptor. Sin ninguno de los dos, se queda planificado
+       hasta que alguien pulse Despachar (ver
+       :doc:`/17.0/5_operational-flows/5_4_app-execution`).
+   * - Los viajes requieren validación
+     - Un Viaje de este Proyecto no cierra solo: cuando todas sus Paradas terminan, se queda en
+       **Por validar** hasta que un validador lo revisa. La venta se tarifica entonces; el
+       coste, la orden de compra y la confirmación de las Órdenes esperan a la validación.
+       Aplica a los Viajes que cierren desde que se activa (ver
+       :doc:`/17.0/5_operational-flows/5_5_trip-closing`).
+   * - La validación exige prueba de entrega
+     - Solo con el anterior. Validar se niega mientras alguna Orden del Viaje no tenga firma ni
+       albarán escaneado (una foto no cuenta); un responsable puede validar igualmente dejando
+       el motivo.
    * - Autoasignar zona operativa y zona de tarifa más cercanas
      - Si una dirección no cae en ningún área, se le asigna la más cercana, por separado para la
        zona operativa y para la de tarifa. Evita operaciones sin zona, pero anota kilómetros

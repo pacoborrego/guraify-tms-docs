@@ -44,10 +44,12 @@ Tableros.
 ^^^^^^^^^^^^^^^
 
 Reúne las herramientas para gestionar la demanda y la ejecución de los servicios: las
-**Órdenes**, los **Viajes**, los **Manifiestos**, la **Trazabilidad** y la **Bandeja de entrada
-API**. Desde aquí se registran los encargos de los clientes, se estructuran en Viajes y se
-controla su ejecución; la Trazabilidad es el histórico de eventos de cada Parada, Tramo y
-Orden. Cada una de estas entidades tiene su propia sección en :doc:`3_2_operational-data-model`.
+**Órdenes**, los **Viajes**, los **Viajes por validar** (solo para quien tiene el permiso de
+validador: los Viajes cerrados que esperan revisión antes de facturar, ver
+:doc:`3_2_2_trips`), los **Manifiestos**, la **Trazabilidad** y la **Bandeja de entrada API**.
+Desde aquí se registran los encargos de los clientes, se estructuran en Viajes y se controla su
+ejecución; la Trazabilidad es el histórico de eventos de cada Parada, Tramo y Orden. Cada una
+de estas entidades tiene su propia sección en :doc:`3_2_operational-data-model`.
 
 3.1.1.2 Planificación (menú «Planning»)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

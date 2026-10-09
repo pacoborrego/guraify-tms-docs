@@ -11,7 +11,9 @@ Las cuatro entidades estructurales son la Orden (``sale.order``), el Tramo
 descarga, y estos dan lugar a las :doc:`Paradas <3_2_6_legs-and-stops>`, los eventos físicos
 que se planifican y se ejecutan. Las Paradas se agrupan en :doc:`Viajes <3_2_2_trips>`, la
 unidad de ejecución y de coste. Como la cabecera de la Orden muestra en cada momento los datos
-de un solo Tramo, el :doc:`tramo activo <3_2_5_active-leg>` tiene una sección propia.
+de un solo Tramo, el :doc:`tramo activo <3_2_5_active-leg>` tiene una sección propia; y como
+cada entidad lleva su estado, el :doc:`ciclo de estados en todos los niveles <3_2_7_state-cycle>`
+tiene otra.
 
 A ellas se añaden dos entidades propias de la ingesta de demanda, que actúan como antesala antes
 de materializar la estructura operativa: el :doc:`Manifiesto <3_2_3_manifests>`
@@ -34,3 +36,4 @@ margen y divisiones) en :doc:`/17.0/8_economic-administration/index`.
    3_2_4_api-inbox
    3_2_5_active-leg
    3_2_6_legs-and-stops
+   3_2_7_state-cycle

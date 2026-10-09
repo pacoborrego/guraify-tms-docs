@@ -117,7 +117,17 @@ A.18.4 Pestaña TMS › Otros parámetros
      - Al asignar Paradas a una Agencia, divide los Tramos y crea la Parada intermedia en el Hub.
    * - Procesar viaje de agencia automáticamente
      - Sí/No
-     - El Viaje que nace al asignar a una Agencia se crea ya en Procesado, no en borrador.
+     - Con una Agencia sin API, el Viaje que nace al asignarle Paradas queda despachado en el acto
+       (canal manual). Con API, el Viaje se despacha cuando la Agencia acepta las instrucciones.
+   * - Los viajes requieren validación
+     - Sí/No
+     - El Viaje cerrado espera en Por validar hasta que un validador lo revisa; la orden de compra y
+       la confirmación de las Órdenes esperan con él. Aplica a los Viajes que cierren desde que se
+       activa.
+   * - La validación exige prueba de entrega
+     - Sí/No
+     - Solo visible con el anterior. Validar se niega sin firma ni albarán escaneado en alguna
+       Orden; un responsable puede validar dejando el motivo.
    * - Autoasignar zona operativa más cercana / zona de tarifa más cercana
      - Sí/No
      - Si la dirección no cae en ningún área, se asigna la más cercana (operativa y de tarifa por

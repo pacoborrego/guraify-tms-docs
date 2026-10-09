@@ -59,8 +59,9 @@ Cada Tramo apunta a dos Paradas, la de carga y la de descarga, y de su tipo depe
 dos es su :term:`Parada activa <Tramo activo>` en cada momento, mecanismo que se explica en
 :doc:`3_2_5_active-leg`. El Tramo lleva también su propio estado, con los mismos valores que la
 Parada (ver :ref:`estados-parada`), que se deriva de su última anotación de
-:term:`Trazabilidad`: asignarlo a un Viaje lo deja *En proceso*, quitarlo del Viaje lo devuelve
-a *Borrador*, y los eventos de la app lo hacen avanzar hasta un estado de cierre.
+:term:`Trazabilidad`: validar la Orden lo deja *Validado*, despachar su Viaje lo pasa a
+*Despachado*, y los eventos de la app lo hacen avanzar hasta un estado de cierre. Planificar la
+Parada no mueve el Tramo (ver :ref:`ciclo-estados`).
 
 3.2.6.2 La Parada
 ~~~~~~~~~~~~~~~~~
@@ -114,6 +115,23 @@ nombre de viaje del fichero. Los candidatos con la misma clave se funden en un s
 continuación se funden también los grupos compatibles cuyas franjas horarias se solapan al
 menos una hora; la Parada resultante toma la franja común.
 
+.. mermaid::
+
+   flowchart TB
+       O1["Orden 1"] --> L1a["Tramo 1<br/>carga en A"] & L1b["Tramo 1<br/>descarga en B"]
+       O2["Orden 2"] --> L2a["Tramo 2<br/>carga en A"] & L2b["Tramo 2<br/>descarga en D"]
+       O3["Orden 3"] --> L3a["Tramo 3<br/>carga en C"] & L3b["Tramo 3<br/>descarga en B"]
+       L1a --> SA["Parada en A"]
+       L2a --> SA
+       L1b --> SB["Parada en B"]
+       L3b --> SB
+       L3a --> SC["Parada en C"]
+       L2b --> SD["Parada en D"]
+
+Tres Órdenes con un Tramo cada una dan seis lados de carga y descarga, pero solo cuatro
+Paradas: las dos cargas en A y las dos descargas en B se funden, porque coinciden en lugar,
+franja y clave de agrupación.
+
 No todos los Tramos se consolidan igual. Las **entregas** y las **recogidas ordinarias** pueden
 compartir Parada con Tramos de otras Órdenes, siempre que lleguen juntas en el mismo
 Manifiesto; validar una Orden a mano solo consolida sus propios Tramos. Los Tramos **directos**,
@@ -128,6 +146,16 @@ de Ruta, la carga de una recogida a domicilio recibe Punto de Recogida y los dos
 Tramo directo reciben Recogida Directo y Entrega Directo. Esta consolidación es lo que evita
 Paradas duplicadas en operativas densas y la razón de que un Viaje tenga menos Paradas que
 Tramos.
+
+.. mermaid::
+
+   flowchart TB
+       Q1{"¿Tramo directo?"} -->|"sí"| D["Recogida Directo<br/>y Entrega Directo"]
+       Q1 -->|"no"| Q2{"¿Lado de hub?"}
+       Q2 -->|"sí"| H["Operaciones de Hub"]
+       Q2 -->|"no"| Q3{"¿Carga de una<br/>recogida a domicilio?"}
+       Q3 -->|"sí"| C["Punto de Recogida"]
+       Q3 -->|"no"| R["Parada de Ruta"]
 
 .. _estados-parada:
 
@@ -156,20 +184,20 @@ muestra Odoo.
      - Significado
      - Tipo
      - Etiqueta en pantalla
-   * - Borrador
-     - Parada creada y sin Viaje. Es el único estado en que se puede borrar y en que el
-       asistente de asignación la acepta.
+   * - Sin planificar
+     - Parada creada y sin Viaje. Es el único estado en que se puede borrar.
      - Abierto
      - Borrador
-   * - En proceso
-     - Asignada a un Viaje, pendiente de ejecución.
+   * - Planificada
+     - Asignada a un Viaje que aún no se ha despachado. Quitarla del Viaje la devuelve a Sin
+       planificar; el asistente de asignación la acepta mientras nadie la haya reportado.
      - Abierto
-     - En Proceso
-   * - Procesada
-     - Su Viaje ya está en ejecución: es el estado con el que el Viaje llega a la app del
-       conductor o se traspasa a una agencia.
+     - Planificado
+   * - Despachada
+     - Su Viaje se ha despachado: es el estado con el que llega a la app del conductor o a la
+       agencia (ver :ref:`ciclo-estados`).
      - Abierto
-     - Procesado
+     - Despachado
    * - En curso
      - El conductor la tiene activa en la app: en espera, en camino o en el punto.
      - Abierto
@@ -204,9 +232,10 @@ muestra Odoo.
      - Cancelado
 
 Los seis estados de cierre son los que el sistema mira para cerrar lo que está por encima: cuando
-todas las Paradas de un Viaje están cerradas, el Viaje se completa (:doc:`3_2_2_trips`), y
-cuando todos los Tramos de una Orden están cerrados, la Orden queda pendiente de confirmar
-(:doc:`3_2_1_orders`). El detalle de ese cierre está en
+todas las Paradas de un Viaje están cerradas, el Viaje se completa o queda por validar
+(:doc:`3_2_2_trips`), y cuando todos los Tramos de una Orden están cerrados y el actual terminó
+en un desenlace, la Orden queda pendiente de confirmar (:doc:`3_2_1_orders`). Cómo encajan los
+cuatro niveles está en :ref:`ciclo-estados`. El detalle de ese cierre está en
 :doc:`/17.0/5_operational-flows/5_5_trip-closing`.
 
 .. figure:: /_static/img/3_functional-architecture/3_2_6_legs-and-stops_01_parada.png
@@ -242,7 +271,8 @@ cuando todos los Tramos de una Orden están cerrados, la Orden queda pendiente d
    * - Estado, evento y motivo de la Parada
      - ``tms.stop.state``, ``event``, ``reason_id`` (de ``stop_traceability_ids``)
    * - Estados abiertos
-     - ``draft``, ``in_process``, ``processed``, ``running``, ``loaded``
+     - ``draft`` (Sin planificar), ``in_process`` (Planificada), ``processed`` (Despachada),
+       ``running``, ``loaded``; en el Tramo, ``in_process`` es Validado
    * - Estados de cierre
      - ``completed``, ``reserves``, ``failed``, ``rescheduled``, ``returned``, ``canceled``
    * - Agrupación de estados para los tableros

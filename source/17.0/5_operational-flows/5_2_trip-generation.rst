@@ -18,8 +18,8 @@ Con las Órdenes validadas, sus Paradas están pendientes de planificar. Generar
 en una fecha. Hay tres maneras de hacerlo, y las tres producen el mismo resultado: un Viaje en
 **borrador** con sus Paradas en orden, al que después se asignan o confirman los recursos
 (:doc:`5_3_resource-assignment`). La excepción es el Viaje que nace al enviar Paradas a una
-agencia, que puede crearse ya en Procesado si el Proyecto lo pide (ver
-:doc:`/17.0/4_parametrization/4_5_project-configuration`).
+agencia, que puede quedar ya despachado si la agencia recibe las instrucciones por API o el
+Proyecto lo pide (ver :doc:`5_4_app-execution`).
 
 5.2.1 Qué contiene un Viaje
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -28,7 +28,8 @@ Un Viaje reúne la fecha y las horas previstas de inicio y fin; el Planning y, s
 franja del Plan de disponibilidad de la que sale; los recursos y la tarifa de compra o el
 precio cerrado con que se liquidará; las Paradas en su orden, con los Tramos, los Bultos y los
 Reembolsos que arrastran; y los datos del cálculo de ruta. Su estructura, sus estados y los
-botones Bloquear y Desbloquear están en :doc:`/17.0/3_functional-architecture/3_2_2_trips`.
+botones de su cabecera (Despachar, Validar y sus vueltas atrás) están en
+:doc:`/17.0/3_functional-architecture/3_2_2_trips`.
 
 5.2.2 Desde el fichero del Manifiesto
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

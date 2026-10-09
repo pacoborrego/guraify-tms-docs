@@ -24,7 +24,7 @@ recalculando el precio de venta y el coste de compra cada vez que algo cambia; s
        MF -->|cerrar| ORD
        ORD -->|validar| ST["Paradas<br/>(desde los Tramos)"]
        ST -->|asignar · optimizar| TR["Viaje"]
-       TR -->|enviar a la app| EXE["Ejecución<br/>parada a parada"]
+       TR -->|despachar| EXE["Ejecución<br/>parada a parada"]
        EXE -->|última parada cerrada| CLO["Cierre<br/>Viaje completado · Orden confirmada"]
        CLO --> OC["Orden de compra<br/>al transportista"]
        CLO --> FAC["Factura<br/>al cliente"]

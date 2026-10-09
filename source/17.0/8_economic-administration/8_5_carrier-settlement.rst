@@ -20,7 +20,7 @@ transportista. El sistema no factura una línea dos veces, no factura un Viaje s
 ni una orden de compra sin líneas pendientes, y lo dice con el nombre del Viaje.
 
 **Qué se puede corregir y cuándo.** Mientras la orden de compra está en borrador, cualquier
-recálculo la rehace. Confirmada, se puede desbloquear y recomponer. Facturada, no: la corrección
+recálculo la rehace. Confirmada, se puede revertir la validación del Viaje y recomponer. Facturada, no: la corrección
 es contable, con una línea de abono sobre la línea facturada, que genera la rectificativa.
 
 **El diagnóstico pasivo.** Cada Viaje lleva un diagnóstico de tarifa de compra, con un motivo

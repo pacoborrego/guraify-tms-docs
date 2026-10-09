@@ -48,8 +48,10 @@ cliente, solo cuenta sus operaciones; para uno de transportista, solo las suyas;
 interno, todo. Al pulsarlo abre la lista de registros que lo componen.
 
 Los indicadores operativos del núcleo son la entrega a tiempo, la tasa de retraso, la entrega
-al primer intento, las fallidas, el tiempo medio de entrega y el volumen; los de mantenimiento
-se describen en :doc:`/17.0/6_resources/6_7_kpis`. Se administran en TMS › Métricas › KPIs.
+al primer intento, las fallidas, el tiempo medio de entrega y el volumen; a ellos se suma, solo
+para el equipo interno, **Viajes por validar** (objetivo cero: si nadie valida, nadie factura;
+ver :doc:`/17.0/5_operational-flows/5_5_trip-closing`). Los de mantenimiento se describen en
+:doc:`/17.0/6_resources/6_7_kpis`. Se administran en TMS › Métricas › KPIs.
 
 8.8.4 Tableros
 ~~~~~~~~~~~~~~

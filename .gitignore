@@ -17,3 +17,4 @@ __pycache__/
 tools/capturas/.auth/
 tools/capturas/instances.json
 tools/capturas/raw/
+.claude/launch.json

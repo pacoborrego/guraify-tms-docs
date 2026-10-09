@@ -42,7 +42,7 @@ caminos, y el planificador puede corregirlos en cualquier momento antes del cier
      - Cómo se calcula el coste: con las líneas de la tarifa del transportista o con un importe
        fijo para todo el Viaje.
    * - Conductor
-     - Quién ve el Viaje en la app. Sin conductor, el Viaje no se puede enviar a la app.
+     - Quién ve el Viaje en la app. Sin conductor, el Viaje no se puede despachar al conductor (:doc:`5_4_app-execution`).
    * - Vehículo y remolque
      - Con qué se ejecuta. El vehículo aporta la categoría, y con ella el perfil de PTV, las
        capacidades y las horas de conducción del cálculo de ruta.
