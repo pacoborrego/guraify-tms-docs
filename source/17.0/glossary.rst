@@ -95,6 +95,14 @@ para quien lo necesite.
       (No se dice *Hecho*, *KO* ni *OK*, ni *en proceso* o *procesada* para los estados abiertos.)
       Campo ``state`` de ``tms.stop``.
 
+   Arrastre
+      Movimiento de la mercancía de un hub a otro antes de la última milla: a una Agencia que
+      reparte en su zona o a un hub propio desde el que se optimizan después las entregas. Tiene
+      siempre una expedición propia (sufijo ``_ARR``), un Tramo de tipo HUB y tres Paradas (carga,
+      llegada y relevo), y se deshace solo al quitar la Parada del Viaje. Capítulo 3.2.6.3. (No se
+      dice *traslado*, *transferencia* ni *drag*; «transferencia hub» solo para nombrar la casilla
+      de la interfaz.)
+
    Despacho
       Envío de las instrucciones de un Viaje a quien lo va a ejecutar: la app del conductor, la
       agencia por API o el sistema de seguimiento externo. Es el único paso que deja Viaje,
@@ -289,7 +297,7 @@ para quien lo necesite.
       Movimiento de una Orden entre un punto de carga y un punto de descarga. Una Orden puerta a
       puerta tiene un Tramo; una con paso por Hub, dos o más. Toma del Tipo de Orden sus marcas
       (entrega, recogida, directo, hub) y añade dos propias: recogida a domicilio y transferencia
-      (el Tramo que nace al dividir por un hub intermedio). Da origen a las Paradas (capítulo
+      (el Tramo de un :term:`Arrastre`). Da origen a las Paradas (capítulo
       3.2.6). (No se dice *leg* ni *envío*.) Modelo ``tms.shipment.leg``.
 
    Transportista

@@ -8,6 +8,26 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Asignar, arrastres y recursos (tarea D19, 2026-10-12)
+- **5.2.3 «Con el asistente Asignar»** reescrita para el asistente nuevo: un solo botón Asignar
+  en Órdenes; modos Nuevo / Existente / Optimización (mermaid); la regla de movilidad por Parada
+  (se mueve todo lo no reportado, también de un Viaje despachado o iniciado; nunca un arrastre a
+  agencia); cascada conductor → vehículo, categoría, transportista y tarifa; Paradas sin hub;
+  Existente con los Viajes de esas fechas sobre el mapa y «Elegir este viaje»; Enviar a agencia,
+  Crear transferencia hub y Dejar la última milla sin planificar; Desasignar y continuar; Buscar
+  la mejor ruta; diálogo de progreso. **5.2.4** acortada: la optimización es el tercer modo y el
+  plan espera «Aplicar plan».
+- **5.3.3 nueva**: historial del conductor y el vehículo, alimentado al completar el Viaje.
+- **3.2.6.3 nueva «El arrastre»** (los estados pasan a 3.2.6.4 y la referencia a 3.2.6.5):
+  expedición propia `_ARR`, un Tramo HUB, tres Paradas (mermaid), tabla agencia / hub propio /
+  recogida a domicilio, reversión automática y Envíos a agencia (Agency Hand-overs). La marca «Es
+  transferencia» deja de describirse como «traspaso entre agencias».
+- **4.5.2 y A.18.3**: Contacto de la transferencia hub y Dejar la última milla sin planificar;
+  «Crear traslado a hub» pasa a su etiqueta real, «Crear transferencia hub al asignar».
+- **5.1.2**: botón Crear recogida a domicilio en un Manifiesto cerrado. **5.1.3**: mermaid de qué
+  Órdenes y Tramos crea el cierre según haya entregas y recogidas.
+- Glosario: *Arrastre*; la entrada *Tramo* enlaza a él.
+
 ### Estados y despacho, P8 (tarea D18, 2026-10-09)
 - **Vocabulario de estados nuevo en toda la documentación**: planificar mueve solo la Parada (Sin
   planificar ↔ Planificada); la Orden y el Tramo quedan en **Validado** al validar o cerrar el

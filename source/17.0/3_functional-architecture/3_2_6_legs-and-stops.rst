@@ -50,10 +50,10 @@ De esa naturaleza depende casi todo lo que el sistema hace con el Tramo:
 A esas cuatro marcas se suman dos que no vienen del Tipo de Orden. La **recogida a domicilio**
 la calcula la propia Orden: una Orden de recogida con un solo Tramo cuya carga es el punto de
 recogida configurado en el Proyecto se trata como recogida a domicilio, y su Tramo se agrupa y
-se planifica de forma distinta a una recogida ordinaria. La marca **Es transferencia** la pone
-el sistema en los Tramos que crea al dividir un Tramo por un hub intermedio (traspaso entre
-agencias): ese Tramo de transferencia no cuenta para el estado de la Orden ni recibe parte del
-importe de venta.
+se planifica de forma distinta a una recogida ordinaria. La marca **Es transferencia** la lleva
+el Tramo que representa un **arrastre** entre hubs (a una agencia o a un hub propio, ver
+:ref:`arrastre`): ese Tramo no cuenta para el estado de la Orden ni recibe parte del importe de
+venta.
 
 Cada Tramo apunta a dos Paradas, la de carga y la de descarga, y de su tipo depende cuál de las
 dos es su :term:`Parada activa <Tramo activo>` en cada momento, mecanismo que se explica en
@@ -157,9 +157,95 @@ Tramos.
        Q3 -->|"sí"| C["Punto de Recogida"]
        Q3 -->|"no"| R["Parada de Ruta"]
 
+.. _arrastre:
+
+3.2.6.3 El arrastre
+~~~~~~~~~~~~~~~~~~~
+
+Un **arrastre** es el movimiento de mercancía de un hub a otro antes de la última milla: a una
+**agencia** que reparte en su zona, o a un **hub propio** desde el que se optimizan después las
+entregas. Lo crea el asistente Asignar (:doc:`/17.0/5_operational-flows/5_2_trip-generation`)
+cuando se activa **Crear transferencia hub**, y tiene siempre la misma forma, sea cual sea el
+destino:
+
+.. mermaid::
+
+   flowchart LR
+       O["Hub de origen<br/><b>Parada de carga</b>"] -->|"Tramo del arrastre (HUB)<br/>expedición propia _ARR"| D["Hub de destino<br/><b>Parada de llegada</b>"]
+       D --> R["<b>Parada de relevo</b><br/>(operación de hub)"]
+       R -->|"Tramo de última milla<br/>(la expedición del cliente)"| C["Destinatario"]
+
+- **Una expedición propia.** El arrastre es el único registro de ese movimiento, así que tiene su
+  propia Orden, con la referencia de la Orden del cliente y el sufijo ``_ARR``, emitida a quien
+  diga el Proyecto (**Contacto de la transferencia hub**, por defecto la propia compañía; ver
+  :doc:`/17.0/4_parametrization/4_5_project-configuration`). Lleva las líneas de todo lo
+  arrastrado y toma del Proyecto servicio, tipos y categoría de vehículo. Validarla a mano no la
+  reconstruye.
+- **Un solo Tramo, de tipo HUB**, de nuestro hub al de destino. Que sea de hub y no de entrega es
+  lo que permite que el conductor de la última milla siga viendo en la app la expedición del
+  cliente (ver :doc:`3_2_5_active-leg`): la línea del cliente comparte el Tramo del arrastre y el
+  de su entrega, y el de hub no se le propone como activo.
+- **Tres Paradas**, tipadas para que el optimizador las trate como un par recogida → entrega:
+  la **carga** en el hub de origen y la **llegada** al hub de destino, como servicio directo, y el
+  **relevo**, una operación de hub en el destino desde la que arranca la última milla. Llegada y
+  relevo son dos Paradas a propósito: con una sola, al entrar las entregas en el Viaje de la
+  agencia el arrastre dejaba de poderse planificar.
+- **El movimiento se ve en la Orden del cliente**: al cargar queda *Cargada* y al llegar al hub de
+  destino *En curso*, sin que la última milla cambie; los Bultos se escanean en las dos Paradas.
+
+La diferencia entre los tres arrastres es **quién se queda la última milla**:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 22 26 26 26
+
+   * -
+     - Agencia
+     - Hub propio
+     - Recogida a domicilio
+   * - Cuándo
+     - **Enviar a agencia** con **Crear transferencia hub**
+     - **Crear transferencia hub** con **Dejar la última milla sin planificar**
+     - Lo crea el cierre del Manifiesto o la validación de la Orden
+   * - Expedición del arrastre
+     - La del arrastre (``_ARR``)
+     - La del arrastre (``_ARR``)
+     - La de recogida
+   * - Tipo del Tramo
+     - HUB
+     - HUB
+     - El del Proyecto
+   * - Las Paradas van en un Viaje
+     - No: las coloca la agencia
+     - Carga y llegada sí, en el Viaje del arrastre (uno por hub de origen); el relevo no
+     - No
+   * - La última milla
+     - Entra en el Viaje de la agencia
+     - **Queda libre**, sin Viaje, con el hub de destino escrito en su Parada, para optimizarla
+       desde allí
+     - Carga en el hub
+
+**El arrastre se deshace solo.** Quitar la Parada del cliente del Viaje de la agencia, borrar ese
+Viaje o sacar una Orden del flujo revierte el envío: el Tramo del arrastre y las Paradas que ya no
+hacen falta desaparecen, la expedición ``_ARR`` se queda solo con lo que sigue arrastrado y, si no
+queda nada, se va con el Viaje. Para los envíos a agencia el sistema guarda una **foto previa** de
+cada Parada y cada Tramo en el momento de enviarlos, con la que la reversión es exacta; esas fotos
+se consultan en **TMS › Configuración › EDI › Envíos a agencia** (Agency Hand-overs) y desde el
+botón de la Parada, y sobreviven al borrado del Viaje, con el nombre del Viaje y de la agencia
+como texto. Si la agencia recibe las instrucciones por API, la reversión le avisa antes con sus
+llamadas de cancelación y, si la agencia no lo acepta, no se revierte. Los envíos hechos antes de
+que existieran las fotos se revierten con lo que se puede reconstruir, y lo que no (fechas, horas,
+tipo de carga) queda anotado en el chatter.
+
+.. CAPTURA: 3_2_6_02 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/3_functional-architecture/3_2_6_legs-and-stops_02_envios-agencia.png
+      :alt: Lista Envíos a agencia (Agency Hand-overs)
+
+      Envíos a agencia: una fila por Parada enviada, con su Viaje, su agencia y si se ha revertido.
+
 .. _estados-parada:
 
-3.2.6.3 Estados de la Parada
+3.2.6.4 Estados de la Parada
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 El estado de la Parada no se fija a mano: se deriva de la última anotación de Trazabilidad que
@@ -243,7 +329,7 @@ cuatro niveles está en :ref:`ciclo-estados`. El detalle de ese cierre está en
 
    Formulario de una Parada: Tipo de Parada, Tramos agrupados y estado.
 
-3.2.6.4 Referencia técnica
+3.2.6.5 Referencia técnica
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table::

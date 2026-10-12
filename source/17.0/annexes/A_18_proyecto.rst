@@ -80,6 +80,13 @@ A.18.3 Pestaña TMS › Entrada Hub / Recogida en Cliente
      - Relación con Tipo de Servicio
      - El Tipo de Servicio con que se tarifica la recogida a domicilio, distinto del resto de la
        operativa.
+   * - Contacto de la transferencia hub
+     - Relación con Contacto
+     - A quién se emite la expedición del arrastre (``_ARR``). Por defecto, la compañía del Proyecto.
+   * - Dejar la última milla sin planificar
+     - Sí/No
+     - Con «Crear transferencia hub al asignar»: el arrastre va a un hub propio en su Viaje y las
+       Paradas del cliente quedan libres para optimizarlas desde allí.
 
 A.18.4 Pestaña TMS › Otros parámetros
 -------------------------------------
@@ -112,9 +119,10 @@ A.18.4 Pestaña TMS › Otros parámetros
    * - Generar viaje al validar
      - Sí/No
      - Crea el Viaje al validar la Orden, sin pasar por el asistente.
-   * - Crear traslado hub al asignar
+   * - Crear transferencia hub al asignar
      - Sí/No
-     - Al asignar Paradas a una Agencia, divide los Tramos y crea la Parada intermedia en el Hub.
+     - Propone encendida la casilla del asistente Asignar que crea el arrastre con su expedición
+       propia (3.2.6.3).
    * - Procesar viaje de agencia automáticamente
      - Sí/No
      - Con una Agencia sin API, el Viaje que nace al asignarle Paradas queda despachado en el acto

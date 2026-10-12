@@ -80,6 +80,15 @@ con sus Tramos y Paradas. El camino, cuando los datos vienen en un fichero, es:
    esperar a la cola). El cierre valida cada Orden, genera sus Paradas y, si el fichero traía
    la asignación a Viajes, crea también los Viajes (ver :doc:`5_2_trip-generation`).
 
+Si el Manifiesto se cerró **sin marcar la recogida a domicilio** y alguien lo advierte después,
+no hace falta reabrirlo (y a menudo ya no se puede, porque alguna Orden ha avanzado): el botón
+**Crear recogida a domicilio** de un Manifiesto cerrado pide el lugar de recogida, la fecha y
+las franjas (precargados del Manifiesto y del Proyecto) y deja el Manifiesto como si se hubiera
+cerrado con recogida desde el principio: crea la expedición de recogida con su Tramo en casa del
+cliente, repunta la carga de las entregas del hub al domicilio y limpia las Paradas que se
+quedan vacías, salvo las que ya están en un Viaje, que se señalan para decidir a mano. Volver a
+pulsarlo actualiza la misma recogida, no crea otra.
+
 Cuando los datos llegan por API, el sistema del cliente los deposita en la
 :term:`Bandeja de entrada API`, que los valida y los agrupa en un Manifiesto; a partir de ahí
 el camino es el mismo desde la revisión y la normalización. Los estados del Manifiesto, sus
@@ -97,7 +106,24 @@ está completa: que tenga Tramos y, cuando el flujo lo requiera, líneas de merc
 Tramos tengan origen y destino; que existan fechas y franjas horarias; y que no queden
 contactos pendientes de normalizar.
 
-Superadas las comprobaciones, la validación genera las Paradas. Recorre los Tramos, agrupa en
+Superadas las comprobaciones, la validación genera las Paradas. Antes, al cerrar un Manifiesto,
+el sistema ha decidido qué Órdenes y Tramos existen según lo que el Proyecto pide en cada
+extremo:
+
+.. mermaid::
+
+   flowchart TB
+       M["Manifiesto"] --> D{"¿Órdenes de entrega?"}
+       M --> C{"¿Órdenes de recogida?"}
+       D -->|"sí"| DL["Un Tramo de entrega por Orden:<br/>hub → destinatario"]
+       D -->|"¿y recogida a domicilio?"| HC["Una expedición de recogida<br/>que agrupa las entregas:<br/>remitente → hub"]
+       D -->|"sin recogida"| HR["Las entregas cargan en el hub"]
+       C -->|"sí"| CL["Un Tramo de recogida por Orden:<br/>remitente → hub"]
+       C -->|"¿y entrega?"| CD["Su Tramo de entrega:<br/>hub → destinatario"]
+       C -->|"sin entrega"| CE["Expedición que termina en el hub"]
+       DL & HC & CL & CD --> S["Paradas, agrupadas por<br/>lugar, fecha y franja (3.2.6.2)"]
+
+Con los Tramos decididos, la validación recorre cada uno y agrupa en
 una misma Parada los que coinciden en tipo de evento, contacto, franja horaria, Planning y
 Proyecto (y en nombre de viaje, si el fichero lo trae), y asigna a cada Parada su Tipo de Parada
 según el Tipo de Orden y el lado del Tramo. El criterio exacto de agrupación y los tipos que

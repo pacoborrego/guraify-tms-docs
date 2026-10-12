@@ -73,6 +73,15 @@ El grupo **Entrada Hub / Recogida en Cliente** dice cómo entra la mercancía en
    * - Servicio de recogida a domicilio
      - El tipo de servicio con que se tarifica la recogida inicial en casa del cliente, para
        distinguirla económicamente del resto de la operativa.
+   * - Contacto de la transferencia hub
+     - A quién se emite la expedición propia del arrastre (la ``_ARR``) cuando las Paradas se
+       traspasan a una agencia o a un hub propio. Por defecto, la propia compañía; puede ser
+       cualquier otro contacto (ver :ref:`arrastre`).
+   * - Dejar la última milla sin planificar
+     - Con **Crear transferencia hub** (en Otros parámetros), decide el destino del arrastre:
+       apagado, la última milla entra en el Viaje de la agencia; encendido, el arrastre va a un
+       hub **propio** en su Viaje y las Paradas del cliente quedan libres para optimizarlas
+       desde allí.
 
 4.5.3 Activación y asignación
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -142,9 +151,10 @@ operativa manual, importada o integrada. Cada uno cambia un paso del flujo del
        ruta (ver :doc:`/17.0/5_operational-flows/5_2_trip-generation`).
    * - Generar viaje al validar
      - Crea el Viaje al validar la Orden, sin pasar por el asistente.
-   * - Crear traslado a hub al asignar
-     - Al asignar paradas a una agencia, divide los Tramos y crea la parada intermedia en el
-       hub.
+   * - Crear transferencia hub al asignar
+     - Propone encendida la casilla **Crear transferencia hub** del asistente Asignar: las
+       Paradas enviadas a una agencia o a un hub propio llevan un arrastre con expedición propia
+       (ver :ref:`arrastre`).
    * - Procesar viaje de agencia automáticamente
      - Para una agencia **sin API**: el Viaje que nace al enviarle Paradas con el asistente
        queda **despachado** en el acto (canal manual: las instrucciones viajan fuera de Odoo).
@@ -288,7 +298,7 @@ periodo y las banderas de configuración.
        días y el coste calculado por el TMS. Pueden diferir mientras la Orden de compra no esté
        cerrada.
    * - Banderas HUB, AUTO y API
-     - Los automatismos de 4.5.4 y 4.5.8 que están activos: traslado a hub al asignar, procesar
+     - Los automatismos de 4.5.4 y 4.5.8 que están activos: transferencia hub al asignar, procesar
        Viaje de agencia automáticamente y enviar por API al asignar. Un Proyecto sin banderas
        tiene la configuración mínima.
    * - Última actividad
