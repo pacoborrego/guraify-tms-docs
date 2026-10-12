@@ -35,6 +35,10 @@ hay que elegir uno y nadie ha elegido).
      - Lo que un vehículo debe llevar para transportar esta carga. Un Tramo exige la unión de los
        equipamientos de todas sus categorías de carga; el optimizador solo asigna vehículos que los
        tengan.
+   * - Equipamiento incompatible
+     - Relación con Equipamiento
+     - Lo que el vehículo no puede llevar si transporta esta carga. No puede coincidir con el
+       exigido.
    * - Incompatible con
      - Lista de Categorías de carga
      - Categorías que no pueden viajar en el mismo vehículo a la vez que esta. La relación se lee en

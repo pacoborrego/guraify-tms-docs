@@ -29,6 +29,18 @@ hay que elegir uno y nadie ha elegido).
      - Para qué sirve el área: Plan de Transporte (zona operativa), Zona Tarifa (zona de precio),
        Tarifa Extra (suplemento geográfico), «Operación Artículo» (elemento de operación) o Bajas
        emisiones.
+   * - Código
+     - Texto
+     - La clave de la zona para los motores de optimización. Se genera del nombre si se deja vacío;
+       único por compañía.
+   * - Tolerancia antes (min) / Tolerancia después (min)
+     - Número
+     - Minutos de tolerancia de ventana propios de la zona operativa, que se aplican a sus Paradas
+       cuando el Planning pide tolerancia sin fijar los suyos.
+   * - Distintivo DGT mínimo
+     - Selección (B, C, ECO, 0 emisiones)
+     - Solo en Bajas emisiones, y obligatorio: el distintivo que un vehículo necesita para entrar.
+       Los modelos con el área entre sus autorizaciones entran aunque no lo alcancen.
    * - Geometría del Polígono
      - Texto (GeoJSON)
      - El polígono o multipolígono. Se dibuja sobre el mapa o se importa de OpenStreetMap; no se

@@ -71,14 +71,18 @@ tratarla y con qué puede viajar.
      - Qué debe llevar el vehículo para transportar esta carga. Es la forma normal de exigir
        equipamiento: se declara una vez en la categoría y la heredan todos los tramos que la
        lleven.
+   * - Equipamiento incompatible
+     - Qué no puede llevar el vehículo que transporte esta carga (un equipo de frío encendido
+       con mercancía que no admite frío, por ejemplo). No se puede exigir y excluir lo mismo.
    * - Incompatible con
      - Qué categorías no pueden ir juntas en el mismo vehículo a la vez (alimentación y
        productos químicos, por ejemplo). Basta declararlo en una de las dos.
 
 Las categorías se asignan en el Proyecto, como lo que la operativa mueve, y en la categoría de
-vehículo, como lo que el vehículo admite. Con las dos, el optimizador sabe qué vehículos
-pueden cargar qué Tramos y qué Tramos no pueden compartir vehículo. Campos en
-:doc:`/17.0/annexes/A_02_categorias-carga`.
+vehículo, como lo que el vehículo admite. **La que manda al planificar es la del Tramo**, que la
+hereda de la Orden y del Proyecto: los servicios de PTV leen de ella el equipamiento exigido y el
+excluido, y un Tramo cuyo vehículo no cumple queda fuera del plan o marcado (ver
+:ref:`que-restringe`). Campos en :doc:`/17.0/annexes/A_02_categorias-carga`.
 
 4.2.3 Reglas de tarifa: la unidad de medida
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -196,13 +200,81 @@ Lo que el cliente decide en la categoría es lo que el optimizador va a respetar
      - El :term:`perfil de jornada <Perfil de jornada>` que se envía a PTV cuando el Viaje no
        viene de una franja del Plan de disponibilidad (ver
        :ref:`17.0/4_parametrization/4_3_planning-configuration:4.3.6 Horas de conducción`).
+   * - Costes por hora, por kilómetro y por parada
+     - Lo que cuesta mover un vehículo de la categoría. Son lo que el motor de optimización
+       minimiza y lo que decide la mejor candidata en Encontrar ruta; el vehículo concreto los
+       hereda mientras no tenga los suyos. Los valores de serie (21,26 €/h, 0,103 €/km,
+       1,60 €/parada) son un punto de partida: una furgoneta y un carrozado no cuestan lo mismo.
+   * - Modelo de referencia
+     - El modelo de vehículo con el que se calcula la ruta cuando el Viaje aún no tiene vehículo
+       concreto: de él salen pesos, dimensiones, motor, clase Euro y distintivo DGT. Sin modelo
+       de referencia, el Viaje sin vehículo se enruta con el perfil genérico.
+   * - Zonas operativas permitidas
+     - A qué áreas de la red puede ir un vehículo de la categoría (el vehículo concreto puede
+       tener las suyas). Sin ninguna, sirve a todas. Solo cuentan si la optimización se lanza
+       con **Respetar zonas operativas**.
 
 En el modelo, los datos que importan son los físicos y ambientales: pesos autorizados y en
 vacío, ejes y neumáticos, dimensiones exteriores e interiores, tipo de motor, combustible y
-consumos, clase Euro y distintivos de bajas emisiones. Con ellos PTV aplica las restricciones
-viarias y calcula los peajes y las emisiones de cada Viaje.
+consumos, clase Euro, el **distintivo DGT** (B, C, ECO o 0 emisiones) y las **autorizaciones de
+zonas de bajas emisiones** (las ZBE concretas en las que el modelo puede entrar aunque su
+distintivo no llegue al mínimo). Con ellos PTV aplica las restricciones viarias, calcula los
+peajes y las emisiones de cada Viaje con el vehículo real y decide qué vehículo puede entrar en
+cada :term:`ZBE <Zona de bajas emisiones>`. **Antes de dar de alta la primera ZBE hay que
+rellenar el distintivo de los modelos**: un vehículo sin distintivo ni autorización no recibe
+ninguna Parada dentro de una.
 
 La categoría es el criterio de asignación por excelencia: el Optimizador de Paradas en modo
 por categoría pregunta cuántos vehículos de cada una hay disponibles, el Proyecto activa las
 que admite, y las tarifas pueden fijar precios distintos por categoría. Campos en
 :doc:`/17.0/annexes/A_05_categorias-vehiculo` y :doc:`/17.0/annexes/A_06_modelos-vehiculo`.
+
+.. _que-restringe:
+
+4.2.6 Qué restringe a qué
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Los maestros de este capítulo y los del siguiente se cruzan en el momento de planificar. Esta
+tabla resume qué compara el sistema y qué hace cuando no encaja; es la que hay que tener delante
+cuando una Parada «no entra» en ningún Viaje.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 22 30 24 24
+
+   * - La mercancía (el Tramo)
+     - El vehículo (o su categoría)
+     - Cómo se comprueba
+     - Si no encaja
+   * - Equipamiento exigido y excluido por su categoría de carga
+     - Sus equipamientos
+     - Siempre, por el código del equipamiento
+     - La optimización no le asigna ese vehículo; una secuenciación marca ``EQUIPMENT``
+   * - Categorías de carga incompatibles entre sí
+     - —
+     - En la optimización
+     - Los dos Tramos no comparten vehículo
+   * - Peso, volumen, bultos, palés, cantidad y metros
+     - Sus seis capacidades
+     - Siempre (en Encontrar ruta, contra la capacidad que le queda a la ruta)
+     - La Parada queda fuera del plan; «Secuenciar todo» la marca ``CAPACITY``
+   * - Zona operativa de la Parada (el área de la red en que cae)
+     - Sus zonas operativas permitidas
+     - Solo con **Respetar zonas operativas** (Estricto o Preferido); sin zonas permitidas, el
+       vehículo sirve a todas
+     - Estricto: fuera del plan. Preferido: entra, con un coste que el preset fija. Secuenciación:
+       marca ``ZONE``
+   * - Zona de bajas emisiones en que cae la Parada
+     - Distintivo DGT de su modelo y autorizaciones de ZBE
+     - Siempre, en toda optimización de la compañía con ZBE dibujadas; el distintivo alcanza el
+       mínimo del área **o** el área está autorizada
+     - Fuera del plan; secuenciación y cálculo de ruta marcan ``LEZ``
+   * - Franja horaria de la Parada
+     - Jornada y horario de salida del vehículo y del conductor
+     - Siempre, ampliada con la tolerancia si se aplica
+     - Fuera del plan o, con «Sacar todo como sea», dentro con la ventana violada y el estado
+       *Fuera de ventana*
+   * - Coordenadas de la Parada
+     - Hub de salida
+     - Control previo: país distinto o más lejos que la distancia máxima
+     - No se envía: ``GEO_SUSPECT``

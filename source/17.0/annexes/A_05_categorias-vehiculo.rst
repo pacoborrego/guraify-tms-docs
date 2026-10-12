@@ -47,6 +47,15 @@ A.5.1 Capacidades y compatibilidad
    * - Zonas Disponibles
      - Relación con Zona de tarifa
      - Zona de tarifa en la que se usa la categoría, para tarifas por tipo de vehículo.
+   * - Modelo de referencia
+     - Relación con Modelo de vehículo
+     - El modelo con el que se calcula la ruta de un Viaje de esta categoría sin vehículo concreto
+       (pesos, dimensiones, motor, clase Euro, distintivo DGT). Obligatorio en pantalla para una
+       categoría del TMS.
+   * - Zonas operativas
+     - Relación con Área geográfica
+     - Las zonas de la red a las que pueden ir los vehículos de la categoría. Vacío, todas. Solo
+       cuentan con «Respetar zonas operativas».
    * - Icono
      - Imagen
      - Icono de la categoría en el mapa y las listas.
@@ -93,10 +102,12 @@ decidir qué vehículos usar y cómo llenarlos.
    * - Campo
      - Tipo
      - Qué es
-   * - Coste fijo, por hora, por km, por parada, sin usar
-     - Importe
-     - Costes que el optimizador minimiza al decidir qué vehículos usar y cómo llenarlos. «Sin usar»
-       es lo que cuesta tener el vehículo disponible y dejarlo parado.
+   * - Coste fijo, por hora, por km, por parada
+     - Importe (el de km con cuatro decimales)
+     - Costes que el motor minimiza al decidir qué vehículos usar y cómo llenarlos, y con los que
+       Encontrar ruta elige la mejor candidata. De serie, 0 fijo, 21,26 €/h, 0,103 €/km y
+       1,60 €/parada. El vehículo concreto los hereda mientras los suyos estén vacíos; su ficha
+       enseña junto a cada coste vacío el de la categoría que se va a usar.
    * - Duración máxima de ruta (h) / Conducción máxima (h)
      - Número
      - Límites de la jornada de un Viaje de esta categoría, en horas.

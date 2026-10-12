@@ -175,7 +175,7 @@ se usen en 10.3 a 10.7. `/docs/index.html` es una redirección estática en `sou
 - Prosa redactada, no apuntes: párrafos completos, nada de listas de una palabra.
 - **Cada cosa se explica una vez** y el resto enlaza (decisión del cierre editorial D12, 2026-09-10). Dónde vive
   cada copia única: ciclo y tríada Orden/Viaje/margen en 0.3 (Conocer) y 2.1 (implantación, detalle en 8.1);
-  tres niveles de PTV en 1.4.2; normalización de direcciones en la tabla de 3.2.3; Bloquear/Desbloquear de la
+  tres niveles de PTV y las marcas de la Parada en 1.4.2; qué restringe a qué (equipo, zonas, ZBE, capacidad) en 4.2.6; presets en 4.3.7; los botones del Viaje (Secuenciar, Restaurar) en 5.2.3; Encontrar ruta en 5.2.5; normalización de direcciones en la tabla de 3.2.3; Bloquear/Desbloquear de la
   Orden en 3.2.1; la matriz de estados de los cuatro niveles y la escalera del Viaje en 3.2.7; el despacho en
   5.4.1; los botones del Viaje (Validar, Rechazar, reversiones, Cancelar) y el permiso de validador en 3.2.2.4;
   la cadena de cierre y la revisión previa a facturar en 5.5; Tramos, Paradas y sus estados en 3.2.6, y la forma del arrastre (agencia, hub propio, recogida) en 3.2.6.3; el asistente Asignar y su regla de movilidad en 5.2.3; el historial conductor ↔ vehículo en 5.3.3; Bandeja de entrada API en 3.2.4; flota propia sin orden de
@@ -236,5 +236,5 @@ confirma**.
 
 ---
 
-*Actualizado el 2026-10-12 (v3, D19). Si algo de aquí queda desactualizado, actualízalo en el
+*Actualizado el 2026-10-12 (v3, D20). Si algo de aquí queda desactualizado, actualízalo en el
 mismo cambio que lo desactualiza.*

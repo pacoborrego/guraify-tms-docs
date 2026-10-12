@@ -65,8 +65,14 @@ hay que elegir uno y nadie ha elegido).
      - Selección
      - Clasificación ambiental del vehículo. La clase de CO₂ se calcula según la directiva europea
        de peajes.
+   * - Distintivo DGT
+     - Selección (B, C, ECO, 0 emisiones)
+     - El distintivo ambiental del modelo. Se envía al cálculo de ruta y decide si un vehículo puede
+       entrar en una ZBE cuyo mínimo alcance. Sin él, PTV supone que el vehículo entra en todas y el
+       optimizador, en ninguna.
    * - Autorizaciones de zonas de bajas emisiones
-     - Lista
-     - Distintivos que permiten entrar en zonas de bajas emisiones.
+     - Relación con Área geográfica (Bajas emisiones)
+     - Las ZBE concretas en las que el modelo puede entrar aunque su distintivo no llegue al mínimo
+       (lista blanca). El vehículo concreto puede añadir las suyas.
 
 Cómo se usa y qué decide el cliente: :doc:`/17.0/4_parametrization/4_2_logistic-configuration`.

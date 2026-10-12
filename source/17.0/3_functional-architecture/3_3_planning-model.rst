@@ -89,7 +89,9 @@ Para que la optimización produzca Viajes viables deben cumplirse algunas condic
        :doc:`/17.0/1_introduction/1_4_technological-architecture`).
    * - Geocodificación
      - Coordenadas válidas en las localizaciones de las Paradas: sin ellas la Parada no se puede
-       situar en el mapa ni enviar a PTV.
+       situar en el mapa ni enviar a PTV. Un **control previo** deja fuera de toda petición, y
+       marcada, la Parada cuya dirección está en otro país que la compañía o a más de la
+       distancia máxima del hub de salida (300 km por defecto); el diálogo dice cuáles.
    * - Paradas pendientes
      - Paradas sin asignar a un Viaje en la fecha elegida; el Optimizador abre por defecto las
        no programadas del día siguiente.
@@ -100,11 +102,18 @@ Para que la optimización produzca Viajes viables deben cumplirse algunas condic
      - En el modo por franja, franjas del Plan de disponibilidad para la fecha; en el modo por
        categoría, cuántos vehículos de cada categoría hay.
    * - Capacidades y restricciones
-     - Pesos, volúmenes, equipamientos y distancia máxima parametrizados en las categorías de
-       vehículo (:doc:`/17.0/4_parametrization/4_3_planning-configuration`).
+     - Pesos, volúmenes, equipamientos, distancia máxima, costes y zonas permitidas
+       parametrizados en las categorías de vehículo
+       (:doc:`/17.0/4_parametrization/4_2_logistic-configuration`); el preset de optimización
+       elegido y la tolerancia de ventanas del Planning
+       (:doc:`/17.0/4_parametrization/4_3_planning-configuration`).
+   * - Distintivos y modelos de referencia
+     - Antes de dar de alta la primera zona de bajas emisiones, cada modelo de vehículo necesita
+       su distintivo DGT y cada categoría su modelo de referencia: un vehículo sin distintivo ni
+       autorización no recibe ninguna Parada dentro de una ZBE.
 
-El resultado es un conjunto de **Viajes en borrador** con sus Paradas asignadas y secuenciadas,
-sus horas estimadas y su trazado. El paso a paso de esta generación, y las alternativas manual y
+El resultado es un **plan** que, una vez aplicado, deja Viajes planificados con sus Paradas
+asignadas y secuenciadas, sus horas estimadas y su trazado. El paso a paso de esta generación, y las alternativas manual y
 por fichero, están en :doc:`/17.0/5_operational-flows/5_2_trip-generation`.
 
 3.3.3 Resultado

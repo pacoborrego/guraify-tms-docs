@@ -54,11 +54,14 @@ de estas entidades tiene su propia sección en :doc:`3_2_operational-data-model`
 3.1.1.2 Planificación (menú «Planning»)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Agrupa las dos herramientas con las que se organizan los recursos y se optimiza la ejecución:
+Agrupa las herramientas con las que se organizan los recursos y se optimiza la ejecución:
 el :term:`Plan de disponibilidad de conductores` (menú **Plan Disponibilidad Conductores**),
-donde se declara qué conductor está disponible, cuándo y con qué vehículo, y el
+donde se declara qué conductor está disponible, cuándo y con qué vehículo; el
 :term:`Optimizador de Paradas`, que agrupa las Paradas pendientes en Viajes sobre el mapa con el
-motor de PTV. Ambas se describen en :doc:`3_3_planning-model`. El submenú se llama «Planning» en
+motor de PTV; **Encontrar ruta**, que coloca Órdenes nuevas en rutas ya hechas
+(:doc:`/17.0/5_operational-flows/5_2_trip-generation`); y los registros de cada cálculo lanzado
+(**Ejecuciones de optimización**, **Secuenciaciones**). Las dos primeras se describen en
+:doc:`3_3_planning-model`. El submenú se llama «Planning» en
 la interfaz, la misma palabra que la entidad :term:`Planning`; en esta documentación se le llama
 Planificación cuando se habla del menú.
 

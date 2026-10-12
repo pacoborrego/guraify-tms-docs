@@ -172,8 +172,9 @@ para quien lo necesite.
       válidas cuentan. Modelo ``fleet.vehicle.odometer`` extendido por ``tms_resources``.
 
    Optimizador de Paradas
-      Herramienta visual con mapa que agrupa Paradas en Viajes y las secuencia usando el motor de
-      PTV, por franja de disponibilidad o por categoría. Modelo ``tms.optimizator``.
+      Herramienta visual con mapa que reúne las Paradas pendientes de una fecha y abre sobre ellas
+      el asistente Asignar en modo Optimización, por franja de disponibilidad o por categoría;
+      sobre el mapa se reordenan y mueven Paradas entre Viajes. Modelo ``tms.optimizator``.
 
    Orden
       Encargo de un Cliente. Define qué servicio se presta y en qué condiciones se factura; es el
@@ -328,15 +329,54 @@ para quien lo necesite.
 
    Secuenciación
       Servicio de PTV que ordena las Paradas de un Viaje ya formado respetando franjas horarias,
-      tiempos de servicio y capacidad. Se lanza desde el Optimizador de Paradas o, si el Proyecto
-      tiene activado **Secuenciar Viaje**, al cerrar un Manifiesto. (No se dice *sequence* ni
-      *autosecuenciación*.)
+      tiempos de servicio y capacidad. Se lanza con el botón **Secuenciar Viaje** (en segundo plano,
+      con la opción **Secuenciar todo**), al cerrar un Manifiesto si el Proyecto tiene activado
+      **Secuenciar Viaje**, y por sí sola en el Viaje que pierde una Parada antes de empezar.
+      **Restaurar orden anterior** la deshace. (No se dice *sequence* ni *autosecuenciación*.)
 
    Optimización completa
       Servicio de PTV que, a partir de las Paradas pendientes de una fecha, propone qué Viajes
-      crear, con qué vehículo y conductor y en qué orden. Se lanza desde el Optimizador de Paradas
-      en **modo por franja** (turnos del Plan de disponibilidad; en la interfaz, «Por franja») o en
-      **modo por categoría de vehículo**. (No se dice *por turno*.)
+      crear, con qué vehículo y conductor y en qué orden. Se lanza desde el asistente Asignar en
+      modo Optimización o desde el Optimizador de Paradas, en **modo por franja** (turnos del Plan
+      de disponibilidad; en la interfaz, «Por franja») o en **modo por categoría de vehículo**, con
+      un :term:`Preset de optimización`. El resultado es un plan que espera **Aplicar plan** y se
+      puede **Revertir**. (No se dice *por turno*.)
+
+   Preset de optimización
+      Conjunto de ajustes que dice para qué se optimiza y qué se puede violar: Máxima calidad,
+      Máxima rentabilidad, Balancear vehículos o Sacar todo como sea, de serie. Rellena las
+      casillas del asistente (tolerancia, restricciones de vía, jornada, zonas operativas), que el
+      planificador puede cambiar. Capítulo 4.3.7. Modelo ``tms.ptv.preset``. (En la interfaz,
+      «Presets de optimización».)
+
+   Tolerancia de ventana
+      Minutos por cada lado con que se amplían las franjas horarias de las Paradas al enviarlas a
+      PTV, fijados en el Planning o en la zona operativa. Una Parada que solo cabe gracias a ellos
+      queda **En tolerancia**, no Fuera de ventana. Capítulo 4.3.1.
+
+   Estado de ventana
+      Cómo queda la hora prevista de una Parada respecto a su franja original tras un cálculo de
+      PTV: En ventana, En tolerancia, Fuera de ventana (con la desviación en minutos) o Sin ventana.
+      Llegar antes de que abra no es incumplir. Junto a él, las **marcas** (EQUIPMENT, GEO_SUSPECT,
+      ZONE, LEZ, DISTANCE, CAPACITY, WORKDAY) dicen qué restricción incumple o esquiva la Parada.
+      Capítulo 1.4.2. Campos ``tms_tw_status`` y ``tms_violation_codes`` de ``tms.stop``.
+
+   Zona operativa
+      Área geográfica de tipo Plan de Transporte en la que cae una Parada. Con **Respetar zonas
+      operativas**, el motor solo asigna la Parada a un vehículo cuya categoría (o él mismo) tenga
+      esa zona entre las permitidas; sin zonas permitidas, el vehículo sirve a todas. Capítulo 4.2.6.
+
+   Zona de bajas emisiones
+      Área geográfica de tipo Bajas emisiones con un distintivo DGT mínimo. Un vehículo entra si el
+      distintivo de su modelo lo alcanza o si tiene el área entre sus autorizaciones; si no, ningún
+      motor le asigna una Parada dentro. Siempre estricta, en toda optimización de la compañía.
+      Tras la primera mención puede abreviarse **ZBE**. Capítulo 4.3.3.
+
+   Encontrar ruta
+      Asistente que, con el día ya planificado, pregunta al motor en qué ruta existente cabe cada
+      Orden y a qué coste, enseña las diferencias de hasta tres candidatas y aplica lo confirmado
+      con reversión. **Repartir este viaje** lo usa para repartir una ruta que se cae. Capítulo
+      5.2.5. Modelo ``tms.find.route``.
 
    Perfil de jornada
       Conjunto de reglas de horas de conducción y pausas (por defecto, el reglamento europeo

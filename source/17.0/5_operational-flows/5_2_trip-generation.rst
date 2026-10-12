@@ -133,12 +133,39 @@ la asignación), y abre un diálogo de progreso mientras asigna y enruta. Cada P
 con el siguiente número de secuencia y toma su Planning; sus Tramos quedan vinculados al Viaje y
 sus Reembolsos, disponibles para la liquidación. Al terminar, **Abrir viaje** lleva a la ficha.
 
-Sobre el Viaje resultante, tres botones ajustan el recorrido cuando hace falta: **Secuenciar
-Viaje** pide a PTV la :term:`secuenciación <Secuenciación>` de las Paradas, **Enrutar Viaje**
-lanza el :term:`cálculo de ruta <Cálculo de ruta>` con el orden actual (trazado, distancias y
-horas estimadas), y **Actualizar** regenera las Paradas de hub cuando se han añadido o quitado
-Tramos. En el mapa del Optimizador de Paradas las Paradas también se pueden reordenar y mover
-entre Viajes arrastrándolas; cada cambio relanza el cálculo de ruta.
+Sobre el Viaje resultante, los botones de la pestaña de Paradas ajustan el recorrido cuando hace
+falta:
+
+- **Secuenciar Viaje** abre el diálogo de :term:`secuenciación <Secuenciación>` y la lanza **en
+  segundo plano**: el formulario vuelve en un segundo, un aviso dice que se está secuenciando y
+  el diálogo de progreso enseña el resultado. El diálogo ofrece **Mantener orden relativo** (PTV
+  solo inserta lo que aún no tiene sitio, sin mover lo demás), la **tolerancia** de ventanas del
+  Planning, que se puede cambiar, y **Secuenciar todo**: si la primera llamada deja Paradas fuera,
+  una segunda, y última, vuelve a pedir el Viaje sin las ventanas de esas Paradas ni la distancia
+  máxima del vehículo; lo que entra así queda marcado con lo que incumple (``DISTANCE``,
+  ``CAPACITY`` o ``WORKDAY``, ver :doc:`/17.0/1_introduction/1_4_technological-architecture`).
+  Secuenciar todo no arregla el Viaje: enseña lo que no cabe; la tolerancia es la primera
+  herramienta y esto la última. Lo que PTV no puede planificar se queda en el Viaje sin sitio en
+  la ruta y el diálogo lo dice.
+- **Restaurar orden anterior** deshace la última secuenciación (orden, horas, distancias y
+  estados de ventana), mientras el Viaje tenga las mismas Paradas.
+- **Enrutar Viaje** lanza el :term:`cálculo de ruta <Cálculo de ruta>` con el orden actual
+  (trazado, distancias y horas estimadas), y **Actualizar** regenera las Paradas de hub cuando se
+  han añadido o quitado Tramos.
+- **Repartir este viaje** lleva las Paradas pendientes a otras rutas con Encontrar ruta
+  (:ref:`encontrar-ruta`).
+
+En el mapa del Optimizador de Paradas las Paradas también se pueden reordenar y mover entre
+Viajes arrastrándolas; cada cambio relanza el cálculo de ruta. Varias secuenciaciones a la vez
+se atienden por una cola, hasta el número de **Secuenciaciones simultáneas** que fije la
+compañía.
+
+.. CAPTURA: 5_2_06 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_06_secuenciar.png
+      :alt: Diálogo Secuenciar viajes
+
+      El diálogo de Secuenciar Viaje: Secuenciar todo, Mantener orden relativo, tolerancia y qué se
+      puede violar.
 
 .. CAPTURA: 5_2_02 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_02_asignar-nuevo.png
@@ -176,12 +203,22 @@ llenarlos. Se lanza desde el asistente Asignar en modo **Optimización**, o desd
    cada una aporta conductor, vehículo y transportista. En el **modo por categoría de
    vehículo** («Por Categoría») se indica cuántos vehículos de cada categoría hay disponibles,
    con su hub y su ventana de salida, sin decir cuáles.
+#. **Elegir el preset y lo que se puede violar.** El :term:`Preset de optimización` dice para
+   qué se optimiza (:ref:`presets-optimizacion`) y rellena las casillas: **Aplicar tolerancia**
+   (con los minutos del Planning, cambiables en **Avanzado**), **Permitir violar restricciones
+   de vía**, **Permitir violar jornada, km, paradas y carga** y **Respetar zonas operativas**
+   (No, Estricto o Preferido). El planificador puede cambiarlas; lo que se ejecuta son las
+   casillas, no el preset. El asistente avisa de antemano de las Paradas con coordenadas
+   sospechosas, que quedan fuera, y de los vehículos cuyo turno no encaja con su hora de salida.
 #. **Lanzar la optimización.** El sistema envía al motor las Paradas, los vehículos con sus
-   capacidades y los conductores con su perfil de jornada, y sigue el progreso en un diálogo.
-   El resultado **no se aplica solo**: el diálogo enseña las Paradas por estado de ventana, las
-   que quedan fuera y las violaciones, y espera a **Aplicar plan**. Al aplicarlo se crean los
-   **Viajes planificados** con sus Paradas asignadas y secuenciadas, sus horas estimadas y su
-   trazado; **Revertir** deshace el plan entero.
+   capacidades, costes y zonas y los conductores con su perfil de jornada, y sigue el progreso
+   en un diálogo. El resultado **no se aplica solo**: el diálogo enseña las Paradas por estado
+   de ventana, las excluidas y las violaciones, y espera a **Aplicar plan**. Al aplicarlo se
+   crean los **Viajes planificados** con sus Paradas asignadas y secuenciadas, sus horas
+   estimadas y su trazado; cada Viaje que pierde Paradas en el plan se vuelve a secuenciar. Si se
+   cierra el diálogo sin aplicar, no se crea nada: el plan queda en su ejecución (menú Planning
+   › Ejecuciones de optimización) y se puede aplicar desde allí. **Revertir** deshace el plan entero,
+   salvo que haya borrado un Viaje que se vació al aplicarlo.
 #. **Revisar la propuesta** sobre el mapa: mover Paradas entre Viajes, reordenarlas, quitar las
    que no procedan. En el modo por categoría, asignar después conductor y vehículo a cada
    Viaje (:doc:`5_3_resource-assignment`).
@@ -189,8 +226,102 @@ llenarlos. Se lanza desde el asistente Asignar en modo **Optimización**, o desd
 La herramienta, sus requisitos y lo que envía y recibe de PTV están en
 :ref:`optimizador-paradas`.
 
+.. CAPTURA: 5_2_07 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_07_aplicar-plan.png
+      :alt: Diálogo de progreso con el plan listo y el botón Aplicar plan
+
+      El plan listo: Paradas por estado de ventana, excluidas y violaciones, y el botón Aplicar
+      plan.
+
 .. CAPTURA: 5_2_05 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_05_asignar-optimizacion.png
       :alt: Asistente Asignar en modo Optimización
 
       Modo Optimización: las categorías de vehículo disponibles y el bloque del motor.
+
+.. _encontrar-ruta:
+
+5.2.5 Cuando el día ya está planificado: Encontrar ruta
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   Lista de Órdenes › Acción › **Encontrar ruta** · botón **Repartir este viaje** del Viaje ·
+   **Buscar la mejor ruta** en el asistente Asignar · TMS › Operaciones › Planning › Encontrar
+   ruta (las ejecuciones)
+
+Dos situaciones no se resuelven ni con el asistente ni reoptimizando el día: llegan Órdenes
+cuando los Viajes ya están hechos, o una ruta se cae a media jornada y hay que repartir lo que le
+quedaba. **Encontrar ruta** no reoptimiza: pregunta al motor **en qué ruta existente cabe cada
+Orden y a qué coste**, enseña las diferencias y deja que el planificador confirme.
+
+**Cómo se entra.** Desde la lista de Órdenes, seleccionándolas y con la acción Encontrar ruta
+(de cada una, sus Paradas sin Viaje); desde un Viaje, con **Repartir este viaje** (sus Paradas
+pendientes son las Órdenes a colocar y el propio Viaje queda fuera de las candidatas); o desde el
+modo Existente del asistente Asignar, con **Buscar la mejor ruta**. El asistente pide la fecha,
+el Planning, las rutas candidatas (por defecto, los Viajes no iniciados de ese día; se puede
+añadir uno iniciado, y entonces la Orden nueva solo puede ir detrás de lo ya reportado), el
+modo, el preset, la tolerancia y lo que se puede violar. **Una ruta despachada no puede ser
+candidata**: aplicar la despacharía de verdad.
+
+**Mantener estructura** (el modo por defecto) conserva las rutas tal como están y mete la Orden
+donde menos moleste:
+
+#. Para cada Orden, el sistema mide en línea recta cuánto se desvía cada ruta si la inserta
+   entre dos de sus puntos, contando la salida del hub y la vuelta, y descarta de entrada las
+   rutas cuyo vehículo no puede con ella: equipamiento, zona operativa, ZBE y capacidad que le
+   queda. Se quedan las **tres de menor desvío**.
+#. Cada candidata se **evalúa** con una secuenciación de PTV, con la ruta actual fijada (o libre,
+   si se marca **Permitir reordenar dentro de la ruta**). Evaluar no escribe nada: los Viajes y
+   las Paradas quedan como estaban. La ruta actual también se le pregunta a PTV, para que las
+   diferencias salgan del mismo motor.
+#. Una candidata **no se propone** si PTV deja la Orden fuera o si para meterla tendría que
+   sacar una Parada que ya estaba planificada: nada planificado se desplanifica.
+#. La pestaña **Candidatas** enseña, por Orden y ruta, el desvío, los kilómetros y minutos de
+   más, la nueva hora de fin, la espera añadida, las Paradas que pasan a tolerancia o fuera de
+   ventana, la capacidad que queda y la diferencia de coste con los costes de la categoría del
+   vehículo. La **mejor** queda marcada y confirmada: la de menor coste y, a igualdad, la que
+   menos Paradas saca de ventana. El planificador puede **Elegir** otra viable o desmarcar
+   **Confirmar** en una Orden. Una Orden sin candidata viable queda **Sin ruta**, con el motivo
+   (equipamiento, zona, ZBE, capacidad, ventana o límites de la ruta) y cuántas rutas cayeron por
+   cada uno.
+
+**Romper estructura** es para cuando mantenerlas no da: lanza una optimización completa con las
+Órdenes de las rutas elegidas más las nuevas, con tantos vehículos de cada categoría como rutas
+había (por vehículo, si todas lo tienen). La pestaña **Ruta a ruta** pone cada ruta del plan junto
+a la actual con la que más Paradas comparte (cuántas se quedan, salen, vienen de otra o son
+nuevas; km y horas antes y después), y **Aplicar plan** sustituye los Viajes elegidos por los
+nuevos, que heredan vehículo y conductor de la ruta con la que más comparten.
+
+**Aplicar y revertir.** **Aplicar** mete cada Orden confirmada en su ruta: si una sola Orden
+eligió una ruta, se aplica la respuesta que PTV ya dio; si varias eligieron la misma, se hace una
+secuenciación conjunta, y la que no cabe junto a las demás vuelve a donde estaba y su fila lo
+dice (la ejecución queda **Aplicada en parte**). Antes se comprueba que la ruta no ha cambiado
+desde la propuesta ni se ha despachado. **Revertir** lo deshace entero: cada Orden vuelve a su
+Viaje, o a ninguno, y cada ruta recupera su orden, sus horas y sus marcas; se niega si una ruta
+se despachó o cambió después. Las ejecuciones viven en Planning › Encontrar ruta, con su
+propuesta y su reversión.
+
+**El Viaje repartido.** Con Repartir este viaje, el Viaje de origen se queda sin Paradas
+pendientes. Si no había empezado, se conserva vacío mientras la ejecución se pueda revertir, con
+el botón **Borrar el viaje vaciado** para cuando ya no haga falta. Si ya había empezado, se queda
+con lo que entregó y **no se cierra solo**: sigue en curso, marcado como repartido, hasta que
+alguien pulsa **Cerrar viaje repartido** en su ficha, se revierte el reparto o termina su día
+(:doc:`5_5_trip-closing`).
+
+Un servicio directo (ni entrega desde hub ni recogida hacia hub) no se propone: queda sin ruta
+con ese motivo. Con quince Órdenes y tres rutas la evaluación tarda alrededor de un minuto; el
+diálogo de progreso lo acompaña.
+
+.. CAPTURA: 5_2_08 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_08_encontrar-ruta.png
+      :alt: Asistente Encontrar ruta
+
+      El asistente Encontrar ruta: Órdenes, rutas candidatas, modo y lo que se puede violar.
+
+.. CAPTURA: 5_2_09 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_09_candidatas.png
+      :alt: Ejecución de Encontrar ruta con la pestaña Candidatas
+
+      La propuesta: por Orden, las tres candidatas con sus diferencias y la mejor marcada.

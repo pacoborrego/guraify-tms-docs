@@ -50,6 +50,13 @@ Paradas, en qué franjas del Plan de disponibilidad son compatibles, en qué pre
        cantidad, metros lineales, o cada uno combinado con los kilómetros. Es la
        :term:`División de costes`, que se explica en
        :doc:`/17.0/8_economic-administration/8_3_cost-split`.
+   * - Aplicar tolerancia y minutos antes / después
+     - Si las franjas horarias de las Paradas se envían a PTV **ampliadas** unos minutos por
+       cada lado (:term:`Tolerancia de ventana`), y cuántos. Es lo que propone el asistente al
+       optimizar y lo que usan Secuenciar Viaje y el cálculo de ruta de los Viajes de este
+       Planning. Con la casilla marcada y sin minutos, cada Parada toma los de su zona
+       operativa. Una Parada que solo cabe gracias a la tolerancia queda *En tolerancia*, no
+       *Fuera de ventana*.
 
 El Planning interviene en cinco momentos. Al **generar Paradas**, forma parte de la clave de
 agrupación: dos operaciones en la misma dirección y franja no se juntan si son de Plannings
@@ -57,7 +64,9 @@ distintos. Al **crear Viajes**, es obligatorio y filtra qué franjas del Plan de
 sirven para esa fecha. Al **optimizar**, aporta sus tiempos de recogida y de entrega. Al
 **tarificar**, las Líneas de tarifa pueden limitarse a uno o varios Plannings, de modo que
 reparto, recogida o urgente tengan precios distintos. Y en las **importaciones**, el fichero
-puede traer el Planning de cada Viaje. Campos en :doc:`/17.0/annexes/A_07_planning`.
+puede traer el Planning de cada Viaje. Su plan de transporte aporta además las **zonas
+operativas** que los motores comparan con las permitidas a cada vehículo (ver
+:ref:`que-restringe`). Campos en :doc:`/17.0/annexes/A_07_planning`.
 
 4.3.2 Planes de transporte
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -118,8 +127,21 @@ configurarlas:
    * - Tipo
      - Para qué sirve el área. Un mismo territorio puede existir dos veces con dos tipos, una
        para operar y otra para tarificar, y evolucionar por separado.
+   * - Código
+     - La clave con la que los motores de optimización nombran la zona (se genera del nombre si
+       se deja vacío; único por compañía). Como el código de un equipamiento, una vez en uso no
+       se cambia.
    * - Agencia y hub
      - Lo que heredan los tramos cuya dirección cae en el área.
+   * - Tolerancia antes / después (min)
+     - Los minutos de :term:`tolerancia <Tolerancia de ventana>` propios de esta zona operativa,
+       que se aplican a sus Paradas cuando el Planning pide tolerancia sin fijar los suyos. Una
+       zona de polígonos industriales puede admitir más margen que un centro urbano.
+   * - Distintivo DGT mínimo (solo Bajas emisiones)
+     - El distintivo (B, C, ECO o 0 emisiones) que un vehículo necesita para entrar en esta
+       :term:`ZBE <Zona de bajas emisiones>`. Un vehículo entra si el distintivo de su modelo lo
+       alcanza o si tiene el área entre sus autorizaciones; sin mínimo, solo entran los
+       autorizados. Es obligatorio en un área de bajas emisiones.
    * - Días disponibles
      - Los días de la semana en que la zona operativa admite servicio. Una carga o descarga
        fuera de ellos se avisa antes de planificar.
@@ -129,8 +151,20 @@ configurarlas:
 En el flujo operativo, las áreas de tipo «Plan de Transporte» etiquetan cada carga y descarga
 con su zona operativa; el sistema no las recalcula en operaciones cerradas o facturadas. En el
 flujo económico, las de tipo «Zona Tarifa» deciden qué detalle de tarifa aplica, y las de tipo
-«Tarifa Extra» permiten suplementos por entrar en un territorio concreto. Campos en
-:doc:`/17.0/annexes/A_09_areas-geograficas`.
+«Tarifa Extra» permiten suplementos por entrar en un territorio concreto. Las de tipo **«Bajas
+emisiones»** con polígono cuentan para **toda** optimización de la compañía, siempre de forma
+estricta y sin casilla que las apague: ningún motor asigna una Parada dentro de una ZBE a un
+vehículo que no puede entrar, y el cálculo de ruta marca las Paradas que la cruzan. Por eso, antes
+de dibujar la primera, los modelos de vehículo tienen que llevar su distintivo
+(:doc:`4_2_logistic-configuration`). Las zonas de tipo «Plan de Transporte» son, además, las
+**zonas operativas** que el motor compara con las permitidas a cada vehículo cuando se le pide
+**Respetar zonas operativas**. Campos en :doc:`/17.0/annexes/A_09_areas-geograficas`.
+
+.. CAPTURA: 4_3_06 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_06_zbe.png
+      :alt: Área geográfica de tipo Bajas emisiones con su distintivo DGT mínimo
+
+      Un área de bajas emisiones: polígono, código y distintivo DGT mínimo.
 
 4.3.4 Franjas horarias
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -235,3 +269,57 @@ El perfil llega a PTV desde la franja del :term:`Plan de disponibilidad de condu
 cuando el Viaje sale de una, y si no desde la categoría del vehículo. Una regulación mal
 elegida produce Viajes válidos en el papel e imposibles dentro de la jornada permitida. Campos
 en :doc:`/17.0/annexes/A_12_horas-conduccion`.
+
+.. _presets-optimizacion:
+
+4.3.7 Presets de optimización
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   TMS › Configuración › Presets de optimización (solo responsables)
+
+.. CAPTURA: 4_3_07 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_07_presets.png
+      :alt: Lista de Presets de optimización
+
+      Los cuatro presets de serie, con las casillas que marcan por defecto.
+
+Un :term:`Preset de optimización` (``tms.ptv.preset``) dice **para qué se optimiza**: qué
+persigue el motor cuando construye los Viajes y qué está dispuesto a sacrificar. Antes el TMS
+enviaba siempre lo mismo; ahora el planificador elige el preset al lanzar la optimización
+(asistente Asignar en modo Optimización, Encontrar ruta) y el preset rellena las casillas de lo
+que se permite violar, que el planificador puede cambiar en ese momento. Vienen cuatro de serie:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 24 76
+
+   * - Preset
+     - Qué hace
+   * - **Máxima calidad**
+     - El mejor plan que el motor encuentra respetando todos los límites: la búsqueda más larga,
+       la calidad alta y los costes reales de cada vehículo. Es el punto de partida.
+   * - **Máxima rentabilidad**
+     - Solo planifica una Orden si su importe paga lo que añade a la ruta; el resto queda fuera.
+       Necesita los costes de los vehículos y el importe de los Tramos. Hoy, con los importes de
+       Tramo que se envían, no llega a planificar nada: está pendiente de decidir de dónde sale
+       el ingreso.
+   * - **Balancear vehículos**
+     - Reparte el trabajo: duraciones de ruta parecidas, sin coste fijo por usar un vehículo
+       más y con un coste por dejar uno parado. En la práctica consigue que salgan todos los
+       vehículos, pero no iguala las rutas.
+   * - **Sacar todo como sea**
+     - Planifica todas las Órdenes cueste lo que cueste: aplica la tolerancia de ventanas y
+       convierte jornada, kilómetros, Paradas y carga en costes en vez de límites. Solo la
+       conducción máxima sigue siendo un límite duro, porque es ley. Es la última herramienta,
+       no la primera: enseña lo que no cabe.
+
+Cada preset fija, además, el **motor** al que se aplica, la duración de la búsqueda, la
+compacidad, la preferencia por equilibrar, el uso de los costes del vehículo o de los suyos
+propios, los límites blandos y su coste, y las **casillas que marca por defecto**: aplicar
+tolerancia, permitir violar restricciones de vía, permitir violar jornada, km, Paradas y carga,
+respetar zonas operativas (y el coste de no respetarlas en modo Preferido). Un preset es por
+compañía; crear uno nuevo es copiar el que más se parece y ajustar. Campos en
+:doc:`/17.0/annexes/A_29_presets-optimizacion`.

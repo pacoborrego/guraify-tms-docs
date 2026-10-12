@@ -43,3 +43,4 @@ ejemplo, «Id» para el nombre de un tipo) se indica en la tabla.
    A_26_tipos-destinatario
    A_27_tipos-transportista
    A_28_tipos-reembolso
+   A_29_presets-optimizacion

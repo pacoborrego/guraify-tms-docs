@@ -96,28 +96,38 @@ planificación intervienen tres servicios, con tres niveles de uso progresivos:
      - Qué envía el TMS
      - Qué vuelve y dónde queda
    * - **Cálculo de ruta**
-     - Al crear Viajes desde un Manifiesto que trae la secuencia; al reordenar, añadir o quitar
-       Paradas en el mapa del Optimizador; con el botón **Enrutar Viaje** del Viaje.
-     - Cada Parada con su coordenada, tiempo de servicio y franja horaria; el perfil de vehículo
-       de la categoría; el perfil de jornada; la hora de salida; tráfico realista.
-     - En el Viaje: trazado, distancia, duración y hora prevista de fin. En cada Parada: ETA,
-       llegada, salida, kilómetros y tiempo de conducción acumulados.
+     - Al crear Viajes desde un Manifiesto que trae la secuencia; al asignar Paradas con el
+       asistente; al reordenar, añadir o quitar Paradas en el mapa del Optimizador; con el botón
+       **Enrutar Viaje** del Viaje.
+     - Cada Parada con su coordenada, tiempo de servicio y franja horaria; el **perfil real del
+       vehículo** (pesos, dimensiones, motor, clase Euro y distintivo DGT de su modelo o, sin
+       vehículo, del modelo de referencia de la categoría); el perfil de jornada; la hora de
+       salida; tráfico realista.
+     - En el Viaje: trazado, distancia, duración, hora prevista de fin, peajes y emisiones. En
+       cada Parada: ETA, llegada, salida, kilómetros y tiempo de conducción acumulados, su
+       estado de ventana y la marca de las zonas de bajas emisiones que cruza.
    * - **Secuenciación**
-     - Con el botón **Secuenciar Viaje** del Viaje o desde el Optimizador de Paradas sobre un
-       Viaje ya formado; al cerrar un Manifiesto sin secuencia si el Proyecto tiene activado
-       **Secuenciar Viaje**.
+     - Con el botón **Secuenciar Viaje** del Viaje (abre un diálogo y corre en segundo plano);
+       al cerrar un Manifiesto sin secuencia si el Proyecto tiene activado **Secuenciar Viaje**;
+       y, sin que nadie la pida, en el Viaje que pierde una Parada antes de empezar y en cada
+       candidata de **Encontrar ruta**.
      - Las Paradas como transportes con cantidades, tiempo de servicio y prioridad; horarios
-       de apertura de Hubs y Clientes; perfil, inicio, fin y distancia máxima del vehículo;
-       disponibilidad del conductor.
-     - El nuevo orden de las Paradas y sus horas de llegada y salida. Después se relanza el
-       cálculo de ruta para refrescar el trazado.
+       de apertura de Hubs y Clientes, ampliados con la **tolerancia** si se aplica; perfil,
+       inicio, fin y distancia máxima del vehículo; disponibilidad del conductor; el orden
+       actual, si se pide mantenerlo.
+     - El nuevo orden de las Paradas y sus horas de llegada y salida; lo que no cabe queda sin
+       planificar y marcado. Después se relanza el cálculo de ruta para refrescar el trazado, y
+       **Restaurar orden anterior** deshace la última secuenciación.
    * - **Optimización completa**
-     - Desde el Optimizador de Paradas sobre las Paradas pendientes de una fecha.
-     - Vehículos con capacidades, equipamiento, inicio, fin y distancia máxima; conductores con
-       disponibilidad y jornada; transportes con cantidades, tiempos de servicio y prioridad;
-       Hubs con horarios.
-     - Viajes nuevos con sus Paradas asignadas y secuenciadas, vehículo y conductor, horas por
-       Parada, y la lista de lo que no se ha podido planificar.
+     - Desde el asistente Asignar en modo Optimización o desde el Optimizador de Paradas, sobre
+       las Paradas pendientes de una fecha; también en **Romper estructura** de Encontrar ruta.
+     - Vehículos con capacidades, equipamiento, costes, zonas permitidas, inicio, fin y distancia
+       máxima; conductores con disponibilidad y jornada; transportes con cantidades, tiempos de
+       servicio, prioridad, equipo exigido y excluido, zona operativa y ZBE; Hubs con horarios;
+       el **preset** elegido y lo que se permite violar.
+     - Un **plan** que espera a **Aplicar plan**: Viajes con sus Paradas asignadas y
+       secuenciadas, vehículo y conductor, horas por Parada, estado de ventana y violaciones, y
+       la lista de lo que no se ha podido planificar. **Revertir** lo deshace.
 
 El **cálculo de ruta** es el nivel básico: el Viaje ya existe, con sus Paradas y su recurso, y
 PTV lo enriquece con la red viaria profesional. Las horas de conducción y las pausas las fija el
@@ -145,8 +155,43 @@ mismas seis dimensiones y respetando las prioridades. Si ningún vehículo puede
 Paradas, el sistema lo dice con las causas posibles (capacidad, jornada, distancia máxima o
 número de Paradas) en lugar de crear Viajes vacíos. El planificador revisa la propuesta, la
 ajusta a mano si hace falta y la confirma. Toda la parametrización sale de los maestros del TMS:
-categorías de vehículo, planes de disponibilidad, horarios de los contactos y tiempos de
-servicio.
+categorías de vehículo, planes de disponibilidad, horarios de los contactos, tiempos de
+servicio y :ref:`presets de optimización <presets-optimizacion>`.
+
+**Lo que cada cálculo deja en la Parada.** Además del orden y las horas, los tres servicios
+escriben en cada Parada dos cosas que el planificador lee en las listas y en la ficha. El
+**estado de ventana** dice cómo queda la hora prevista respecto a la franja horaria original:
+*En ventana*, *En tolerancia* (fuera de la franja pero dentro de los minutos de
+:term:`tolerancia <Tolerancia de ventana>`), *Fuera de ventana* (con la desviación en minutos) o
+*Sin ventana*; llegar antes de que abra no es incumplir, el conductor espera. Las **marcas**
+señalan qué restricción incumple o esquiva esa Parada, y cada una la pone y la quita el cálculo
+que la conoce:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 22 78
+
+   * - Marca
+     - Qué significa
+   * - ``EQUIPMENT``
+     - El vehículo del Viaje no puede llevarla: le falta un equipamiento exigido o lleva uno
+       excluido por la categoría de carga del Tramo. Una secuenciación no puede cambiar de
+       vehículo, así que avisa y no la mueve.
+   * - ``GEO_SUSPECT``
+     - Coordenadas sospechosas: la dirección está en otro país que la compañía o a más de la
+       distancia máxima del hub de salida (ajuste de la compañía, 300 km por defecto). La Parada
+       **no se envía** a ningún servicio hasta que se corrija.
+   * - ``ZONE``
+     - La Parada cae fuera de las zonas operativas permitidas al vehículo del Viaje.
+   * - ``LEZ`` · ``LEZ_TRANSIT``
+     - La Parada está en una zona de bajas emisiones donde el vehículo no puede entrar, o su
+       tramo de ruta pasa por una (y puede).
+   * - ``DISTANCE`` · ``CAPACITY`` · ``WORKDAY``
+     - Tras «Secuenciar todo»: al llegar a esa Parada la ruta ya supera los kilómetros máximos
+       del vehículo, su capacidad, o la jornada o la conducción máximas.
+
+La Parada que el servicio no puede planificar se queda en su Viaje **sin sitio en la ruta** y el
+diálogo lo dice; nada se relanza a escondidas con las ventanas ampliadas.
 
 1.4.2.1 El ETA durante la ejecución
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -221,6 +266,26 @@ tiene campo propio se guarda tal cual en el Viaje para su análisis posterior.
    * - Tarea programada
      - «TMS: recompute ETA of running trips»
      - Cada minuto atiende la cola de recálculos pendientes según la política
+   * - Secuenciación en segundo plano
+     - ``tms.sequence.run``
+     - Una fila por secuenciación (o por evaluación de Encontrar ruta), con lo que se pidió, la
+       respuesta y lo que sobrescribió; la cola envía hasta «Secuenciaciones simultáneas» a la
+       vez (ajuste de la compañía, 6 por defecto)
+   * - Optimización
+     - ``tms.optimization.run``
+     - Una fila por optimización lanzada, con el preset, las casillas, el plan, las Paradas
+       excluidas y el resultado; «Aplicar plan» y «Revertir» actúan sobre ella
+   * - Preset de optimización
+     - ``tms.ptv.preset``
+     - Lo que el motor persigue y lo que puede violar (:ref:`presets-optimizacion`)
+   * - Estado de ventana y marcas de la Parada
+     - ``tms.stop``: ``tms_tw_status``, ``tms_tw_deviation_min``, ``tms_violation_codes``
+     - Escritos por el cálculo que planifica la Parada, siempre contra la ventana original
+   * - Ajustes de la compañía
+     - ``res.company``: ``ptv_sequence_max_concurrent``, ``ptv_geo_max_km_from_hub``,
+       ``ptv_premium_enabled``
+     - Secuenciaciones simultáneas, distancia máxima al hub del control previo de coordenadas y
+       optimización premium de PTV (Ajustes › TMS)
 
 1.4.3 Geolocalización, mapa y áreas
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

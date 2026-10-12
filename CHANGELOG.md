@@ -8,6 +8,30 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Planificación con PTV (tarea D20, 2026-10-12)
+- **1.4.2** al día con la línea PTV: secuenciación en segundo plano, «Secuenciar todo», Restaurar
+  orden anterior, optimización con preset y plan que espera «Aplicar plan», cálculo de ruta con el
+  perfil real del vehículo; párrafo nuevo con **lo que cada cálculo deja en la Parada** (estado de
+  ventana y marcas EQUIPMENT, GEO_SUSPECT, ZONE, LEZ, DISTANCE, CAPACITY, WORKDAY); referencia
+  técnica ampliada. **3.3.2.3** con el control previo de coordenadas, costes, distintivos.
+- **4.2**: equipamiento incompatible (4.2.2); costes por hora, km y parada, modelo de referencia y
+  zonas operativas permitidas en la categoría, distintivo DGT y autorizaciones de ZBE en el modelo
+  (4.2.5); sección nueva **4.2.6 «Qué restringe a qué»** (del diagrama de Paco, pág. 13, con lo que
+  los motores aplican de verdad).
+- **4.3**: tolerancia de ventanas en el Planning (4.3.1); código, tolerancia por zona y Bajas
+  emisiones con distintivo DGT mínimo en las Áreas (4.3.3); **4.3.7 Presets de optimización**
+  nueva con los cuatro de serie y el **anexo A.29**. Anexos A.02, A.05, A.06, A.07 y A.09 ampliados.
+- **5.2.3**: los botones del Viaje (Secuenciar Viaje con su diálogo, Restaurar orden anterior,
+  Enrutar, Actualizar, Repartir este viaje). **5.2.4**: preset, casillas, Paradas excluidas,
+  Aplicar plan / Revertir. **5.2.5 nueva «Cuando el día ya está planificado: Encontrar ruta»**:
+  entradas, Mantener estructura (tres candidatas, evaluación sin escribir, tabla de diferencias,
+  Sin ruta con motivo), Romper estructura, aplicar y revertir, el Viaje repartido.
+- Glosario: *Preset de optimización*, *Tolerancia de ventana*, *Estado de ventana*, *Zona
+  operativa*, *Zona de bajas emisiones (ZBE)*, *Encontrar ruta*; *Secuenciación*, *Optimización
+  completa* y *Optimizador de Paradas* actualizados.
+- Fuera por decisión (torre de control): escenarios, OptiFlow y proveedores geo; donde el preset
+  distingue motores se dice «según el motor».
+
 ### Asignar, arrastres y recursos (tarea D19, 2026-10-12)
 - **5.2.3 «Con el asistente Asignar»** reescrita para el asistente nuevo: un solo botón Asignar
   en Órdenes; modos Nuevo / Existente / Optimización (mermaid); la regla de movilidad por Parada

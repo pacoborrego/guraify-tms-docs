@@ -39,6 +39,11 @@ hay que elegir uno y nadie ha elegido).
      - Número
      - Segundos que se añaden a cada recogida y a cada entrega cuando se envía el Planning al
        optimizador, además del tiempo de servicio propio de la Parada.
+   * - Aplicar tolerancia / Tolerancia antes (min) / Tolerancia después (min)
+     - Sí/No / Número
+     - Si las franjas horarias se envían a PTV ampliadas, y cuántos minutos por cada lado. Lo que el
+       asistente propone al optimizar y lo que usan Secuenciar Viaje y el cálculo de ruta. Marcada sin
+       minutos, cada Parada toma los de su zona operativa.
    * - Modo División Viaje
      - Selección
      - Cómo se reparten los importes de un Viaje entre sus Paradas: Volumen, Lineal, Metros, Bulto,
