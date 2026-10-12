@@ -238,6 +238,15 @@ las de venta), resolviendo el producto físico por el código de la Regla de tar
 el tipo de albarán y las ubicaciones de origen y destino; si falta alguno, la creación se
 bloquea. Solo tiene sentido cuando la operativa mueve inventario real.
 
+4.5.7bis Etiquetas
+~~~~~~~~~~~~~~~~~~
+
+La pestaña **Etiquetas** fija lo que el asistente **Generar etiquetas** propone para los Bultos
+del Proyecto: el **formato** (10 × 6 horizontal o 10 × 15 vertical), el **diseño** (el estándar
+o uno propio del cliente) y el **orden por defecto** del lote (campo y sentido). Un Proyecto de
+paquetería que imprime en 10 × 15 con el diseño de su agencia se configura aquí una vez; el
+asistente lo recuerda en cada impresión (:doc:`/17.0/5_operational-flows/5_9_labels`).
+
 4.5.8 Bandeja de entrada API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

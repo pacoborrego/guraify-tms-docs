@@ -178,7 +178,7 @@ se usen en 10.3 a 10.7. `/docs/index.html` es una redirección estática en `sou
   tres niveles de PTV y las marcas de la Parada en 1.4.2; qué restringe a qué (equipo, zonas, ZBE, capacidad) en 4.2.6; presets en 4.3.7; los botones del Viaje (Secuenciar, Restaurar) en 5.2.3; Encontrar ruta en 5.2.5; normalización de direcciones en la tabla de 3.2.3; Bloquear/Desbloquear de la
   Orden en 3.2.1; la matriz de estados de los cuatro niveles y la escalera del Viaje en 3.2.7; el despacho en
   5.4.1; los botones del Viaje (Validar, Rechazar, reversiones, Cancelar) y el permiso de validador en 3.2.2.4;
-  la cadena de cierre y la revisión previa a facturar en 5.5; Tramos, Paradas y sus estados en 3.2.6, y la forma del arrastre (agencia, hub propio, recogida) en 3.2.6.3; el asistente Asignar y su regla de movilidad en 5.2.3; el historial conductor ↔ vehículo en 5.3.3; Bandeja de entrada API en 3.2.4; flota propia sin orden de
+  la cadena de cierre y la revisión previa a facturar en 5.5; Tramos, Paradas y sus estados en 3.2.6, y la forma del arrastre (agencia, hub propio, recogida) en 3.2.6.3; el asistente Asignar y su regla de movilidad en 5.2.3; el historial conductor ↔ vehículo en 5.3.3; Bandeja de entrada API en 3.2.4; la cola de importación y el contacto por dirección y nombre en 3.2.3; precio por tipo de bulto en 4.4.4; entrega parcial, ciclo del Bulto y Registrar trazabilidad en 5.4.3; etiquetas en 5.9; flota propia sin orden de
   compra en 8.1; nacimiento de la orden de compra en 8.4; tarea programada de tarificación y motivos del
   diagnóstico en 5.6; factura agrupada en 5.7; motor de indicadores en 8.8; frontera con la pasarela en el
   index del 7, registro de llamadas en 7.7.1, disparadores en 7.4.2; en el manual del conductor, bulto con
@@ -236,5 +236,5 @@ confirma**.
 
 ---
 
-*Actualizado el 2026-10-12 (v3, D20). Si algo de aquí queda desactualizado, actualízalo en el
+*Actualizado el 2026-10-12 (v3, D21). Si algo de aquí queda desactualizado, actualízalo en el
 mismo cambio que lo desactualiza.*

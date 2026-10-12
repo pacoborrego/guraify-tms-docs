@@ -87,7 +87,9 @@ comprobar bultos:
    ¿Se entrega el bulto?
 
 Los demás bultos se entregan igual, y la app cierra la parada como **Con Reservas** por los que
-tenían problema. En una carga se reporta exactamente igual, con una diferencia que te contamos en
+tenían problema. Si confirmas la entrega sin haber comprobado todos los bultos, la oficina la
+verá también como **Con Reservas**, con el motivo «No se han entregado todos los bultos»: por
+eso conviene pasar por todos antes de dar la parada por hecha. En una carga se reporta exactamente igual, con una diferencia que te contamos en
 :doc:`10_5_loading`: allí **NO SE ENTREGA** significa que el bulto no sube al vehículo.
 
 .. important::

@@ -40,6 +40,12 @@ válido**, **Manifiestos** e **Histórico** (las líneas que ya no están ni en 
 válidas), que dan una visión inmediata del estado de la cola y abren directamente las líneas de
 cada grupo o los Manifiestos generados a partir de ellas.
 
+Cuando un Manifiesto creado desde la bandeja sale mal, la forma de volver a crearlo es devolver
+sus líneas a *Recibido* y pulsar otra vez **Crear manifiesto**, que solo acepta líneas en ese
+estado. La lista de líneas lo permite **en masa**: se seleccionan varias y se cambia el estado de
+todas a la vez (es la única columna editable), y se buscan por referencia externa, fecha
+operativa, Tipo de Orden, Tipo de Servicio y destinatario, con un filtro de fecha por periodo.
+
 3.2.4.2 Relación con el Manifiesto
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

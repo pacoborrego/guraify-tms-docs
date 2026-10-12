@@ -126,6 +126,45 @@ Si el mismo evento llega dos veces (la app reintenta cuando no tiene cobertura),
 una sola. Si Odoo rechaza un evento por una regla de negocio, la app se lo dice al conductor
 en el momento.
 
+**Entrega parcial.** Un Tramo no se cierra como Completado si arrastra Bultos que nadie ha
+reportado como gestionados: el sistema lo deja **Con reservas** con el motivo automático
+**A17 «No se han entregado todos los bultos»** y un comentario con los Bultos que faltan. Es
+una red de seguridad para el conductor que confirma la entrega sin haber comprobado todos los
+Bultos; el motivo viaja a las integraciones como cualquier otro, y el conductor lo ve en su
+ruta (:doc:`/17.0/10_manual_app/10_7_incidents`).
+
+**Los Bultos.** Cada Bulto lleva su propia traza de dónde está, que la app escribe al escanear y
+el sistema completa al cerrar la Parada. Su ciclo son cuatro eventos:
+
+.. mermaid::
+
+   flowchart LR
+       C["Recogida<br/>en casa del cliente"] -->|"el conductor lo lleva"| H["Entrada en el hub"]
+       H -->|"en el hub"| L["Carga en el vehículo<br/>(salida del hub)"]
+       L -->|"el conductor lo lleva"| D["Entrega<br/>en el destinatario"]
+       D -. "no entregado" .-> H
+
+Lo que la app no escanea se registra desde la oficina con el asistente **Registrar
+trazabilidad** del Bulto (botón en su ficha y acción sobre varios a la vez): pide el evento
+(recogida en domicilio, entrada en hub, carga, entrega), opcionalmente la Parada (solo las de
+los Tramos de su línea, arrastre incluido), la fecha y, con la app instalada, el resultado, el
+motivo y un comentario. Dónde queda el Bulto lo calcula el sistema con la misma regla que el
+cierre de Parada: si sale, va con quien lo lleva; si llega o se entrega, se queda en el sitio.
+El asistente **solo mueve el Bulto**: el estado del Tramo, la Parada, el Viaje y la Orden lo
+mueven los eventos de Parada (Establecer evento o la app). No admite un Viaje completado ni una
+Orden facturada, ni el resultado Devuelto, para el que no hay regla de dónde queda el Bulto.
+
+**Cerrar desde la oficina.** El asistente **Establecer evento** de la Parada (Acciones
+operativas) registra el mismo resultado que la app, pero **sin posición**: la traza de oficina
+no lleva coordenadas ni dispositivo inventados, de modo que quien mire después desde dónde se
+reportó una entrega no encuentre al conductor «en la puerta» cuando fue la oficina quien cerró.
+
+.. CAPTURA: 5_4_03 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/5_operational-flows/5_4_app-execution_03_registrar-trazabilidad.png
+      :alt: Asistente Registrar trazabilidad de un Bulto
+
+      Registrar trazabilidad: evento, Parada, fecha y resultado para uno o varios Bultos.
+
 .. figure:: /_static/img/5_operational-flows/5_4_app-execution_01_paradas-estado-app.png
    :alt: Lista de Paradas con su estado
 

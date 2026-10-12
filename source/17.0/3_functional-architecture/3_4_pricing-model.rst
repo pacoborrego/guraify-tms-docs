@@ -35,8 +35,9 @@ El cálculo se apoya en un conjunto de entidades de configuración:
    * - :term:`Zonas de tarifa <Zona de tarifa>` (``tms.pricelist.zone``)
      - Agrupaciones geográficas sobre las que se definen precios diferenciados.
    * - :term:`Líneas de tarifa <Línea de tarifa>` (``tms.pricelist.item.zone``)
-     - El precio: condiciones de aplicación y detalles con el importe por zona de origen y de
-       destino.
+     - El precio: el ámbito sobre el que se calcula (Orden, Tramo, Parada, Viaje o cada línea
+       de mercancía, desde la Orden o desde el Viaje), las condiciones de aplicación y los
+       detalles con el importe por zona de origen y de destino.
    * - :term:`Tarifas <Tarifa>` (``tms.pricelist``)
      - La tarifa de un Proyecto o de un transportista, que combina los elementos anteriores.
        Se organiza en :term:`versiones <Versión de tarifa>` consecutivas con fecha de vigencia,

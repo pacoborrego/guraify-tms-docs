@@ -8,6 +8,24 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Ingesta, tarifa por línea, bultos y etiquetas (tarea D21, 2026-10-12)
+- **3.2.3.3**: el fichero en estado Error (motivo, en rojo, no para la cola, no se reintenta solo),
+  los botones que avisan y se niegan con la tarea programada apagada, el botón Registros API.
+  **3.2.3.4**: cómo se elige el contacto (dirección normalizada y nombre; se crea si nadie se llama
+  así). **3.2.4.1**: cambiar el estado de varias líneas de la bandeja a la vez para reprocesarlas.
+- **Tarifa por línea de mercancía**: 4.4.4 con los ámbitos Línea de orden y Línea de viaje, el
+  filtro por tipos de bulto, el caso «3 €/palé + 1,50 €/caja», los topes que colapsan la línea;
+  3.4.1, 5.6.2, 5.6.4 (dos motivos de diagnóstico nuevos), A.15, glosario.
+- **5.4.3**: entrega parcial (motivo A17), el ciclo del Bulto (mermaid de la pág. 4 del PDF de
+  Paco) y el asistente Registrar trazabilidad, cerrar desde la oficina sin posición del conductor.
+  10.7.2: el conductor ve la entrega parcial.
+- **5.9 Etiquetas** nueva: qué es la etiqueta y cuándo existe (generación al pedirla, invalidación,
+  pre-cálculo al cerrar el Manifiesto, Bulto previo con token), Generar etiquetas desde seis
+  sitios (formato de salida, tamaño, diseño, impresora, orden del lote), impresoras y diseños,
+  las entradas antiguas de Imprimir escondidas, referencia técnica. 4.5.7bis (pestaña Etiquetas
+  del Proyecto), 0.3 y el índice del 5 enlazan. Glosario: *Etiqueta*, *Entrega parcial*; *Bulto*
+  y *Línea de tarifa* actualizados.
+
 ### Planificación con PTV (tarea D20, 2026-10-12)
 - **1.4.2** al día con la línea PTV: secuenciación en segundo plano, «Secuenciar todo», Restaurar
   orden anterior, optimización con preset y plan que espera «Aplicar plan», cálculo de ruta con el

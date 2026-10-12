@@ -52,6 +52,15 @@ producto e importe. El reparto del importe entre los Tramos es la :term:`Divisi�
 (ver :doc:`/17.0/8_economic-administration/8_2_sales-split`). Los Reembolsos cobrados en la
 entrega pueden incorporarse como conceptos propios.
 
+Las Líneas de tarifa con *Aplicar en* **Línea de orden** no miden la Orden entera sino cada
+**línea de mercancía**: generan una línea de venta por cada línea de mercancía que encaje en sus
+tipos de bulto, con la unidad que cuenta ese tipo (cinco cajas, dos palés) por el precio del
+detalle. Es como se cobra «tanto por palé y tanto por caja» en la misma Orden
+(:doc:`/17.0/4_parametrization/4_4_economic-configuration`). Con **Línea de viaje**, la
+tarificación del Viaje hace lo mismo con las líneas de mercancía de todos sus Tramos, en la
+compra y en la venta; la línea de venta nace en la Orden del Viaje si la tiene, o en la Orden de
+cada Tramo, con su cliente.
+
 5.6.3 El lado de la compra
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -73,7 +82,10 @@ viajes**, que agrupan todo lo pendiente de resolver. Los motivos son una tarifa 
 vigente en la fecha administrativa, una zona que no se resuelve para alguna dirección, un
 trayecto entre zonas sin precio en la tarifa, ninguna línea cuyas condiciones (Planning, tipos,
 categoría de vehículo, contacto) coincidan con la operación, una magnitud fuera de los rangos
-de los detalles, una Orden de compra bloqueada o una parametrización incompleta.
+de los detalles, una Orden de compra bloqueada o una parametrización incompleta. En las líneas
+por línea de mercancía hay dos motivos más: un detalle que filtra por tipos de bulto y una línea
+de mercancía sin tipo de bulto, y una Tarifa base de kilómetros u horas en un ámbito de línea,
+que no se admite.
 
 Dos botones ayudan a resolverlo sin salir del registro. **Resolver diagnóstico** lleva al campo
 o al registro que hay que corregir según el motivo. **Crear trayecto faltante** abre un

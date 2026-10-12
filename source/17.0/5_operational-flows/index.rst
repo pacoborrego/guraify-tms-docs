@@ -31,10 +31,10 @@ recalculando el precio de venta y el coste de compra cada vez que algo cambia; s
        TAR["Tarificación"] -.-> ORD
        TAR -.-> TR
 
-Las siete primeras secciones siguen ese recorrido. La última, :doc:`5_8_kpi-indicators`, no es
-un paso del flujo: describe los indicadores visuales con los que las listas de Órdenes y de
-Paradas resumen la situación de cada registro, y sirve de ayuda para leer cualquiera de los
-pasos anteriores.
+Las siete primeras secciones siguen ese recorrido. Las dos últimas no son pasos del flujo:
+:doc:`5_8_kpi-indicators` describe los indicadores visuales con los que las listas de Órdenes y
+de Paradas resumen la situación de cada registro, y :doc:`5_9_labels`, las etiquetas de los
+Bultos, que se generan e imprimen en varios de los pasos anteriores.
 
 .. toctree::
    :maxdepth: 2
@@ -47,3 +47,4 @@ pasos anteriores.
    5_6_settlement
    5_7_invoicing
    5_8_kpi-indicators
+   5_9_labels

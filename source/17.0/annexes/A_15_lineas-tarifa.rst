@@ -36,7 +36,8 @@ La Línea de tarifa (``tms.pricelist.item.zone``) fija las condiciones de aplica
      - Qué magnitud se mide para aplicar los detalles.
    * - Aplicar
      - Selección
-     - Sobre qué se calcula: Orden, Tramo, Parada o Viaje. Obligatorio.
+     - Sobre qué se calcula: Orden, Tramo, Parada, Viaje, Línea de orden o Línea de viaje.
+       Obligatorio. Los dos de línea no admiten una Tarifa base de distancia ni de tiempo.
    * - Producto
      - Relación con Producto (TMS)
      - El producto con el que se crea la línea de venta o de compra. Obligatorio.
@@ -101,6 +102,10 @@ El detalle (``tms.pricelist.item.zone.detail``) es el importe concreto.
    * - Tipo Vehículo
      - Lista de Categorías de vehículo
      - Restringe el detalle a unas categorías de vehículo.
+   * - Tipos de bulto
+     - Relación con Regla de tarifa
+     - Solo con Aplicar en Línea de orden o Línea de viaje: a qué tipos de bulto aplica el detalle.
+       Vacío, a cualquiera.
    * - Clientes / Transportistas
      - Listas de Contactos
      - Restringe el detalle a unos clientes o transportistas concretos.

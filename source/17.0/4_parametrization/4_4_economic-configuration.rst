@@ -146,8 +146,8 @@ y una Tarifa caducada se puede ocultar sin perder el histórico. Campos en
 La :term:`Línea de tarifa` (``tms.pricelist.item.zone``) tiene dos niveles: la línea dice
 **cuándo** aplica un precio (sobre qué ámbito y con qué condiciones) y sus detalles dicen
 **cuánto** (el importe por zonas y rango). La línea vive dentro de una versión de la Tarifa.
-Con esta separación, una misma Tarifa puede tener líneas por Orden, por Tramo, por Parada y
-por Viaje, cada una con sus condiciones.
+Con esta separación, una misma Tarifa puede tener líneas por Orden, por Tramo, por Parada, por
+Viaje y por línea de mercancía, cada una con sus condiciones.
 
 Lo que se decide en la **línea**:
 
@@ -158,8 +158,12 @@ Lo que se decide en la **línea**:
    * - Decisión
      - Efecto
    * - Aplicar en
-     - Sobre qué se calcula: la Orden completa, cada Tramo, cada Parada o el Viaje. Determina de
-       dónde salen las magnitudes y dónde nace la línea económica.
+     - Sobre qué se calcula: la Orden completa, cada Tramo, cada Parada, el Viaje, o **cada
+       línea de mercancía**, vista desde la Orden (**Línea de orden**) o desde el Viaje (**Línea
+       de viaje**). Determina de dónde salen las magnitudes y dónde nace la línea económica.
+       Los cuatro primeros tarifican magnitudes agregadas (los kilos de la Orden, las Paradas
+       del Viaje); los dos de línea miran cada línea de mercancía por separado, con su tipo de
+       bulto y su cantidad, y por eso no admiten una Tarifa base de kilómetros ni de horas.
    * - Tarifa base
      - Qué magnitud se mide para elegir el detalle.
    * - Producto
@@ -197,14 +201,37 @@ Lo que se decide en cada **detalle**:
      - El importe no baja del mínimo ni sube del máximo, sea cual sea la magnitud.
    * - Categorías de vehículo, clientes, transportistas
      - Restringen el detalle a unos vehículos o a unos contactos concretos.
+   * - Tipos de bulto
+     - En las líneas por línea de mercancía: a qué :term:`tipos de bulto <Tipo de bulto>` aplica
+       el detalle (palé, caja, europalé…). Vacío es cualquiera; una fila puede cubrir varios.
 
 Al tarificar, el motor selecciona las líneas del ámbito que calcula, las filtra por las
 condiciones, mide la magnitud con la Tarifa base y aplica el detalle cuyo rango la incluye,
-ajustado al mínimo y al máximo. Cada línea económica generada conserva la Tarifa, la línea, el
+ajustado al mínimo y al máximo. Cuando entra un tope, la línea económica se colapsa a **una
+unidad por el importe topado**, conservando el precio de tarifa y la magnitud medida para
+auditarla; una Tarifa configurada solo con mínimo (precio unitario a cero) cobra ese mínimo.
+
+**Precio por tipo de bulto.** «3 € por palé y 1,50 € por caja en la misma Orden» son **dos
+líneas** con *Aplicar en* = Línea de orden: la magnitud que se mide la fija la Tarifa base, así
+que una base de palés no tarifica una línea de cajas (factor cero, sin importe). Cada línea
+lleva su detalle filtrado por los tipos de bulto que le tocan y un precio unitario; la
+cantidad que multiplica es la **unidad del tipo de bulto** (cinco cajas de vino son cinco
+bultos, aunque la línea cuente en cajas y no en «cantidad»). Un precio fijo por cada línea de
+mercancía, sea del tipo que sea, es una línea con la Tarifa base «otra», que siempre cuenta
+uno. Desde el Viaje, *Línea de viaje* hace lo mismo con las líneas de todos sus Tramos, en la
+tarifa de compra del transportista y en la de venta; la zona que filtra es la de la Parada
+activa, no la del Tramo. Cada línea económica generada conserva la Tarifa, la línea, el
 detalle, la zona y el producto de los que salió, lo que permite auditarla. Cuando ninguna línea
 encaja, el :term:`diagnóstico de tarifa <Diagnóstico de tarifa>` dice por qué (ver
 :doc:`/17.0/5_operational-flows/5_6_settlement`). Campos en
 :doc:`/17.0/annexes/A_15_lineas-tarifa`.
+
+.. CAPTURA: 4_4_05 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_4_economic-configuration_05_linea-por-bulto.png
+      :alt: Línea de tarifa con Aplicar en = Línea de orden y detalle filtrado por tipo de bulto
+
+      Una línea por línea de mercancía: Aplicar en «Línea de orden» y el detalle con sus tipos
+      de bulto.
 
 4.4.5 Productos
 ~~~~~~~~~~~~~~~

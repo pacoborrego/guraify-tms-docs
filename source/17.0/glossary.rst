@@ -32,8 +32,19 @@ para quien lo necesite.
 
    Bulto
       Unidad física de carga identificada con una etiqueta escaneable. Una Orden puede tener varios
-      bultos; la app del conductor los escanea en carga y en entrega. (No se dice *paquete*,
-      *parcel* ni *pack*.) Modelo ``tms.shipment.pack``.
+      bultos; la app del conductor los escanea en carga y en entrega, y lo que no se escanea se
+      registra desde la oficina con **Registrar trazabilidad** (capítulo 5.4.3). (No se dice
+      *paquete*, *parcel* ni *pack*.) Modelo ``tms.shipment.pack``.
+
+   Etiqueta
+      Documento que identifica un Bulto con su código de barras y los datos de la entrega, en
+      10 × 6 o 10 × 15 cm, en PDF o en ZPL para etiquetadora. Se genera al pedirla y se guarda con
+      el Bulto; **Generar etiquetas** la imprime desde el Viaje, el Manifiesto, la Orden, el Tramo,
+      la Parada o el Bulto (capítulo 5.9). (No se dice *label*.)
+
+   Entrega parcial
+      Cierre de un Tramo como Completado con Bultos que nadie ha reportado: el sistema lo deja Con
+      reservas con el motivo automático A17 «No se han entregado todos los bultos». Capítulo 5.4.3.
 
    Cálculo de ruta
       Enriquecimiento de un Viaje con la red viaria de PTV: trazado, distancia, duración y, por
@@ -145,8 +156,9 @@ para quien lo necesite.
 
    Línea de tarifa
       Elemento de una :term:`Tarifa` que dice **cuándo** aplica un precio (ámbito: Orden, Tramo,
-      Parada o Viaje; tipo de servicio) y cuyos **detalles** fijan el importe por :term:`Zona de
-      tarifa`, rango y tipo de vehículo. (No se dice *regla de tarifa*, que es otra cosa.) Modelo
+      Parada, Viaje o cada línea de mercancía, desde la Orden o desde el Viaje; tipo de servicio)
+      y cuyos **detalles** fijan el importe por :term:`Zona de tarifa`, rango, tipo de vehículo y,
+      en las líneas de mercancía, tipo de bulto. (No se dice *regla de tarifa*, que es otra cosa.) Modelo
       ``tms.pricelist.item.zone`` y su detalle ``tms.pricelist.item.zone.detail``.
 
    Liquidación

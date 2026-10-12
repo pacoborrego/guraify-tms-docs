@@ -66,8 +66,26 @@ grandes. El Manifiesto recorre cuatro estados:
 coincide con el de la Definición de fichero y, con **Validar e importar**, lo deja en cola: el
 Manifiesto pasa a *En cola de espera* y la tarea programada lo importará en su siguiente
 pasada. Quien no quiera esperar pulsa **Importar Fichero Ahora** en la cabecera del Manifiesto,
-que solo aparece mientras está en cola: es el botón que salta la cola y valida e importa el
-fichero en el acto.
+que solo aparece mientras está en cola: es el botón que despierta a la tarea programada para
+que lo recoja en segundos, sin retener la pantalla.
+
+Cada fichero se importa **en su propia transacción**: si uno falla (una regla de transformación
+que no puede leer una columna, por ejemplo), queda en estado **Error**, en rojo en la lista de
+ficheros y con el motivo en su registro de validación, y la cola sigue con el siguiente. Un
+fichero en Error **no se reintenta solo**, a propósito: repetirlo cada cinco minutos sería
+repetir el error. Corregido el dato, se vuelve a encolar desde el botón. Los botones, además,
+avisan: si el Manifiesto no tiene fichero, si todo estaba ya encolado (y vuelven a despertar a
+la tarea), y **se niegan a encolar si la tarea programada está apagada**, porque entonces nada
+lo recogería. El botón **Registros API** del Manifiesto reúne en una sola lista los registros de
+actividad que explican qué le pasó: el de cada fichero importado, los del propio Manifiesto y
+los de sus Órdenes (el envío a la agencia o al cliente se registra por Orden); la etiqueta del
+botón sale en rojo cuando alguno está en error.
+
+.. CAPTURA: 3_2_3_03 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/3_functional-architecture/3_2_3_manifests_03_fichero-error.png
+      :alt: Lista de ficheros de un Manifiesto con uno en estado Error
+
+      Un fichero en Error: la cola ha seguido con los demás y el motivo está en su registro.
 
 **Cierre.** Cuando el Manifiesto ya tiene órdenes, aparece **Cerrar Manifiesto**, que también
 lo encola. Al cerrarse, su contenido se materializa en la estructura operativa: Órdenes, Tramos
@@ -110,6 +128,18 @@ de estos criterios:
 
 El botón inteligente **Normalizar** lleva directamente a la lista de estos contactos; una vez
 corregidos (coordenadas válidas y, en su caso, horarios), el Manifiesto ya puede cerrarse.
+
+**Cómo se elige el contacto.** Antes de normalizar nada, la importación tiene que decidir a qué
+contacto corresponde cada dirección de carga o descarga del fichero, y una dirección identifica
+un sitio, no a una persona: en la misma nave pueden trabajar varias. Los candidatos salen de la
+**dirección normalizada** (sin tildes, sin mayúsculas ni espacios de más, comparada con el
+código postal cuando viene) y, entre ellos, gana el que **se llama como dice el fichero**. Si
+nadie se llama así, el sistema **crea el contacto** con esa dirección y ese nombre, en vez de
+atribuir el Tramo a un compañero con más historial; si el fichero no trae nombre, gana el de más
+historial, como antes. El nombre se compara entero: «Marta Ruiz» y «Marta Ruiz García» son dos
+contactos, y una errata también; es el precio de no entregar a la persona equivocada. Cuando
+la Definición de fichero trabaja con clave de dirección (AddressKey), no se crean contactos: se
+prefiere el que coincide en nombre y, si ninguno coincide, el de más historial.
 
 .. figure:: /_static/img/3_functional-architecture/3_2_3_manifests_01_manifiesto.png
    :alt: Formulario de un Manifiesto con su estado

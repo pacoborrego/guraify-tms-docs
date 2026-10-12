@@ -76,5 +76,6 @@ Lo que pasa por debajo sin que nadie lo pida
 - **Trazabilidad** de cada evento, con quién lo hizo y desde dónde.
 - **Indicadores KPI** en las listas de Órdenes y Paradas: estado, puntualidad, si hay
   factura, si falta la prueba de entrega (POD).
-- **Documentos**: etiquetas de Bultos, hoja de carga del Viaje («Manifiesto de transporte» en
-  la interfaz), detalle de la Orden y POD, generados desde el propio registro.
+- **Documentos**: etiquetas de Bultos (en PDF o para etiquetadora, desde el Viaje, el
+  Manifiesto o la Orden), hoja de ruta del Viaje («Manifiesto de transporte» en la interfaz),
+  detalle de la Orden y POD, generados desde el propio registro.
