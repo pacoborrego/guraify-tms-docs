@@ -980,6 +980,464 @@
      false
     ]
    ]
+  },
+  {
+   "id": "3_2_2_02",
+   "file": "3_2_2_trips_02_viajes-por-validar.png",
+   "folder": "3_functional-architecture",
+   "instance": "agent",
+   "action": "tms.tms_trip_to_validate_action",
+   "view": "list",
+   "manual": "Hace falta un Proyecto con «Los viajes requieren validación» y un Viaje suyo cerrado después. En la base no hay ninguno: activar el interruptor en un Proyecto y cerrar un Viaje desde Establecer evento (NO despachar en bases Etransport: los endpoints son reales).",
+   "note": "Lista Tráfico › Viajes por validar, con uno en rojo (más de tres días) si es posible"
+  },
+  {
+   "id": "3_2_2_03",
+   "file": "3_2_2_trips_03_revision.png",
+   "folder": "3_functional-architecture",
+   "instance": "agent",
+   "action": "tms.tms_trip_action",
+   "model": "tms.trip",
+   "view": "form",
+   "domain": [
+    [
+     "state",
+     "=",
+     "to_validate"
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "Review"
+    }
+   ],
+   "manual": "Mismo requisito que 3_2_2_02.",
+   "note": "Pestaña Revisión de un Viaje por validar"
+  },
+  {
+   "id": "3_2_3_03",
+   "file": "3_2_3_manifests_03_fichero-error.png",
+   "folder": "3_functional-architecture",
+   "instance": "agent",
+   "action": "tms.edi_manifest_action",
+   "model": "tms.edi.manifest",
+   "view": "form",
+   "domain": [
+    [
+     "file_wizard_ids.state",
+     "=",
+     "error"
+    ]
+   ],
+   "steps": [
+    {
+     "smart": "Files"
+    }
+   ],
+   "manual": "Comprobar que la lista de ficheros enseña el estado Error en rojo; si el botón inteligente se llama distinto, abrir la lista de ficheros a mano.",
+   "note": "Ficheros de un Manifiesto con uno en Error (hay uno en la base: wizard 4994)"
+  },
+  {
+   "id": "3_2_6_02",
+   "file": "3_2_6_legs-and-stops_02_envios-agencia.png",
+   "folder": "3_functional-architecture",
+   "instance": "agent",
+   "action": "tms_int.tms_agency_transfer_snapshot_action",
+   "view": "list",
+   "note": "Envíos a agencia (Agency Hand-overs): 501 filas en la base"
+  },
+  {
+   "id": "4_3_07",
+   "file": "4_3_planning-configuration_07_presets.png",
+   "folder": "4_parametrization",
+   "instance": "agent",
+   "action": "tms.tms_ptv_preset_action",
+   "view": "list",
+   "note": "Los cuatro presets de serie"
+  },
+  {
+   "id": "4_3_08",
+   "file": "4_3_planning-configuration_08_zbe.png",
+   "folder": "4_parametrization",
+   "instance": "agent",
+   "action": "tms.area_action",
+   "model": "tms.area",
+   "view": "form",
+   "domain": [
+    [
+     "type",
+     "=",
+     "low_emission"
+    ]
+   ],
+   "map": true,
+   "note": "Un área Bajas emisiones (PTV07-ZBE C o ECO) con su distintivo mínimo"
+  },
+  {
+   "id": "4_4_05",
+   "file": "4_4_economic-configuration_05_linea-por-bulto.png",
+   "folder": "4_parametrization",
+   "instance": "agent",
+   "action": "tms.pricelist_item_zone_action",
+   "model": "tms.pricelist.item.zone",
+   "view": "form",
+   "domain": [
+    [
+     "apply_on",
+     "in",
+     [
+      "shipment_line",
+      "trip_line"
+     ]
+    ]
+   ],
+   "note": "La línea de tarifa de prueba de Paco (tarifa 158) con Aplicar en = Línea de orden"
+  },
+  {
+   "id": "5_2_02",
+   "file": "5_2_trip-generation_02_asignar-nuevo.png",
+   "folder": "5_operational-flows",
+   "instance": "agent",
+   "action": "tms.shipment_action",
+   "view": "list",
+   "steps": [
+    {
+     "click": ".o_list_view .o_data_row .o_list_record_selector input >> nth=0"
+    },
+    {
+     "click": ".o_list_view .o_data_row .o_list_record_selector input >> nth=1"
+    },
+    {
+     "button": "Assign"
+    },
+    {
+     "wait": 2500
+    }
+   ],
+   "clip": "modal",
+   "map": true,
+   "manual": "Antes de capturar, filtrar la lista de Órdenes a validadas sin Viaje (p. ej. las PTV10- o cualquiera con Parada sin planificar) y comprobar que el asistente abre en modo Nuevo con el mapa.",
+   "note": "Asistente Asignar en modo Nuevo"
+  },
+  {
+   "id": "5_2_03",
+   "file": "5_2_trip-generation_03_asignar-existente.png",
+   "folder": "5_operational-flows",
+   "instance": "agent",
+   "action": "tms.shipment_action",
+   "view": "list",
+   "steps": [
+    {
+     "click": ".o_list_view .o_data_row .o_list_record_selector input >> nth=0"
+    },
+    {
+     "click": ".o_list_view .o_data_row .o_list_record_selector input >> nth=1"
+    },
+    {
+     "button": "Assign"
+    },
+    {
+     "wait": 2500
+    },
+    {
+     "click": ".modal span:has-text('Existing')"
+    },
+    {
+     "wait": 3000
+    }
+   ],
+   "clip": "modal",
+   "map": true,
+   "manual": "Mismo filtro que 5_2_02. Pulsar una ruta del mapa para que salga la ficha del Viaje antes de capturar, si el guion no lo consigue.",
+   "note": "Modo Existente con los Viajes de esas fechas en el mapa"
+  },
+  {
+   "id": "5_2_04",
+   "file": "5_2_trip-generation_04_paradas-sin-hub.png",
+   "folder": "5_operational-flows",
+   "instance": "agent",
+   "action": "tms.shipment_action",
+   "view": "list",
+   "steps": [
+    {
+     "click": ".o_list_view .o_data_row .o_list_record_selector input >> nth=0"
+    },
+    {
+     "click": ".o_list_view .o_data_row .o_list_record_selector input >> nth=1"
+    },
+    {
+     "button": "Assign"
+    },
+    {
+     "wait": 2500
+    },
+    {
+     "button": "Execute"
+    }
+   ],
+   "clip": "modal",
+   "manual": "Hace falta una Orden cuya Parada no tenga hub; quitárselo a mano antes. Si el asistente ejecuta sin preguntar, no hay captura.",
+   "note": "Diálogo Paradas sin hub"
+  },
+  {
+   "id": "5_2_05",
+   "file": "5_2_trip-generation_05_asignar-optimizacion.png",
+   "folder": "5_operational-flows",
+   "instance": "agent",
+   "action": "tms.shipment_action",
+   "view": "list",
+   "steps": [
+    {
+     "click": ".o_list_view .o_data_row .o_list_record_selector input >> nth=0"
+    },
+    {
+     "click": ".o_list_view .o_data_row .o_list_record_selector input >> nth=1"
+    },
+    {
+     "button": "Assign"
+    },
+    {
+     "wait": 2500
+    },
+    {
+     "click": ".modal span:has-text('Optimization')"
+    },
+    {
+     "wait": 2000
+    }
+   ],
+   "clip": "modal",
+   "map": true,
+   "manual": "Mismo filtro que 5_2_02. Que se vean las categorías de vehículo y el bloque del preset.",
+   "note": "Modo Optimización"
+  },
+  {
+   "id": "5_2_06",
+   "file": "5_2_trip-generation_06_secuenciar.png",
+   "folder": "5_operational-flows",
+   "instance": "agent",
+   "action": "tms.tms_trip_action",
+   "model": "tms.trip",
+   "view": "form",
+   "domain": [
+    [
+     "state",
+     "=",
+     "in_process"
+    ],
+    [
+     "stop_count",
+     ">",
+     3
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "Stops"
+    },
+    {
+     "button": "Sequence Trip"
+    }
+   ],
+   "clip": "modal",
+   "note": "El diálogo Secuenciar viajes (no pulsar Secuenciar: llama a PTV)"
+  },
+  {
+   "id": "5_2_07",
+   "file": "5_2_trip-generation_07_aplicar-plan.png",
+   "folder": "5_operational-flows",
+   "instance": "agent",
+   "manual": "A mano: lanzar una Optimización desde el asistente sobre unas Paradas de prueba (consume PTV), esperar a que el diálogo diga que el plan está listo y capturar el diálogo con Aplicar plan antes de pulsarlo. Después, Revertir o cerrar sin aplicar.",
+   "note": "Diálogo de progreso con el plan listo"
+  },
+  {
+   "id": "5_2_08",
+   "file": "5_2_trip-generation_08_encontrar-ruta.png",
+   "folder": "5_operational-flows",
+   "instance": "agent",
+   "action": "tms.shipment_action",
+   "view": "list",
+   "steps": [
+    {
+     "click": ".o_list_view .o_data_row .o_list_record_selector input >> nth=0"
+    },
+    {
+     "click": ".o_cp_action_menus button"
+    },
+    {
+     "click": "text=Find Route"
+    },
+    {
+     "wait": 2000
+    }
+   ],
+   "clip": "modal",
+   "manual": "Mismo filtro que 5_2_02. El menú Acción se abre con el engranaje; si el guion no lo encuentra, abrirlo a mano.",
+   "note": "El asistente Encontrar ruta"
+  },
+  {
+   "id": "5_2_09",
+   "file": "5_2_trip-generation_09_candidatas.png",
+   "folder": "5_operational-flows",
+   "instance": "agent",
+   "action": "tms.tms_find_route_action",
+   "model": "tms.find.route",
+   "view": "form",
+   "domain": [
+    [
+     "state",
+     "in",
+     [
+      "ready",
+      "applied",
+      "partial"
+     ]
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "Candidates"
+    }
+   ],
+   "manual": "Hace falta una ejecución de Encontrar ruta con propuesta (consume PTV: lanzar una desde 5_2_08 y esperar). Hoy no hay ninguna en la base.",
+   "note": "Ejecución en Propuesta lista, pestaña Candidatas"
+  },
+  {
+   "id": "5_4_02",
+   "file": "5_4_app-execution_02_despacho.png",
+   "folder": "5_operational-flows",
+   "instance": "etransport",
+   "action": "tms.tms_trip_action",
+   "model": "tms.trip",
+   "view": "form",
+   "domain": [
+    [
+     "dispatch_date",
+     "!=",
+     false
+    ]
+   ],
+   "manual": "Solo cuando la demo tenga el despacho (P8) desplegado y un Viaje despachado. NO despachar en las bases Etransport locales: los endpoints de Axylog, MENSOS y SEUR son reales.",
+   "note": "Viaje despachado: botón Reenviar y grupo Despacho"
+  },
+  {
+   "id": "5_4_03",
+   "file": "5_4_app-execution_03_registrar-trazabilidad.png",
+   "folder": "5_operational-flows",
+   "instance": "agent",
+   "action": "tms.pack_action_tree",
+   "model": "tms.shipment.pack",
+   "view": "form",
+   "steps": [
+    {
+     "button": "Register Traceability"
+    },
+    {
+     "wait": 1500
+    }
+   ],
+   "clip": "modal",
+   "note": "El asistente Registrar trazabilidad de un Bulto"
+  },
+  {
+   "id": "5_9_01",
+   "file": "5_9_labels_01_generar-etiquetas.png",
+   "folder": "5_operational-flows",
+   "instance": "agent",
+   "action": "tms.tms_trip_action",
+   "model": "tms.trip",
+   "view": "form",
+   "domain": [
+    [
+     "state",
+     "in",
+     [
+      "in_process",
+      "processed",
+      "running"
+     ]
+    ],
+    [
+     "stop_count",
+     ">",
+     3
+    ]
+   ],
+   "steps": [
+    {
+     "click": ".o_cp_action_menus button"
+    },
+    {
+     "click": "text=Generar etiquetas"
+    },
+    {
+     "wait": 2000
+    }
+   ],
+   "clip": "modal",
+   "manual": "Si el menú Acción tiene dos entradas parecidas, es la de «(wizard)». No pulsar Generar: basta el asistente.",
+   "note": "Generar etiquetas desde un Viaje"
+  },
+  {
+   "id": "9_2_01",
+   "file": "9_2_configuration_01_ficha-proyecto.png",
+   "folder": "9_deca",
+   "instance": "deca",
+   "action": "tms.project_tms_action",
+   "model": "project.project",
+   "view": "form",
+   "domain": [
+    [
+     "deca_enabled",
+     "=",
+     true
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "DeCA"
+    }
+   ],
+   "manual": "Con un usuario Responsable DeCA. Si ningún Proyecto tiene DeCA por proyecto, activarlo en uno de paquetería antes.",
+   "note": "Pestaña DeCA de un Proyecto"
+  },
+  {
+   "id": "9_4_01",
+   "file": "9_4_lifecycle_01_documentos.png",
+   "folder": "9_deca",
+   "instance": "deca",
+   "action": "tms_deca.tms_deca_document_action",
+   "view": "list",
+   "manual": "Que haya documentos emitidos; si no, emitir uno desde un Viaje de prueba con Emitir DeCA del viaje (no despachar).",
+   "note": "Lista Documentos DeCA"
+  },
+  {
+   "id": "9_4_02",
+   "file": "9_4_lifecycle_02_documento-emitido.png",
+   "folder": "9_deca",
+   "instance": "deca",
+   "action": "tms_deca.tms_deca_document_action",
+   "model": "tms.deca.document",
+   "view": "form",
+   "domain": [
+    [
+     "state",
+     "in",
+     [
+      "issued",
+      "modified"
+     ]
+    ]
+   ],
+   "note": "Un DeCA emitido con su URL y sus botones"
+  },
+  {
+   "id": "9_5_01",
+   "file": "9_5_outputs_01_pdf.png",
+   "folder": "9_deca",
+   "instance": "deca",
+   "manual": "A mano: Descargar PDF de un DeCA emitido y capturar la primera página en el visor de PDF (recortar al documento).",
+   "note": "El PDF emitido con su QR"
   }
  ]
 }

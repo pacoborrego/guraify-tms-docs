@@ -8,6 +8,15 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Capturas de la segunda ronda (tarea D23, 2026-10-12)
+- `tools/capturas/manifest.json` gana las 22 capturas nuevas de D18–D22 (87 en total) y
+  `instances.json` dos instancias locales: `agent` (`Etransport_260908_agent`: asistente Asignar,
+  presets, ZBE, Secuenciar, Encontrar ruta, Envíos a agencia, fichero en error, Registrar
+  trazabilidad, Generar etiquetas) y `deca` (cap. 9). La captura de la ZBE pasa a `4_3_08` (el
+  `4_3_06` ya era Horas de conducción). Doce entradas llevan preparación a mano, anotada en el
+  propio manifiesto y en `CAPTURAS_PENDIENTES.md`; ninguna despacha ni envía por API en las bases
+  Etransport. Pendiente de ejecutar.
+
 ### Capítulo 9 DeCA (tarea D22, 2026-10-12)
 - Capítulo nuevo del Manual de implantación para el módulo `tms_deca` (`source/17.0/9_deca/`, seis
   páginas + index con mermaid): 9.1 qué es y a quién obliga (las ocho letras y de dónde sale cada

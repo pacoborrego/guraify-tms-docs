@@ -31,9 +31,16 @@ anonimización sigue siendo un paso aparte, porque las capturas salen de producc
   diálogo; `map: true` espera a las teselas; `deferred: true` marca las antiguas aplazadas;
   `manual` avisa de que hay que revisar el resultado.
 - `instances.json` (copiar de `instances.example.json`, no se sube): dirección de cada Odoo.
-  `etransport` es la producción de e-transport (caps. 3, 4, 5, 7 y 8); `ludamany` es donde están
-  `tms_resources` y `tms_maintenance` (cap. 6): la copia local `ludamany_260904` en
-  `http://localhost:8017` con Odoo arrancado, o la producción de Ludamany.
+  `etransport` es la demo de Guraify (caps. 3, 4, 5, 7 y 8; datos inventados); `produccion` es
+  e-transport (las cuatro que solo existen allí); `ludamany` es donde están `tms_resources` y
+  `tms_maintenance` (cap. 6); `agent` es la copia local `Etransport_260908_agent` en
+  `http://localhost:8017` (asistente Asignar, línea PTV, Encontrar ruta, Envíos a agencia,
+  fichero en error) y `deca` la copia local con `tms_deca` instalado (cap. 9). Las dos locales
+  las sirve el mismo Odoo (`--db_port=5432`): se elige la base al iniciar sesión con `--login`, y
+  la sesión se guarda por instancia. **Llevan datos reales**: sus capturas pasan por María.
+- **En las bases `Etransport_*` no se pulsa Despachar ni Enviar por API**: los endpoints de
+  Axylog, MENSOS y SEUR son los reales. Los guiones de esta ronda no lo hacen; las entradas
+  marcadas «revisar a mano» dicen qué preparar antes (un filtro, un Proyecto con validación…).
 - Tamaño: ventana de 1600 × 1000 px, que es lo que pide la guía; las capturas son de la ventana
   de Odoo, sin navegador ni barra de tareas.
 
