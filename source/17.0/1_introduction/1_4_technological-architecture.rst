@@ -64,6 +64,10 @@ Guraify TMS se distribuye como un conjunto de módulos, uno o varios por área f
    * - Gestión de recursos
      - ``tms_resources``, ``tms_maintenance``
      - Sobre Flota y Mantenimiento de Odoo
+   * - Documento de control (DeCA)
+     - ``tms_deca``
+     - Solo para quien opera en España; necesita ``tms_branding`` (ver
+       :doc:`/17.0/9_deca/index`)
    * - Entorno de demostración
      - ``tms_demo_config``, ``tms_demo_master``
      - Solo para demos y pilotos

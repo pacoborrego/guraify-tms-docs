@@ -8,6 +8,21 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Capítulo 9 DeCA (tarea D22, 2026-10-12)
+- Capítulo nuevo del Manual de implantación para el módulo `tms_deca` (`source/17.0/9_deca/`, seis
+  páginas + index con mermaid): 9.1 qué es y a quién obliga (las ocho letras y de dónde sale cada
+  una; el Tramo es la carta de porte; Usuario y Responsable DeCA), 9.2 configuración (compañía,
+  ficha DeCA del Proyecto, la regla automática con sus cuatro casos), 9.3 obligación y exenciones
+  (el orden del motor, la paquetería según el Ministerio, qué pasa al cambiar la configuración),
+  9.4 el documento y su ciclo de vida (cómo nace, emitir, estados con mermaid, revisar, anular,
+  emitir nuevo desde este, el DeCA sigue a su Viaje, vehículo ajeno), 9.5 salidas (PDF inmutable,
+  URL pública, envío por correo y webhook, lo que añade a la hoja de ruta), 9.6 operación diaria y
+  despliegue (menús, tareas programadas, lo que tiene que haber en el servidor, referencia
+  técnica). Verificado contra el código y `tms/handoff/tms_deca.md`.
+- Anexo **A.30 DeCA** (ajustes de la compañía, ficha del Proyecto, documento y líneas). Glosario:
+  *DeCA*, *Cargador contractual*, *Transportista efectivo*. Bloque «Documento de control (DeCA)» en
+  0.4. Cuatro capturas para María.
+
 ### Ingesta, tarifa por línea, bultos y etiquetas (tarea D21, 2026-10-12)
 - **3.2.3.3**: el fichero en estado Error (motivo, en rojo, no para la cola, no se reintenta solo),
   los botones que avisan y se niegan con la tarea programada apagada, el botón Registros API.

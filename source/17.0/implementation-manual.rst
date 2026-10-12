@@ -25,4 +25,5 @@ pantalla, para consultarlo cuando haga falta.
    5_operational-flows/index
    6_resources/index
    8_economic-administration/index
+   9_deca/index
    annexes/index

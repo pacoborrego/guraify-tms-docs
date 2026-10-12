@@ -79,6 +79,15 @@ detección de lecturas anómalas; y mantenimiento preventivo de flota por kilóm
 tiempo, con sus órdenes de trabajo, sus etapas y su calendario, sobre el módulo de
 mantenimiento de Odoo.
 
+Documento de control (DeCA)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+El documento electrónico de control administrativo que exige el transporte de mercancías por
+carretera en España desde octubre de 2026, emitido por el propio TMS a partir de lo que el Tramo
+y el Viaje ya saben: se decide qué envíos están obligados y cuáles exentos, se emite al despachar
+el Viaje como PDF con un código QR que el inspector descarga sin credenciales, se envía al
+transportista o al cliente, y se conserva cada versión el tiempo que la norma manda.
+
 Marca blanca y multiempresa
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

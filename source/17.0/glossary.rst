@@ -114,6 +114,21 @@ para quien lo necesite.
       dice *traslado*, *transferencia* ni *drag*; «transferencia hub» solo para nombrar la casilla
       de la interfaz.)
 
+   DeCA
+      Documento electrónico de control administrativo del transporte público de mercancías por
+      carretera en España (Orden FOM/2861/2012; electrónico desde el 5-oct-2026). En el TMS lo
+      emite el módulo DeCA a partir del Tramo (la carta de porte) y su Viaje: un PDF con QR a una
+      URL pública, con sus revisiones y su retención. Capítulo 9. Modelo ``tms.deca.document``.
+
+   Cargador contractual
+      Quien contrata el transporte y figura en la letra a) del DeCA: la propia compañía cuando
+      subcontrata, el operador logístico o el cliente cuando transporta con flota propia. Lo fija
+      la ficha DeCA del Proyecto o la regla automática. Capítulo 9.2.
+
+   Transportista efectivo
+      Quien ejecuta el transporte y figura en la letra b) del DeCA: el transportista del Viaje o
+      la propia compañía (flota propia). Capítulo 9.2.
+
    Despacho
       Envío de las instrucciones de un Viaje a quien lo va a ejecutar: la app del conductor, la
       agencia por API o el sistema de seguimiento externo. Es el único paso que deja Viaje,

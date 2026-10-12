@@ -215,6 +215,17 @@ repetir, marcadas **Repetir (15/09)** con el motivo en su fila.
 | ⬜ | `6_6_outputs.rst` | `6_6_outputs_03_rankings.png` | Asistente Rankings de objetivos con el texto generado. | Gestión de Recursos › Mantenimiento › Rankings de objetivos |
 | ⬜ | `6_7_kpis.rst` | `6_7_kpis_01_indicadores.png` | Lista de Indicadores de mantenimiento con sus valores. | Gestión de Recursos › Mantenimiento › Indicadores |
 
+## DeCA (cap. 9)
+
+> Carpeta: `source/_static/img/9_deca/`. Se capturan contra `Etransport_260908_deca` (local, Odoo en inglés); llevan datos reales: pasan por María.
+
+| Estado | Sección (.rst) | Fichero | Qué se ve (pie de figura) | Ruta en Odoo |
+|---|---|---|---|---|
+| ⬜ | `9_2_configuration.rst` | `9_2_configuration_01_ficha-proyecto.png` | Pestaña **DeCA** de un Proyecto con la ficha activa: cargador, transportista efectivo, disparador, agrupación y envío. | TMS › Operaciones › Proyectos › un Proyecto con DeCA por proyecto › pestaña DeCA (usuario Responsable DeCA) |
+| ⬜ | `9_4_lifecycle.rst` | `9_4_lifecycle_01_documentos.png` | Lista **Documentos** DeCA: referencia, transportista, fecha, estado (alguno emitido, alguno modificado) y URL activa. | TMS › Operaciones › DeCA › Documentos |
+| ⬜ | `9_4_lifecycle.rst` | `9_4_lifecycle_02_documento-emitido.png` | Ficha de un DeCA **emitido**: cargador, transportista, vehículo, líneas, URL pública y los botones Revisar, Anular DeCA y Emitir nuevo desde este. | TMS › Operaciones › DeCA › Documentos › uno emitido |
+| ⬜ | `9_5_outputs.rst` | `9_5_outputs_01_pdf.png` | El **PDF** de un DeCA emitido: datos del transporte, QR, cargador, transportista y las expediciones (primera página, en el visor). | Botón Descargar PDF de un DeCA emitido (a mano, desde el visor de PDF) |
+
 ## Administración y Control Económico (cap. 8)
 
 > Carpeta: `source/_static/img/8_economic-administration/`
