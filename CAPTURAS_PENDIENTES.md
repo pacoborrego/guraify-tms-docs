@@ -59,6 +59,39 @@ ahora, para poder cerrar. María hace solo las ⬜ (45, incluidas las 11 devuelt
 repetir, marcadas **Repetir (15/09)** con el motivo en su fila.
 
 
+## Lote de la segunda ronda (13/10/2026) — para María
+
+19 capturas en `tools/capturas/raw/<carpeta>/`, hechas sobre la copia local `Etransport_260908`:
+**llevan datos reales** (nombres y direcciones de destinatarios, NIF, clientes). Para todas:
+anonimizar, reducir a ~1600 px de ancho (salen de una pantalla retina, 0,5–1,4 MB) y dejarlas con
+el mismo nombre en `source/_static/img/<carpeta>/`. Además, en cada una:
+
+| Fichero | Además |
+|---|---|
+| `3_2_3_manifests_03_fichero-error.png` | recortar al diálogo (sale sobre la pantalla de inicio de Odoo) |
+| `3_2_6_legs-and-stops_02_envios-agencia.png` | — |
+| `4_3_planning-configuration_07_presets.png` | — |
+| `4_3_planning-configuration_08_zbe.png` | quitar el globo «Claude» de abajo a la derecha |
+| `4_4_economic-configuration_05_linea-por-bulto.png` | — |
+| `5_2_trip-generation_02_asignar-nuevo.png` | — |
+| `5_2_trip-generation_03_asignar-existente.png` | quitar el globo «Captura de Pantalla» de abajo |
+| `5_2_trip-generation_04_paradas-sin-hub.png` | quitar el globo «Captura de Pantalla» de abajo |
+| `5_2_trip-generation_05_asignar-optimizacion.png` | quitar el globo «Captura de Pantalla» de abajo |
+| `5_2_trip-generation_06_secuenciar.png` | — |
+| `5_2_trip-generation_07_aplicar-plan.png` | quitar el globo «Captura de Pantalla» de abajo |
+| `5_2_trip-generation_08_encontrar-ruta.png` | quitar el globo «Claude» de abajo |
+| `5_2_trip-generation_09_candidatas.png` | quitar el globo «Captura de Pantalla» de abajo |
+| `5_4_app-execution_03_registrar-trazabilidad.png` | — |
+| `5_9_labels_01_generar-etiquetas.png` | — |
+| `9_2_configuration_01_ficha-proyecto.png` | quitar el globo «Captura de Pantalla» de abajo |
+| `9_4_lifecycle_01_documentos.png` | — |
+| `9_4_lifecycle_02_documento-emitido.png` | — |
+| `9_5_outputs_01_pdf.png` | — |
+
+Quedan fuera de este lote, para la demo cuando tenga P8: `3_2_2_trips_02_viajes-por-validar.png`,
+`3_2_2_trips_03_revision.png` y `5_4_app-execution_02_despacho.png` (cerrar o despachar en la copia
+local llama a los sistemas reales).
+
 ## Conocer Guraify TMS (capa de producto)
 
 > Carpeta: `source/_static/img/0_product-overview/`
@@ -94,7 +127,7 @@ repetir, marcadas **Repetir (15/09)** con el motivo en su fila.
 | ⬜ | `3_2_2_trips.rst` | `3_2_2_trips_03_revision.png` | Pestaña Revisión de un Viaje por validar: validación, rechazo y Órdenes sin prueba de entrega. | TMS › Operaciones › Tráfico › Viajes › pestaña Revisión (Viaje en Por validar) |
 | 🔁 | `3_2_3_manifests.rst` | `3_2_3_manifests_01_manifiesto.png` | Formulario de un Manifiesto con sus estados y botones. | TMS › Operaciones › Tráfico › Manifiestos |
 | ✅ | `3_2_3_manifests.rst` | `3_2_3_manifests_02_botones-inteligentes.png` | Botones inteligentes del Manifiesto: **Paradas**, **Normalizar** (contactos pendientes) y **Ficheros**. | TMS › Operaciones › Tráfico › Manifiestos |
-| ⬜ | `3_2_3_manifests.rst` | `3_2_3_manifests_03_fichero-error.png` | Lista de ficheros de un Manifiesto con uno en estado **Error** (en rojo) y el botón **Registros API** en la cabecera. | TMS › Operaciones › Tráfico › Manifiestos › un Manifiesto con un fichero fallido |
+| ⬜ | `3_2_3_manifests.rst` | `3_2_3_manifests_03_fichero-error.png` | Lista de ficheros importados con uno en estado **Error** (en rojo). | TMS › Operaciones › Tráfico › Manifiestos › botón inteligente Ficheros (o la lista de ficheros importados) |
 | ✅ | `3_2_6_legs-and-stops.rst` | `3_2_6_legs-and-stops_01_parada.png` | Formulario de una Parada con su Tipo de Parada, sus Tramos agrupados y su estado. | TMS › Operaciones › Maestros › Paradas |
 | ⬜ | `3_2_6_legs-and-stops.rst` | `3_2_6_legs-and-stops_02_envios-agencia.png` | Envíos a agencia (Agency Hand-overs): una fila por Parada enviada, con su Viaje, su agencia y su estado (activo / revertido). | TMS › Configuración › EDI › Envíos a agencia |
 | 🔁 | `3_2_4_api-inbox.rst` | `3_2_4_api-inbox_01_inbox.png` | Bandeja de entrada API (tms_int.api.inbox) con sus líneas y estados. | TMS › Operaciones › Tráfico › Bandeja de entrada API |
@@ -129,7 +162,7 @@ repetir, marcadas **Repetir (15/09)** con el motivo en su fila.
 | ✅ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_03_reglas-tarifa.png` | Formulario de una Regla de tarifa (unidad de medida): casillas Bultos/Cantidad/Metros/Pallets, Físico y dimensiones por defecto. | TMS › Configuración › Ajustes › Datos auxiliares › Regla de tarifa |
 | ✅ | `4_2_logistic-configuration.rst` | `4_2_logistic-configuration_04_tipos-bulto.png` | Lista de Tipos de Bulto. | TMS › Configuración › Ajustes › Datos auxiliares › Tipos de Bulto |
 | ✅ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_04_planning.png` | Formulario de un Planning: plan de transporte, tiempos de recogida/entrega y modo de división. | TMS › Configuración › Ajustes › Datos auxiliares › Planificaciones |
-| ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_08_zbe.png` | Área geográfica de tipo **Bajas emisiones**: polígono sobre el mapa, código y **Distintivo DGT mínimo**. | TMS › Configuración › Áreas Geográficas › un área de tipo Bajas emisiones (las `PTV07-` de la base local) |
+| ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_08_zbe.png` | Área geográfica de tipo **Bajas emisiones** (PTV07-ZBE ECO): polígono sobre el mapa, código y **Distintivo DGT mínimo**. | TMS › Configuración › Áreas Geográficas › un área de tipo Bajas emisiones (las `PTV07-` de la base local) |
 | ⬜ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_07_presets.png` | Lista **Presets de optimización** con los cuatro de serie y sus casillas por defecto. | TMS › Configuración › Presets de optimización |
 | ✅ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_05_franjas-horarias.png` | Lista de Franjas Horarias. | TMS › Configuración › Ajustes › Datos auxiliares › Franjas Horarias |
 | ✅ | `4_3_planning-configuration.rst` | `4_3_planning-configuration_06_horas-conduccion.png` | Un perfil de jornada (Horas de Conducción) con sus ajustes para PTV. | TMS › Configuración › Ajustes › Optimización de ruta › Horas de Conducción |
@@ -155,7 +188,7 @@ repetir, marcadas **Repetir (15/09)** con el motivo en su fila.
 | ⬜ | `5_2_trip-generation.rst` | `5_2_trip-generation_06_secuenciar.png` | Diálogo **Secuenciar viajes**: Secuenciar todo, Mantener orden relativo, tolerancia y «Qué se puede violar». | Viaje planificado › botón Secuenciar Viaje |
 | ⬜ | `5_2_trip-generation.rst` | `5_2_trip-generation_07_aplicar-plan.png` | Diálogo de progreso con el plan listo: Paradas por estado de ventana, excluidas y violaciones, y el botón **Aplicar plan**. | Lista de Órdenes › Asignar › Optimización › Ejecutar (esperar a que termine) |
 | ⬜ | `5_2_trip-generation.rst` | `5_2_trip-generation_08_encontrar-ruta.png` | Asistente **Encontrar ruta**: Órdenes, rutas candidatas, Mantener / Romper estructura, preset y lo que se puede violar. | Lista de Órdenes › Acción › Encontrar ruta (datos `PTV10-` de la base local) |
-| ⬜ | `5_2_trip-generation.rst` | `5_2_trip-generation_09_candidatas.png` | Ejecución de Encontrar ruta en **Propuesta lista**, pestaña Candidatas: por Orden, tres rutas con sus diferencias y la mejor marcada. | TMS › Operaciones › Planning › Encontrar ruta › una ejecución |
+| ⬜ | `5_2_trip-generation.rst` | `5_2_trip-generation_09_candidatas.png` | Ejecución de Encontrar ruta en **Propuesta lista**, pestaña Órdenes: por Orden, la ruta elegida con sus diferencias. | TMS › Operaciones › Planning › Encontrar ruta › una ejecución |
 | ⬜ | `5_4_app-execution.rst` | `5_4_app-execution_03_registrar-trazabilidad.png` | Asistente **Registrar trazabilidad** de un Bulto: evento, Parada, fecha, resultado y motivo. | TMS › Operaciones › Maestros › Bultos › un Bulto › Registrar trazabilidad |
 | ⬜ | `5_9_labels.rst` | `5_9_labels_01_generar-etiquetas.png` | Asistente **Generar etiquetas** desde un Viaje: formato de salida, tamaño, diseño, impresora y orden del lote. | TMS › Operaciones › Tráfico › Viajes › Acción › Generar etiquetas |
 | ✅ | `5_3_resource-assignment.rst` | `5_3_resource-assignment_01_recursos.png` | Viaje (tms.trip) con conductor, vehículo y transportista asignados. | TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |

@@ -13,10 +13,10 @@
  },
  "agent": {
   "url": "http://localhost:8017",
-  "nota": "copia local Etransport_260908_agent (Odoo arrancado por Paco con --db_port=5432): asistente Asignar, línea PTV, Encontrar ruta, Envíos a agencia, fichero en error. Datos reales: María anonimiza"
+  "nota": "copia local Etransport_260908 (Odoo arrancado por Paco con --db_port=5432): asistente Asignar, línea PTV, Encontrar ruta, Envíos a agencia, fichero en error. Datos reales: María anonimiza"
  },
  "deca": {
   "url": "http://localhost:8017",
-  "nota": "copia local con tms_deca instalado (Etransport_260908_deca, recrearla si no existe): cap. 9. Datos reales: María anonimiza"
+  "nota": "la misma copia local Etransport_260908 (tms_deca está instalado ahí): cap. 9. Datos reales: María anonimiza"
  }
 }

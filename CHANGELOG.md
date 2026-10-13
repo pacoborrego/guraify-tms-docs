@@ -15,7 +15,9 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
   trazabilidad, Generar etiquetas) y `deca` (cap. 9). La captura de la ZBE pasa a `4_3_08` (el
   `4_3_06` ya era Horas de conducción). Doce entradas llevan preparación a mano, anotada en el
   propio manifiesto y en `CAPTURAS_PENDIENTES.md`; ninguna despacha ni envía por API en las bases
-  Etransport. Pendiente de ejecutar.
+  Etransport. El 13/10 se ejecutaron sobre `Etransport_260908`: 19 revisadas y en `raw/` para María
+  (lote en `CAPTURAS_PENDIENTES.md`); el pie de `5_2_09` describe la pestaña Órdenes, que es la
+  que salió. Tres quedan para la demo.
 
 ### Capítulo 9 DeCA (tarea D22, 2026-10-12)
 - Capítulo nuevo del Manual de implantación para el módulo `tms_deca` (`source/17.0/9_deca/`, seis

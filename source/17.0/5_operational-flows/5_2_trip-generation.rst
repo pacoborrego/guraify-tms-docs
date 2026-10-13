@@ -322,6 +322,7 @@ diálogo de progreso lo acompaña.
 
 .. CAPTURA: 5_2_09 — descomentar el figure cuando esté la imagen
    .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_09_candidatas.png
-      :alt: Ejecución de Encontrar ruta con la pestaña Candidatas
+      :alt: Ejecución de Encontrar ruta en Propuesta lista, pestaña Órdenes
 
-      La propuesta: por Orden, las tres candidatas con sus diferencias y la mejor marcada.
+      La propuesta: por Orden, la ruta elegida con sus diferencias (km, minutos, hora de fin,
+      ventanas, capacidad y coste); la pestaña Candidatas tiene las tres de cada una.

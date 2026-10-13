@@ -1019,23 +1019,10 @@
    "file": "3_2_3_manifests_03_fichero-error.png",
    "folder": "3_functional-architecture",
    "instance": "agent",
-   "action": "tms.edi_manifest_action",
-   "model": "tms.edi.manifest",
-   "view": "form",
-   "domain": [
-    [
-     "file_wizard_ids.state",
-     "=",
-     "error"
-    ]
-   ],
-   "steps": [
-    {
-     "smart": "Files"
-    }
-   ],
-   "manual": "Comprobar que la lista de ficheros enseña el estado Error en rojo; si el botón inteligente se llama distinto, abrir la lista de ficheros a mano.",
-   "note": "Ficheros de un Manifiesto con uno en Error (hay uno en la base: wizard 4994)"
+   "action": "tms_int.tms_int_file_wizard_action",
+   "manual": "El fichero en Error (wizard 4994) no cuelga de ningún Manifiesto: se captura la lista de ficheros importados, con su estado en rojo. Si la lista es muy larga, filtrar por Estado = Error o buscar el 4994.",
+   "note": "Lista de ficheros importados con uno en Error",
+   "view": "list"
   },
   {
    "id": "3_2_6_02",
@@ -1071,7 +1058,13 @@
     ]
    ],
    "map": true,
-   "note": "Un área Bajas emisiones (PTV07-ZBE C o ECO) con su distintivo mínimo"
+   "note": "Un área Bajas emisiones (PTV07-ZBE ECO) con su distintivo mínimo; esperar a que cargue el mapa",
+   "steps": [
+    {
+     "wait": 3000
+    }
+   ],
+   "manual": "Si el mapa sale en blanco, hacerla a mano esperando a que se pinte el polígono (así se hizo el 13/10)."
   },
   {
    "id": "4_4_05",
@@ -1219,18 +1212,6 @@
    "action": "tms.tms_trip_action",
    "model": "tms.trip",
    "view": "form",
-   "domain": [
-    [
-     "state",
-     "=",
-     "in_process"
-    ],
-    [
-     "stop_count",
-     ">",
-     3
-    ]
-   ],
    "steps": [
     {
      "tab": "Stops"
@@ -1240,7 +1221,8 @@
     }
    ],
    "clip": "modal",
-   "note": "El diálogo Secuenciar viajes (no pulsar Secuenciar: llama a PTV)"
+   "note": "TR010891 (30 paradas): el diálogo Secuenciar viajes; no pulsar Secuenciar (llama a PTV)",
+   "record": 60208
   },
   {
    "id": "5_2_07",
@@ -1294,13 +1276,9 @@
      ]
     ]
    ],
-   "steps": [
-    {
-     "tab": "Candidates"
-    }
-   ],
+   "steps": [],
    "manual": "Hace falta una ejecución de Encontrar ruta con propuesta (consume PTV: lanzar una desde 5_2_08 y esperar). Hoy no hay ninguna en la base.",
-   "note": "Ejecución en Propuesta lista, pestaña Candidatas"
+   "note": "Ejecución en Propuesta lista, pestaña Órdenes (la ruta elegida por Orden con sus diferencias)"
   },
   {
    "id": "5_4_02",
@@ -1347,22 +1325,6 @@
    "action": "tms.tms_trip_action",
    "model": "tms.trip",
    "view": "form",
-   "domain": [
-    [
-     "state",
-     "in",
-     [
-      "in_process",
-      "processed",
-      "running"
-     ]
-    ],
-    [
-     "stop_count",
-     ">",
-     3
-    ]
-   ],
    "steps": [
     {
      "click": ".o_cp_action_menus button"
@@ -1376,7 +1338,8 @@
    ],
    "clip": "modal",
    "manual": "Si el menú Acción tiene dos entradas parecidas, es la de «(wizard)». No pulsar Generar: basta el asistente.",
-   "note": "Generar etiquetas desde un Viaje"
+   "note": "TR010892: Generar etiquetas desde un Viaje",
+   "record": 60209
   },
   {
    "id": "9_2_01",
@@ -1395,10 +1358,13 @@
    ],
    "steps": [
     {
+     "wait": 2000
+    },
+    {
      "tab": "DeCA"
     }
    ],
-   "manual": "Con un usuario Responsable DeCA. Si ningún Proyecto tiene DeCA por proyecto, activarlo en uno de paquetería antes.",
+   "manual": "A mano: Operations › Projects › «Ambor XDock» (id 21; en español «0342 WETACA (XDOCK)»), con DeCA by Project marcado › pestaña DeCA.",
    "note": "Pestaña DeCA de un Proyecto"
   },
   {
