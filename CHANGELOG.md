@@ -8,6 +8,13 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Limpieza del historial (tarea D13, en curso, 2026-10-13)
+- Copia espejo del repositorio e inventario de las imágenes que han existido en el historial (260;
+  98 en el árbol). Aprobado borrar las 56 capturas antiguas de `source/_static/images/`, 10
+  rechazadas de `img/`, 25 versiones antiguas de capturas vigentes y el `venv/` que se subió entre
+  marzo y mayo. Al revisar se han encontrado **15 capturas de la app publicadas con datos reales**:
+  María las difumina primero y la limpieza se hace después, en una sola pasada.
+
 ### Capturas de la segunda ronda (tarea D23, 2026-10-12)
 - `tools/capturas/manifest.json` gana las 22 capturas nuevas de D18–D22 (87 en total) y
   `instances.json` dos instancias locales: `agent` (`Etransport_260908_agent`: asistente Asignar,

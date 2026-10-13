@@ -59,6 +59,26 @@ ahora, para poder cerrar. María hace solo las ⬜ (45, incluidas las 11 devuelt
 repetir, marcadas **Repetir (15/09)** con el motivo en su fila.
 
 
+## Urgente (13/10/2026) — 15 capturas de la app publicadas con datos reales
+
+Están en `source/_static/img/10_manual_app/` y en guraify.com/docs con nombres, móviles y direcciones de destinatarios, el nombre y la matrícula del conductor y un nombre con DNI. María las **difumina** y las guarda encima, con el mismo nombre; después se limpia el historial (D13) y hay que volver a clonar. Qué difuminar en cada una: página de María.
+
+- `10_2_route_01_dashboard.png`
+- `10_2_route_02_dashboard-header.png`
+- `10_2_route_03_parada-card.png`
+- `10_3_report_01_parada-report-inicio.png`
+- `10_3_report_02_parada-report-botones-exito.png`
+- `10_3_report_03_orden-card.png`
+- `10_3_report_05_parada-acciones.png`
+- `10_3_report_06_parada-accion.png`
+- `10_3_report_07_parada-report-he-llegado.png`
+- `10_3_report_08_bultos-lista-scan-off.png`
+- `10_3_report_09_bulto-card.png`
+- `10_3_report_10_bultos-lista-scan-on.png`
+- `10_3_report_12_reembolso-step-1.png`
+- `10_3_report_19_scanmatrix-step-1.png`
+- `10_3_report_25_parada-report-pod-digital-post-sign.png`
+
 ## Lote de la segunda ronda (13/10/2026) — para María
 
 19 capturas en `tools/capturas/raw/<carpeta>/`, hechas sobre la copia local `Etransport_260908`:
