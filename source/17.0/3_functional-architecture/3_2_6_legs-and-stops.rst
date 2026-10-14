@@ -104,6 +104,22 @@ en la app del conductor, si participa en la optimización y si recibe parte del 
 (las paradas de hub no lo reciben). Su configuración, y las marcas que gobiernan cada
 comportamiento, se describen en :doc:`/17.0/4_parametrization/4_1_operational-configuration`.
 
+**Adjuntos.** La Parada y el Tramo, como la Orden y el Viaje, tienen una pestaña **Adjuntos** con
+los ficheros que les tocan: las fotos y firmas de la prueba de entrega que hace el conductor (ver
+:doc:`/17.0/5_operational-flows/5_4_app-execution`) y lo que suba la oficina. Se ven como
+miniaturas que se abren en el visor al pulsarlas; el menú de cada una permite abrir su ficha,
+descargarla o borrarla. **Adjuntar archivos**, encima de la lista, abre el asistente **Subir
+adjuntos**, donde se arrastran o se eligen varios ficheros a la vez. Lo que se sube en la Parada
+aparece también en su Viaje y en la Orden y el Tramo de la Parada (si la Parada reúne varias
+Órdenes, solo en la primera); lo que se sube en el Tramo, en su Parada, su Orden y su Viaje. Las
+pruebas de entrega de la app, en cambio, se enlazan al Tramo y la Orden del evento que las trae.
+
+.. CAPTURA: 3_2_6_03 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/3_functional-architecture/3_2_6_legs-and-stops_03_adjuntos.png
+      :alt: Pestaña Adjuntos de una Parada con la firma y la foto del albarán
+
+      Pestaña Adjuntos de una Parada: la prueba de entrega que hizo el conductor.
+
 3.2.6.2.1 Agrupación de Tramos en Paradas
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -362,3 +378,20 @@ cuatro niveles está en :ref:`ciclo-estados`. El detalle de ese cierre está en
      - ``completed``, ``reserves``, ``failed``, ``rescheduled``, ``returned``, ``canceled``
    * - Agrupación de estados para los tableros
      - ``tms.stop.state_group`` (``pending``, ``done``, ``reserves``, ``failed``, ``canceled``)
+   * - ETA de la Parada
+     - ``tms.stop.eta`` (el actual), ``eta_planned`` (el prometido), ``eta_drift_min`` (calculado:
+       actual menos prometido), ``eta_source``, ``eta_updated_at``, ``eta_stale``,
+       ``eta_traffic_delay_min``, ``eta_violated``
+   * - Histórico de ETA
+     - ``tms.stop.eta.history`` (``eta``, ``source``, ``recorded_at``, ``traffic_delay_min``,
+       ``violated``, ``position_lat``, ``position_lon``); se purga a los 180 días (parámetro
+       ``tms.eta_history_retention_days``)
+   * - Tramo de ruta que termina en la Parada
+     - ``tms.stop.distance``, ``drivingTime``, ``route_leg_*``, ``co2e_wtw_kg``, ``co2e_ttw_kg``;
+       los acumulados desde la salida, en ``distance_from_start_km`` y
+       ``driving_time_from_start_h``
+   * - Adjuntos
+     - ``ir.attachment`` con ``stop_id``, ``leg_id``, ``sale_order_id``, ``trip_id`` y
+       ``traceability_id`` (más ``modal_type``, ``recipient_name``, ``recipient_ID_card`` en las
+       pruebas de entrega); pestaña ``tms_attachment_ids``; asistente
+       ``tms.attachment.upload.wizard``

@@ -102,7 +102,7 @@ para quien lo necesite.
       intentar), **Devuelta** (mercancía devuelta) y **Cancelada**. Son los estados que cierran la
       Parada. Antes de cerrarse pasa por estados abiertos (sin planificar, planificada,
       despachada, en curso, cargada…), que se detallan en el capítulo 3.2.6; cómo encajan con los
-      del Tramo, la Orden y el Viaje, en el 3.2.7, y los eventos de la app, en la tabla de 5.4.4.
+      del Tramo, la Orden y el Viaje, en el 3.2.7, y los eventos de la app, en la tabla de 5.4.5.
       (No se dice *Hecho*, *KO* ni *OK*, ni *en proceso* o *procesada* para los estados abiertos.)
       Campo ``state`` de ``tms.stop``.
 

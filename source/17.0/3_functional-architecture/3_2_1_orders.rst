@@ -192,6 +192,12 @@ flujo completo de cierre, con lo que ocurre en el Viaje y en la orden de compra,
 
    Orden bloqueada: candado cerrado tras confirmarse la ejecución.
 
+**Adjuntos de la Orden.** La pestaña **Adjuntos** de la Orden reúne las pruebas de entrega que
+el conductor hace en sus Paradas (fotos del albarán firmado, firmas) y lo que la oficina suba con
+**Adjuntar archivos**: el albarán del cliente, una reclamación. Es el sitio donde mirar antes de
+validar o facturar si la entrega está probada. Funciona igual que en la Parada y el Tramo (ver
+:doc:`3_2_6_legs-and-stops`).
+
 3.2.1.6 Referencia técnica
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 

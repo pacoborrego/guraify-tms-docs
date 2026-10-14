@@ -68,6 +68,7 @@ capítulo y sus figuras activas.
 
 Quedan pendientes, para la demo cuando tenga P8: `3_2_2_trips_02_viajes-por-validar.png`,
 `3_2_2_trips_03_revision.png` y `5_4_app-execution_02_despacho.png` (cerrar o despachar en la copia
+| ⬜ | `3_2_2_trips.rst` | `3_2_2_trips_04_mapa.png` | Pestaña **Mapa** de un Viaje: la ruta calculada, las Paradas numeradas por orden y coloreadas por estado, y los hubs. | TMS › Operaciones › Tráfico › Viajes › un Viaje enrutado › pestaña Mapa (instancia local; no despachar ni cerrar nada) |
 local llama a los sistemas reales).
 
 ## Conocer Guraify TMS (capa de producto)
@@ -108,6 +109,7 @@ local llama a los sistemas reales).
 | ✅ | `3_2_3_manifests.rst` | `3_2_3_manifests_03_fichero-error.png` | Lista de ficheros importados con uno en estado **Error** (en rojo). | TMS › Operaciones › Tráfico › Manifiestos › botón inteligente Ficheros (o la lista de ficheros importados) |
 | ✅ | `3_2_6_legs-and-stops.rst` | `3_2_6_legs-and-stops_01_parada.png` | Formulario de una Parada con su Tipo de Parada, sus Tramos agrupados y su estado. | TMS › Operaciones › Maestros › Paradas |
 | ✅ | `3_2_6_legs-and-stops.rst` | `3_2_6_legs-and-stops_02_envios-agencia.png` | Envíos a agencia (Agency Hand-overs): una fila por Parada enviada, con su Viaje, su agencia y su estado (activo / revertido). | TMS › Configuración › EDI › Envíos a agencia |
+| ⬜ | `3_2_6_legs-and-stops.rst` | `3_2_6_legs-and-stops_03_adjuntos.png` | Pestaña **Adjuntos** de una Parada: la prueba de entrega que hizo el conductor (firma y foto del albarán). | TMS › Operaciones › Maestros › Paradas › una Parada entregada › pestaña Adjuntos. **Lleva datos reales** (nombre, DNI, albarán): anonimizar antes de publicar |
 | 🔁 | `3_2_4_api-inbox.rst` | `3_2_4_api-inbox_01_inbox.png` | Bandeja de entrada API (tms_int.api.inbox) con sus líneas y estados. | TMS › Operaciones › Tráfico › Bandeja de entrada API |
 | 🔁 | `3_2_5_active-leg.rst` | `3_2_5_active-leg_01_tramo-activo.png` | Cabecera de una Orden multitramo mostrando los datos del tramo activo. | TMS › Operaciones › Tráfico › Órdenes (la cabecera de la Orden muestra los datos del |
 | ✅ | `3_3_planning-model.rst` | `3_3_planning-model_02_plan-disponibilidad.png` | Plan de Disponibilidad de Conductores: vista Gantt de *slots* (planning.slot). | TMS › Operaciones › Planificación (Plan Disponibilidad Conductores, Optimizador de Paradas) |
@@ -172,6 +174,7 @@ local llama a los sistemas reales).
 | ✅ | `5_2_trip-generation.rst` | `5_2_trip-generation_08_encontrar-ruta.png` | Asistente **Encontrar ruta**: Órdenes, rutas candidatas, Mantener / Romper estructura, preset y lo que se puede violar. | Lista de Órdenes › Acción › Encontrar ruta (datos `PTV10-` de la base local) |
 | ✅ | `5_2_trip-generation.rst` | `5_2_trip-generation_09_candidatas.png` | Ejecución de Encontrar ruta en **Propuesta lista**, pestaña Órdenes: por Orden, la ruta elegida con sus diferencias. | TMS › Operaciones › Planning › Encontrar ruta › una ejecución |
 | ✅ | `5_4_app-execution.rst` | `5_4_app-execution_03_registrar-trazabilidad.png` | Asistente **Registrar trazabilidad** de un Bulto: evento, Parada, fecha, resultado y motivo. | TMS › Operaciones › Maestros › Bultos › un Bulto › Registrar trazabilidad |
+| ⬜ | `5_4_app-execution.rst` | `5_4_app-execution_04_eta-y-ruta.png` | Pestaña **ETA y ruta** de un Viaje: el último recálculo, la ruta de PTV, peajes, coste, violaciones y emisiones. | TMS › Operaciones › Tráfico › Viajes › un Viaje enrutado › pestaña ETA y ruta (instancia local; no pulsar Recalcular ETA ahora) |
 | ✅ | `5_9_labels.rst` | `5_9_labels_01_generar-etiquetas.png` | Asistente **Generar etiquetas** desde un Viaje: formato de salida, tamaño, diseño, impresora y orden del lote. | TMS › Operaciones › Tráfico › Viajes › Acción › Generar etiquetas |
 | ✅ | `5_3_resource-assignment.rst` | `5_3_resource-assignment_01_recursos.png` | Viaje (tms.trip) con conductor, vehículo y transportista asignados. | TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |
 | ✅ | `5_5_trip-closing.rst` | `5_5_trip-closing_01_cierre.png` | Viaje cerrado tras completarse sus paradas. | TMS › Operaciones › Tráfico › Viajes (``tms.trip``). |

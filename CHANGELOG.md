@@ -8,6 +8,22 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### ETA, mapa y adjuntos en la ejecución (tarea D26, 2026-10-14)
+- **5.4.4 Seguir la ETA durante la ejecución** (nueva; la referencia técnica pasa a 5.4.5): cuándo
+  se recalcula según la política operativa, la pestaña **ETA y ruta** del Viaje grupo a grupo, ETA
+  **Prometido** frente a **Actual**, desviación, caducado, y el **Histórico de ETA** de la Parada.
+  Escrito que hoy el recálculo parte de la última Parada cerrada, no de la posición del vehículo,
+  porque no llegan posiciones; y que «Recalcular ETA ahora» respeta la política (desactivada,
+  espaciado y tope).
+- **3.2.2.5 El mapa del Viaje** (nueva; la referencia técnica pasa a 3.2.2.6, con filas de ETA,
+  posición, enriquecimiento y mapa).
+- **Adjuntos**: pestaña Adjuntos y asistente Subir adjuntos en 3.2.6.2 (Parada y Tramo) y 3.2.1
+  (Orden); dónde se ven las fotos y firmas de la prueba de entrega en 5.4.3. Comportamiento del
+  código anotado: lo que se sube en una Parada con varias Órdenes se enlaza solo a la primera.
+- **3.2.6.5**: filas de ETA de la Parada, histórico, tramo de ruta y adjuntos.
+- Tres capturas nuevas en `CAPTURAS_PENDIENTES.md` y en el manifiesto; la de adjuntos lleva datos
+  reales y pasa por anonimizar. Etiqueta de la interfaz mejorable: «Viaje Informe» (Trip Report).
+
 ### Motores de optimización, política operativa y marca (tarea D25, 2026-10-14)
 - **1.4.2.1 Dos motores de optimización** (nueva): PTV Developer y PTV OptiFlow, qué tiene en
   cuenta cada uno (tabla), cómo se decide el motor (Planning, compañía, Developer) y que elegir

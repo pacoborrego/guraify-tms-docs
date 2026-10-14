@@ -64,10 +64,10 @@ métricas del recorrido.
 El conductor avanza Parada a Parada. En cada una, la app registra el mismo ciclo: la Parada
 está en espera, el conductor indica que va en camino, al llegar la pone en curso y, al
 terminar, registra el **resultado**. Estos pasos intermedios son los estados de la app, que se
-listan en la tabla de 5.4.4. El resultado depende de lo que se hace en la Parada:
+listan en la tabla de 5.4.5. El resultado depende de lo que se hace en la Parada:
 
 - En una **carga** (recogida, recogida a domicilio o paso por hub), la mercancía queda cargada,
-  cargada con reservas o no cargada (tabla de 5.4.4). Los Bultos se comprueban escaneando (ver
+  cargada con reservas o no cargada (tabla de 5.4.5). Los Bultos se comprueban escaneando (ver
   :doc:`/17.0/1_introduction/1_4_technological-architecture`).
 - En una **entrega**, la Parada queda **Completada**, **Con reservas** o **Fallida** (ver
   :term:`Estados de la Parada`). La app pide la :term:`prueba de entrega (POD) <POD>` (firma en
@@ -159,6 +159,14 @@ operativas) registra el mismo resultado que la app, pero **sin posición**: la t
 no lleva coordenadas ni dispositivo inventados, de modo que quien mire después desde dónde se
 reportó una entrega no encuentre al conductor «en la puerta» cuando fue la oficina quien cerró.
 
+**Las pruebas de entrega en Odoo.** Las fotos que hace el conductor (albarán firmado, mercancía,
+recibo de un cobro) y la firma en pantalla, con el nombre y el documento de quien firma, llegan
+como **adjuntos** de la Parada donde se hicieron, enlazados también a su Tramo, su Orden y su
+Viaje. Se ven en la pestaña **Adjuntos** de cualquiera de las cuatro fichas, como miniaturas
+que se abren en el visor de Odoo al pulsarlas, y en el historial (chatter) de cada una, con el
+mensaje del evento. El fichero se guarda una sola vez aunque aparezca en cuatro sitios. El apunte
+de Trazabilidad del evento tiene también su pestaña Adjuntos.
+
 .. figure:: /_static/img/5_operational-flows/5_4_app-execution_03_registrar-trazabilidad.png
    :alt: Asistente Registrar trazabilidad de un Bulto
 
@@ -169,7 +177,86 @@ reportó una entrega no encuentre al conductor «en la puerta» cuando fue la of
 
    Las Paradas en Odoo con su estado (borrador, completada) según lo que reporta la app.
 
-5.4.4 Referencia técnica
+5.4.4 Seguir la ETA durante la ejecución
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   Viaje › pestañas **ETA y ruta** y **Mapa** · Parada › pestañas **Puntualidad** (grupo **ETA:
+   promesa y desviación**) e **Histórico de ETA**
+
+.. CAPTURA: 5_4_04 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/5_operational-flows/5_4_app-execution_04_eta-y-ruta.png
+      :alt: Pestaña ETA y ruta de un Viaje
+
+      Pestaña ETA y ruta: el último recálculo, la ruta de PTV, peajes, coste, violaciones y
+      emisiones.
+
+Mientras el Viaje está en la calle, la hora prevista de llegada (:term:`ETA`) de las Paradas que
+quedan se vuelve a calcular. Cuándo lo decide la :term:`Política operativa` de la compañía o del
+Proyecto (:ref:`politica-operativa`): por defecto, cada vez que se cierra una Parada; también
+puede hacerse cada cierto número de minutos, ambas cosas, o nunca. El cálculo es el de PTV y
+cuesta una llamada, por eso la política fija un espaciado mínimo y un tope diario.
+
+**Hoy el recálculo parte de la última Parada cerrada, no de la posición del vehículo.** La app
+del conductor todavía no envía su posición y no hay otra fuente de telemática conectada (ver
+:ref:`17.0/1_introduction/1_4_technological-architecture:1.4.6 Evolución prevista`), así que PTV
+calcula la llegada a lo pendiente desde la Parada que se cerró la última, contando el tiempo de
+servicio que se pasó en ella. Si el conductor va con retraso entre dos Paradas, el ETA no lo
+recoge hasta que cierra la siguiente.
+
+En la pestaña **ETA y ruta** del Viaje:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 28 72
+
+   * - Grupo
+     - Qué dice
+   * - **Recalcular ETA ahora**
+     - El botón pide el recálculo en el momento, sin esperar a la tarea programada. La política
+       se aplica igual: si está desactivada, si el último recálculo fue hace menos del espaciado
+       mínimo o si se ha alcanzado el tope del día, no se hace, y un aviso lo dice.
+   * - Recálculo
+     - Cuándo fue el último, cuántos van hoy, si hay uno pedido y esperando, por qué se pidió y,
+       si falló, el error.
+   * - Ruta PTV
+     - El identificador de la ruta en PTV y cuándo se calculó. PTV lo guarda doce horas: mientras
+       sirve, el recálculo es el barato; después, se calcula la ruta de nuevo.
+   * - Última posición conocida
+     - Fecha, origen y coordenadas de la última posición del vehículo. Hoy, vacío.
+   * - Peajes, Coste de ruta (PTV)
+     - Los peajes del Viaje y el coste de la ruta que estima PTV, desglosado en distancia,
+       tiempo, peajes y energía.
+   * - Violaciones y zonas
+     - Si la ruta incumple alguna restricción del vehículo (y cuántas) y el desnivel acumulado.
+   * - Emisiones
+     - El esquema aplicado, el CO₂ del pozo a la rueda y del depósito a la rueda, y el consumo.
+   * - Informe del Viaje (en la interfaz, «Viaje Informe»), Totales, Zonas
+     - Conducción, servicio, espera y pausas; las cantidades del Viaje; las zonas operativas que
+       recorre.
+
+En cada **Parada**, la pestaña **Puntualidad** enfrenta la hora planificada, la ETA en vivo y la
+hora ejecutada, y el grupo **ETA: promesa y desviación** distingue dos ETA:
+
+- El **Prometido** es el de la planificación. Lo fija el primer cálculo de ruta y ningún recálculo
+  lo mueve: es la hora que se dio al cliente.
+- El **Actual** es el último recálculo. La **Desviación (min)** es la diferencia entre los dos
+  (positiva, más tarde de lo prometido);
+  **Origen** dice qué produjo el actual (el plan, un recálculo a mano, el cierre de una Parada, el
+  intervalo); **Retraso por tráfico** es lo que PTV atribuye al tráfico; **Sin ruta válida**
+  avisa de que PTV no encontró ruta para el vehículo hasta esa Parada.
+- **Caducado** marcado significa que el último recálculo falló y la ETA que se ve es la anterior,
+  conservada a propósito: un fallo de PTV no borra ninguna hora.
+
+La pestaña **Histórico de ETA** de la Parada guarda cada recálculo con su fecha, la ETA, el
+origen, el retraso por tráfico y, cuando la haya, la posición desde la que se calculó; arriba,
+los datos del tramo de ruta que termina en ella (kilómetros, CO₂, peaje, desnivel). El histórico
+se conserva 180 días. La pestaña **Mapa** del Viaje dibuja todo esto sobre el mapa
+(:ref:`17.0/3_functional-architecture/3_2_2_trips:3.2.2.5 El mapa del Viaje`).
+
+5.4.5 Referencia técnica
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 La Parada tiene dos campos de estado. El **estado de la Parada** (``state`` de ``tms.stop``) es

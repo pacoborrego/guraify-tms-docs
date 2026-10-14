@@ -1015,6 +1015,32 @@
    "note": "Pestaña Revisión de un Viaje por validar"
   },
   {
+   "id": "3_2_2_04",
+   "file": "3_2_2_trips_04_mapa.png",
+   "folder": "3_functional-architecture",
+   "instance": "agent",
+   "model": "tms.trip",
+   "view": "form",
+   "domain": [
+    [
+     "ptv_route_id_at",
+     "!=",
+     false
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "Map"
+    },
+    {
+     "wait": 3000
+    }
+   ],
+   "map": true,
+   "note": "Pestaña Mapa de un Viaje enrutado: trazado, Paradas numeradas por estado y hubs",
+   "manual": "Si el mapa sale en blanco, hacerla a mano esperando a que se pinte la ruta. No despachar ni cerrar nada"
+  },
+  {
    "id": "3_2_3_03",
    "file": "3_2_3_manifests_03_fichero-error.png",
    "folder": "3_functional-architecture",
@@ -1032,6 +1058,36 @@
    "action": "tms_int.tms_agency_transfer_snapshot_action",
    "view": "list",
    "note": "Envíos a agencia (Agency Hand-overs): 501 filas en la base"
+  },
+  {
+   "id": "3_2_6_03",
+   "file": "3_2_6_legs-and-stops_03_adjuntos.png",
+   "folder": "3_functional-architecture",
+   "instance": "agent",
+   "model": "tms.stop",
+   "view": "form",
+   "domain": [
+    [
+     "state",
+     "=",
+     "completed"
+    ],
+    [
+     "trip_id",
+     "!=",
+     false
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "Attachments"
+    },
+    {
+     "wait": 1500
+    }
+   ],
+   "note": "Pestaña Adjuntos de una Parada entregada con firma y foto del albarán",
+   "manual": "Elegir a mano una Parada con firma y foto. LLEVA DATOS REALES (nombre, DNI, albarán): pasa por anonimizar antes de publicar"
   },
   {
    "id": "4_3_07",
@@ -1394,6 +1450,31 @@
    ],
    "clip": "modal",
    "note": "El asistente Registrar trazabilidad de un Bulto"
+  },
+  {
+   "id": "5_4_04",
+   "file": "5_4_app-execution_04_eta-y-ruta.png",
+   "folder": "5_operational-flows",
+   "instance": "agent",
+   "model": "tms.trip",
+   "view": "form",
+   "domain": [
+    [
+     "ptv_route_id_at",
+     "!=",
+     false
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "ETA and Routing"
+    },
+    {
+     "wait": 1000
+    }
+   ],
+   "note": "Pestaña ETA y ruta de un Viaje enrutado",
+   "manual": "No pulsar Recalcular ETA ahora: llama a PTV"
   },
   {
    "id": "5_9_01",

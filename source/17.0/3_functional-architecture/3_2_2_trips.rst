@@ -184,7 +184,28 @@ el motivo «Orden de compra bloqueada».
 
       Pestaña Revisión: validación, rechazo y Órdenes sin prueba de entrega.
 
-3.2.2.5 Referencia técnica
+3.2.2.5 El mapa del Viaje
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. CAPTURA: 3_2_2_04 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/3_functional-architecture/3_2_2_trips_04_mapa.png
+      :alt: Pestaña Mapa de un Viaje con su ruta y sus Paradas numeradas
+
+      Pestaña Mapa: la ruta calculada, las Paradas numeradas por orden y coloreadas por estado,
+      y los hubs.
+
+La pestaña **Mapa** del Viaje dibuja el Viaje tal como lo calculó PTV: el trazado de la ruta, cada
+Parada con su número en la secuencia y el color de su estado, y los hubs marcados con una H. Al
+pulsar una Parada se ve su nombre, su dirección y su ETA. Encima del mapa, una línea resume el
+Viaje: número de Paradas, kilómetros, horas y cuándo se calculó la ruta. Cuando haya posiciones
+del vehículo, el mapa marcará también la última conocida (hoy no llegan; ver
+:doc:`/17.0/5_operational-flows/5_4_app-execution`).
+
+El mapa no llama a PTV: pinta lo que el Viaje ya tiene guardado. Un Viaje que todavía no se ha
+enrutado sale sin trazado y con el aviso correspondiente; se enruta con **Enrutar Viaje** o al
+secuenciarlo. El mapa base es el del estilo de mapa de la compañía (:ref:`proveedores-geo`).
+
+3.2.2.6 Referencia técnica
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table::
@@ -219,3 +240,17 @@ el motivo «Orden de compra bloqueada».
      - ``invoice_status`` (el de la OC: ``no``, ``to invoice``, ``invoiced``)
    * - Motivo «Orden de compra bloqueada»
      - valor ``purchase_order_blocked`` del diagnóstico de tarifa del Viaje (no es un campo)
+   * - ETA y ruta
+     - ``eta_last_recompute_at``, ``eta_recompute_count_today``, ``eta_recompute_requested``,
+       ``eta_recompute_reason``, ``eta_recompute_last_error``; ``ptv_routeId`` y
+       ``ptv_route_id_at`` (la ruta de PTV y cuándo se calculó; caduca a las 12 horas)
+   * - Última posición
+     - ``last_position_at``, ``last_position_source``, ``last_position_lat``,
+       ``last_position_lon``
+   * - Enriquecimiento
+     - ``toll_cost``, ``route_cost_*``, ``routing_violated``, ``routing_violation_count``,
+       ``elevation_ascent_m``, ``elevation_descent_m``, ``emissions_scheme``, ``co2e_wtw_kg``,
+       ``co2e_ttw_kg``, ``fuel_consumption_l``, ``routing_enrichment_json``
+   * - Mapa
+     - ``trip_polyline`` (trazado) y ``get_route_map_data()``, que reúne lo que dibuja la pestaña
+       Mapa (módulo ``tms_map``)
