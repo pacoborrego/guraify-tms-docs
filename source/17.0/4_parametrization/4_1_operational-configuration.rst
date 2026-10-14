@@ -24,8 +24,11 @@ Proyecto. Por eso se configuran antes que el resto del capítulo y se cambian po
    El bloque «Datos auxiliares» de TMS › Configuración › Ajustes, punto de entrada a los seis
    catálogos.
 
-Cada maestro se describe aquí por lo que decide el cliente y por dónde se nota después. La
-lista completa de campos de cada pantalla está en el :doc:`anexo A </17.0/annexes/index>`.
+Cada maestro se describe aquí por lo que decide el cliente y por dónde se nota después. Detrás
+de los seis catálogos vienen tres configuraciones que no son catálogos pero se hacen al principio:
+la marca de la compañía (4.1.7), los contactos con su papel en el TMS (4.1.8) y los conductores
+con su acceso a la app (4.1.9). La lista completa de campos de cada pantalla está en el
+:doc:`anexo A </17.0/annexes/index>`.
 
 4.1.1 Tipos de Servicio
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -305,4 +308,200 @@ día. Si una instalación tiene varias compañías, cada una lleva la suya.
        la app no recibe la tipografía ni la paleta de noche.
 
 Los colores se escriben en hexadecimal (#1A2B3C). Campos en :doc:`/17.0/annexes/A_32_marca`.
+
+.. _contactos-tms:
+
+4.1.8 Contactos TMS
+~~~~~~~~~~~~~~~~~~~
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   TMS › Maestros › Operaciones: **Contactos**, **Hubs**, **Agencias** · TMS › Maestros ›
+   Recursos Humanos › **Conductores** · TMS › Administración › Maestros: **Clientes**,
+   **Proveedores** · en la ficha, pestañas **Propiedades TMS** y **Horarios TMS**
+
+.. CAPTURA: 4_1_10 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_1_operational-configuration_10_contacto-hub.png
+      :alt: Pestaña Propiedades TMS de un hub
+
+      La pestaña Propiedades TMS de un hub: sus marcas, la información de acceso y la
+      geolocalización.
+
+En el TMS todo el que interviene es un contacto de Odoo: el cliente, el transportista, la agencia,
+el hub, el conductor y la persona a la que se entrega. Lo que hace que un contacto cumpla un papel
+son unas **marcas** en su ficha, y cada menú del TMS enseña los contactos de un papel:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 22 38 40
+
+   * - Papel
+     - Marca en la ficha (pestaña Propiedades TMS)
+     - Dónde se ven
+   * - Cliente
+     - **Cliente/transportista TMS**, y cliente en Odoo
+     - Administración › Maestros › Clientes. Tiene Proyectos y recibe las facturas.
+   * - Transportista
+     - **Cliente/transportista TMS**, y proveedor en Odoo; **Transportista de flota propia** si
+       conduce gente de la casa
+     - Administración › Maestros › Proveedores. Recibe las órdenes de compra de los Viajes (no
+       si es flota propia, ver :doc:`/17.0/8_economic-administration/8_1_active-passive-margin`).
+   * - Agencia
+     - **Agencia** (solo empresas)
+     - Maestros › Operaciones › Agencias. Recibe los arrastres (:doc:`/17.0/3_functional-architecture/3_2_6_legs-and-stops`).
+   * - Hub
+     - **Hub** (solo empresas)
+     - Maestros › Operaciones › Hubs. Origen y destino de los Tramos de hub y de los Viajes.
+   * - Contacto de carga o descarga
+     - **Contacto**, con sus **Clientes relacionados**
+     - Maestros › Operaciones › Contactos. Es la dirección de una Parada y, en una entrega, el
+       Destinatario. Casi siempre llega por la importación.
+   * - Conductor
+     - **Es Conductor**, con su **Transportista** (obligatorio)
+     - Maestros › Recursos Humanos › Conductores. Ver 4.1.9.
+
+Un mismo contacto puede tener varias marcas (un hub que también es agencia). Fuera de las marcas,
+la ficha del contacto decide:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Decisión
+     - Efecto
+   * - **Alias** (cabecera)
+     - El nombre corto con el que lo identifican las importaciones (el transportista o el
+       conductor de un fichero se buscan por alias), el que sale en la hoja de ruta y en el
+       listado de etiquetas, y el «Nombre breve» del cliente en la lista de facturas.
+   * - **Dirección completa** (cabecera, en los contactos)
+     - La dirección tal como llegó en el fichero, antes de normalizarla.
+   * - **Secuencia autofactura** (transportistas)
+     - El contador de las autofacturas de compra del transportista, que forma su referencia.
+   * - INFORMACIÓN DE CONTACTO: **Prioridad**
+     - La prioridad con que el optimizador y la secuenciación tratan sus Paradas.
+   * - INFORMACIÓN DE CONTACTO: **Dificultad Parking**, **Ascensor**, **Plantas a subir**
+     - Entran en el cálculo del tiempo de servicio de sus Paradas
+       (:ref:`17.0/4_parametrization/4_3_planning-configuration:4.3.5 Tiempos de servicio`). Un
+       cuarto piso sin ascensor tarda más que una planta baja.
+   * - INFORMACIÓN DE CONTACTO: **Autorizado a Dejar en Puerta**, **Coste de Peaje/Tasa por
+       Acceso**
+     - Informativos: hoy no los lee ningún cálculo.
+   * - GEOLOCALIZACIÓN
+     - Las coordenadas, su precisión y el tipo de localización
+       (:ref:`17.0/1_introduction/1_4_technological-architecture:1.4.3.1 Geocodificación de direcciones`).
+       Sin coordenadas buenas, ninguna Parada del contacto se planifica bien.
+   * - **Horarios TMS**: Tiempo por recogida y Tiempo por entrega (min)
+     - Los minutos que el optimizador y la secuenciación reservan en cada recogida o entrega en
+       el contacto.
+   * - **Horarios TMS**: MAÑANA y TARDE
+     - El horario por defecto de mañana y de tarde y, día a día, si abre y de qué hora a qué hora.
+       Son las ventanas que PTV respeta para hubs y clientes al secuenciar y optimizar, y las
+       horas por defecto de carga y descarga.
+
+La pestaña Propiedades TMS tiene además el grupo **TACÓGRAFO** de los conductores, que solo se
+lee (lo rellena la telemática), el grupo **AVISOS** (:doc:`/17.0/11_notifications/11_4_recipient`)
+y, para los responsables, la audiencia del portal del contacto. La cabecera lleva los botones
+**Reglas TMS** y, en los conductores, **Historial de vehículos**. Campos en
+:doc:`/17.0/annexes/A_34_contacto`.
+
+.. _conductores-app:
+
+4.1.9 Conductores y acceso a la app
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   TMS › Maestros › Recursos Humanos › Conductores · Ajustes › Usuarios y compañías › Usuarios ›
+   el usuario, campo **Funciones de la aplicación TMS** · TMS › Configuración › App › **Roles de
+   la app** y **Tokens de dispositivo**
+
+.. CAPTURA: 4_1_11 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_1_operational-configuration_11_usuario-roles.png
+      :alt: Ficha de un usuario con sus funciones de la aplicación TMS
+
+      El usuario de un conductor con su rol de la app.
+
+Para que un conductor trabaje con la app hacen falta tres cosas en Odoo, y las tres tienen que
+apuntar a la misma persona: su **contacto** de conductor, un **usuario** unido a ese contacto y
+un **rol de la app** en ese usuario.
+
+**1. El contacto conductor.** Un contacto con **Es Conductor** marcado y su **Transportista**
+(obligatorio: la propia compañía si es flota propia). El campo Conductor del Viaje solo ofrece
+contactos marcados así. En el conductor se ponen también, si hacen falta, sus **Horas de
+Conducción** y su **Factor de velocidad del conductor**
+(:ref:`17.0/4_parametrization/4_3_planning-configuration:4.3.6 Horas de conducción`); el botón
+**Historial de vehículos** enseña con qué vehículos ha hecho sus Viajes.
+
+**2. El usuario.** Un usuario de Odoo, de portal (basta para la app y no ve el resto de Odoo) o
+interno, cuyo contacto es el contacto del conductor. Su **correo** es el usuario con el que entra
+en la app. Al crearlo, Odoo envía la invitación **Activar cuenta**, con la que el conductor crea
+su contraseña; si la pierde, se le envía otra (:doc:`/17.0/10_manual_app/10_1_application-access`).
+
+**3. El rol de la app.** El campo **Funciones de la aplicación TMS** del usuario dice qué hace en
+la app y, con ello, qué pestañas ve:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 26 74
+
+   * - Rol (Roles de la app)
+     - Pestañas
+   * - Repartidor
+     - Panel, Mapas, Chat, Perfil: el conductor
+   * - Operario Hub
+     - Panel, Escanear, Perfil: quien trabaja en el almacén
+   * - Jefe de Tráfico · Destinatario · Cliente
+     - Panel y Perfil
+
+Un usuario puede tener varios roles; alguien que reparte y escanea en el hub necesita Repartidor y
+Operario Hub. Los cinco roles vienen con el módulo. **Sin rol, la app entra pero no enseña ninguna
+pestaña**, y no avisa. Un rol creado a mano en Roles de la app, sin su código interno, se comporta
+igual.
+
+**Qué ve en la app.** Su Viaje del día: el despachado o en curso en el que su contacto es el
+Conductor (:doc:`/17.0/5_operational-flows/5_4_app-execution`). Un Viaje planificado y sin
+despachar no le aparece.
+
+**Tokens de dispositivo.** Cada vez que alguien inicia sesión en la app, Odoo crea un token para
+ese teléfono, y la lista **Tokens de dispositivo** enseña de quién es, qué **versión de la app**
+tiene y cuándo se usó por última vez. **Revocar** lo anula: la próxima vez que se abra la app en
+ese teléfono, pedirá iniciar sesión de nuevo (un teléfono perdido, un conductor que se va). Hoy
+las demás llamadas de la app todavía se aceptan sin token, para no dejar fuera a los teléfonos con
+versiones antiguas; el parámetro del sistema ``tms_app.enforce_token`` lo vuelve obligatorio
+cuando todas estén al día.
+
+.. CAPTURA: 4_1_12 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_1_operational-configuration_12_tokens.png
+      :alt: Lista de tokens de dispositivo con su versión de la app
+
+      Tokens de dispositivo: un teléfono por fila, con su versión de la app y su último uso.
+
+**Cuando «la app no funciona».**
+
+.. list-table::
+   :header-rows: 1
+   :widths: 36 64
+
+   * - Síntoma
+     - Qué mirar
+   * - No entra: «Credenciales inválidas»
+     - El correo y la contraseña del usuario, que el usuario esté activo y que haya activado la
+       cuenta. Se le puede reenviar la invitación.
+   * - Entra, pero no hay pestañas abajo
+     - El usuario no tiene rol, o tiene uno sin código interno (creado a mano).
+   * - Le falta Escanear, o le sobra
+     - Escanear es del rol Operario Hub; el Repartidor no la tiene.
+   * - Entra, pero no ve su ruta
+     - Que su contacto sea el **Conductor** del Viaje (y no otro contacto con el mismo nombre) y
+       que el Viaje esté **despachado**.
+   * - Ve cosas de otra versión o le falla algo que a otros no
+     - La versión de la app en su token: puede que tenga que actualizarla.
+   * - Le sale de golpe la pantalla de inicio de sesión
+     - Su token se ha revocado, o se ha desactivado su usuario.
+
+Si nada de eso explica el fallo, el registro de actividad de la API (:doc:`/17.0/7_edi-integrations/7_7_integration-best-practices`)
+y los envíos que no llegaron (la app los sube a Odoo con **Limpiar errores**, ver
+:doc:`/17.0/10_manual_app/10_8_end-of-day`) dicen qué le respondió Odoo.
 

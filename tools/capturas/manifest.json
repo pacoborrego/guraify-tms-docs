@@ -1167,6 +1167,57 @@
    "note": "Pestaña Marca de la compañía: logos, paletas, tipografía, dominio y remitente"
   },
   {
+   "id": "4_1_10",
+   "file": "4_1_operational-configuration_10_contacto-hub.png",
+   "folder": "4_parametrization",
+   "instance": "agent",
+   "action": "tms.res_partner_action_hub",
+   "model": "res.partner",
+   "view": "form",
+   "domain": [
+    [
+     "tms_is_hub",
+     "=",
+     true
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "TMS Properties"
+    },
+    {
+     "wait": 1500
+    }
+   ],
+   "note": "Pestaña Propiedades TMS de un hub (empresa, sin datos personales)",
+   "map": true
+  },
+  {
+   "id": "4_1_11",
+   "file": "4_1_operational-configuration_11_usuario-roles.png",
+   "folder": "4_parametrization",
+   "instance": "agent",
+   "model": "res.users",
+   "view": "form",
+   "steps": [
+    {
+     "scroll": ".o_horizontal_separator:has-text('Tms App')"
+    }
+   ],
+   "note": "Ficha de un usuario con su campo Funciones de la aplicación TMS",
+   "manual": "Usar un usuario de prueba con el rol Repartidor, o anonimizar nombre y correo"
+  },
+  {
+   "id": "4_1_12",
+   "file": "4_1_operational-configuration_12_tokens.png",
+   "folder": "4_parametrization",
+   "instance": "agent",
+   "action": "tms_app.device_token_action",
+   "view": "list",
+   "note": "Lista de tokens de dispositivo con su versión de la app",
+   "manual": "LLEVA NOMBRES DE CONDUCTORES: anonimizar antes de publicar. No pulsar Revocar"
+  },
+  {
    "id": "4_3_09",
    "file": "4_3_planning-configuration_09_proveedores-geo.png",
    "folder": "4_parametrization",

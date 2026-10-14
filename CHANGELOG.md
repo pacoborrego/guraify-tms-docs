@@ -8,6 +8,21 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Contactos y conductores (tarea D28, 2026-10-14)
+- **4.1.8 Contactos TMS** (nueva): los seis papeles de un contacto (cliente, transportista, agencia,
+  hub, contacto de carga o descarga, conductor), con su marca y su menú, y lo que decide cada parte
+  de la ficha: alias, prioridad, acceso (que entra en el tiempo de servicio), geolocalización,
+  tiempos por recogida y entrega, y los horarios de mañana y tarde por día.
+- **4.1.9 Conductores y acceso a la app** (nueva): contacto conductor, usuario e invitación, roles
+  de la app con las pestañas que ve cada uno, qué Viaje ve, tokens de dispositivo (Revocar, versión
+  de la app, token obligatorio) y una tabla de «la app no funciona».
+- Anexo **A.34 Contacto TMS y acceso a la app**. Introducción de 4.1 ampliada.
+- Comportamiento del código anotado: «Autorizado a dejar en puerta» y «Coste de peaje/tasa por
+  acceso» no los lee ningún cálculo; un rol de la app sin código interno deja la app sin pestañas;
+  revocar un token obliga a iniciar sesión al abrir la app, pero mientras ``tms_app.enforce_token``
+  esté apagado las demás llamadas siguen aceptándose sin token.
+- Tres capturas nuevas; dos llevan datos de conductores y pasan por anonimizar.
+
 ### Capítulo 11 Avisos al Destinatario (tarea D27, 2026-10-14)
 - Capítulo nuevo `source/17.0/11_notifications/`, como el 9: 11.1 qué es, los quince
   disparadores y lo que todavía no hace (la página del enlace de seguimiento no existe, la cuenta
