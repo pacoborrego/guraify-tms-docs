@@ -12,7 +12,13 @@ que se envía a PTV, y las pausas explícitas de la jornada.
 Además de los campos de la tabla, el maestro lleva los cuatro campos comunes a todos los catálogos
 del TMS: **Secuencia** (orden en las listas), **Color** (etiqueta visual), **Compañía** (a qué
 compañía pertenece; vacío es compartido) y **Defecto** (el registro que el sistema propone cuando
-hay que elegir uno y nadie ha elegido).
+hay que elegir uno y nadie ha elegido). En este maestro, el **Defecto** es el perfil que usa PTV
+OptiFlow cuando ni el conductor, ni la categoría del vehículo, ni la franja traen uno.
+
+El conductor (el contacto marcado como conductor, pestaña Propiedades TMS) puede llevar su propio
+perfil en **Horas de Conducción** y un **Factor de velocidad del conductor** (1 por defecto) que
+multiplica el del vehículo; los dos los lee PTV OptiFlow, y el factor también el cálculo de ruta
+(``res.partner``: ``tms_driver_working_hours_id``, ``tms_speed_factor``).
 
 A.12.1 Perfil de jornada
 ------------------------

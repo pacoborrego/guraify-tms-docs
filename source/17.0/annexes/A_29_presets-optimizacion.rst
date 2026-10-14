@@ -28,8 +28,8 @@ las etiquetas de la interfaz están en inglés en parte.
      - Número
      - Orden en la lista desplegable del asistente.
    * - Motor
-     - Selección (Ambos motores, solo uno u otro)
-     - Con qué motor de optimización se ofrece el preset.
+     - Selección (Los dos motores, Solo OptiFlow, Solo Developer)
+     - Con qué motor de optimización (PTV Developer o PTV OptiFlow) se ofrece el preset.
    * - Compañía
      - Relación con Compañía
      - A qué compañía pertenece.
@@ -82,7 +82,7 @@ las etiquetas de la interfaz están en inglés en parte.
        siendo un límite duro.
    * - Calidad / Optimización premium / Ajustes del objetivo / Considerar prioridades
      - Selección y Sí/No
-     - Para el motor estándar: calidad de la búsqueda (estándar o alta), si se pide la
+     - Para PTV Developer: calidad de la búsqueda (estándar o alta), si se pide la
        optimización premium (cuando la compañía la tiene), si se evitan cruces o se deja de
        minimizar el número de rutas, y si se respetan las prioridades de los transportes.
 

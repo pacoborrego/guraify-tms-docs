@@ -1087,6 +1087,84 @@
    "note": "La línea de tarifa de prueba de Paco (tarifa 158) con Aplicar en = Línea de orden"
   },
   {
+   "id": "4_1_09",
+   "file": "4_1_operational-configuration_09_marca.png",
+   "folder": "4_parametrization",
+   "instance": "agent",
+   "model": "res.company",
+   "view": "form",
+   "domain": [
+    [
+     "id",
+     "=",
+     1
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "Brand"
+    },
+    {
+     "wait": 800
+    }
+   ],
+   "note": "Pestaña Marca de la compañía: logos, paletas, tipografía, dominio y remitente"
+  },
+  {
+   "id": "4_3_09",
+   "file": "4_3_planning-configuration_09_proveedores-geo.png",
+   "folder": "4_parametrization",
+   "instance": "agent",
+   "action": "tms.res_config_settings_view_form_TMS_action",
+   "view": "form",
+   "record": 0,
+   "steps": [
+    {
+     "scroll": "h2:has-text('Geo Providers')"
+    },
+    {
+     "wait": 800
+    }
+   ],
+   "note": "Bloque Proveedores geo de Ajustes con sus selectores por proceso",
+   "manual": "Si no encuentra el título del bloque, bajar a mano hasta Proveedores geo"
+  },
+  {
+   "id": "4_3_10",
+   "file": "4_3_planning-configuration_10_politica-operativa.png",
+   "folder": "4_parametrization",
+   "instance": "agent",
+   "action": "tms.operations_policy_action",
+   "model": "tms.operations.policy",
+   "view": "form",
+   "note": "Ficha de una política operativa (mejor la de la compañía, sin Proyecto)",
+   "manual": "Si no existe ninguna, crear la de la compañía con los valores por defecto (solo configuración, no envía nada)"
+  },
+  {
+   "id": "4_5_05",
+   "file": "4_5_project-configuration_05_operacion.png",
+   "folder": "4_parametrization",
+   "instance": "agent",
+   "model": "project.project",
+   "view": "form",
+   "domain": [
+    [
+     "is_tms_project",
+     "=",
+     true
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "Operation"
+    },
+    {
+     "wait": 800
+    }
+   ],
+   "note": "Pestaña Operación de un Proyecto (usuario responsable)"
+  },
+  {
    "id": "5_2_02",
    "file": "5_2_trip-generation_02_asignar-nuevo.png",
    "folder": "5_operational-flows",

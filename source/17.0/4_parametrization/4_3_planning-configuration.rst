@@ -6,13 +6,16 @@
 
    TMS › Configuración: Planes de Transporte, Áreas Geográficas y Tiempos de Servicio. TMS ›
    Configuración › Ajustes: «Plannings» y Franjas Horarias en **Datos auxiliares**; Operación
-   de tiempos de servicio y Horas de Conducción en **Optimización de ruta**.
+   de tiempos de servicio y Horas de Conducción en **Optimización de ruta**; **Proveedores geo**
+   y **Operación** › Políticas operativas.
 
 La configuración de planificación define cómo se agrupan las operaciones, sobre qué
 territorio, con qué horarios y cuánto duran. Son los seis maestros con los que las Paradas se
 convierten en Viajes planificables: el Planning, los Planes de transporte, las Áreas
-geográficas, las Franjas horarias, los Tiempos de servicio y las Horas de conducción. La lista
-completa de campos de cada uno está en el :doc:`anexo A </17.0/annexes/index>`.
+geográficas, las Franjas horarias, los Tiempos de servicio y las Horas de conducción. A ellos se
+suman los Presets de optimización, qué servicio de PTV hace cada cálculo (Proveedores geo) y la
+Política operativa, que gobierna lo que pasa con el Viaje ya en la calle. La lista completa de
+campos de cada uno está en el :doc:`anexo A </17.0/annexes/index>`.
 
 4.3.1 Planning
 ~~~~~~~~~~~~~~
@@ -57,6 +60,10 @@ Paradas, en qué franjas del Plan de disponibilidad son compatibles, en qué pre
        Planning. Con la casilla marcada y sin minutos, cada Parada toma los de su zona
        operativa. Una Parada que solo cabe gracias a la tolerancia queda *En tolerancia*, no
        *Fuera de ventana*.
+   * - Proveedor de optimización
+     - Qué motor optimiza las Paradas de este Planning: PTV Developer o PTV OptiFlow. Vacío,
+       el de la compañía (ver :ref:`proveedores-geo`). Sirve para pasar un tipo de operación a
+       OptiFlow sin cambiar las demás.
 
 El Planning interviene en cinco momentos. Al **generar Paradas**, forma parte de la clave de
 agrupación: dos operaciones en la misma dirección y franja no se juntan si son de Plannings
@@ -233,6 +240,8 @@ la celda de la matriz que corresponde y suma los segundos. El resultado se guard
 y lo consumen el optimizador, la secuenciación, el cálculo de ruta y la ETA. Campos del esquema,
 las líneas, los detalles y las operaciones en :doc:`/17.0/annexes/A_11_tiempos-servicio`.
 
+.. _horas-conduccion:
+
 4.3.6 Horas de conducción
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -264,10 +273,20 @@ cálculo de ruta. El catálogo viene con el reglamento europeo 561/2006 configur
      - El tope de horas de un Viaje bajo esta regla, si la categoría de vehículo no fija el
        suyo.
 
-El perfil llega a PTV desde la franja del :term:`Plan de disponibilidad de conductores`,
-cuando el Viaje sale de una, y si no desde la categoría del vehículo. Una regulación mal
-elegida produce Viajes válidos en el papel e imposibles dentro de la jornada permitida. Campos
-en :doc:`/17.0/annexes/A_12_horas-conduccion`.
+Qué perfil se usa depende del cálculo. El cálculo de ruta, la secuenciación y la optimización
+con PTV Developer lo toman de la franja del :term:`Plan de disponibilidad de conductores`, cuando
+el Viaje sale de una, y si no de la categoría del vehículo. La optimización con PTV OptiFlow
+empieza por el **conductor**: su propio perfil, si lo tiene; si no, el de la categoría del
+vehículo, el de la franja, el marcado como perfil por defecto de la compañía y, en último lugar,
+el reglamento europeo de serie.
+
+El perfil del conductor y su **factor de velocidad** se ponen en la ficha del conductor (el
+contacto marcado como conductor, pestaña Propiedades TMS): **Horas de Conducción** para quien
+tiene una jornada distinta de la de su vehículo, y **Factor de velocidad del conductor** para
+quien va más lento o más rápido que la media (1 es la media). El factor del conductor multiplica
+el del vehículo en el cálculo de ruta y en OptiFlow. Una regulación mal elegida produce Viajes
+válidos en el papel e imposibles dentro de la jornada permitida. Campos en
+:doc:`/17.0/annexes/A_12_horas-conduccion`.
 
 .. _presets-optimizacion:
 
@@ -321,3 +340,127 @@ tolerancia, permitir violar restricciones de vía, permitir violar jornada, km, 
 respetar zonas operativas (y el coste de no respetarlas en modo Preferido). Un preset es por
 compañía; crear uno nuevo es copiar el que más se parece y ajustar. Campos en
 :doc:`/17.0/annexes/A_29_presets-optimizacion`.
+
+.. _proveedores-geo:
+
+4.3.8 Proveedores geo
+~~~~~~~~~~~~~~~~~~~~~
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   TMS › Configuración › Ajustes › bloque **Proveedores geo** › **Proveedor por proceso** (se
+   aplica a la compañía activa)
+
+.. CAPTURA: 4_3_09 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_09_proveedores-geo.png
+      :alt: Bloque Proveedores geo de los Ajustes del TMS
+
+      Proveedores geo: qué servicio hace cada proceso para la compañía activa.
+
+Este bloque dice qué servicio de PTV hace cada cálculo y fija los límites de uso de PTV para la
+compañía activa. Sin tocarlo, todo lo hace PTV Developer. Los dos motores y en qué se diferencian
+están en :ref:`17.0/1_introduction/1_4_technological-architecture:1.4.2.1 Dos motores de optimización`.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Decisión
+     - Efecto
+   * - Routing y ETA, Secuenciación
+     - El servicio que calcula la ruta, el ETA y su enriquecimiento, y el que ordena las Paradas
+       de un Viaje. Hoy solo PTV Developer los sabe hacer: elegir OptiFlow para cualquiera de
+       los dos para el proceso con un error.
+   * - Secuenciaciones simultáneas
+     - Cuántos Viajes se secuencian a la vez (6 por defecto); el resto espera en cola. Más
+       rápido para el planificador, más carga sobre PTV.
+   * - Optimización
+     - El motor de la optimización completa para la compañía: PTV Developer o PTV OptiFlow. Un
+       Planning puede fijar el suyo (4.3.1).
+   * - Estilo del mapa
+     - De dónde sale el mapa base de las pantallas con mapa: hoy solo lo sirve PTV Developer.
+       Si el proveedor no responde o no sabe servirlo, el mapa cae a OpenStreetMap.
+   * - Optimización premium de PTV
+     - Si PTV Developer optimiza con su algoritmo premium (activado por defecto). Hay que
+       desmarcarlo si el contrato de PTV de la compañía no lo incluye.
+   * - Distancia máxima al hub (km)
+     - El control previo de coordenadas: una Parada en otro país que la compañía o a más de estos
+       kilómetros de su hub queda marcada ``GEO_SUSPECT`` y no se envía a ningún servicio hasta
+       que se corrija (300 por defecto).
+
+.. _politica-operativa:
+
+4.3.9 Política operativa
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   TMS › Configuración › Ajustes › bloque **Operación** › **Políticas operativas** (y **Bloques
+   de resultado del routing**) · pestaña **Operación** del Proyecto (solo responsables)
+
+.. CAPTURA: 4_3_10 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_10_politica-operativa.png
+      :alt: Ficha de una política operativa
+
+      Una política operativa: recálculo de ETA, resultados del routing, enriquecimiento,
+      geocercas, alarmas y privacidad del destinatario.
+
+La :term:`Política operativa` (``tms.operations.policy``) decide qué se hace con un Viaje que ya
+está en la calle: cuándo se recalcula su ETA, qué se le pide a PTV además de la ruta y, para
+cuando haya torre de control, qué alarmas salta y qué ve el Destinatario. Hay **una para la
+compañía**, sin Proyecto, y como mucho **una por Proyecto**, que gana a la de la compañía para
+los Viajes del Proyecto. La del Proyecto se crea desde su pestaña Operación (4.5.10). Sin
+ninguna, el sistema aplica los valores por defecto. La ven los usuarios del TMS; la cambian los
+responsables.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Decisión
+     - Efecto
+   * - Recálculo de ETA
+     - Cuándo se recalcula el ETA de las Paradas pendientes de un Viaje en curso:
+       **Desactivado**, **Al cerrar una parada** (el valor por defecto), **Cada N minutos**,
+       **Al cerrar una parada y cada N minutos** o **Al desviarse del plan**. Cada recálculo es
+       una llamada a PTV.
+   * - Intervalo de recálculo, intervalo mínimo, tope diario de llamadas
+     - Cada cuántos minutos en los modos por intervalo (15 por defecto); el tiempo mínimo entre
+       dos recálculos del mismo Viaje (5); y el máximo de recálculos por Viaje y día (0, sin
+       tope). Son los frenos del gasto en PTV.
+   * - Pedir costes de peaje
+     - Si cada cálculo de ruta pide a PTV los peajes, que se guardan en el Viaje en su moneda.
+   * - Esquema de emisiones
+     - Ninguno, EN 16258:2012 o ISO 14083:2023 (el valor por defecto): el esquema cuyas cifras
+       de CO₂ y consumo se guardan en el Viaje y se reparten a las Órdenes. PTV admite un solo
+       esquema por cálculo.
+   * - Reparto de CO2
+     - Cómo se reparte el CO₂ del Viaje entre sus Órdenes: **Por distancia** (el defendible en
+       un informe de alcance 3) o **Por número de paradas** (más simple, justo solo si los
+       tramos son parecidos).
+   * - Enriquecimiento del routing
+     - Qué bloques adicionales se piden a PTV sobre la ruta ya calculada (tráfico, violaciones,
+       informes…). Se guardan en bruto en el Viaje para la torre de control. El catálogo está en
+       **Bloques de resultado del routing**; los que el TMS lee siempre se piden aunque no se
+       marquen.
+   * - Geocerca de llegada (m)
+     - El radio alrededor de la Parada que cuenta como llegada cuando hay posiciones del
+       vehículo (150 m por defecto). Un Tipo de Parada puede tener el suyo (4.1.3). La usa el
+       conector de telemática: hoy no llegan posiciones, así que no tiene efecto todavía.
+   * - Alarmas
+     - **Sin evento tras el ETA**, **Vehículo parado**, **Viaje sin empezar**: reservadas para
+       la torre de control; hoy no las lee nadie. **Desviación de ruta (km)** es además el
+       umbral del modo «Al desviarse del plan»: se recalcula cuando llega una posición a más de
+       esa distancia de la siguiente Parada.
+   * - Privacidad del destinatario
+     - Qué verá el Destinatario de la posición del vehículo (siempre, solo cuando es la
+       siguiente Parada, o solo una cuenta atrás) y si podrá reprogramar o cambiar la
+       dirección. Reservado para la torre de control: hoy no lo lee nadie.
+
+Mientras no lleguen posiciones reales de los vehículos (ver
+:ref:`17.0/1_introduction/1_4_technological-architecture:1.4.6 Evolución prevista`), el modo
+**Al desviarse del plan** no recalcula nunca: elegirlo equivale a no recalcular. El campo
+**Umbral de desviación (min)** que aparece con ese modo no lo usa ningún cálculo. Campos en
+:doc:`/17.0/annexes/A_31_politica-operativa`.

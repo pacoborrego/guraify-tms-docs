@@ -13,10 +13,10 @@
 
 El :term:`Proyecto` (``project.project``) es la unidad de parametrización del TMS. Reúne, para
 un cliente o para un transportista, la tarifa, el Planning, la red territorial, los catálogos
-permitidos, los automatismos, la app, el albarán y la integración. Casi todo lo que llega a
-una Orden, un Tramo, una Parada o un Viaje se hereda de su Proyecto, así que una configuración
-incompleta aparece después como incidencia de importación, de planificación, de la app o de
-tarifa.
+permitidos, los automatismos, la app, el albarán, la integración y la política operativa. Casi
+todo lo que llega a una Orden, un Tramo, una Parada o un Viaje se hereda de su Proyecto, así que
+una configuración incompleta aparece después como incidencia de importación, de planificación,
+de la app o de tarifa.
 
 Un Proyecto es de **Órdenes** (de un cliente) o de **Viajes** (de un transportista o agencia),
 según el campo **Aplicar en**. Un cliente puede tener varios Proyectos si tiene operativas con
@@ -317,3 +317,39 @@ periodo y las banderas de configuración.
 Los indicadores se calculan al abrir la vista sobre los datos vivos. Desde la tarjeta se abre
 el formulario, cuya cabecera muestra el botón inteligente **Órdenes** o **Viajes** con el
 recuento de abiertos sobre el total.
+
+4.5.10 Operación
+~~~~~~~~~~~~~~~~
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   Proyecto › pestaña **Operación** (solo la ven los responsables del TMS)
+
+.. CAPTURA: 4_5_05 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_5_project-configuration_05_operacion.png
+      :alt: Pestaña Operación de un Proyecto
+
+      Pestaña Operación: coste de subcontratación por defecto y política operativa del Proyecto.
+
+La pestaña Operación reúne lo que el Proyecto cambia de la operación de la compañía cuando el
+Viaje ya está planificado o en la calle.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Decisión
+     - Efecto
+   * - Coste de subcontratación por defecto
+     - Lo que cuesta dejar sin planificar un Tramo del Proyecto: el optimizador compara ese
+       coste con lo que costaría meterlo en una ruta y, si meterlo sale más caro, lo deja fuera.
+       Solo lo usa PTV OptiFlow. Vacío, no hay coste por dejarlo fuera.
+   * - Política operativa
+     - La :term:`Política operativa` propia del Proyecto, que gana a la de la compañía para sus
+       Viajes: cuándo se recalcula el ETA, peajes y emisiones, geocerca, y lo reservado para la
+       torre de control. Como mucho una por Proyecto; la fila abre la ficha completa (ver
+       :ref:`politica-operativa`).
+
+Campos en :doc:`/17.0/annexes/A_18_proyecto`.
+

@@ -45,3 +45,5 @@ ejemplo, «Id» para el nombre de un tipo) se indica en la tabla.
    A_28_tipos-reembolso
    A_29_presets-optimizacion
    A_30_deca
+   A_31_politica-operativa
+   A_32_marca

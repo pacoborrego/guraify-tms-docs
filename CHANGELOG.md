@@ -8,6 +8,29 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Motores de optimización, política operativa y marca (tarea D25, 2026-10-14)
+- **1.4.2.1 Dos motores de optimización** (nueva): PTV Developer y PTV OptiFlow, qué tiene en
+  cuenta cada uno (tabla), cómo se decide el motor (Planning, compañía, Developer) y que elegir
+  OptiFlow para un proceso que no sabe hacer se para con error. Las dos subsecciones siguientes se
+  renumeran (1.4.2.2 El ETA, 1.4.2.3 Referencia técnica, con las filas de Proveedores geo y del
+  perfil del conductor).
+- **4.3.8 Proveedores geo** y **4.3.9 Política operativa** (nuevas), con el anexo **A.31**. Los
+  campos de alarmas y de privacidad del Destinatario se marcan como reservados para la torre de
+  control. Discrepancias encontradas en el código: el modo «Al desviarse del plan» usa como umbral
+  la «Desviación de ruta (km)» (distancia a la siguiente Parada) y no el «Umbral de desviación
+  (min)», que no lee nadie; y sin posiciones reales no recalcula nunca.
+- **4.3.1**: fila Proveedor de optimización (y A.07). **4.3.6**: el perfil de jornada se elige
+  distinto según el motor (OptiFlow empieza por el conductor) y el factor de velocidad del
+  conductor (y A.12).
+- **4.2.5**: el vehículo concreto y lo que pasa al cambiarle la categoría (se sobrescribe todo
+  salvo los cuatro costes, que se heredan).
+- **4.5.10 Operación** (nueva, solo responsables), con **A.18.12**.
+- **4.1.7 Marca de la compañía** (nueva), con el anexo **A.32**: quién lee cada campo (la app, el
+  DeCA, los avisos) y qué está reservado para la torre (favicon, tipografía, paleta de noche).
+- Glosario: **PTV** ampliado, **PTV Developer**, **PTV OptiFlow** y **Proveedor geo** nuevos,
+  **Política operativa** ampliada. **A.29**: las etiquetas del campo Motor como en la interfaz.
+- Cuatro capturas nuevas en `CAPTURAS_PENDIENTES.md` y en `tools/capturas/manifest.json`.
+
 ### Correcciones de la tercera ronda (tarea D24, 2026-10-14)
 - **1.4.6** reescrita: OptiFlow sale de «en desarrollo» (ya es el motor de optimización de una
   compañía); cada punto de la torre dice qué existe en Odoo y qué falta (posición real, página de

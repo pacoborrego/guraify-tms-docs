@@ -52,5 +52,9 @@ hay que elegir uno y nadie ha elegido).
    * - Remitente
      - Relación con Contacto
      - Remitente asociado al Planning, cuando toda la operativa es de un mismo origen.
+   * - Proveedor de optimización
+     - Selección
+     - PTV Developer o PTV OptiFlow para las optimizaciones de este Planning. Vacío, el de la
+       compañía (``geo_provider_optimize``).
 
 Cómo se usa y qué decide el cliente: :doc:`/17.0/4_parametrization/4_3_planning-configuration`.

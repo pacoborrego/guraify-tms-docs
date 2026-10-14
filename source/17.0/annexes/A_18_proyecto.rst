@@ -295,4 +295,25 @@ A.18.11 Grupo Aplicación móvil
      - Activa la comprobación de Bultos por lectura continua en el flujo de la Parada. Así se llama
        la casilla en la interfaz.
 
+A.18.12 Pestaña Operación
+-------------------------
+
+Solo para responsables del TMS.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 28 22 50
+
+   * - Campo
+     - Tipo
+     - Qué es
+   * - Coste de subcontratación por defecto
+     - Importe
+     - Lo que le cuesta al optimizador dejar sin planificar un Tramo del Proyecto. Solo lo lee
+       PTV OptiFlow (``optim_default_outsourcing_cost``).
+   * - Política operativa
+     - Lista (una fila como mucho)
+     - La política operativa propia del Proyecto (``operations_policy_ids``). Campos en
+       :doc:`A_31_politica-operativa`.
+
 Cómo se usa y qué decide el cliente: :doc:`/17.0/4_parametrization/4_5_project-configuration`.

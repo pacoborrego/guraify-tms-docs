@@ -214,6 +214,16 @@ Lo que el cliente decide en la categoría es lo que el optimizador va a respetar
        tener las suyas). Sin ninguna, sirve a todas. Solo cuentan si la optimización se lanza
        con **Respetar zonas operativas**.
 
+**El vehículo concreto.** Cada vehículo tiene, en su pestaña **Parámetros de optimización**,
+los mismos datos que su categoría: capacidades, equipamientos, inicio y fin, límites de ruta y el
+grupo **Optimizador** (duraciones máximas, compacidad, equilibrio, factor de velocidad, tráfico).
+Al darle o cambiarle la categoría en la ficha, todos esos valores **se sobrescriben** con los de
+la categoría nueva, también los que se habían ajustado a mano: después se corrigen las
+excepciones. Los cuatro costes son la excepción: no se copian, el vehículo usa los de su
+categoría mientras los suyos estén vacíos, así que cambiar un coste en la categoría llega a todos
+los vehículos que no tengan uno propio. Casi todo el grupo Optimizador solo lo usa PTV OptiFlow
+(ver :ref:`17.0/1_introduction/1_4_technological-architecture:1.4.2.1 Dos motores de optimización`).
+
 En el modelo, los datos que importan son los físicos y ambientales: pesos autorizados y en
 vacío, ejes y neumáticos, dimensiones exteriores e interiores, tipo de motor, combustible y
 consumos, clase Euro, el **distintivo DGT** (B, C, ECO o 0 emisiones) y las **autorizaciones de

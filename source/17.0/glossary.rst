@@ -344,10 +344,25 @@ para quien lo necesite.
       documentación no se dice *ruta* ni *trip*.) Modelo ``tms.trip``.
 
    PTV
-      Proveedor de cartografía y de cálculo de rutas para transporte profesional (PTV Developer) que
-      usa el TMS para geocodificar, dibujar el mapa, calcular rutas, secuenciar Paradas y proponer
-      Viajes. Se contrata por vehículo; el token se configura por compañía. Sin PTV el sistema
-      planifica a mano sobre OpenStreetMap.
+      Proveedor de cartografía y de cálculo de rutas para transporte profesional que usa el TMS para
+      geocodificar, dibujar el mapa, calcular rutas, secuenciar Paradas y proponer Viajes, con dos
+      servicios: :term:`PTV Developer` y :term:`PTV OptiFlow`. Se contrata por vehículo; el token se
+      configura por compañía y vale para los dos. Sin PTV el sistema planifica a mano sobre
+      OpenStreetMap.
+
+   PTV Developer
+      El servicio estándar de PTV: cálculo de ruta, ETA y su enriquecimiento, secuenciación, mapa
+      base y optimización. Es el que se usa cuando no se configura otro.
+
+   PTV OptiFlow
+      Servicio de PTV que solo hace la optimización completa, con un modelo más rico que el estándar:
+      costes de cada vehículo, jornada y pausas del conductor, coste de dejar algo sin planificar,
+      compacidad y equilibrio entre Viajes. Se elige por compañía o por Planning.
+
+   Proveedor geo
+      El servicio que hace cada cálculo geográfico (ruta y ETA, secuenciación, optimización, estilo
+      del mapa), elegido por compañía en Ajustes y, para optimizar, también por Planning. Modelo
+      ``tms.geo.provider``.
 
    Webhook
       Aviso automático que un sistema envía a otro en cuanto ocurre algo, mediante una llamada a una
@@ -443,10 +458,11 @@ para quien lo necesite.
       ``project.project`` y ``tms.stop``.
 
    Política operativa
-      Decisiones por compañía, y opcionalmente por Proyecto, sobre el recálculo del ETA (cuándo,
-      cada cuánto, espaciado mínimo y tope diario), los extras que se piden a PTV (peajes, esquema
-      de emisiones) y el reparto del CO₂ a las Órdenes. La del Proyecto gana a la de la compañía.
-      Modelo ``tms.operations.policy``.
+      Decisiones por compañía, y opcionalmente por Proyecto, sobre el Viaje en la calle: el
+      recálculo del ETA (cuándo, cada cuánto, espaciado mínimo y tope diario), los extras que se
+      piden a PTV (peajes, esquema de emisiones, enriquecimiento), el reparto del CO₂ a las Órdenes
+      y la geocerca de llegada; y, reservadas para la torre de control, las alarmas y la privacidad
+      del Destinatario. La del Proyecto gana a la de la compañía. Modelo ``tms.operations.policy``.
 
    ETA
       Hora estimada de llegada a una Parada. El **ETA prometido** es el de la planificación y no

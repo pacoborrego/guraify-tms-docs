@@ -262,3 +262,47 @@ registro del cobro, con lo que la administración puede agrupar lo cobrado por m
 ciclo completo del Reembolso está en :doc:`/17.0/8_economic-administration/8_6_refunds` y el
 cobro en la calle, en el :doc:`Manual del conductor </17.0/10_manual_app/index>`. Campos en
 :doc:`/17.0/annexes/A_28_tipos-reembolso`.
+
+4.1.7 Marca de la compañía
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   Ajustes › Usuarios y compañías › Compañías › la compañía › pestaña **Marca**
+
+.. CAPTURA: 4_1_09 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/4_parametrization/4_1_operational-configuration_09_marca.png
+      :alt: Pestaña Marca de la ficha de la compañía
+
+      La pestaña Marca: logos, paleta de día y de noche, tipografía, dominio y remitente.
+
+Cada compañía tiene su **marca**: lo que lleva su nombre ante el conductor, el cargador y el
+Destinatario. No es un catálogo sino una pestaña de la ficha de la compañía, pero se configura al
+principio, como los catálogos, porque la app del conductor y el DeCA la necesitan desde el primer
+día. Si una instalación tiene varias compañías, cada una lleva la suya.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Decisión
+     - Quién la usa
+   * - Logo de la aplicación y **Paleta de día** (colores principal, secundario y terciario, de
+       estado y neutros)
+     - La app del conductor, que los recibe al iniciar sesión.
+   * - Logo horizontal
+     - El encabezado del DeCA y de la hoja de ruta que lo acompaña; sin él, se usa el logo de la
+       compañía.
+   * - Nombre del remitente de mensajería
+     - El remitente que lee el Destinatario en los avisos por correo, SMS y WhatsApp; vacío, el
+       nombre de la compañía.
+   * - Dominio de Connect
+     - La dirección desde la que se servirá la torre de control de la compañía, y con ella el
+       enlace de seguimiento de los avisos (cuya página todavía no existe).
+   * - Favicon, **Tipografía** y **Paleta de noche (opcional)**
+     - Reservados para la torre de control y las páginas de seguimiento. Hoy no los lee nadie:
+       la app no recibe la tipografía ni la paleta de noche.
+
+Los colores se escriben en hexadecimal (#1A2B3C). Campos en :doc:`/17.0/annexes/A_32_marca`.
+

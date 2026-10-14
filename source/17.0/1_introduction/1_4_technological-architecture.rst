@@ -201,7 +201,78 @@ que la conoce:
 La Parada que el servicio no puede planificar se queda en su Viaje **sin sitio en la ruta** y el
 diálogo lo dice; nada se relanza a escondidas con las ventanas ampliadas.
 
-1.4.2.1 El ETA durante la ejecución
+1.4.2.1 Dos motores de optimización
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   TMS › Configuración › Ajustes › bloque **Proveedores geo** › **Proveedor por proceso** · campo
+   **Proveedor de optimización** del Planning.
+
+La optimización completa puede hacerla cualquiera de dos servicios de PTV, con el mismo token y
+el mismo contrato:
+
+- **PTV Developer**, el motor estándar, es el que hace todo lo demás: cálculo de ruta, ETA y su
+  enriquecimiento, secuenciación, mapa base y también optimización.
+- **PTV OptiFlow** solo optimiza. Recibe un modelo más rico del problema: lo que cuesta cada
+  vehículo, la jornada y las pausas de cada conductor, lo que cuesta dejar algo sin planificar,
+  cuánto se quiere compactar y equilibrar la carga entre Viajes.
+
+Para el planificador no cambia nada: el asistente Asignar en modo Optimización, el diálogo de
+progreso, **Aplicar plan** y **Revertir** son los mismos, y el plan que vuelve se aplica con el
+mismo código. Lo que cambia es lo que el motor tiene en cuenta:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 40 30 30
+
+   * - Dato
+     - PTV Developer
+     - PTV OptiFlow
+   * - Capacidades, equipamiento, zonas, ZBE, ventanas, prioridades, preset
+     - Sí
+     - Sí
+   * - Costes del vehículo (fijo, por hora, por kilómetro, por Parada)
+     - No
+     - Sí
+   * - Duración y conducción máximas, compacidad, equilibrio entre Viajes, factor de velocidad y
+       tráfico del vehículo (:doc:`/17.0/annexes/A_05_categorias-vehiculo`)
+     - No
+     - Sí
+   * - Pausas explícitas y regla de jornada del conductor
+     - Solo el ajuste de PTV de la franja o la categoría
+     - Sí, con la regla del conductor primero (:ref:`horas-conduccion`)
+   * - Factor de velocidad del conductor
+     - No
+     - Sí
+   * - Coste de dejar un Tramo sin planificar (pestaña Operación del Proyecto)
+     - No
+     - Sí
+   * - Jornada, duración y conducción máximas por categoría en el asistente
+     - No (columnas ocultas)
+     - Sí
+   * - **Evitar cruces** (opción avanzada del asistente)
+     - Sí
+     - No
+   * - Rutas actuales como punto de partida (**Romper estructura** de Encontrar ruta)
+     - Sí
+     - No: se reenvía sin ellas y queda anotado en la ejecución
+
+Con Developer, un transporte cuyo equipamiento no tiene ningún vehículo queda sin planificar, y el
+asistente lo avisa. Cada :ref:`preset <presets-optimizacion>` dice para qué motor sirve (los dos,
+solo OptiFlow o solo Developer) y el asistente solo ofrece los del motor que toca.
+
+**Qué motor optimiza.** El planificador no lo elige en el asistente: lo decide el **Planning**
+de la optimización, si tiene **Proveedor de optimización**; si no, el de la compañía en Ajustes;
+y sin nada configurado, PTV Developer. El bloque **Proveedores geo** de Ajustes tiene un selector
+por proceso (Routing y ETA, Secuenciación, Optimización, Estilo del mapa) para la compañía activa,
+y en todos se puede elegir cualquiera de los dos; pero OptiFlow solo sabe optimizar, así que
+elegirlo para la ruta o la secuenciación no cae en silencio a Developer: el proceso se para con un
+error que lo dice. La única excepción es el estilo del mapa, que cae a OpenStreetMap para no dejar
+las pantallas sin mapa. La configuración de cada ajuste está en :ref:`proveedores-geo`.
+
+1.4.2.2 El ETA durante la ejecución
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. admonition:: Ruta en Odoo
@@ -238,7 +309,7 @@ elija la política, EN 16258:2012 o ISO 14083:2023, y las emisiones del Viaje se
 Órdenes que lleva, por distancia recorrida o por número de Paradas. Lo que PTV devuelve y no
 tiene campo propio se guarda tal cual en el Viaje para su análisis posterior.
 
-1.4.2.2 Referencia técnica
+1.4.2.3 Referencia técnica
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
@@ -270,7 +341,15 @@ tiene campo propio se guarda tal cual en el Viaje para su análisis posterior.
    * - Perfil de jornada
      - ``tms.driver.working.hours``
      - Se elige en la plantilla de la franja del Plan de disponibilidad y en la categoría del
-       vehículo
+       vehículo; para OptiFlow, también en el conductor (``res.partner``:
+       ``tms_driver_working_hours_id``, ``tms_speed_factor``)
+   * - Proveedores geo
+     - ``tms.geo.provider`` (``tms.geo.provider.ptv``, ``tms.geo.provider.ptv_optiflow``);
+       ``res.company``: ``geo_provider_route``, ``geo_provider_sequence``,
+       ``geo_provider_optimize``, ``geo_provider_map_style``; ``tms.planning``:
+       ``geo_provider_optimize``
+     - El proveedor de cada proceso. Se resuelve una sola vez por llamada: ejecución, Planning
+       (solo optimizar), compañía, PTV Developer
    * - Tarea programada
      - «TMS: recompute ETA of running trips»
      - Cada minuto atiende la cola de recálculos pendientes según la política
@@ -281,8 +360,9 @@ tiene campo propio se guarda tal cual en el Viaje para su análisis posterior.
        vez (ajuste de la compañía, 6 por defecto)
    * - Optimización
      - ``tms.optimization.run``
-     - Una fila por optimización lanzada, con el preset, las casillas, el plan, las Paradas
-       excluidas y el resultado; «Aplicar plan» y «Revertir» actúan sobre ella
+     - Una fila por optimización lanzada, con el motor, el preset, las casillas, el plan, las
+       Paradas excluidas y el resultado; «Aplicar plan» y «Revertir» actúan sobre ella. Si se
+       cierra el navegador, la tarea programada de sondeo la sigue cada minuto
    * - Preset de optimización
      - ``tms.ptv.preset``
      - Lo que el motor persigue y lo que puede violar (:ref:`presets-optimizacion`)
@@ -427,7 +507,7 @@ que necesita de Odoo está hecho casi todo; lo que queda es:
   conductor como primer proveedor, pero hoy no entra ningún dato: falta el servicio intermedio
   que reciba las señales de los proveedores y la app todavía no envía su posición. Mientras
   tanto, el recálculo del ETA
-  (:ref:`17.0/1_introduction/1_4_technological-architecture:1.4.2.1 El ETA durante la ejecución`)
+  (:ref:`17.0/1_introduction/1_4_technological-architecture:1.4.2.2 El ETA durante la ejecución`)
   parte de la última Parada cerrada y no del vehículo.
 - **Avisos al Destinatario.** El motor de avisos por correo, SMS y WhatsApp funciona, pero le
   faltan dos piezas: la página que abre el enlace de seguimiento del aviso y la cuenta real de
