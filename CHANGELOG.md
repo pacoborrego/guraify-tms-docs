@@ -8,6 +8,22 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Capítulo 11 Avisos al Destinatario (tarea D27, 2026-10-14)
+- Capítulo nuevo `source/17.0/11_notifications/`, como el 9: 11.1 qué es, los quince
+  disparadores y lo que todavía no hace (la página del enlace de seguimiento no existe, la cuenta
+  real de WhatsApp está pendiente, «Workflows» y Esendex en inglés); 11.2 canales (correo, SMS con
+  `sms_esendex`, WhatsApp con sus reglas de Meta); 11.3 flujos de aviso y plantillas; 11.4 el
+  Destinatario y el consentimiento; 11.5 seguir los avisos (estados, motivos, enlaces, la alarma
+  de la cola); 11.6 pruebas sobre una copia de producción y puesta en marcha; 11.7 referencia.
+- Anexo **A.33 Avisos al Destinatario** (disparadores, flujo, aviso, contacto, Esendex).
+- Glosario: **Aviso**, **Flujo de aviso**, **Consentimiento**, **Lista blanca de pruebas**.
+- Enlaces y menciones: 0.4 (área nueva), 0.6, 1.4.1, 1.4.6, 4.1.7 y la introducción del Manual
+  de implantación (capítulos 9 y 11).
+- Comportamiento del código anotado: las plantillas de serie eligen el idioma del texto por el
+  idioma del contacto; «Idioma de los avisos» solo cambia el formato de fechas y horas.
+- Cuatro capturas nuevas, con instrucciones manuales (no guardar ningún flujo activo en una copia
+  de producción; dos llevan datos reales).
+
 ### ETA, mapa y adjuntos en la ejecución (tarea D26, 2026-10-14)
 - **5.4.4 Seguir la ETA durante la ejecución** (nueva; la referencia técnica pasa a 5.4.5): cuándo
   se recalcula según la política operativa, la pestaña **ETA y ruta** del Viaje grupo a grupo, ETA

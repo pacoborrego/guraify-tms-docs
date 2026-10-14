@@ -244,6 +244,19 @@ local llama a los sistemas reales).
 | ✅ | `9_4_lifecycle.rst` | `9_4_lifecycle_02_documento-emitido.png` | Ficha de un DeCA **emitido**: cargador, transportista, vehículo, líneas, URL pública y los botones Revisar, Anular DeCA y Emitir nuevo desde este. | TMS › Operaciones › DeCA › Documentos › uno emitido |
 | ✅ | `9_5_outputs.rst` | `9_5_outputs_01_pdf.png` | El **PDF** de un DeCA emitido: datos del transporte, QR, cargador, transportista y las expediciones (primera página, en el visor). | Botón Descargar PDF de un DeCA emitido (a mano, desde el visor de PDF) |
 
+## Avisos al Destinatario (cap. 11)
+
+> Carpeta: `source/_static/img/11_notifications/`. Sobre la base local (copia de producción): **no
+> guardar ningún flujo activo ni pulsar Probar credenciales**; las que llevan datos reales pasan por
+> anonimizar.
+
+| Estado | Sección (.rst) | Fichero | Qué se ve (pie de figura) | Ruta en Odoo |
+|---|---|---|---|---|
+| ⬜ | `11_2_channels.rst` | `11_2_channels_01_esendex.png` | Enviar SMS con Esendex: cuenta, usuario, contraseña de la API, remitente y prueba de las credenciales. | Ajustes › Ajustes generales › Contactos › Enviar SMS › Send via Esendex (tapar referencia de cuenta y usuario si son reales) |
+| ⬜ | `11_3_workflows.rst` | `11_3_workflows_01_flujo.png` | Un flujo de aviso: cuándo, a quién, por qué canal y con qué límites. | TMS › Configuración › Avisos › Workflows › Nuevo, rellenado y **sin guardar** |
+| ⬜ | `11_4_recipient.rst` | `11_4_recipient_01_avisos.png` | El grupo AVISOS de un contacto: canal preferido, idioma y consentimientos. | Contacto › Propiedades TMS › AVISOS (contacto inventado o anonimizado) |
+| ⬜ | `11_5_following.rst` | `11_5_following_01_pestana-avisos.png` | La pestaña Avisos de la Orden: qué se dijo, a quién, por qué canal y cómo acabó. | Orden › pestaña Avisos. **Lleva datos reales**: anonimizar |
+
 ## Administración y Control Económico (cap. 8)
 
 > Carpeta: `source/_static/img/8_economic-administration/`

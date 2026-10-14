@@ -44,6 +44,9 @@ ha llegado a su Bandeja de entrada (lo recibido, lo rechazado y los manifiestos 
 facturas. Las Órdenes de transporte no se consultan en el portal: para eso está la consulta de
 seguimiento.
 
+**Avisos al Destinatario.** Además de lo que se envía al sistema del cliente, el TMS puede avisar
+directamente a quien recibe la entrega, por correo, SMS o WhatsApp (ver :doc:`0_4_what-it-includes`).
+
 Qué queda registrado
 ~~~~~~~~~~~~~~~~~~~~
 

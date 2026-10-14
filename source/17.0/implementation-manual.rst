@@ -12,7 +12,8 @@ entidades del modelo (Orden, Tramo, Parada y Viaje) y por qué la venta y el cos
 separado; el 3 recorre la aplicación tal y como se ve en pantalla; el 4 es la parametrización,
 maestro a maestro, con lo que decide el cliente en cada uno; el 5 sigue el flujo de una
 operación de principio a fin; el 6 cubre la gestión de recursos (odómetro y mantenimiento); el
-8 cierra con el modelo económico y su control. El anexo A recoge el catálogo de campos de cada
+8 cierra con el modelo económico y su control. El 9 y el 11 describen dos módulos opcionales: el
+documento de control del transporte (DeCA) y los avisos al Destinatario. El anexo A recoge el catálogo de campos de cada
 pantalla, para consultarlo cuando haga falta.
 
 .. toctree::
@@ -26,4 +27,5 @@ pantalla, para consultarlo cuando haga falta.
    6_resources/index
    8_economic-administration/index
    9_deca/index
+   11_notifications/index
    annexes/index

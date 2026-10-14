@@ -1563,6 +1563,79 @@
    "instance": "deca",
    "manual": "A mano: Descargar PDF de un DeCA emitido y capturar la primera página en el visor de PDF (recortar al documento).",
    "note": "El PDF emitido con su QR"
+  },
+  {
+   "id": "11_2_01",
+   "file": "11_2_channels_01_esendex.png",
+   "folder": "11_notifications",
+   "instance": "agent",
+   "action": "base_setup.action_general_configuration",
+   "view": "form",
+   "record": 0,
+   "steps": [
+    {
+     "scroll": "#sms"
+    },
+    {
+     "wait": 800
+    }
+   ],
+   "note": "Bloque Enviar SMS con Send via Esendex y sus campos",
+   "manual": "Si la base tiene credenciales reales de Esendex, tapar referencia de cuenta y usuario (o capturar con la opción marcada sin guardar y los campos vacíos). No pulsar Test the credentials"
+  },
+  {
+   "id": "11_3_01",
+   "file": "11_3_workflows_01_flujo.png",
+   "folder": "11_notifications",
+   "instance": "agent",
+   "action": "tms_notify.notify_workflow_action",
+   "model": "tms.notify.workflow",
+   "view": "form",
+   "note": "Ficha de un flujo de aviso (Cuándo, Quién, Cómo, Restricción)",
+   "manual": "Abrir Nuevo y rellenar sin GUARDAR: nombre «Entregado: avisa al destinatario», disparador Entregado, plantillas de serie. Un flujo guardado y activo en una copia de producción avisaría a móviles reales"
+  },
+  {
+   "id": "11_4_01",
+   "file": "11_4_recipient_01_avisos.png",
+   "folder": "11_notifications",
+   "instance": "agent",
+   "model": "res.partner",
+   "view": "form",
+   "steps": [
+    {
+     "tab": "TMS Properties"
+    },
+    {
+     "scroll": ".o_horizontal_separator:has-text('NOTIFICATIONS')"
+    }
+   ],
+   "note": "Grupo AVISOS de un contacto",
+   "manual": "Usar un contacto inventado o anonimizar nombre, dirección y teléfono antes de publicar"
+  },
+  {
+   "id": "11_5_01",
+   "file": "11_5_following_01_pestana-avisos.png",
+   "folder": "11_notifications",
+   "instance": "agent",
+   "model": "sale.order",
+   "view": "form",
+   "domain": [
+    [
+     "tms_notify_message_ids",
+     "!=",
+     false
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "Notifications"
+    },
+    {
+     "wait": 800
+    }
+   ],
+   "note": "Pestaña Avisos de una Orden con sus mensajes",
+   "manual": "LLEVA DATOS REALES (contacto, móvil): anonimizar antes de publicar. Si no hay ninguna Orden con avisos en la base local, dejarla para la demo"
   }
  ]
 }

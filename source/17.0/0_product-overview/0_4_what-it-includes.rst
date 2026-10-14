@@ -88,6 +88,15 @@ y el Viaje ya saben: se decide qué envíos están obligados y cuáles exentos, 
 el Viaje como PDF con un código QR que el inspector descarga sin credenciales, se envía al
 transportista o al cliente, y se conserva cada versión el tiempo que la norma manda.
 
+Avisos al Destinatario
+~~~~~~~~~~~~~~~~~~~~~~
+
+Mensajes automáticos por correo, SMS o WhatsApp a quien recibe una entrega, en los momentos que
+el cliente elija: cuando se planifica, el día anterior, cuando es la siguiente Parada, cuando se
+entrega o falla. Se configuran sin programar, respetan el consentimiento y el horario de silencio
+de cada Destinatario, y cada aviso queda registrado en su Orden. Los SMS pueden salir por
+Esendex; WhatsApp necesita Odoo Enterprise y una cuenta de Meta.
+
 Marca blanca y multiempresa
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

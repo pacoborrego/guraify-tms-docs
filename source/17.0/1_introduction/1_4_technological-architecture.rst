@@ -64,7 +64,8 @@ Guraify TMS se distribuye como un conjunto de módulos, uno o varios por área f
    * - Avisos al Destinatario
      - ``tms_notify``, ``tms_notify_whatsapp``, ``sms_esendex``
      - Correo, SMS y WhatsApp. ``tms_notify_whatsapp`` necesita Odoo Enterprise;
-       ``sms_esendex`` añade Esendex como proveedor de SMS
+       ``sms_esendex`` añade Esendex como proveedor de SMS (ver
+       :doc:`/17.0/11_notifications/index`)
    * - Gestión de recursos
      - ``tms_resources``, ``tms_maintenance``
      - Sobre Flota y Mantenimiento de Odoo
@@ -509,9 +510,9 @@ que necesita de Odoo está hecho casi todo; lo que queda es:
   tanto, el recálculo del ETA
   (:ref:`17.0/1_introduction/1_4_technological-architecture:1.4.2.2 El ETA durante la ejecución`)
   parte de la última Parada cerrada y no del vehículo.
-- **Avisos al Destinatario.** El motor de avisos por correo, SMS y WhatsApp funciona, pero le
-  faltan dos piezas: la página que abre el enlace de seguimiento del aviso y la cuenta real de
-  WhatsApp, con sus plantillas aprobadas por Meta.
+- **Avisos al Destinatario.** El motor de avisos por correo, SMS y WhatsApp funciona
+  (:doc:`/17.0/11_notifications/index`), pero le faltan dos piezas: la página que abre el enlace
+  de seguimiento del aviso y la cuenta real de WhatsApp, con sus plantillas aprobadas por Meta.
 - **Escenarios de optimización.** El menú Planning › Escenarios ya existe y está en prueba:
   comparar en paralelo varias planificaciones del mismo día antes de aplicar una. No se
   documenta hasta que esté terminado.

@@ -295,8 +295,8 @@ día. Si una instalación tiene varias compañías, cada una lleva la suya.
      - El encabezado del DeCA y de la hoja de ruta que lo acompaña; sin él, se usa el logo de la
        compañía.
    * - Nombre del remitente de mensajería
-     - El remitente que lee el Destinatario en los avisos por correo, SMS y WhatsApp; vacío, el
-       nombre de la compañía.
+     - El remitente que lee el Destinatario en los avisos por correo, SMS y WhatsApp
+       (:doc:`/17.0/11_notifications/index`); vacío, el nombre de la compañía.
    * - Dominio de Connect
      - La dirección desde la que se servirá la torre de control de la compañía, y con ella el
        enlace de seguimiento de los avisos (cuya página todavía no existe).

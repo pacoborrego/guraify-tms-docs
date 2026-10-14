@@ -457,6 +457,27 @@ para quien lo necesite.
       Parada se mide contra ella con la tolerancia que fija el Proyecto. Campos de
       ``project.project`` y ``tms.stop``.
 
+   Aviso
+      Mensaje automático, por correo, SMS o WhatsApp, al Destinatario (o al cliente) de una entrega
+      cuando pasa algo en ella: se planifica, es la siguiente, se entrega, falla. Lo decide un
+      :term:`Flujo de aviso` y queda como una fila en la pestaña Avisos de la Orden, enviado u
+      omitido con su motivo. Capítulo 11. Modelo ``tms.notify.message``.
+
+   Flujo de aviso
+      La configuración de un aviso: qué lo dispara (uno de quince momentos de la entrega), a
+      quién va, por qué canal, con qué plantilla, cuánto tiempo no se repite y en qué horario no
+      se envía. Se crea sin programar. Modelo ``tms.notify.workflow``.
+
+   Consentimiento
+      En los avisos, el permiso del contacto para recibirlos por un canal. El de WhatsApp es
+      obligatorio y guarda su fecha y su origen; el de SMS viene dado y funciona como baja
+      voluntaria. Campos de ``res.partner``.
+
+   Lista blanca de pruebas
+      Parámetro del sistema ``tms_notify.allowlist``: con valor, los avisos solo llegan a los
+      móviles y correos de la lista. Se pone antes de crear el primer flujo en cualquier copia de
+      la base de producción.
+
    Política operativa
       Decisiones por compañía, y opcionalmente por Proyecto, sobre el Viaje en la calle: el
       recálculo del ETA (cuándo, cada cuánto, espaciado mínimo y tope diario), los extras que se
