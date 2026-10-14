@@ -208,8 +208,13 @@ llenarlos. Se lanza desde el asistente Asignar en modo **Optimización**, o desd
    sospechosas, que quedan fuera, y de los vehículos cuyo turno no encaja con su hora de salida.
 #. **Lanzar la optimización.** El sistema envía al motor las Paradas, los vehículos con sus
    capacidades, costes y zonas y los conductores con su perfil de jornada, y sigue el progreso
-   en un diálogo. El resultado **no se aplica solo**: el diálogo enseña las Paradas por estado
-   de ventana, las excluidas y las violaciones, y espera a **Aplicar plan**. Al aplicarlo se
+   en un diálogo. Desde el primer momento, antes de que PTV termine, el diálogo dice cuántas
+   **Paradas de la ejecución** hay, cuántas son **Paradas no enviadas al optimizador** y, al
+   acabar, cuántas son **Paradas enviadas y sin planificar**, con un aviso por cada motivo y las
+   Paradas enlazadas (5.2.4.1). **Cancelar optimización** lo para; si se cierra el navegador, una
+   tarea programada sigue consultando a PTV cada minuto. El resultado **no se aplica solo**: el
+   diálogo enseña las Paradas por estado de ventana, las excluidas y las violaciones, y espera a
+   **Aplicar plan**. Al aplicarlo se
    crean los **Viajes planificados** con sus Paradas asignadas y secuenciadas, sus horas
    estimadas y su trazado; cada Viaje que pierde Paradas en el plan se vuelve a secuenciar. Si se
    cierra el diálogo sin aplicar, no se crea nada: el plan queda en su ejecución (menú Planning
@@ -232,6 +237,79 @@ La herramienta, sus requisitos y lo que envía y recibe de PTV están en
    :alt: Asistente Asignar en modo Optimización
 
    Modo Optimización: las categorías de vehículo disponibles y el bloque del motor.
+
+5.2.4.1 La ejecución y las Paradas sin planificar
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. admonition:: Ruta en Odoo
+   :class: tip
+
+   TMS › Operaciones › Planning › **Ejecuciones de optimización** › una ejecución
+
+.. CAPTURA: 5_2_10 — descomentar el figure cuando esté la imagen
+   .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_10_paradas-sin-planificar.png
+      :alt: Pestaña Paradas sin planificar de una ejecución de optimización
+
+      Paradas sin planificar: cada Parada que acabó sin ruta, con su origen y su motivo.
+
+Cada optimización lanzada queda como una **Ejecución de optimización**, con lo que se pidió, lo
+que respondió el motor y lo que se hizo con ello. Su estado es **Borrador**, **Enviado**, **En
+curso**, **Correcto** (el plan está listo), **Aplicado**, **Fallido** o **Anulado**, y su cabecera
+lleva los botones que tocan en cada momento: **Mostrar progreso** (el mismo diálogo),
+**Consultar ahora** (preguntar a PTV sin esperar a la tarea), **Aplicar plan**, **Revertir** y
+**Cancelar**. Las pestañas guardan las Paradas, los Viajes y los recursos de la ejecución, las
+métricas y las violaciones del plan, el preset y las casillas con que se lanzó, la petición y la
+respuesta en bruto y, si los hubo, el aviso o el error.
+
+La pestaña **Paradas sin planificar** lista cada Parada de la ejecución que acabó sin ruta, con
+su dirección, su **origen** y su **motivo**. Hay dos orígenes, y distinguirlos es lo que dice
+dónde hay que corregir:
+
+- **No planificada por el optimizador**: se le envió y no la metió en ninguna ruta. OptiFlow dice
+  por qué (una ventana que no alcanza, capacidad, jornada); PTV Developer no da motivo. Se
+  corrige con más vehículos, otro preset o las casillas de lo que se puede violar.
+- **Excluida por nosotros**: **nunca llegó al optimizador**, porque al TMS le falta algo para
+  enviarla. El optimizador no puede avisar de lo que no ve, y por eso el contador de **Órdenes
+  sin programar**, que es el del motor, puede decir cero con Paradas fuera. Se corrige en los
+  datos de la Parada o de su Tramo:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 40 40
+
+   * - Código
+     - Motivo (como sale en la pestaña)
+     - Qué hacer
+   * - ``GEO_SUSPECT``
+     - Sus coordenadas parecen erróneas (demasiado lejos del hub o en otro país).
+     - Corregir la dirección o las coordenadas del contacto. Además, la Parada sale en la pestaña
+       Paradas excluidas.
+   * - ``NO_HUB``
+     - Su Tramo de entrega no tiene hub de descarga (o el de recogida, hub de carga). Sale en
+       inglés en la interfaz.
+     - Darle el hub al Tramo; casi siempre es un Tramo que no resolvió su zona operativa al
+       crearse (:doc:`/17.0/3_functional-architecture/3_3_planning-model`).
+   * - ``EQUIPMENT_CONFLICT``
+     - Sus Órdenes piden equipamiento contradictorio (una exige lo que otra excluye). En inglés.
+     - Revisar las categorías de carga de sus Tramos (:ref:`que-restringe`).
+   * - ``STOP_TYPE``
+     - Su tipo de Parada no es de ruta, recogida a domicilio ni servicio directo. En inglés.
+     - La Parada no es planificable (un hub, por ejemplo); quitarla de la selección.
+   * - ``NO_LEG``
+     - No tiene ningún tramo de orden.
+     - Revisar la Orden: la Parada se ha quedado sin Tramos.
+   * - ``NO_UNLOAD``
+     - Su servicio directo no tiene parada o dirección de descarga.
+     - Completar la descarga del servicio directo.
+   * - ``LEG_TYPE``
+     - Su tramo no es ni de entrega ni de recogida.
+     - Revisar el Tipo de Orden del Tramo.
+   * - ``NOT_SENT``
+     - No está en la petición enviada al optimizador.
+     - El motor la dejó fuera por un motivo que el TMS aún no sabe nombrar: avisar a soporte.
+
+Las Paradas con coordenadas sospechosas tienen además su aviso de siempre en el diálogo. Las
+ejecuciones anteriores al 12 de octubre de 2026 no tienen esta lista.
 
 .. _encontrar-ruta:
 

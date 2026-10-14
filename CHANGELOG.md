@@ -8,6 +8,20 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Paradas sin planificar de una optimización (tarea D30, 2026-10-14)
+- **5.2.4**: el diálogo de progreso cuenta desde el principio las Paradas de la ejecución, las no
+  enviadas al optimizador y las enviadas y sin planificar, con un aviso por motivo; Cancelar
+  optimización y la tarea de sondeo.
+- **5.2.4.1 La ejecución y las Paradas sin planificar** (nueva): estados y botones de la Ejecución
+  de optimización, sus pestañas, los dos orígenes (excluida por nosotros / no planificada por el
+  optimizador) y la tabla de motivos con qué hacer en cada uno. Escrito por qué «Órdenes sin
+  programar» puede decir cero con Paradas fuera (el caso real del 02/10: 35 Paradas sin hub de
+  descarga en su Tramo).
+- **3.3.2.3**: requisito «Tramo con hub». **1.4.2.3**: fila de ``tms.optimization.run.unplanned``.
+- Etiquetas sin traducir en la interfaz: tres motivos (``NO_HUB``, ``EQUIPMENT_CONFLICT``,
+  ``STOP_TYPE``) salen en inglés.
+- Una captura nueva, a anonimizar.
+
 ### Guía del integrador: telemática, acceso externo, indicadores y tableros (tarea D29, 2026-10-14)
 - **7.8 Telemática** (nueva): estado (hecho en Odoo, sin datos: no existe el servicio intermedio y
   la app no envía posiciones, comprobado en `tms_odoo_app`), modelo, las dos puertas (usuario

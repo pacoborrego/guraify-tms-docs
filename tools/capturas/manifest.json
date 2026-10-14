@@ -1492,6 +1492,32 @@
    "note": "Ejecución en Propuesta lista, pestaña Órdenes (la ruta elegida por Orden con sus diferencias)"
   },
   {
+   "id": "5_2_10",
+   "file": "5_2_trip-generation_10_paradas-sin-planificar.png",
+   "folder": "5_operational-flows",
+   "instance": "agent",
+   "action": "tms.tms_optimization_run_action",
+   "model": "tms.optimization.run",
+   "view": "form",
+   "domain": [
+    [
+     "unplanned_line_ids",
+     "!=",
+     false
+    ]
+   ],
+   "steps": [
+    {
+     "tab": "Unplanned stops"
+    },
+    {
+     "wait": 800
+    }
+   ],
+   "note": "Pestaña Paradas sin planificar de una ejecución",
+   "manual": "LLEVA NOMBRES Y DIRECCIONES DE PARADAS: anonimizar. No pulsar Aplicar plan ni Revertir"
+  },
+  {
    "id": "5_4_02",
    "file": "5_4_app-execution_02_despacho.png",
    "folder": "5_operational-flows",

@@ -364,6 +364,11 @@ tiene campo propio se guarda tal cual en el Viaje para su análisis posterior.
      - Una fila por optimización lanzada, con el motor, el preset, las casillas, el plan, las
        Paradas excluidas y el resultado; «Aplicar plan» y «Revertir» actúan sobre ella. Si se
        cierra el navegador, la tarea programada de sondeo la sigue cada minuto
+   * - Paradas sin ruta de una optimización
+     - ``tms.optimization.run.unplanned``
+     - Una fila por Parada de la ejecución que acabó sin ruta: ``origin`` (``excluded``, no se
+       envió; ``provider``, el motor no la planificó), ``code`` y ``reason``. Pestaña Paradas
+       sin planificar de la ejecución
    * - Preset de optimización
      - ``tms.ptv.preset``
      - Lo que el motor persigue y lo que puede violar (:ref:`presets-optimizacion`)
