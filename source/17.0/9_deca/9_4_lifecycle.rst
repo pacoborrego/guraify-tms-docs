@@ -7,11 +7,10 @@
    TMS › Operaciones › DeCA › **Documentos** · botón **Generar DeCA** del Tramo · botón **Emitir
    DeCA del viaje** del Viaje · **Despachar** el Viaje
 
-.. CAPTURA: 9_4_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/9_deca/9_4_lifecycle_01_documentos.png
-      :alt: Lista de documentos DeCA con sus estados
+.. figure:: /_static/img/9_deca/9_4_lifecycle_01_documentos.png
+   :alt: Lista de documentos DeCA con sus estados
 
-      Los documentos DeCA: referencia, transportista, fecha, estado y URL activa.
+   Los documentos DeCA: referencia, transportista, fecha, estado y URL activa.
 
 9.4.1 Cómo nace
 ~~~~~~~~~~~~~~~
@@ -102,9 +101,8 @@ Cuando el Viaje lo hace un vehículo que no está en la flota, el Viaje lleva la
 externa**, la del remolque y los **equipos externos** de manipulación: el DeCA los usa en f), g) y
 en la paquetería como si fueran de la flota.
 
-.. CAPTURA: 9_4_02 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/9_deca/9_4_lifecycle_02_documento-emitido.png
-      :alt: Ficha de un DeCA emitido
+.. figure:: /_static/img/9_deca/9_4_lifecycle_02_documento-emitido.png
+   :alt: Ficha de un DeCA emitido
 
-      Un DeCA emitido: cargador, transportista, vehículo, líneas, URL pública y los botones
-      Revisar, Anular y Emitir nuevo desde este.
+   Un DeCA emitido: cargador, transportista, vehículo, líneas, URL pública y los botones
+   Revisar, Anular y Emitir nuevo desde este.

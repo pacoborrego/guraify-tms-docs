@@ -226,12 +226,11 @@ encaja, el :term:`diagnóstico de tarifa <Diagnóstico de tarifa>` dice por qué
 :doc:`/17.0/5_operational-flows/5_6_settlement`). Campos en
 :doc:`/17.0/annexes/A_15_lineas-tarifa`.
 
-.. CAPTURA: 4_4_05 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_4_economic-configuration_05_linea-por-bulto.png
-      :alt: Línea de tarifa con Aplicar en = Línea de orden y detalle filtrado por tipo de bulto
+.. figure:: /_static/img/4_parametrization/4_4_economic-configuration_05_linea-por-bulto.png
+   :alt: Línea de tarifa con Aplicar en = Línea de orden y detalle filtrado por tipo de bulto
 
-      Una línea por línea de mercancía: Aplicar en «Línea de orden» y el detalle con sus tipos
-      de bulto.
+   Una línea por línea de mercancía: Aplicar en «Línea de orden» y el detalle con sus tipos
+   de bulto.
 
 4.4.5 Productos
 ~~~~~~~~~~~~~~~

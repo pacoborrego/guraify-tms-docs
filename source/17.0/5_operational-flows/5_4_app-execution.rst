@@ -159,11 +159,10 @@ operativas) registra el mismo resultado que la app, pero **sin posición**: la t
 no lleva coordenadas ni dispositivo inventados, de modo que quien mire después desde dónde se
 reportó una entrega no encuentre al conductor «en la puerta» cuando fue la oficina quien cerró.
 
-.. CAPTURA: 5_4_03 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_4_app-execution_03_registrar-trazabilidad.png
-      :alt: Asistente Registrar trazabilidad de un Bulto
+.. figure:: /_static/img/5_operational-flows/5_4_app-execution_03_registrar-trazabilidad.png
+   :alt: Asistente Registrar trazabilidad de un Bulto
 
-      Registrar trazabilidad: evento, Parada, fecha y resultado para uno o varios Bultos.
+   Registrar trazabilidad: evento, Parada, fecha y resultado para uno o varios Bultos.
 
 .. figure:: /_static/img/5_operational-flows/5_4_app-execution_01_paradas-estado-app.png
    :alt: Lista de Paradas con su estado

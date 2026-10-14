@@ -237,11 +237,10 @@ llamadas de cancelación y, si la agencia no lo acepta, no se revierte. Los env�
 que existieran las fotos se revierten con lo que se puede reconstruir, y lo que no (fechas, horas,
 tipo de carga) queda anotado en el chatter.
 
-.. CAPTURA: 3_2_6_02 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/3_functional-architecture/3_2_6_legs-and-stops_02_envios-agencia.png
-      :alt: Lista Envíos a agencia (Agency Hand-overs)
+.. figure:: /_static/img/3_functional-architecture/3_2_6_legs-and-stops_02_envios-agencia.png
+   :alt: Lista Envíos a agencia (Agency Hand-overs)
 
-      Envíos a agencia: una fila por Parada enviada, con su Viaje, su agencia y si se ha revertido.
+   Envíos a agencia: una fila por Parada enviada, con su Viaje, su agencia y si se ha revertido.
 
 .. _estados-parada:
 

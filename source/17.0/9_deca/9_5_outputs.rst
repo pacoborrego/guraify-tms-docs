@@ -10,11 +10,10 @@
 9.5.1 El PDF
 ~~~~~~~~~~~~
 
-.. CAPTURA: 9_5_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/9_deca/9_5_outputs_01_pdf.png
-      :alt: PDF de un DeCA emitido con su QR
+.. figure:: /_static/img/9_deca/9_5_outputs_01_pdf.png
+   :alt: PDF de un DeCA emitido con su QR
 
-      El DeCA emitido: datos del transporte, QR, cargador, transportista y las expediciones.
+   El DeCA emitido: datos del transporte, QR, cargador, transportista y las expediciones.
 
 El documento es un PDF A4 vertical, en español, con el orden que fija la Resolución: título y
 referencia, datos del transporte (fecha, matrículas, permiso especial), el **QR** de 40 mm con la

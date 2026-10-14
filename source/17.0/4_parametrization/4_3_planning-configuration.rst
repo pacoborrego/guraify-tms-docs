@@ -160,11 +160,10 @@ de dibujar la primera, los modelos de vehículo tienen que llevar su distintivo
 **zonas operativas** que el motor compara con las permitidas a cada vehículo cuando se le pide
 **Respetar zonas operativas**. Campos en :doc:`/17.0/annexes/A_09_areas-geograficas`.
 
-.. CAPTURA: 4_3_08 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_08_zbe.png
-      :alt: Área geográfica de tipo Bajas emisiones con su distintivo DGT mínimo
+.. figure:: /_static/img/4_parametrization/4_3_planning-configuration_08_zbe.png
+   :alt: Área geográfica de tipo Bajas emisiones con su distintivo DGT mínimo
 
-      Un área de bajas emisiones: polígono, código y distintivo DGT mínimo.
+   Un área de bajas emisiones: polígono, código y distintivo DGT mínimo.
 
 4.3.4 Franjas horarias
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -280,11 +279,10 @@ en :doc:`/17.0/annexes/A_12_horas-conduccion`.
 
    TMS › Configuración › Presets de optimización (solo responsables)
 
-.. CAPTURA: 4_3_07 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/4_parametrization/4_3_planning-configuration_07_presets.png
-      :alt: Lista de Presets de optimización
+.. figure:: /_static/img/4_parametrization/4_3_planning-configuration_07_presets.png
+   :alt: Lista de Presets de optimización
 
-      Los cuatro presets de serie, con las casillas que marcan por defecto.
+   Los cuatro presets de serie, con las casillas que marcan por defecto.
 
 Un :term:`Preset de optimización` (``tms.ptv.preset``) dice **para qué se optimiza**: qué
 persigue el motor cuando construye los Viajes y qué está dispuesto a sacrificar. Antes el TMS

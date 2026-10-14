@@ -81,11 +81,10 @@ actividad que explican qué le pasó: el de cada fichero importado, los del prop
 los de sus Órdenes (el envío a la agencia o al cliente se registra por Orden); la etiqueta del
 botón sale en rojo cuando alguno está en error.
 
-.. CAPTURA: 3_2_3_03 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/3_functional-architecture/3_2_3_manifests_03_fichero-error.png
-      :alt: Lista de ficheros de un Manifiesto con uno en estado Error
+.. figure:: /_static/img/3_functional-architecture/3_2_3_manifests_03_fichero-error.png
+   :alt: Lista de ficheros de un Manifiesto con uno en estado Error
 
-      Un fichero en Error: la cola ha seguido con los demás y el motivo está en su registro.
+   Un fichero en Error: la cola ha seguido con los demás y el motivo está en su registro.
 
 **Cierre.** Cuando el Manifiesto ya tiene órdenes, aparece **Cerrar Manifiesto**, que también
 lo encola. Al cerrarse, su contenido se materializa en la estructura operativa: Órdenes, Tramos

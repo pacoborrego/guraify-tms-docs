@@ -160,32 +160,28 @@ Viajes arrastrándolas; cada cambio relanza el cálculo de ruta. Varias secuenci
 se atienden por una cola, hasta el número de **Secuenciaciones simultáneas** que fije la
 compañía.
 
-.. CAPTURA: 5_2_06 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_06_secuenciar.png
-      :alt: Diálogo Secuenciar viajes
+.. figure:: /_static/img/5_operational-flows/5_2_trip-generation_06_secuenciar.png
+   :alt: Diálogo Secuenciar viajes
 
-      El diálogo de Secuenciar Viaje: Secuenciar todo, Mantener orden relativo, tolerancia y qué se
-      puede violar.
+   El diálogo de Secuenciar Viaje: Secuenciar todo, Mantener orden relativo, tolerancia y qué se
+   puede violar.
 
-.. CAPTURA: 5_2_02 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_02_asignar-nuevo.png
-      :alt: Asistente Asignar en modo Nuevo con el mapa de las Paradas
+.. figure:: /_static/img/5_operational-flows/5_2_trip-generation_02_asignar-nuevo.png
+   :alt: Asistente Asignar en modo Nuevo con el mapa de las Paradas
 
-      El asistente Asignar en modo Nuevo: los campos a la izquierda, las Paradas y el mapa a la
-      derecha.
+   El asistente Asignar en modo Nuevo: los campos a la izquierda, las Paradas y el mapa a la
+   derecha.
 
-.. CAPTURA: 5_2_03 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_03_asignar-existente.png
-      :alt: Asistente Asignar en modo Existente con la ficha de un Viaje en el mapa
+.. figure:: /_static/img/5_operational-flows/5_2_trip-generation_03_asignar-existente.png
+   :alt: Asistente Asignar en modo Existente con la ficha de un Viaje en el mapa
 
-      Modo Existente: los Viajes de esas fechas sobre el mapa y la ficha de uno con «Elegir este
-      viaje».
+   Modo Existente: los Viajes de esas fechas sobre el mapa y la ficha de uno con «Elegir este
+   viaje».
 
-.. CAPTURA: 5_2_04 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_04_paradas-sin-hub.png
-      :alt: Diálogo Paradas sin hub
+.. figure:: /_static/img/5_operational-flows/5_2_trip-generation_04_paradas-sin-hub.png
+   :alt: Diálogo Paradas sin hub
 
-      Paradas sin hub: el hub se asigna a cada una o a todas antes de seguir.
+   Paradas sin hub: el hub se asigna a cada una o a todas antes de seguir.
 
 .. _generacion-optimizador:
 
@@ -226,18 +222,16 @@ llenarlos. Se lanza desde el asistente Asignar en modo **Optimización**, o desd
 La herramienta, sus requisitos y lo que envía y recibe de PTV están en
 :ref:`optimizador-paradas`.
 
-.. CAPTURA: 5_2_07 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_07_aplicar-plan.png
-      :alt: Diálogo de progreso con el plan listo y el botón Aplicar plan
+.. figure:: /_static/img/5_operational-flows/5_2_trip-generation_07_aplicar-plan.png
+   :alt: Diálogo de progreso con el plan listo y el botón Aplicar plan
 
-      El plan listo: Paradas por estado de ventana, excluidas y violaciones, y el botón Aplicar
-      plan.
+   El plan listo: Paradas por estado de ventana, excluidas y violaciones, y el botón Aplicar
+   plan.
 
-.. CAPTURA: 5_2_05 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_05_asignar-optimizacion.png
-      :alt: Asistente Asignar en modo Optimización
+.. figure:: /_static/img/5_operational-flows/5_2_trip-generation_05_asignar-optimizacion.png
+   :alt: Asistente Asignar en modo Optimización
 
-      Modo Optimización: las categorías de vehículo disponibles y el bloque del motor.
+   Modo Optimización: las categorías de vehículo disponibles y el bloque del motor.
 
 .. _encontrar-ruta:
 
@@ -314,15 +308,13 @@ Un servicio directo (ni entrega desde hub ni recogida hacia hub) no se propone: 
 con ese motivo. Con quince Órdenes y tres rutas la evaluación tarda alrededor de un minuto; el
 diálogo de progreso lo acompaña.
 
-.. CAPTURA: 5_2_08 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_08_encontrar-ruta.png
-      :alt: Asistente Encontrar ruta
+.. figure:: /_static/img/5_operational-flows/5_2_trip-generation_08_encontrar-ruta.png
+   :alt: Asistente Encontrar ruta
 
-      El asistente Encontrar ruta: Órdenes, rutas candidatas, modo y lo que se puede violar.
+   El asistente Encontrar ruta: Órdenes, rutas candidatas, modo y lo que se puede violar.
 
-.. CAPTURA: 5_2_09 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_2_trip-generation_09_candidatas.png
-      :alt: Ejecución de Encontrar ruta en Propuesta lista, pestaña Órdenes
+.. figure:: /_static/img/5_operational-flows/5_2_trip-generation_09_candidatas.png
+   :alt: Ejecución de Encontrar ruta en Propuesta lista, pestaña Órdenes
 
-      La propuesta: por Orden, la ruta elegida con sus diferencias (km, minutos, hora de fin,
-      ventanas, capacidad y coste); la pestaña Candidatas tiene las tres de cada una.
+   La propuesta: por Orden, la ruta elegida con sus diferencias (km, minutos, hora de fin,
+   ventanas, capacidad y coste); la pestaña Candidatas tiene las tres de cada una.

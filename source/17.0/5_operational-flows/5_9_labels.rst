@@ -39,11 +39,10 @@ unidad. El contrato está en la :doc:`Guía del integrador </17.0/7_edi-integrat
 5.9.2 Generar etiquetas
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 5_9_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/5_operational-flows/5_9_labels_01_generar-etiquetas.png
-      :alt: Asistente Generar etiquetas abierto desde un Viaje
+.. figure:: /_static/img/5_operational-flows/5_9_labels_01_generar-etiquetas.png
+   :alt: Asistente Generar etiquetas abierto desde un Viaje
 
-      Generar etiquetas desde un Viaje: formato de salida, tamaño, diseño y orden del lote.
+   Generar etiquetas desde un Viaje: formato de salida, tamaño, diseño y orden del lote.
 
 La acción **Generar etiquetas** está en el menú de acciones de seis sitios y hace lo mismo en
 todos: reúne los Bultos del registro (o de los registros seleccionados) y los saca en un solo

@@ -14,6 +14,8 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
   rechazadas de `img/`, 25 versiones antiguas de capturas vigentes y el `venv/` que se subió entre
   marzo y mayo. Al revisar se han encontrado **15 capturas de la app publicadas con datos reales**:
   María las difumina primero y la limpieza se hace después, en una sola pasada.
+- 14/10: anonimizadas las 15 capturas de la app (encima, con el mismo nombre) y las 19 de la segunda
+  ronda (reducidas a 1600 px). Activadas las 19 figuras de los capítulos 3, 4, 5 y 9.
 
 ### Capturas de la segunda ronda (tarea D23, 2026-10-12)
 - `tools/capturas/manifest.json` gana las 22 capturas nuevas de D18–D22 (87 en total) y

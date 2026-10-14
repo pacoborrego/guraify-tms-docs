@@ -56,11 +56,10 @@ qué Proyectos son paquetería.
 9.2.2 La ficha DeCA del Proyecto
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. CAPTURA: 9_2_01 — descomentar el figure cuando esté la imagen
-   .. figure:: /_static/img/9_deca/9_2_configuration_01_ficha-proyecto.png
-      :alt: Pestaña DeCA de un Proyecto
+.. figure:: /_static/img/9_deca/9_2_configuration_01_ficha-proyecto.png
+   :alt: Pestaña DeCA de un Proyecto
 
-      La ficha DeCA de un Proyecto: cargador, transportista efectivo, disparo, agrupación y envío.
+   La ficha DeCA de un Proyecto: cargador, transportista efectivo, disparo, agrupación y envío.
 
 El Proyecto de la Orden (no el del transportista) puede llevar una ficha DeCA. Con la casilla
 **DeCA por proyecto** encendida, la ficha manda; apagada, el Tramo se resuelve con la regla
