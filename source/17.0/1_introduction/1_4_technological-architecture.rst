@@ -504,8 +504,9 @@ que necesita de Odoo está hecho casi todo; lo que queda es:
   política operativa con sus geocercas y alarmas, el ETA vigente y el prometido, el historial de
   ETA y el enriquecimiento del Viaje. Las alarmas y la privacidad del Destinatario de la política
   no las lee todavía nadie: son de la torre.
-- **Posición real de los vehículos.** El conector de telemática existe en Odoo, con la app del
-  conductor como primer proveedor, pero hoy no entra ningún dato: falta el servicio intermedio
+- **Posición real de los vehículos.** El conector de telemática existe en Odoo
+  (:doc:`/17.0/7_edi-integrations/7_8_telematics`), con la app del conductor como primer
+  proveedor, pero hoy no entra ningún dato: falta el servicio intermedio
   que reciba las señales de los proveedores y la app todavía no envía su posición. Mientras
   tanto, el recálculo del ETA
   (:ref:`17.0/1_introduction/1_4_technological-architecture:1.4.2.2 El ETA durante la ejecución`)

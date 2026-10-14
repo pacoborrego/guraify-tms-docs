@@ -45,6 +45,13 @@ automáticamente cuando expira, evitando renovaciones innecesarias. La configura
 incluye además una prueba de credenciales para validar la conexión antes de ponerla en
 producción.
 
+**Timeout HTTP (s).** Cada integración dice cuánto espera la respuesta de su API: 30 segundos por
+defecto (0 es el valor por defecto), más 10 para establecer la conexión. Antes no había límite y
+una API colgada dejaba esperando al servidor y al usuario que había pulsado el botón. Una llamada
+que se queda sin respuesta (tiempo agotado, conexión rechazada) queda en el registro de actividad
+con **código HTTP 0** y el error, y se ve en el Viaje y la Parada como cualquier otra llamada
+(:doc:`7_7_integration-best-practices`).
+
 7.3.3 Almacenamiento intermedio y materialización
 -------------------------------------------------
 

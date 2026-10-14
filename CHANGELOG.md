@@ -8,6 +8,26 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Guía del integrador: telemática, acceso externo, indicadores y tableros (tarea D29, 2026-10-14)
+- **7.8 Telemática** (nueva): estado (hecho en Odoo, sin datos: no existe el servicio intermedio y
+  la app no envía posiciones, comprobado en `tms_odoo_app`), modelo, las dos puertas (usuario
+  técnico con zona horaria y `/app/telematics/position`), lotes de 500 y 413, idempotencia,
+  acelerador de posiciones, política de persistencia, qué hace cada señal y cómo se configura un
+  proveedor.
+- **7.9 Acceso de clientes y transportistas** (nueva): hoy ningún cliente tiene portal; audiencia
+  del contacto (calculada, inmediata al asignar transportista, forzada), qué lee cada audiencia,
+  límites (adjuntos, proyectos), lista blanca de campos (falla cerrada, desmarcar y no borrar) y
+  cómo dar acceso al portal de Bandejas de entrada. **3.2.4** enlaza.
+- **7.10 Indicadores y tableros para el integrador** (nueva): registrar un cálculo de indicador y
+  versionar un tablero.
+- **7.3**: Timeout HTTP por integración. **7.7**: código HTTP 0 y botón Depurar token API.
+  **8.8.4**: días futuros en el filtro, Ver registros hacia las pantallas del TMS y la marca
+  Tablero TMS. **1.4.6** enlaza 7.8. Índice del capítulo 7 ampliado.
+- Anexo **A.35 Parámetros del sistema** (los de la suite, con su valor por defecto).
+- Discrepancia encontrada: el handoff de P4 da la app como «fuente viva» de posiciones, pero la
+  app no llama al endpoint; la doc dice lo que hace el código.
+- Dos capturas nuevas, sin datos personales.
+
 ### Contactos y conductores (tarea D28, 2026-10-14)
 - **4.1.8 Contactos TMS** (nueva): los seis papeles de un contacto (cliente, transportista, agencia,
   hub, contacto de carga o descarga, conductor), con su marca y su menú, y lo que decide cada parte

@@ -208,6 +208,8 @@ local llama a los sistemas reales).
 | ⬜ | `7_5_webhooks.rst` | `7_5_webhooks_01_endpoint-webhook.png` | Endpoint configurado como webhook. | TMS › Configuración › EDI › Endpoints API |
 | ✅ | `7_6_automated-actions.rst` | `7_6_automated-actions_01_crons.png` | Tareas programadas que orquestan las integraciones. | Ajustes › Técnico › Automatización › Acciones planificadas |
 | ✅ | `7_7_integration-best-practices.rst` | `7_7_integration-best-practices_01_api-log.png` | Registro de actividad de las APIs (tms.api.log). |  |
+| ⬜ | `7_8_telematics.rst` | `7_8_telematics_01_proveedor.png` | El proveedor «app del conductor», el que viene de serie, con su mapeo de la posición. | TMS › Configuración › Telemática › Proveedores › app del conductor (automática, instancia local) |
+| ⬜ | `7_9_external-access.rst` | `7_9_external-access_01_politica-campos.png` | Política de campos del portal: qué campo de qué modelo se enseña a cada audiencia. | TMS › Configuración › Ajustes › Audiencias externas › Política de campos del portal (automática, instancia local) |
 
 ## Gestión de Recursos (cap. 6)
 

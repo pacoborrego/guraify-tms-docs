@@ -84,3 +84,18 @@ interfaz son «Operations KPI», con los indicadores operativos del periodo; «S
 con las Paradas por estado, puntualidad y zona; y «Pending Invoicing», con lo ejecutado y no
 facturado por cliente y por transportista. Funcionan en cualquier compañía y cualquier base, y
 el cliente puede duplicarlos y adaptarlos desde la propia hoja.
+
+Tres detalles del TMS sobre los tableros de Odoo:
+
+- El filtro de fecha en **Periodo relativo** tiene, además de los periodos de Odoo, días sueltos
+  hacia delante: **Hoy**, **Mañana**, **Mañana +1**, **Mañana +2** y **Mañana +3**. Cada uno filtra
+  un solo día y se mueve con la fecha: «Mañana» es siempre mañana. Sirven para mirar la carga de
+  trabajo de los próximos días.
+- **Ver registros** en una celda de una tabla abre las Órdenes, las líneas de venta y las líneas de
+  compra en las pantallas del TMS, no en las de Ventas o Compras de Odoo.
+- TMS › Operaciones › Tableros enseña solo los grupos de tableros marcados como **Tablero TMS**
+  (casilla de la ficha del grupo, en la configuración de los tableros de Odoo). Un grupo propio del
+  cliente sale en el menú marcando esa casilla.
+
+Cómo se lleva un tablero de una base a otra sin que se rompa está en la
+:doc:`Guía del integrador </17.0/7_edi-integrations/7_10_kpis-dashboards>`.

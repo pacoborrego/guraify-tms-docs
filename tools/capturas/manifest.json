@@ -982,6 +982,32 @@
    ]
   },
   {
+   "id": "7_8_01",
+   "file": "7_8_telematics_01_proveedor.png",
+   "folder": "7_edi-integrations",
+   "instance": "agent",
+   "action": "tms_int.telematics_provider_action",
+   "model": "tms_int.telematics.provider",
+   "view": "form",
+   "domain": [
+    [
+     "code",
+     "=",
+     "driver_app"
+    ]
+   ],
+   "note": "Proveedor de telemática «app del conductor» con su mapeo de la posición"
+  },
+  {
+   "id": "7_9_01",
+   "file": "7_9_external-access_01_politica-campos.png",
+   "folder": "7_edi-integrations",
+   "instance": "agent",
+   "action": "tms.portal_field_policy_action",
+   "view": "list",
+   "note": "Política de campos del portal agrupada por modelo"
+  },
+  {
    "id": "3_2_2_02",
    "file": "3_2_2_trips_02_viajes-por-validar.png",
    "folder": "3_functional-architecture",

@@ -46,6 +46,10 @@ estado. La lista de líneas lo permite **en masa**: se seleccionan varias y se c
 todas a la vez (es la única columna editable), y se buscan por referencia externa, fecha
 operativa, Tipo de Orden, Tipo de Servicio y destinatario, con un filtro de fecha por periodo.
 
+El cliente que envía por API puede ver su propia bandeja (lo recibido, lo rechazado con su motivo
+y los manifiestos) en el portal de Odoo, si se le da acceso: ver
+:doc:`/17.0/7_edi-integrations/7_9_external-access`.
+
 3.2.4.2 Relación con el Manifiesto
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

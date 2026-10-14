@@ -29,8 +29,14 @@ actividad ``tms.api.log``.
    y cómo fluyen los datos. Los **contratos de la API REST pública** (direcciones, cuerpos de
    petición y respuesta, ejemplos y códigos de error) viven en la documentación interactiva
    de la pasarela de API, en ``/api/docs`` de cada instalación, y **no** se duplican aquí. Pide
-   a Guraify la dirección y las credenciales de la pasarela de tu instalación. La única
-   excepción es el webhook entrante (:doc:`7_5_webhooks`), que atiende Odoo directamente.
+   a Guraify la dirección y las credenciales de la pasarela de tu instalación. Las excepciones
+   son el webhook entrante (:doc:`7_5_webhooks`) y la telemática (:doc:`7_8_telematics`), que
+   atiende Odoo directamente.
+
+Las tres últimas secciones no tratan del intercambio de Órdenes: la **telemática** que traen los
+vehículos (7.8), el **acceso de clientes y transportistas** al portal y lo que tienen preparado
+para la torre de control (7.9), y cómo se **amplían los indicadores y se versionan los tableros**
+(7.10).
 
 .. toctree::
    :maxdepth: 2
@@ -42,3 +48,6 @@ actividad ``tms.api.log``.
    7_5_webhooks
    7_6_automated-actions
    7_7_integration-best-practices
+   7_8_telematics
+   7_9_external-access
+   7_10_kpis-dashboards

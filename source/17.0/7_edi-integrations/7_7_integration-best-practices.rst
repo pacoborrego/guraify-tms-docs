@@ -18,6 +18,10 @@ consulta de seguimiento deja aquí su traza. Revisar este registro
 de forma periódica permite detectar patrones de error y, ante llamadas fallidas,
 reintentarlas sin perder la trazabilidad de los intentos previos.
 
+Un **código HTTP 0** significa que la llamada no obtuvo respuesta: el destino no contestó dentro
+del tiempo de espera de su integración o rechazó la conexión (:doc:`7_3_api-integrations`). No es
+un rechazo del sistema del cliente, es que no llegó a contestar.
+
 .. figure:: /_static/img/7_edi-integrations/7_7_integration-best-practices_01_api-log.png
    :alt: Registro de actividad de las APIs
 
@@ -47,6 +51,11 @@ Como medidas de seguridad básicas: emplear siempre el secreto en los webhooks (
 :doc:`7_5_webhooks`), gestionar el *token* de API por Proyecto y respetar el control de
 acceso por Proyecto en la descarga de adjuntos, de modo que cada cliente acceda
 únicamente a su propia información.
+
+Para comprobar el *token* de API de un Proyecto sin hacer una llamada real, el botón **Depurar
+token API** de la cabecera de la ficha del Proyecto busca el Proyecto por su *token*, como haría
+la API, y enseña lo que encuentra; si el *token* falta o no resuelve, lo
+dice.
 
 7.7.5 Recomendaciones operativas
 --------------------------------
