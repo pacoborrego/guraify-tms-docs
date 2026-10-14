@@ -157,3 +157,20 @@ cdd987580ae511f2372a7228dd6e6e64ad1483e0
 85a5a754b742561d41384a9f058e0bd34dd9ea0a
 634adb7ffc70153ba252b3c81c0638bc8404461d
 ```
+
+## 7. Ejecutado (14/10/2026)
+
+- Copia espejo nueva: `~/Backups/tms-docs-mirror-261014.git` (113 MB, 54 commits, `fsck` limpio).
+- `git filter-repo --force --invert-paths --paths-from-file <12 rutas> --strip-blobs-with-ids <40>`.
+  Las rutas desde fichero porque tres llevan un espacio antes de `.png`.
+- Comprobado: 0 rutas y 0 blobs de la lista en ningún commit; árbol de `HEAD` idéntico al de
+  `794cc41`; `fsck` y build con `-W` limpios; 53 commits (se va «Capturas Maria 15/09», vacío);
+  `.git` de 113 a 36 MB.
+- Paco hizo `push --force` de `main` y de las 17 etiquetas. `git ls-remote` por HTTPS: GitHub = local
+  (`main` en `3647f62`), sin forks ni otras ramas.
+- **Pendiente**: GitHub sigue sirviendo los commits viejos por su identificador (p. ej. `fdddd50`
+  y la captura de la app de ese commit dan 200). Hay que pedir a GitHub Support que los purgue.
+  María borra su clon y vuelve a clonar.
+- epartner: el `pull --ff-only` de `deploy.sh` falló como se esperaba; copia vieja apartada en
+  `/opt/tms-docs/guraify-tms-docs.pre-d13`, reclonado y publicado `3647f62` (web comprobada).
+
