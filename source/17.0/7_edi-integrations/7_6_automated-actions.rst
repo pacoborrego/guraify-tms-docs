@@ -48,6 +48,13 @@ Las dos últimas son la tarea de tarificación que el Manual de implantación de
 :doc:`/17.0/5_operational-flows/5_6_settlement`; aquí interesa saber que existen porque
 explican por qué una Orden recién importada tarda unos minutos en aparecer tarificada.
 
+El módulo de la app añade una quinta, ``TMS App: deferred traceability (chatter + Axylog)``,
+cada minuto. Lo que el conductor reporta queda guardado al instante; lo que no hace falta para
+responderle, la nota en el historial de la Parada y el envío del resultado a Axylog, se aparta
+para esta tarea. La propia app la despierta al reportar, así que corre a los pocos segundos; el
+minuto es la red de seguridad. Si se desactiva, las notas del historial y los envíos a Axylog
+dejan de salir.
+
 7.6.2 Reglas y programación de los endpoints
 --------------------------------------------
 

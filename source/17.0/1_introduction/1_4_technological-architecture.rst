@@ -61,6 +61,10 @@ Guraify TMS se distribuye como un conjunto de módulos, uno o varios por área f
    * - Tableros e indicadores
      - ``tms_dashboard``, ``tms_dashboard_filters``, ``tms_kpi``
      - Sobre los tableros de hoja de cálculo de Odoo
+   * - Avisos al Destinatario
+     - ``tms_notify``, ``tms_notify_whatsapp``, ``sms_esendex``
+     - Correo, SMS y WhatsApp. ``tms_notify_whatsapp`` necesita Odoo Enterprise;
+       ``sms_esendex`` añade Esendex como proveedor de SMS
    * - Gestión de recursos
      - ``tms_resources``, ``tms_maintenance``
      - Sobre Flota y Mantenimiento de Odoo
@@ -203,9 +207,9 @@ diálogo lo dice; nada se relanza a escondidas con las ventanas ampliadas.
 .. admonition:: Ruta en Odoo
    :class: tip
 
-   TMS › Configuración › Ajustes › bloque «Operation» › «Operations Policy» para la política;
-   pestaña «ETA and Routing» del Viaje, con el botón «Recompute ETA Now», para el resultado.
-   Las etiquetas están en inglés en la interfaz.
+   TMS › Configuración › Ajustes › bloque **Operación** › **Políticas operativas** para la
+   política; pestaña **ETA y ruta** del Viaje, con el botón **Recalcular ETA ahora**, para el
+   resultado.
 
 Cuando el Viaje está en marcha, el ETA de las Paradas que quedan por hacer se vuelve a calcular.
 Hay dos niveles. El **recálculo ligero** reutiliza el cálculo de ruta que PTV ya hizo y le pide
@@ -408,24 +412,29 @@ veces, se procesa una sola.
 
 .. note::
 
-   Lo que sigue **no forma parte de la versión que describen las secciones anteriores**
-   (septiembre de 2026). Cada punto lleva su estado; a medida que se despliegue, pasará a ellas.
+   Lo que sigue **no está terminado** (octubre de 2026). Cada punto dice qué parte existe ya en
+   Odoo y qué falta; a medida que se complete, pasará a las secciones anteriores.
 
-Son los prerrequisitos de la **torre de control** que se está construyendo sobre el TMS:
+Sobre el TMS se está construyendo la **torre de control**: una aplicación aparte para seguir la
+operación del día en un mapa, con su propia ventana para el cliente y para el Destinatario. Lo
+que necesita de Odoo está hecho casi todo; lo que queda es:
 
-- **Telemática** (hecho en el código, pendiente de despliegue). Un conector de proveedores de
-  telemática que trae al Viaje y al vehículo la posición, el odómetro y otras señales, con la
-  app del conductor como primer proveedor. La posición que aporta es la que usará el recálculo
-  ligero del ETA descrito en
-  :ref:`17.0/1_introduction/1_4_technological-architecture:1.4.2.1 El ETA durante la ejecución`.
-- **Avisos al Destinatario** (hecho en el código, pendiente de despliegue). Un motor de avisos por
-  WhatsApp, SMS y correo que informa al Destinatario del estado de su entrega y de su hora
-  prevista, con enlace de seguimiento, consentimiento y lista de permitidos.
-- **Optimizador** (en desarrollo). Migración a PTV OptiFlow en convivencia con el servicio
-  actual, comparando resultados sobre planificaciones reales antes de cambiar. Aporta
-  capacidades reales también en la secuenciación, pausas y jornada del conductor explícitas,
-  categorías de carga y compatibilidades vehículo ↔ Orden, costes por vehículo (fijo, por hora,
-  por kilómetro, por Parada), coste de subcontratación e ingreso de internalización por Orden,
-  preferencias de compacidad y equilibrio entre Viajes, y un informe de Órdenes no planificadas
-  con su motivo y de restricciones incumplidas. Cada optimización quedará guardada como registro
-  consultable.
+- **La aplicación de la torre**, que no está terminada. Odoo ya guarda lo que va a mostrar: la
+  política operativa con sus geocercas y alarmas, el ETA vigente y el prometido, el historial de
+  ETA y el enriquecimiento del Viaje. Las alarmas y la privacidad del Destinatario de la política
+  no las lee todavía nadie: son de la torre.
+- **Posición real de los vehículos.** El conector de telemática existe en Odoo, con la app del
+  conductor como primer proveedor, pero hoy no entra ningún dato: falta el servicio intermedio
+  que reciba las señales de los proveedores y la app todavía no envía su posición. Mientras
+  tanto, el recálculo del ETA
+  (:ref:`17.0/1_introduction/1_4_technological-architecture:1.4.2.1 El ETA durante la ejecución`)
+  parte de la última Parada cerrada y no del vehículo.
+- **Avisos al Destinatario.** El motor de avisos por correo, SMS y WhatsApp funciona, pero le
+  faltan dos piezas: la página que abre el enlace de seguimiento del aviso y la cuenta real de
+  WhatsApp, con sus plantillas aprobadas por Meta.
+- **Escenarios de optimización.** El menú Planning › Escenarios ya existe y está en prueba:
+  comparar en paralelo varias planificaciones del mismo día antes de aplicar una. No se
+  documenta hasta que esté terminado.
+- **Indicadores para el cliente.** Los indicadores ya distinguen a quién se dirigen (equipo
+  interno, cliente o transportista), pero todavía no hay una pantalla en la que el cliente o el
+  transportista los vea.

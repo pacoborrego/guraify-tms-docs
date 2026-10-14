@@ -40,12 +40,29 @@ sin coste.
    El motor de indicadores: cada indicador con su sección, formato, audiencia y objetivo.
 
 El TMS tiene un **motor de indicadores** (``tms.kpi``) compartido por todos los módulos. Cada
-**indicador configurable** es un registro con su cálculo, su formato (número, porcentaje,
-moneda, duración, tendencia), su sección (tablero, operativa, administrativa), su objetivo y el
-sentido en que mejora, y a qué **audiencias** se muestra. Las audiencias dicen quién ve cada
-indicador dentro de Odoo y con qué alcance: el mismo indicador, calculado para un usuario de
-cliente, solo cuenta sus operaciones; para uno de transportista, solo las suyas; para el equipo
-interno, todo. Al pulsarlo abre la lista de registros que lo componen.
+**indicador configurable** es un registro con su título, su cálculo, su formato (número,
+porcentaje, moneda, duración, tendencia), su sección (tablero, operativa, administrativa), su
+posición, su icono y a qué **audiencias** se dirige (equipo interno, cliente, transportista).
+
+Lo que se configura es la presentación; el **cálculo** se elige de una lista de cálculos que
+trae cada módulo. Un indicador nuevo que mida algo que ningún cálculo mide hoy es un desarrollo:
+se añade el cálculo al módulo y, a partir de ahí, se configura como los demás.
+
+TMS › Métricas › KPIs abre un **mosaico**: una tarjeta por indicador con su valor de los últimos
+30 días para el equipo interno. Si el indicador tiene **Aplicar objetivo** marcado, la tarjeta se
+colorea en verde o en rojo según el **Objetivo** y la **Dirección** (mejor cuanto más alto o
+cuanto más bajo); sin esa casilla queda neutra. La casilla existe porque cero es un objetivo
+válido (cero Viajes por validar, cero vencidos) y no se distinguiría de «sin objetivo». Una
+tarjeta que dice **Sin datos** no ha encontrado nada que contar en el periodo, que no es lo mismo
+que un cero; si el cálculo falla, la tarjeta muestra el error en lugar del valor. Al pulsarla se
+abre la lista de los registros que cuenta, cuando el cálculo la tiene.
+
+El botón **Probar** de la ficha calcula el indicador para una audiencia, un cliente o
+transportista concreto y unas fechas, y enseña el resultado: el mismo indicador, calculado para
+un cliente, solo cuenta sus operaciones; para un transportista, solo las suyas. Es la forma de
+comprobar el alcance, porque **hoy no hay una pantalla en la que el cliente o el transportista
+vean sus indicadores**: las audiencias de cliente y de transportista están preparadas para
+cuando la haya. El menú solo lo ven los responsables del TMS.
 
 Los indicadores operativos del núcleo son la entrega a tiempo, la tasa de retraso, la entrega
 al primer intento, las fallidas, el tiempo medio de entrega y el volumen; a ellos se suma, solo

@@ -71,17 +71,20 @@ entrar en una parada, **pulsa su tarjeta**.
    .. figure:: /_static/img/10_manual_app/10_2_route_04_pestanas.png
       :width: 300px
       :align: center
-      :alt: Barra de pestañas inferior: Panel, Mapas, Escanear, Chat, Perfil
+      :alt: Barra de pestañas inferior: Panel, Mapas, Chat, Perfil
 
-      Las cinco pestañas de la app.
+      Las pestañas de la app del conductor.
 
-En la parte de abajo hay cinco pestañas:
+En la parte de abajo tienes cuatro pestañas:
 
 - **Panel**: tu ruta, la pantalla en la que estás.
 - **Mapas**: el mapa con el recorrido de tu ruta y tus paradas numeradas.
-- **Escanear**: buscar bultos con la cámara (ver :doc:`10_4_delivery`).
 - **Chat**: mensajes con la oficina, cuando tu empresa lo tenga activado.
 - **Perfil**: abre la pantalla **Cuenta**, con tu usuario, la **sincronización** y el botón de
   cerrar sesión. Sincronizar es enviar a la oficina lo que has hecho en la app y recibir los
   cambios que ella haya hecho en tu ruta; la app lo hace sola, y en :doc:`10_8_end-of-day` te
   contamos cuándo forzarlo.
+
+Las pestañas dependen de lo que te hayan dado en la oficina. Quien trabaja en el almacén ve
+además **Escanear**, y no ve Mapas ni Chat. Si al entrar no ves ninguna pestaña, o te falta
+alguna de estas cuatro, llama a la oficina: tu usuario no tiene el permiso de conductor.

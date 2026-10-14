@@ -44,9 +44,9 @@ Además de los campos de la tabla, el maestro lleva tres de los campos comunes a
    * - Paradas Optimizador
      - Sí/No
      - Papel de las paradas de inicio y fin que genera el optimizador. No son eventos ejecutables y quedan fuera de la secuenciación y de los documentos de carga.
-   * - Arrival Geofence (m)
+   * - Geocerca de llegada (m)
      - Número entero
-     - Radio en metros alrededor de la Parada que se considera llegada para el conector de telemática. A cero, se usa el radio de la política operativa. La etiqueta está sin traducir.
+     - Radio en metros alrededor de la Parada que se considera llegada para el conector de telemática. A cero, se usa el radio de la política operativa.
    * - Información
      - Texto
      - Notas internas de parametrización.

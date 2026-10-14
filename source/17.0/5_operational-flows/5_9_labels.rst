@@ -144,3 +144,7 @@ camino es el asistente.
        de orden por defecto
    * - Descarga por API
      - ``GET /api/labels/<token>?format=pdf|zpl|url`` (pasarela)
+   * - Impresión por API
+     - ``POST /api/labels/print`` con el token del Proyecto: una lista de tokens de etiqueta y
+       una impresora del Proyecto (por id o por nombre) o una dirección IP y puerto sueltos;
+       responde cuántas se enviaron y cuántas fallaron

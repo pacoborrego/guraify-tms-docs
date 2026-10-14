@@ -39,8 +39,10 @@ eventos, con qué formato, a qué dirección, uno a uno o por lotes.
 **Consulta de seguimiento.** El cliente puede preguntar por una referencia suya y recibir el
 estado, el histórico de eventos, los Bultos y los documentos adjuntos.
 
-Además, el portal estándar de Odoo puede habilitarse para que el cliente consulte sus Órdenes
-y sus facturas.
+Además, el portal de Odoo puede habilitarse para el cliente que envía por API: ve en él lo que
+ha llegado a su Bandeja de entrada (lo recibido, lo rechazado y los manifiestos que generó) y sus
+facturas. Las Órdenes de transporte no se consultan en el portal: para eso está la consulta de
+seguimiento.
 
 Qué queda registrado
 ~~~~~~~~~~~~~~~~~~~~

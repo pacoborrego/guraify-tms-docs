@@ -7,7 +7,7 @@ A.17 Productos TMS
    TMS › Administración › Maestros › Productos
 
 Modelo Odoo: ``product.template``. Los productos de Odoo que el TMS puede usar en Tarifas y líneas
-económicas. Solo se añaden tres campos al producto estándar.
+económicas. Solo se añaden dos campos al producto estándar.
 
 .. list-table::
    :header-rows: 1
@@ -25,9 +25,5 @@ económicas. Solo se añaden tres campos al producto estándar.
      - La familia del concepto: Portes, Suplemento de portes, Logística y almacenaje, Suministros
        refacturados, Servicios y consultoría. Sirve para agrupar en informes y en la factura
        agrupada.
-   * - Nombre comercial (TMS)
-     - Texto
-     - Cómo debe leer el cliente el concepto en el documento de tarifa. Si está vacío se usa el
-       nombre del producto.
 
 Cómo se usa y qué decide el cliente: :doc:`/17.0/4_parametrization/4_4_economic-configuration`.

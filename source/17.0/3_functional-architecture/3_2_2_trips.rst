@@ -133,9 +133,16 @@ paso que se da a mano tiene su vuelta atrás.
      - Viaje repartido
      - Cierra el Viaje con lo que entregó: el cierre normal, con su tarificación y su OC.
 
-Los botones **Bloquear**, **Desbloquear** y **Pasar a borrador** ya no están en la cabecera:
-Validar y Revertir validación hacen su trabajo con el estado delante, y volver a borrador queda
-como acción de servidor para responsables.
+Los botones **Bloquear**, **Desbloquear** y **Pasar a borrador** ya no existen: los sustituyen
+Validar, Revertir validación y Revertir despacho, cada uno con el estado delante. Validar y
+Revertir validación están también en el menú **Acción** de la lista de Viajes, como **Validar
+viaje** y **Revertir validación del viaje**, para hacerlo con varios a la vez; las ven los
+validadores y los responsables.
+
+**Encontrar lo pendiente.** El buscador de Viajes trae los filtros **Sin despachar**,
+**Despachado**, **Error de despacho**, **Por validar** y **Validación rechazada**, el filtro de
+**Fecha de despacho** y la agrupación por **Canal de despacho** (app del conductor, API de la
+agencia, Axylog o manual, para la agencia sin API).
 
 **Quién puede validar.** Los permisos del TMS forman una escalera: Usuario < **Validador de
 viajes** < Responsable. El validador ve el menú **Tráfico › Viajes por validar**, una lista con

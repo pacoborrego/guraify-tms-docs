@@ -8,6 +8,31 @@ Convención de release: cada publicación se etiqueta con tag git `AAMMDD_VNN`
 
 ## [Sin publicar]
 
+### Correcciones de la tercera ronda (tarea D24, 2026-10-14)
+- **1.4.6** reescrita: OptiFlow sale de «en desarrollo» (ya es el motor de optimización de una
+  compañía); cada punto de la torre dice qué existe en Odoo y qué falta (posición real, página de
+  seguimiento y cuenta de WhatsApp de los avisos, escenarios en prueba, indicadores para el cliente).
+  **1.4.1**: fila de los módulos de avisos (`tms_notify`, `tms_notify_whatsapp`, `sms_esendex`).
+  **1.4.2.1**: ruta con las etiquetas ya traducidas.
+- **8.8.3** reescrita: el cálculo de un indicador es desarrollo y lo configurable es la
+  presentación; mosaico de 30 días, semáforo con «Aplicar objetivo», «Sin datos» frente a cero,
+  botón Probar, menú solo para responsables. Corregido: las audiencias de cliente y transportista
+  no tienen todavía pantalla.
+- **10.2.3**: el conductor ve cuatro pestañas; Escanear es del rol de almacén (`Tabs.vue`). 10.4
+  ya no manda a esa pestaña.
+- **3.2.2**: «Pasar a borrador» ya no existe en el Viaje (la doc decía que quedaba como acción de
+  servidor); nombres de las acciones Validar viaje / Revertir validación del viaje; filtros de
+  despacho y validación y agrupación por canal.
+- **5.1.2**: la recogida a domicilio olvidada ya no repunta las entregas al domicilio (desde el
+  24-sep cargan en el hub); nuevo **Deshacer recogida a domicilio**.
+- **4.1.3**: cada compañía necesita sus seis tipos de parada (si falta uno se usa el de otra con
+  aviso en el registro). **5.9.4**: `POST /api/labels/print`. **7.6.1**: la tarea de trazabilidad
+  diferida de la app. **3.1.1.2**: el menú Escenarios existe y está en prueba.
+- **0.4**: la app recibe logotipo y colores, no la tipografía. **0.6**: el portal es el de las
+  Bandejas de entrada API, no el de las Órdenes. **A.17**: fuera «Nombre comercial» (es de
+  `tms_crm`, fuera del producto). **A.19**: la referencia de telemetría del vehículo es una
+  pista reservada. **A.25**: «Geocerca de llegada» ya traducida.
+
 ### Limpieza del historial (tarea D13, en curso, 2026-10-13)
 - Copia espejo del repositorio e inventario de las imágenes que han existido en el historial (260;
   98 en el árbol). Aprobado borrar las 56 capturas antiguas de `source/_static/images/`, 10

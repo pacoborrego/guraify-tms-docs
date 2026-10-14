@@ -84,10 +84,16 @@ Si el Manifiesto se cerró **sin marcar la recogida a domicilio** y alguien lo a
 no hace falta reabrirlo (y a menudo ya no se puede, porque alguna Orden ha avanzado): el botón
 **Crear recogida a domicilio** de un Manifiesto cerrado pide el lugar de recogida, la fecha y
 las franjas (precargados del Manifiesto y del Proyecto) y deja el Manifiesto como si se hubiera
-cerrado con recogida desde el principio: crea la expedición de recogida con su Tramo en casa del
-cliente, repunta la carga de las entregas del hub al domicilio y limpia las Paradas que se
-quedan vacías, salvo las que ya están en un Viaje, que se señalan para decidir a mano. Volver a
-pulsarlo actualiza la misma recogida, no crea otra.
+cerrado con recogida desde el principio: crea la expedición de recogida con su Tramo del
+domicilio del cliente al hub, y las entregas siguen cargando en el hub, que es de donde salen.
+Si alguna Parada se queda vacía con el cambio, se limpia, salvo las que ya están en un Viaje,
+que se señalan para decidir a mano. Volver a pulsarlo actualiza la misma recogida, no crea otra.
+
+Una recogida creada por error (el lugar o el Manifiesto equivocados) se quita con **Deshacer
+recogida a domicilio**, en el mismo Manifiesto cerrado: retira la expedición de recogida, su
+Tramo y su Parada; las entregas no se tocan. No se puede mientras la recogida esté en
+un Viaje: primero hay que sacarla de él. Las Paradas que no se pueden quitar se nombran en un
+aviso.
 
 Cuando los datos llegan por API, el sistema del cliente los deposita en la
 :term:`Bandeja de entrada API`, que los valida y los agrupa en un Manifiesto; a partir de ahí

@@ -157,11 +157,13 @@ ejecutables).
      - Es lo único que el cliente adapta: cómo se llama cada tipo en su casa y con qué icono
        lo ven el planificador en las listas y el conductor en la app. El papel no se cambia:
        al marcar una casilla se desmarcan las demás.
-   * - Que existan los seis
+   * - Que existan los seis, en cada compañía
      - El sistema busca cada papel por su marca cuando lo necesita: al validar una Orden
        asigna Parada de Ruta, Operaciones de Hub, Punto de Recogida o los dos directos según el
-       Tramo; al optimizar crea las paradas de inicio y fin con el papel de optimizador. Si
-       falta el registro de un papel, el flujo que lo busca no encuentra tipo.
+       Tramo; al optimizar crea las paradas de inicio y fin con el papel de optimizador. Lo
+       busca primero en la compañía del registro. Si a esa compañía le falta un papel, usa el
+       de otra compañía y lo deja anotado como aviso en el registro del servidor: funciona, pero
+       la Parada queda con un tipo ajeno. Cada compañía nueva necesita sus seis.
 
 El papel condiciona lo que se puede hacer con la Parada. Solo las Paradas de Ruta y las
 directas se asignan a un Viaje, se envían a una agencia o se reprograman; las de hub las crea

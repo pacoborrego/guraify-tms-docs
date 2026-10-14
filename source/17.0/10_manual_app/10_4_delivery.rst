@@ -9,8 +9,7 @@ Así se hace una entrega cuando todo va bien. Los casos con problemas están en
 
 Antes de bajar la mercancía, la app te ayuda a localizarla entre todo lo que llevas.
 
-#. En la parada, pulsa el icono del **escáner** del pie (o la pestaña **Escanear** y luego
-   **ENCONTRAR BULTOS**).
+#. En la parada, pulsa el icono del **escáner** del pie.
 #. Se abre la cámara. Enfoca las etiquetas de los bultos, varias a la vez si quieres.
 #. Los bultos de **esta parada** se marcan en **verde** sobre la imagen; los que no son de esta
    parada, en **rojo**. Arriba ves cuántos te faltan por encontrar.

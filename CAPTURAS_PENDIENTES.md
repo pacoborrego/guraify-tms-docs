@@ -269,7 +269,7 @@ local llama a los sistemas reales).
 | 🔁 | `10_2_route.rst` | `10_2_route_01_dashboard.png` | Panel con la ruta y las paradas |
 | 🔁 | `10_2_route.rst` | `10_2_route_02_dashboard-header.png` | Cabecera de la ruta |
 | 🔁 | `10_2_route.rst` | `10_2_route_03_parada-card.png` | Tarjeta de una parada |
-| ⬜ | `10_2_route.rst` | `10_2_route_04_pestanas.png` | Barra inferior con las cinco pestañas |
+| ⬜ | `10_2_route.rst` | `10_2_route_04_pestanas.png` | Barra inferior con las cuatro pestañas del conductor (Panel, Mapas, Chat, Perfil): usuario con el rol de conductor, sin el de almacén |
 | 🔁 | `10_3_stop.rst` | `10_3_report_01_parada-report-inicio.png` | Pantalla de la parada con el botón Inicio |
 | 🔁 | `10_3_stop.rst` | `10_3_report_02_parada-report-botones-exito.png` | Los tres botones de resultado: Hecho, Con Reservas, Cancelado |
 | 🔁 | `10_3_stop.rst` | `10_3_report_03_orden-card.png` | Tarjeta de una orden |

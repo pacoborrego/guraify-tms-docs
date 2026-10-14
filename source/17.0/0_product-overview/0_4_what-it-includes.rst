@@ -91,10 +91,10 @@ transportista o al cliente, y se conserva cada versión el tiempo que la norma m
 Marca blanca y multiempresa
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-La app del conductor y las comunicaciones llevan el logotipo, los colores y la tipografía de
-cada compañía, configurados en Odoo. Varias empresas pueden convivir en la misma instalación
-con sus datos separados, lo que permite a un distribuidor operar varios clientes o a un grupo
-tener varias marcas.
+La app del conductor lleva el logotipo y los colores de cada compañía, configurados en Odoo; el
+DeCA lleva su logotipo y los avisos al Destinatario, su nombre de remitente. Varias empresas
+pueden convivir en la misma instalación con sus datos separados, lo que permite a un
+distribuidor operar varios clientes o a un grupo tener varias marcas.
 
 Entorno de demostración
 ~~~~~~~~~~~~~~~~~~~~~~~

@@ -84,7 +84,9 @@ El resumen del odómetro vive en el vehículo (``fleet.vehicle``).
      - Lecturas en borrador pendientes de revisar; el botón inteligente de la ficha.
    * - Referencia del dispositivo de telemetría
      - Texto
-     - Identificador del dispositivo que envía lecturas por telemetría.
+     - Reservado para casar el vehículo con el identificador que le da el proveedor de
+       telemetría. Hoy no lo usa ningún proceso: el dispositivo que envía las lecturas se da de
+       alta en el conector de telemática, con su vehículo.
    * - Configuración del vehículo
      - Texto
      - Ejes o carrocería como los llama el taller (4x2, 3 ejes, Cisterna). Se imprime junto al tipo
